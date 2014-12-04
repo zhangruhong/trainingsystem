@@ -20,5 +20,9 @@
 		
 		<!-- mapper -->
         <mapping resource="/hbm/password.hbm.xml" />
+        <mapping resource="/hbm/Course.hbm.xml" />
+        <mapping resource="/hbm/Dictionary.hbm.xml" />
+        <mapping resource="/hbm/Practice.hbm.xml" />
+        <mapping resource="/hbm/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
