@@ -11,4 +11,5 @@ import com.synnex.service.PasswordInfoService;
 public class GenericController {
 	@Resource(name = "passwordInfoService")
 	public PasswordInfoService passwordInfoService;
+	
 }
