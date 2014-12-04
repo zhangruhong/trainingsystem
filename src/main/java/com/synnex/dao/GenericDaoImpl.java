@@ -1,5 +1,6 @@
 package com.synnex.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -21,8 +22,13 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	}
 
 	@Override
-	public List<T> list(Object condition, List<Order> orders, int begin,
-			int size) {
+	@SuppressWarnings("unchecked")
+	public T get(PK id) {
+		return (T) this.getSession().get(entityClass, (Serializable) id);
+	}
+
+	@Override
+	public List<T> list(Object condition, List<Order> orders, int begin, int size) {
 		Criteria criteria = this.getSession().createCriteria(entityClass);
 		if (condition != null) {
 			criteria.add(Example.create(condition).excludeZeroes());
@@ -30,11 +36,9 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		if (orders != null) {
 			for (Order order : orders) {
 				if (order.isAsc()) {
-					criteria.addOrder(org.hibernate.criterion.Order.asc(order
-							.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.asc(order.getField()));
 				} else {
-					criteria.addOrder(org.hibernate.criterion.Order.desc(order
-							.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.desc(order.getField()));
 				}
 			}
 		}
@@ -43,4 +47,34 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		}
 		return criteria.list();
 	}
+
+	@Override
+	public void save(T entity) {
+		this.getSession().save(entity);
+	}
+
+	@Override
+	public void save(List<T> entitys) {
+		for (T t : entitys) {
+			save(t);
+		}
+	}
+
+	@Override
+	public void update(T entity) {
+		this.getSession().update(entity);
+	}
+
+	@Override
+	public void update(List<T> entitys) {
+		for (T t : entitys) {
+			update(t);
+		}
+	}
+
+	@Override
+	public void delete(Object object) {
+		this.getSession().delete(object);
+	}
+
 }
