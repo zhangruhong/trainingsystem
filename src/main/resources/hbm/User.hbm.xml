@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+	-->
+<hibernate-mapping package="com.synnex.model">
+
+	<class name="User">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="email"/>
+		<property name="loginname"/>
+		<property name="password"/>
+		<property name="phoneno"/>
+		<property name="role"/>
+		<!-- 多对多 -->
+		<set name="course" cascade="save-update" table="user_course">
+			<key column="user_id"></key>
+			<many-to-many class="User" column="course_id"/>
+		</set>
+	</class>
+
+</hibernate-mapping>
