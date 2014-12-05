@@ -1,6 +1,10 @@
 package com.synnex.model;
 
-public class Practice {
+import java.io.Serializable;
+
+public class Practice implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private int score;
 	private int status;

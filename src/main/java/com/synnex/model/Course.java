@@ -1,10 +1,13 @@
 package com.synnex.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Course {
+public class Course implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private Date starttime;
 	private Date endtime;

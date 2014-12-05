@@ -1,14 +1,18 @@
 package com.synnex.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String email;
 	private String loginname;
 	private String password;
 	private String phoneno;
+	//0:TrainingManager（培训管理者）、1:Trainer（培训讲师）、2:NewComer（新员工）
 	private int role;
 	private Set<Course> course = new HashSet<Course>();
 	
