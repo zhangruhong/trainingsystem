@@ -51,7 +51,7 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="daoMethods" expression="execution(* com.neusoft.leehom.service.impl.*.*(..))" />
+		<aop:pointcut id="daoMethods" expression="execution(* com.synnex.service.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods" />
 	</aop:config>
 
