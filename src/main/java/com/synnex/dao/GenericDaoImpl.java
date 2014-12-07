@@ -28,7 +28,8 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	}
 
 	@Override
-	public List<T> list(Object condition, List<Order> orders, int begin, int size) {
+	public List<T> list(Object condition, List<Order> orders, int begin,
+			int size) {
 		Criteria criteria = this.getSession().createCriteria(entityClass);
 		if (condition != null) {
 			criteria.add(Example.create(condition).excludeZeroes());
@@ -36,9 +37,11 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		if (orders != null) {
 			for (Order order : orders) {
 				if (order.isAsc()) {
-					criteria.addOrder(org.hibernate.criterion.Order.asc(order.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.asc(order
+							.getField()));
 				} else {
-					criteria.addOrder(org.hibernate.criterion.Order.desc(order.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.desc(order
+							.getField()));
 				}
 			}
 		}
