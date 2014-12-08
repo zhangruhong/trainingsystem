@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.synnex</groupId>
 	<artifactId>trainingsystem</artifactId>
@@ -58,6 +57,12 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 		<!-- spring end -->
 
 		<!-- jackson begin -->
@@ -159,10 +164,9 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
-				<version>2.2</version> <configuration> <server>tomcat7</server> <port>8080</port> 
-				<url>http://localhost:8080/</url>端口号 <path>/trainingsystem</path> <warSourceDirectory>src/main/webapp</warSourceDirectory> 
-				</configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> <version>2.2</version> <configuration> <server>tomcat7</server> 
+				<port>8080</port> <url>http://localhost:8080/</url>端口号 <path>/trainingsystem</path> <warSourceDirectory>src/main/webapp</warSourceDirectory> </configuration> 
+				</plugin> -->
 		</plugins>
 		<finalName>trainingsystem</finalName>
 	</build>
