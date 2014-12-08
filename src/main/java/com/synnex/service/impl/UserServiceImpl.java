@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(int id) {
+	public User getUser(Integer id) {
 		return userDao.get(id);
 	}
 
@@ -60,5 +60,6 @@ public class UserServiceImpl implements UserService {
 	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size) {
 		return userDao.list(condition, orders, begin, size);
 	}
+
 
 }

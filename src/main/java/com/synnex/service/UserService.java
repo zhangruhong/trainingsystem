@@ -59,7 +59,7 @@ public interface UserService {
 	 *            （此编号为系统内部编号，对所有人透明）
 	 * @return
 	 */
-	public User getUser(int id);
+	public User getUser(Integer id);
 
 	/**
 	 * 
