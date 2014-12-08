@@ -1,4 +1,4 @@
-package com.synnex.service;
+package com.synnex.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
 import com.synnex.model.User;
+import com.synnex.service.UserService;
 
 @Repository
 public class UserServiceImpl implements UserService {

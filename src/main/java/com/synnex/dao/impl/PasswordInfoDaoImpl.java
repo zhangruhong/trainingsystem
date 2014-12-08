@@ -1,9 +1,10 @@
-package com.synnex.dao;
+package com.synnex.dao.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.synnex.dao.PasswordInfoDao;
 import com.synnex.model.PasswordInfo;
 
 /*

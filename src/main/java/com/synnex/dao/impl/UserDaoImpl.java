@@ -1,5 +1,6 @@
-package com.synnex.dao;
+package com.synnex.dao.impl;
 
+import com.synnex.dao.UserDao;
 import com.synnex.model.User;
 
 public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements

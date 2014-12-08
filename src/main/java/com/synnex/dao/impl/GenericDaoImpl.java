@@ -1,4 +1,4 @@
-package com.synnex.dao;
+package com.synnex.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +9,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.synnex.dao.GenericDao;
+import com.synnex.dao.Order;
 
 @Repository
 public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {

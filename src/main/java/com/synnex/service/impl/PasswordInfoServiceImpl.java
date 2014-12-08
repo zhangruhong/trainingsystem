@@ -1,4 +1,4 @@
-package com.synnex.service;
+package com.synnex.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.synnex.dao.PasswordInfoDao;
 import com.synnex.model.PasswordInfo;
 import com.synnex.model.PasswordName;
+import com.synnex.service.PasswordInfoService;
 
 /*
  *@author Jeniss 2013-12-7 ����8:26:04
