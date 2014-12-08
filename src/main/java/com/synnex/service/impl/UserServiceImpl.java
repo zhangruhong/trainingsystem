@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
 import com.synnex.model.User;
 import com.synnex.service.UserService;
 
-@Repository
+@Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDaoImpl")
