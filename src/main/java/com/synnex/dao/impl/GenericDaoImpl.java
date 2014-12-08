@@ -1,6 +1,8 @@
 package com.synnex.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -17,7 +19,20 @@ import com.synnex.dao.Order;
 public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Autowired
 	protected SessionFactory sessionFactory;
-	protected Class<T> entityClass;
+	protected Class<T> entityClass ;
+	
+	//TODO 此处需要问问Jennifer
+	@SuppressWarnings("unchecked")
+	public Class<T> getClz() {
+		if (entityClass == null) {
+			// 获取泛型的Class对象
+			entityClass = ((Class<T>) (((ParameterizedType) (this.getClass()
+					.getGenericSuperclass())).getActualTypeArguments()[0]));
+			System.out.println("entityClass："+entityClass);
+		}
+		return entityClass;
+	}
+	
 
 	@Override
 	public Session getSession() {
@@ -27,11 +42,12 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public T get(PK id) {
-		return (T) this.getSession().get(entityClass, (Serializable) id);
+		return (T) this.getSession().get(getClz(), (Serializable) id);
 	}
 
 	@Override
-	public List<T> list(Object condition, List<Order> orders, int begin, int size) {
+	public List<T> list(Object condition, List<Order> orders, int begin,
+			int size) {
 		Criteria criteria = this.getSession().createCriteria(entityClass);
 		if (condition != null) {
 			criteria.add(Example.create(condition).excludeZeroes());
@@ -39,9 +55,11 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		if (orders != null) {
 			for (Order order : orders) {
 				if (order.isAsc()) {
-					criteria.addOrder(org.hibernate.criterion.Order.asc(order.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.asc(order
+							.getField()));
 				} else {
-					criteria.addOrder(org.hibernate.criterion.Order.desc(order.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.desc(order
+							.getField()));
 				}
 			}
 		}
