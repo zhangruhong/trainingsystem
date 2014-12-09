@@ -21,7 +21,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	protected Class<T> entityClass ;
 	
 	@SuppressWarnings("unchecked")
-	public Class<T> getClz() {
+	private Class<T> getClz() {
 		if (entityClass == null) {
 			// 获取泛型的Class对象
 			entityClass = ((Class<T>) (((ParameterizedType) (this.getClass()
