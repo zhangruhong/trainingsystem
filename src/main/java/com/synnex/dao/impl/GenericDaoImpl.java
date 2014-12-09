@@ -50,7 +50,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		// TODO 条件限定没有用
 		if (condition != null) {
 			// criteria.add(Example.create(condition).excludeZeroes());
-			criteria.add(Example.create(condition).excludeZeroes());
+			criteria.add(Example.create(condition));
 		}
 		if (orders != null) {
 			for (Order order : orders) {
