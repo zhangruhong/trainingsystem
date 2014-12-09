@@ -2,7 +2,6 @@ package com.synnex.controller;
 
 import javax.annotation.Resource;
 
-import com.synnex.service.PasswordInfoService;
 import com.synnex.service.UserService;
 
 /*
@@ -10,10 +9,7 @@ import com.synnex.service.UserService;
  *@tags
  */
 public class GenericController {
-	@Resource(name = "passwordInfoService")
-	public PasswordInfoService passwordInfoService;
 	
 	@Resource(name = "userServiceImpl")
 	public UserService userService;
-	
 }

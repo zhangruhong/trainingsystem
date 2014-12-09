@@ -5,7 +5,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
@@ -98,17 +97,6 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Override
 	public void delete(Object object) {
 		this.getSession().delete(object);
-	}
-	
-	@Override
-	public List<T> findByHql(String hql, Object... objects) {
-		// 创建查询对象
-		Query query = this.getSession().createQuery(hql);// Hql
-		// 添加查询条件，参数
-		for (int i = 0; i < objects.length; i++) {
-			query.setParameter(i,objects[i]);
-		}
-		return query.list();
 	}
 
 }
