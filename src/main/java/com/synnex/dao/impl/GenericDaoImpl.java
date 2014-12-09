@@ -20,7 +20,6 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	protected SessionFactory sessionFactory;
 	protected Class<T> entityClass ;
 	
-	// TODO 此处需要问问Jennifer
 	@SuppressWarnings("unchecked")
 	public Class<T> getClz() {
 		if (entityClass == null) {
@@ -72,6 +71,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 
 	@Override
 	public void save(T entity) {
+
 		this.getSession().save(entity);
 	}
 
