@@ -74,4 +74,14 @@ public interface UserService {
 	 * @return
 	 */
 	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size);
+
+	/**
+	 * 
+	 * @param username
+	 *            用户名
+	 * @param password
+	 *            密码
+	 * @return user对象
+	 */
+	public User checkLogin(String username, String password);
 }

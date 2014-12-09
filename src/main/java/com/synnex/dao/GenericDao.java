@@ -60,4 +60,12 @@ public interface GenericDao<T, PK> {
 	 */
 	void delete(Object object);
 
+	/**
+	 * 
+	 * @param hql
+	 * @param objects
+	 * @return
+	 */
+	public List<T> findByHql(String hql, Object... objects);
+
 }

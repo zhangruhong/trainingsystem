@@ -10,6 +10,7 @@ import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
 import com.synnex.model.User;
 import com.synnex.service.UserService;
+import com.synnex.utils.exception.LogicException;
 
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
@@ -59,6 +60,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size) {
 		return userDao.list(condition, orders, begin, size);
+	}
+
+	@Override
+	public User checkLogin(String username, String password) {
+		// 验证用户名
+		String hql = "FROM User o WHERE o.username=?";
+		List<User> users = userDao.findByHql(hql, username);
+		if (users == null || users.size() != 1) {
+			throw new LogicException("用户名错误！！", -101);
+		}
+		User user = users.get(0);
+		// 验证密码
+		if (!user.getPassword().equals(password)) {
+			throw new LogicException("密码错误！！", -102);
+		}
+		return user;
 	}
 
 
