@@ -69,7 +69,7 @@
 	<!-- Spring Aop Config -->
 	<aop:config>
 		<aop:pointcut id="pointcut" expression="  
-                execution(* com.billLogger.services.*Impl.*(..))" />
+                execution(* com.synnex.service.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
 	</aop:config>
 </beans>
