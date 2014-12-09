@@ -2,7 +2,6 @@ package com.synnex.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -21,14 +20,14 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	protected SessionFactory sessionFactory;
 	protected Class<T> entityClass ;
 	
-	//TODO 此处需要问问Jennifer
+	// TODO 此处需要问问Jennifer
 	@SuppressWarnings("unchecked")
 	public Class<T> getClz() {
 		if (entityClass == null) {
 			// 获取泛型的Class对象
 			entityClass = ((Class<T>) (((ParameterizedType) (this.getClass()
 					.getGenericSuperclass())).getActualTypeArguments()[0]));
-			System.out.println("entityClass："+entityClass);
+			System.out.println("entityClass：" + entityClass);
 		}
 		return entityClass;
 	}
@@ -48,8 +47,10 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Override
 	public List<T> list(Object condition, List<Order> orders, int begin,
 			int size) {
-		Criteria criteria = this.getSession().createCriteria(entityClass);
+		Criteria criteria = this.getSession().createCriteria(getClz());
+		// TODO 条件限定没有用
 		if (condition != null) {
+			// criteria.add(Example.create(condition).excludeZeroes());
 			criteria.add(Example.create(condition).excludeZeroes());
 		}
 		if (orders != null) {
