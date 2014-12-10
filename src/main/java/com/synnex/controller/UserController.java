@@ -38,6 +38,7 @@ public class UserController extends GenericController {
 
 	/**
 	 * 不知道页面传过来的对象用来保存会不会出问题？
+	 * 
 	 * @param user
 	 * @return
 	 */
