@@ -8,6 +8,7 @@ public class Dictionary implements Serializable{
 	private int id;
 	private String category;
 	private String value;
+
 	public int getId() {
 		return id;
 	}

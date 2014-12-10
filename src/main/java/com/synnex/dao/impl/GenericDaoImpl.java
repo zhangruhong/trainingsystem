@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,8 @@ import com.synnex.dao.Order;
 
 @Repository
 public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	protected SessionFactory sessionFactory;
 	protected Class<T> entityClass ;
@@ -67,7 +71,9 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		if (begin >= 0) {
 			criteria.setFirstResult(begin).setMaxResults(size);
 		}
-		return criteria.list();
+		List<T> tlist = criteria.list();
+		logger.info(tlist.toString());
+		return tlist;
 	}
 
 	@Override

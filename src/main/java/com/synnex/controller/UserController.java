@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.synnex.model.User;
 
-@Controller("user")
+@Controller
+@RequestMapping("/user")
 public class UserController extends GenericController {
 
 	/**
@@ -23,11 +24,13 @@ public class UserController extends GenericController {
 		return "redirect:showusers";
 	}
 
-	@RequestMapping(value = "showusers", method = RequestMethod.GET)
+	@RequestMapping(value = "/showusers", method = RequestMethod.GET)
 	public String showUsers(Model model) {
-		List<User> users = userService.getUsersByCondition(null, null, -1, 0);
+		User user = new User();
+		user.setRole(1);
+		List<User> users = userService.getUsersByCondition(user, null, -1, 0);
 		model.addAttribute("users", users);
-		return "showuser";
+		return "/admin/showusers";
 	}
 
 	@RequestMapping(value = "deleteuser")
