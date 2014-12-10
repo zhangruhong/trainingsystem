@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -6,10 +7,12 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="css/templatemo_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
 </head>
+
 <body>
 	<div id="main-wrapper">
+	
 		<div class="navbar navbar-inverse" role="navigation">
 			<div class="navbar-header">
 				<div class="logo">
@@ -82,7 +85,7 @@
 									<li><a href="#">Username</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="table-responsive">
 								<h4 class="margin-bottom-15">Another Table of Existing Users</h4>
 								<table class="table table-striped table-hover table-bordered">
@@ -99,30 +102,31 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>John</td>
-											<td>Henry</td>
-											<td>@jh</td>
-											<td>a@company.com</td>
-											<td><a href="#" class="btn btn-default">Edit</a></td>
-											<td>
-												<!-- Split button -->
-												<div class="btn-group">
-													<button type="button" class="btn btn-info">Action</button>
-													<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-														<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">Bootstrap</a></li>
-														<li><a href="#">Font Awesome</a></li>
-														<li><a href="#">jQuery</a></li>
-													</ul>
-												</div>
-											</td>
-											<td><a href="#" class="btn btn-link">Delete</a></td>
-										</tr>
-										
+										<c:forEach items="${users}" var="user" varStatus="status">
+											<tr>
+												<td>${user["id"]}</td>
+												<td>${user["loginname"]}</td>
+												<td>${user["email"]}</td>
+												<td>${user["phoneno"]}</td>
+												<td>等待增加状态</td>
+												<td><a href="#" class="btn btn-link">Delete</a></td>
+												<td><a href="#" class="btn btn-default">Edit</a></td>
+												<td>
+													<!-- Split button -->
+													<div class="btn-group">
+														<button type="button" class="btn btn-info">Action</button>
+														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+														</button>
+														<ul class="dropdown-menu" role="menu">
+															<li><a href="#">Bootstrap</a></li>
+															<li><a href="#">Font Awesome</a></li>
+															<li><a href="#">jQuery</a></li>
+														</ul>
+													</div>
+												</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -168,8 +172,8 @@
 			</footer>
 		</div>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/templatemo_script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>
 </html>
