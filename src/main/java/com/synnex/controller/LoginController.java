@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.synnex.model.User;
@@ -14,6 +15,7 @@ import com.synnex.utils.exception.LogicException;
  * @create time 2014-12-8 ����9:53:06
  * 
  */
+@Controller
 public class LoginController extends GenericController {
 	/**
 	 * 
