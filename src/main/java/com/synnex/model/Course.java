@@ -14,9 +14,12 @@ public class Course implements Serializable{
 	private String name;
 	private String content;
 	private String goal;
+	// 由trainer发布的练习题
 	private String practise;
+	private User trainer;
 	private Dictionary dictionary;
-	private Set<User> user = new HashSet<User>();
+	private Term term;
+	private Set<User> users = new HashSet<User>();
 	public int getId() {
 		return id;
 	}
@@ -53,9 +56,11 @@ public class Course implements Serializable{
 	public void setGoal(String goal) {
 		this.goal = goal;
 	}
+
 	public String getPractise() {
 		return practise;
 	}
+
 	public void setPractise(String practise) {
 		this.practise = practise;
 	}
@@ -65,11 +70,27 @@ public class Course implements Serializable{
 	public void setDictionary(Dictionary dictionary) {
 		this.dictionary = dictionary;
 	}
-	public Set<User> getUser() {
-		return user;
+
+	public Set<User> getUsers() {
+		return users;
 	}
-	public void setUser(Set<User> user) {
-		this.user = user;
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+	public User getTrainer() {
+		return trainer;
+	}
+	public void setTrainer(User trainer) {
+		this.trainer = trainer;
+	}
+
+	public Term getTerm() {
+		return term;
+	}
+
+	public void setTerm(Term term) {
+		this.term = term;
 	}
 	
 }

@@ -15,6 +15,7 @@ public class User implements Serializable {
 	// 0:TrainingManager（培训管理者）、1:Trainer（培训讲师）、2:NewComer（新员工）
 	private int role;
 	private Set<Course> course = new HashSet<Course>();
+	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
 
 	public User() {
 	}
@@ -73,6 +74,14 @@ public class User implements Serializable {
 
 	public void setCourse(Set<Course> course) {
 		this.course = course;
+	}
+
+	public Set<Usergroup> getUsergroups() {
+		return usergroups;
+	}
+
+	public void setUsergroups(Set<Usergroup> usergroups) {
+		this.usergroups = usergroups;
 	}
 
 	@Override

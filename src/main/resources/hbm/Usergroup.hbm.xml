@@ -8,28 +8,18 @@
 	-->
 <hibernate-mapping package="com.synnex.model">
 
-	<class name="Course">
+	<class name="Usergroup">
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="starttime" type="timestamp"/>
-		<property name="endtime" type="timestamp"/>
 		<property name="name"/>
-		<property name="content"/>
-		<property name="goal"/>
-		<property name="practise" type="text"/>
-		<!-- 多对一 -->
-		<many-to-one name="trainer" column="trainer_id" cascade="save-update">
-		</many-to-one>
-		<!-- 多对一 -->
-		<many-to-one name="dictionary" column="dictionary_id" cascade="save-update">
-		</many-to-one>
+		<property name="description"/>
 		<!-- 多对一 -->
 		<many-to-one name="term" column="term_id" cascade="save-update">
 		</many-to-one>
 		<!-- 多对多 -->
-		<set name="users" table="user_course" cascade="save-update">
-			<key column="course_id"></key>
+		<set name="users" table="user_usergroup" cascade="save-update">
+			<key column="group_id"></key>
 			<many-to-many class="User" column="user_id"/>
 		</set>
 	</class>

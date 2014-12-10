@@ -8,11 +8,12 @@
 	-->
 <hibernate-mapping package="com.synnex.model">
 
-	<class name="Dictionary">
+	<class name="Term">
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="value"/>
+		<property name="name"/>
+		<property name="description"/>
 	</class>
 
 </hibernate-mapping>
