@@ -39,7 +39,7 @@ public class LoginController extends GenericController {
 			map.put("msg", e.getMessage());
 			map.put("errorCode", e.getErrorCode());
 		}
-		return "home";
+		return "forward:/home";
 	}
 
 }

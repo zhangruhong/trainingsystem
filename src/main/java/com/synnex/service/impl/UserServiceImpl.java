@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 	public User checkLogin(String username, String password) {
 		// 验证用户名
 		password = Md5Encode.getStringMD5(password);
-		String hql = "FROM User o WHERE o.username=? and o.password=?";
+		String hql = "FROM User o WHERE o.loginname=? and o.password=?";
 		List<User> users = userDao.findByHql(hql, username, password);
 		if (users == null || users.size() != 1) {
 			throw new LogicException("用户名或密码错误！！", -101);
