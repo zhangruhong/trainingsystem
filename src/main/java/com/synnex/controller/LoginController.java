@@ -12,7 +12,7 @@ import com.synnex.utils.exception.LogicException;
 
 /**
  * @author Hiram
- * @create time 2014-12-8 时间9:53:06
+ * @create time 2014-12-8 ����9:53:06
  * 
  */
 @Controller
@@ -25,9 +25,9 @@ public class LoginController extends GenericController {
 	 */
 	@RequestMapping(value = "/login")
 	public String checkLogin(String username, String password, Map<String, Object> map, HttpSession session) throws Exception {
-		User user = null;
+		System.out.println(123);
 		try {
-			user = userService.checkLogin(username, password);
+			User user = userService.checkLogin(username, password);
 			// 把用户放入session
 			session.setAttribute("USER_IN_SESSION", user);
 			// 成功提示
@@ -39,27 +39,7 @@ public class LoginController extends GenericController {
 			map.put("msg", e.getMessage());
 			map.put("errorCode", e.getErrorCode());
 		}
-		int role = user.getRole();
-		switch (role) {
-			case 0:
-				return null;
-			case 1:
-				return null;
-			default:
-				return "/common/homepage";
-		}
-	}
-
-	/**
-	 * 
-	 * @param session
-	 * @return 返回到登录页面
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session) throws Exception {
-		session.removeAttribute("USER_IN_SESSION");
-		return "redirect:/login.html";
+		return "forward:/home";
 	}
 
 }
