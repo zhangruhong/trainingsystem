@@ -1,5 +1,7 @@
 package com.synnex.dao.impl;
 
+import org.springframework.stereotype.Repository;
+
 import com.synnex.dao.UserGroupDao;
 import com.synnex.model.Usergroup;
 
@@ -9,5 +11,6 @@ import com.synnex.model.Usergroup;
  * @author Davisz
  *
  */
+@Repository
 public class UserGroupDaoImpl extends GenericDaoImpl<Usergroup, Integer> implements UserGroupDao {
 }

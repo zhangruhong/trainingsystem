@@ -16,4 +16,5 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements
 		entity.setPassword(Md5Encode.getStringMD5(entity.getPassword()));
 		this.getSession().save(entity);
 	}
+	//TODO 删除user的时候应该级联删除与该user相关的信息
 }

@@ -18,7 +18,7 @@ public class UserController extends GenericController {
 	 * 
 	 * @param user
 	 */
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public String createUser(User user) {
 		userService.addUser(user);
 		return "redirect:showusers";
@@ -33,7 +33,7 @@ public class UserController extends GenericController {
 		return "/admin/showusers";
 	}
 
-	@RequestMapping(value = "deleteuser")
+	@RequestMapping(value = "/deleteuser")
 	public String deleteUser(User user) {
 		userService.deleteUser(user);
 		return "redirect:showusers";
@@ -45,7 +45,7 @@ public class UserController extends GenericController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value="updateuser")
+	@RequestMapping(value="/updateuser")
 	public String updateUser(User user) {
 		User databaseuser = userService.getUser(user.getId());
 		user.setPassword(databaseuser.getPassword());

@@ -1,7 +1,11 @@
 package com.synnex.model;
 
 import java.io.Serializable;
-
+/**
+ * 练习
+ * @author Davisz
+ *
+ */
 public class Practice implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

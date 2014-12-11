@@ -1,7 +1,11 @@
 package com.synnex.model;
 
 import java.io.Serializable;
-
+/**
+ * 课程所属分类
+ * @author Davisz
+ *
+ */
 public class Dictionary implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

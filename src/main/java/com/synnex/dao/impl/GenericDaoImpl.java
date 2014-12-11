@@ -78,8 +78,8 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 
 	@Override
 	public void save(T entity) {
-
 		this.getSession().save(entity);
+		logger.info(entity.toString());
 	}
 
 	@Override

@@ -3,6 +3,11 @@ package com.synnex.model;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 用户分组
+ * @author Davisz
+ *
+ */
 public class Usergroup {
 	private int id;
 	private String name;

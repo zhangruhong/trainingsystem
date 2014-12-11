@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * 课程
+ * @author Davisz
+ *
+ */
 public class Course implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

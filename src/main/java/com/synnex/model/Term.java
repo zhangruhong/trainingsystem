@@ -42,4 +42,12 @@ public class Term {
 		this.usergroups = usergroups;
 	}
 
+	@Override
+	public String toString() {
+		return "Term [id=" + id + ", name=" + name + ", description="
+				+ description + ", usergroups=" + "省略"+ "]";
+	}
+	
+	
+
 }
