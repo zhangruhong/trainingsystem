@@ -47,7 +47,7 @@
 					<li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
 					<li class="active"><a href="#"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Manage Users</a></li>
 					<li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>
-					<li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+					<li><a href="/trainingsystem/logout" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
 				</ul>
 			</div>
 			<!--/.navbar-collapse -->

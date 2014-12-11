@@ -25,7 +25,6 @@ public class LoginController extends GenericController {
 	 */
 	@RequestMapping(value = "/login")
 	public String checkLogin(String username, String password, Map<String, Object> map, HttpSession session) throws Exception {
-		System.out.println(123);
 		User user = null;
 		try {
 			user = userService.checkLogin(username, password);
@@ -39,9 +38,9 @@ public class LoginController extends GenericController {
 			map.put("success", false);
 			map.put("msg", e.getMessage());
 			map.put("errorCode", e.getErrorCode());
+			return "redirect:/login.html";
 		}
 		int role = user.getRole();
-		System.out.println(role);
 		switch (role) {
 			case 0:
 				return null;
