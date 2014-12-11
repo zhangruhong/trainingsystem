@@ -18,7 +18,7 @@
 		<many-to-one name="term" column="term_id" cascade="save-update">
 		</many-to-one>
 		<!-- 多对多 -->
-		<set name="users" table="user_usergroup" cascade="save-update">
+		<set name="users" table="user_usergroup" cascade="save-update" lazy="false">
 			<key column="group_id"></key>
 			<many-to-many class="User" column="user_id"/>
 		</set>
