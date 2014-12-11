@@ -40,14 +40,13 @@ public class LoginController extends GenericController {
 			map.put("errorCode", e.getErrorCode());
 		}
 		int role = user.getRole();
-		System.out.println(role);
 		switch (role) {
 			case 0:
 				return null;
 			case 1:
 				return null;
 			default:
-				return "forward:/common/homepage";
+				return "/common/homepage";
 		}
 	}
 
