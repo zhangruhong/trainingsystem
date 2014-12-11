@@ -14,10 +14,6 @@
 		</id>
 		<property name="name"/>
 		<property name="description"/>
-		<set name="usergroups" inverse="true" cascade="save-update">
-	      <key column="term_id"></key>
-	      <one-to-many class="Usergroup"></one-to-many>
-	    </set>
 	</class>
 
 </hibernate-mapping>
