@@ -1,7 +1,7 @@
-package com.synnex.model;
+package com.synnex.dao.impl;
 
 import com.synnex.dao.UserGroupDao;
-import com.synnex.dao.impl.GenericDaoImpl;
+import com.synnex.model.Usergroup;
 
 /**
  * 继承通用的方法，如有必要可以覆盖相应的方法来达到特殊处理的功能
