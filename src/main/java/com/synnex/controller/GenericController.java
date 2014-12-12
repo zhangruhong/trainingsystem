@@ -2,6 +2,7 @@ package com.synnex.controller;
 
 import javax.annotation.Resource;
 
+import com.synnex.service.CourseService;
 import com.synnex.service.UserService;
 
 /*
@@ -12,4 +13,7 @@ public class GenericController {
 	
 	@Resource(name = "userServiceImpl")
 	public UserService userService;
+
+	@Resource(name = "courseServiceImpl")
+	public CourseService courseService;
 }
