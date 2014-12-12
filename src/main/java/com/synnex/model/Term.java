@@ -8,7 +8,7 @@ public class Term {
 	private String name;
 	private String description;
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
-
+	private Set<Course> courses = new HashSet<Course>();
 
 	public int getId() {
 		return id;
@@ -40,6 +40,14 @@ public class Term {
 
 	public void setUsergroups(Set<Usergroup> usergroups) {
 		this.usergroups = usergroups;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 
 	@Override

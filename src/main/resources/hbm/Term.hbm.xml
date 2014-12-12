@@ -18,6 +18,10 @@
 	      <key column="term_id"></key>
 	      <one-to-many class="Usergroup"></one-to-many>
 	    </set>
+		<set name="courses" inverse="true" cascade="save-update" lazy="false">
+	      <key column="term_id"></key>
+	      <one-to-many class="Course"></one-to-many>
+	    </set>
 	</class>
 
 </hibernate-mapping>
