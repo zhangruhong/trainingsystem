@@ -47,6 +47,7 @@
 
 							<div class="table-responsive">
 								<h4 class="margin-bottom-15">Another Table of Existing Users</h4>
+								<p>这里还须添加根据名字搜索user</p>
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>

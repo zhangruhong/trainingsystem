@@ -5,7 +5,7 @@
 <title>Bootstrap 实例 - 模态框（Modal）插件</title>
 <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
 <!--<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -32,6 +32,7 @@
 		</div>
 		<!-- /.modal -->
 	</div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
