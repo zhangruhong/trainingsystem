@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.synnex.model.User;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController extends GenericController {
 
 	/**
@@ -21,7 +21,7 @@ public class UserController extends GenericController {
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public String createUser(User user) {
 		userService.addUser(user);
-		return "redirect:showusers";
+		return "redirect:/admin/showusers";
 	}
 
 	@RequestMapping(value = "/showusers", method = RequestMethod.GET)
@@ -36,7 +36,7 @@ public class UserController extends GenericController {
 	@RequestMapping(value = "/deleteuser")
 	public String deleteUser(User user) {
 		userService.deleteUser(user);
-		return "redirect:showusers";
+		return "redirect:/admin/showusers";
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class UserController extends GenericController {
 		User databaseuser = userService.getUser(user.getId());
 		user.setPassword(databaseuser.getPassword());
 		userService.updateUser(user);
-		return "redirect:showusers";
+		return "redirect:/admin/showusers";
 
 	}
 }

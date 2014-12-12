@@ -13,78 +13,27 @@
 
 <body>
 	<div id="main-wrapper">
-		<div class="navbar navbar-inverse" role="navigation">
-			<div class="navbar-header">
-				<div class="logo">
-					<h1>Dashboard - Admin Template</h1>
-				</div>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-			</div>
-		</div>
+		<!-- 导航 -->
+		<jsp:include page="/WEB-INF/jsp/admin/navigate.jsp"></jsp:include>
+
 		<div class="template-page-wrapper">
-			<div class="navbar-collapse collapse templatemo-sidebar">
-				<ul class="templatemo-sidebar-menu">
-					<li>
-						<form class="navbar-form">
-							<input type="text" class="form-control" id="templatemo_search_box" placeholder="Search..."> <span class="btn btn-default">Go</span>
-						</form>
-					</li>
-					<li><a href="index.html"><i class="fa fa-home"></i>Dashboard</a></li>
-					<li class="sub"><a href="javascript:;"> <i class="fa fa-database"></i> Nested Menu
-							<div class="pull-right">
-								<span class="caret"></span>
-							</div>
-					</a>
-						<ul class="templatemo-submenu">
-							<li><a href="#">Aenean</a></li>
-							<li><a href="#">Pellentesque</a></li>
-							<li><a href="#">Congue</a></li>
-							<li><a href="#">Interdum</a></li>
-							<li><a href="#">Facilisi</a></li>
-						</ul></li>
-					<li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
-					<li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
-					<li class="active"><a href="#"><i class="fa fa-users"></i><span class="badge pull-right">NEW</span>Manage Users</a></li>
-					<li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>
-					<li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
-				</ul>
-			</div>
+			<!-- 菜单 -->
+			<jsp:include page="/WEB-INF/jsp/admin/menu.jsp"></jsp:include>
 			<!--/.navbar-collapse -->
 
 			<div class="templatemo-content-wrapper">
 				<div class="templatemo-content">
+
 					<ol class="breadcrumb">
 						<li><a href="index.html">Admin Panel</a></li>
 						<li><a href="#">Manage Users</a></li>
 						<li class="active">Tables</li>
 					</ol>
-					<h1>Manage Users</h1>
-					<p>Here goes tables and users.</p>
 
-					<div class="row margin-bottom-30">
-						<div class="col-md-12">
-							<ul class="nav nav-pills">
-								<li class="active"><a href="#">New Users <span class="badge">42</span></a></li>
-								<li><a href="#">Active Users <span class="badge">107</span></a></li>
-								<li><a href="#">Expired Users <span class="badge">3</span></a></li>
-							</ul>
-						</div>
-					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<a href="#" class="btn btn-primary" role="button">新建计划</a>
-								<button type="button" class="btn btn-default">Sort by</button>
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">First Name</a></li>
-									<li><a href="#">Last Name</a></li>
-									<li><a href="#">Username</a></li>
-								</ul>
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建计划</button>
 							</div>
 
 							<div class="table-responsive">
@@ -144,39 +93,31 @@
 					</div>
 				</div>
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title" id="myModalLabel">Are you sure you want to sign out?</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
 						</div>
+						<div class="modal-body">在这里添加一些文本</div>
 						<div class="modal-footer">
-							<a href="sign-in.html" class="btn btn-primary">Yes</a>
-							<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary">提交更改</button>
 						</div>
 					</div>
+					<!-- /.modal-content -->
 				</div>
+				<!-- /.modal -->
 			</div>
 
-			
-
-			<footer class="templatemo-footer">
-			<div class="templatemo-copyright">
-				<p>
-					Copyright &copy; 2084 Your Company Name Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a> -
-					More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a>
-				</p>
-			</div>
-			</footer>
+			<!-- 页脚 -->
+			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-
-		<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>--%>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>

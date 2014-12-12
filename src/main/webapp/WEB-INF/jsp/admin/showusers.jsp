@@ -12,15 +12,15 @@
 
 <body>
 	<div id="main-wrapper">
-	
+
 		<!-- 导航 -->
 		<jsp:include page="/WEB-INF/jsp/admin/navigate.jsp"></jsp:include>
-		
+
 		<div class="template-page-wrapper">
-		
+
 			<!-- 菜单 -->
 			<jsp:include page="/WEB-INF/jsp/admin/menu.jsp"></jsp:include>
-			
+
 			<!--/.navbar-collapse -->
 
 			<div class="templatemo-content-wrapper">
@@ -30,18 +30,7 @@
 						<li><a href="#">Manage Users</a></li>
 						<li class="active">Tables</li>
 					</ol>
-					<h1>Manage Users</h1>
-					<p>Here goes tables and users.</p>
 
-					<div class="row margin-bottom-30">
-						<div class="col-md-12">
-							<ul class="nav nav-pills">
-								<li class="active"><a href="#">New Users <span class="badge">42</span></a></li>
-								<li><a href="#">Active Users <span class="badge">107</span></a></li>
-								<li><a href="#">Expired Users <span class="badge">3</span></a></li>
-							</ul>
-						</div>
-					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
@@ -65,7 +54,7 @@
 											<th>loginname</th>
 											<th>email</th>
 											<th>phoneno</th>
-											<th>å·²å®æç¶æ</th>
+											<th>等待处理</th>
 											<th>Delete?</th>
 											<th>Edit</th>
 											<th>Action</th>
@@ -114,31 +103,16 @@
 				</div>
 			</div>
 
-			<!-- Modal -->
-			<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title" id="myModalLabel">Are you sure you want to sign out?</h4>
-						</div>
-						<div class="modal-footer">
-							<a href="sign-in.html" class="btn btn-primary">Yes</a>
-							<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-						</div>
-					</div>
-				</div>
-			</div>
+
 
 			<!-- 页脚 -->
 			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
-			
+
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>
 </html>

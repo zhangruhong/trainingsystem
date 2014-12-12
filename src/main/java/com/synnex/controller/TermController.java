@@ -14,20 +14,20 @@ import com.synnex.model.Term;
 import com.synnex.service.TermService;
 
 @Controller
-@RequestMapping(value = { "/term" })
+@RequestMapping(value = { "/admin/term" })
 public class TermController {
 	@Resource
 	private TermService termServiceImpl;
 
 	@RequestMapping(value = { "/add" }, method = { RequestMethod.GET })
 	public String addTermpage() {
-		return "/term/addterm";
+		return "/admin/term/add";
 	}
 
 	@RequestMapping(value = { "/add" }, method = { RequestMethod.POST })
 	public String addTerm(Term term) {
 		termServiceImpl.addTerm(term);
-		return "redirct:/term/showall";
+		return "redirct:/admin/term/showall";
 	}
 
 	// TODO showall的时候将termid写到URL上去
@@ -35,14 +35,14 @@ public class TermController {
 	public String showTerm(@PathVariable("termid") int id, Model model) {
 		Term term = termServiceImpl.getTerm(id);
 		model.addAttribute("term", term);
-		return "/term/show";
+		return "/admin/term/show";
 	}
 
 	@RequestMapping(value = { "/showall" }, method = { RequestMethod.GET })
 	public String showAllTerm(Model model) {
 		List<Term> terms = termServiceImpl.getAllTerms();
 		model.addAttribute("terms", terms);
-		return "/term/showall";
+		return "/admin/term/showall";
 	}
 
 }
