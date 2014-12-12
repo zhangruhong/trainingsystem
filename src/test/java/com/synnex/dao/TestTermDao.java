@@ -20,7 +20,7 @@ public class TestTermDao {
 	@Transactional
 	public void savetest() {
 		Term term = new Term();
-		term.setName("奋斗组");
+		term.setName("第一学期课余党校培训");
 		term.setDescription("奋斗组很叼id额");
 		termDaoImpl.save(term);
 	}

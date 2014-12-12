@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-<title>Dashboard Tables, Free Admin Template</title>
+<title>TermAdmin</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
@@ -12,7 +13,6 @@
 
 <body>
 	<div id="main-wrapper">
-	
 		<div class="navbar navbar-inverse" role="navigation">
 			<div class="navbar-header">
 				<div class="logo">
@@ -75,6 +75,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
+								<a href="#" class="btn btn-primary" role="button">新建计划</a>
 								<button type="button" class="btn btn-default">Sort by</button>
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 									<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
@@ -87,30 +88,30 @@
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">Another Table of Existing Users</h4>
+								<h4 class="margin-bottom-15">培训总体信息</h4>
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
 											<th>#id</th>
-											<th>loginname</th>
-											<th>email</th>
-											<th>phoneno</th>
-											<th>å·²å®æç¶æ</th>
-											<th>Delete?</th>
-											<th>Edit</th>
+											<th>Term Name</th>
+											<th>Discription</th>
+											<th>其他二</th>
+											<th>其他三</th>
+											<th>进度</th>
+											<th>分组管理</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${users}" var="user" varStatus="status">
-											<tr>
-												<td>${user["id"]}</td>
-												<td>${user["loginname"]}</td>
-												<td>${user["email"]}</td>
-												<td>${user["phoneno"]}</td>
-												<td>等待优化</td>
-												<td><a href="#" class="btn btn-link">Delete</a></td>
+										<c:forEach items="${terms}" var="term">
+											<tr class="danger">
+												<td>${term["id"]}</td>
+												<td>${term["name"]}</td>
+												<td>${term["description"]}</td>
+												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
+												<td><a href="#" class="btn btn-link">Delete</a></td>
+												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">分组管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -143,7 +144,6 @@
 					</div>
 				</div>
 			</div>
-
 			<!-- Modal -->
 			<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -162,18 +162,22 @@
 				</div>
 			</div>
 
+			
+
 			<footer class="templatemo-footer">
-				<div class="templatemo-copyright">
-					<p>
-						Copyright &copy; 2084 Your Company Name Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a> - More Templates <a
-							href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a>
-					</p>
-				</div>
+			<div class="templatemo-copyright">
+				<p>
+					Copyright &copy; 2084 Your Company Name Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a> -
+					More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a>
+				</p>
+			</div>
 			</footer>
 		</div>
-	</div>
-	<script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+
+		<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.4.2.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>--%>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>
 </html>

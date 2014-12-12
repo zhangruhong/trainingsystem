@@ -18,8 +18,8 @@ public class TestTermService {
 	@Test
 	public void addtermtest() {
 		Term term = new Term();
-		term.setName("奋斗组1");
-		term.setDescription("奋斗组2很叼id额2");
+		term.setName("第3期synnex英语培训");
+		term.setDescription("第二期2很叼id额2");
 		tsi.addTerm(term);
 	}
 
