@@ -39,7 +39,7 @@ public class TermController {
 		logger.info("term:" + term.toString());
 		List<Term> terms = termServiceImpl.getAllTerms();
 		Map termmap = new TreeMap();
-		termmap.put("success ", "true");
+		termmap.put("success", true);
 		termmap.put("terms", terms);
 		return termmap;
 	}

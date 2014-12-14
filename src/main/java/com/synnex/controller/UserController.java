@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.synnex.model.User;
+import com.synnex.utils.md5Util.Md5Encode;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -40,17 +41,32 @@ public class UserController extends GenericController {
 	}
 
 	/**
-	 * 不知道页面传过来的对象用来保存会不会出问题？
+	 * 不知道页面传过来的对象用来保存会不会出问题？ 必须特殊处理密码部分
 	 * 
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value="/updateuser")
+	@RequestMapping(value = "/updateuser")
 	public String updateUser(User user) {
 		User databaseuser = userService.getUser(user.getId());
 		user.setPassword(databaseuser.getPassword());
 		userService.updateUser(user);
 		return "redirect:/admin/showusers";
+	}
 
+	@RequestMapping(value = "updatapass")
+	public String changePassword(User user) {
+		User databassuser = userService.getUser(user.getId());
+		// 验证登录状态
+		// 验证原密码
+		if (null == user.getPassword() || user.getPassword().equals("")) {
+			// 返回“原密码不能为空”
+		}
+		String encodepass = Md5Encode.getStringMD5(user.getPassword());
+		if (!encodepass.equals(databassuser.getPassword())) {
+			// 返回原密码错误
+		}
+		// 验证两次新密码
+		// 更新
 	}
 }
