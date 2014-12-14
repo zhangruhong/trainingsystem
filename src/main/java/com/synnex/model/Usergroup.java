@@ -3,6 +3,8 @@ package com.synnex.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * 用户分组
  * @author Davisz
@@ -14,6 +16,9 @@ public class Usergroup {
 	private String description;
 	private Term term;
 	private Set<User> users = new HashSet<User>();
+
+	public Usergroup() {
+	}
 
 	public int getId() {
 		return id;
@@ -39,6 +44,7 @@ public class Usergroup {
 		this.description = description;
 	}
 
+	@JsonIgnore
 	public Term getTerm() {
 		return term;
 	}
@@ -47,6 +53,7 @@ public class Usergroup {
 		this.term = term;
 	}
 
+	@JsonIgnore
 	public Set<User> getUsers() {
 		return users;
 	}

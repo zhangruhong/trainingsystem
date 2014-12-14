@@ -10,6 +10,10 @@ public class Term {
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
 	private Set<Course> courses = new HashSet<Course>();
 
+	public Term() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -53,9 +57,7 @@ public class Term {
 	@Override
 	public String toString() {
 		return "Term [id=" + id + ", name=" + name + ", description="
-				+ description + ", usergroups=" + "省略"+ "]";
+				+ description + ", usergroups=" + "省略" + "]";
 	}
-	
-	
 
 }

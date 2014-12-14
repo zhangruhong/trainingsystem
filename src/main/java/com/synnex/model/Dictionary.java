@@ -12,6 +12,8 @@ public class Dictionary implements Serializable{
 	private int id;
 	private String value;
 
+	public Dictionary() {
+	}
 	public int getId() {
 		return id;
 	}

@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.synnex"/>
+	<context:component-scan base-package="com.synnex" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,7 +32,7 @@
 			</bean>
 			<bean
 				class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-				<property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+				<property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
@@ -7,7 +9,8 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/templatemo_main.css">
 </head>
 
 <body>
@@ -35,8 +38,10 @@
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
 								<button type="button" class="btn btn-default">Sort by</button>
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									<span class="caret"></span> <span class="sr-only">Toggle
+										Dropdown</span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#">First Name</a></li>
@@ -46,7 +51,8 @@
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">Another Table of Existing Users</h4>
+								<h4 class="margin-bottom-15">Another Table of Existing
+									Users</h4>
 								<p>这里还须添加根据名字搜索user</p>
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
@@ -75,8 +81,10 @@
 													<!-- Split button -->
 													<div class="btn-group">
 														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+														<button type="button" class="btn btn-info dropdown-toggle"
+															data-toggle="dropdown">
+															<span class="caret"></span> <span class="sr-only">Toggle
+																Dropdown</span>
 														</button>
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
@@ -111,9 +119,11 @@
 
 		</div>
 	</div>
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
 	<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script
+		src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>
 </html>

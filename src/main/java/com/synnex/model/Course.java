@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 /**
  * 课程
  * @author Davisz
@@ -24,6 +26,10 @@ public class Course implements Serializable{
 	private Dictionary dictionary;
 	private Term term;
 	private Set<User> users = new HashSet<User>();
+	
+	
+	public Course() {
+	}
 	public int getId() {
 		return id;
 	}
@@ -75,6 +81,7 @@ public class Course implements Serializable{
 		this.dictionary = dictionary;
 	}
 
+	@JsonIgnore
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -89,6 +96,7 @@ public class Course implements Serializable{
 		this.trainer = trainer;
 	}
 
+	@JsonIgnore
 	public Term getTerm() {
 		return term;
 	}
