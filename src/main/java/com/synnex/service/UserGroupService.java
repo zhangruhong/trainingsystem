@@ -2,6 +2,7 @@ package com.synnex.service;
 
 import java.util.List;
 
+import com.synnex.dao.Order;
 import com.synnex.model.Usergroup;
 
 public interface UserGroupService {
@@ -36,7 +37,7 @@ public interface UserGroupService {
 	 * @param termid
 	 * @return
 	 */
-	public List<Usergroup> getAllGroups(int termid);
+	public List<Usergroup> getAllGroups(int termid, List<Order> orders, int begin, int size);
 
 	/**
 	 * 更新一个组的信息

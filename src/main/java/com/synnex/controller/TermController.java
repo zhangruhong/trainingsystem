@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.model.Term;
@@ -44,7 +45,6 @@ public class TermController {
 		return termmap;
 	}
 
-
 	// TODO showall的时候将termid写到URL上去
 	@RequestMapping(value = { "/show/{termid}" }, method = { RequestMethod.POST })
 	public String showTerm(@PathVariable("termid") int id, Model model) {
@@ -54,21 +54,13 @@ public class TermController {
 	}
 
 	@RequestMapping(value = { "/showall" }, method = { RequestMethod.GET })
-	public String showAllTerm(Model model) {
-		List<Term> terms = termServiceImpl.getAllTerms(null, null, 0, 10);
-		int count = termServiceImpl.getCount();
-		model.addAttribute("terms", terms);
-		model.addAttribute("totolpages", count / 10 + 1);
-		return "/admin/term/showall";
-	}
-
-	// @RequestMapping(value = { "/showall?page=${index}", "/showall" }, method = { RequestMethod.GET })
-	public String showAllTerm1(@PathVariable Integer index, Model model) {
+	public String showPagerTerm(@RequestParam(value="page",required=false) Integer page, Model model) {
 		int size = 10;
-		if (null == index || index < 1) {
-			index = 1;
+		if (null == page || page < 1) {
+			page = 1;
 		}
-		List<Term> terms = termServiceImpl.getAllTerms(null, null, size * (index - 1), size);
+		List<Term> terms = termServiceImpl.getAllTerms(null, null, size
+				* (page - 1), size);
 		int count = termServiceImpl.getCount();
 		model.addAttribute("terms", terms);
 		model.addAttribute("totolpages", count / 10 + 1);

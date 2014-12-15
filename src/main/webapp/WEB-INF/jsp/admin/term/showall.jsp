@@ -39,8 +39,8 @@
 
 							<div class="table-responsive">
 								<h4 class="margin-bottom-15">培训总体信息</h4>
-								<div id="actiontip" align="center"></div>
 								<table class="table table-striped table-hover table-bordered ">
+								<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
 											<th>#id</th>
@@ -85,10 +85,10 @@
 							<ul class="pagination pull-right">
 								<li class="disabled"><a href="#">&laquo;</a></li>
 								<c:forEach begin="1" end="${totolpages}" var="iterm">
-									<li><a href="/admin/term/showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
+									<li><a href="showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
 								</c:forEach>
 								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
-								<li><a href="#">&raquo;</a></li>
+								<li><a href="showall?page=${totolpages}">&raquo;</a></li>
 							</ul>
 						</div>
 					</div>
