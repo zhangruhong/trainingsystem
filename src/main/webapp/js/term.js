@@ -10,13 +10,14 @@ function addTerm() {
 			if (data.success == true) {
 				var terms = data.terms;
 				createShowingTable(terms);
-				$("#actiontip").html("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'> </button>数据添加成功！</div>");
+				$("#actiontip").html("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
+				      
 			} else {
-				$("#actiontip").html("<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'> </button>错误！添加失败！请联系davisz@synnex.com。</div>");
+				$("#actiontip").html("<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>错误！添加失败！请联系davisz@synnex.com。</div>");
 			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$("#actiontip").html("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'> </button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
+			$("#actiontip").html("<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
 		}
 	});
 }

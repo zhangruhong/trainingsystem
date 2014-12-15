@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html >
 <head>
@@ -9,8 +8,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/templatemo_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
 <!-- <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
@@ -36,8 +34,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal"
-									data-target="#myModal">新建计划</button>
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建计划</button>
 							</div>
 
 							<div class="table-responsive">
@@ -58,23 +55,20 @@
 									</thead>
 									<tbody id="tbodyterms">
 										<c:forEach items="${terms}" var="term">
-											<tr >
+											<tr>
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><a href="连接到分组管理的页面aaa${term['id']}"
-													class="btn btn-default">分组管理</a></td>
+												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">分组管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
 														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle"
-															data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle
-																Dropdown</span>
+														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
 														</button>
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
@@ -90,11 +84,10 @@
 							</div>
 							<ul class="pagination pull-right">
 								<li class="disabled"><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">2 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">3 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">4 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">5 <span class="sr-only">(current)</span></a></li>
+								<c:forEach begin="1" end="${totolpages}" var="iterm">
+									<li><a href="/admin/term/showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
+								</c:forEach>
+								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
 								<li><a href="#">&raquo;</a></li>
 							</ul>
 						</div>
@@ -102,41 +95,32 @@
 				</div>
 			</div>
 			<!-- 模态框（Modal） -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true"
-				data-backdrop="static">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
 					<form class="form-horizontal" role="form">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								<h4 class="modal-title" id="myModalLabel">新建培训计划</h4>
 							</div>
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label">
-										培训名称 </label>
+									<label for="inputPassword" class="col-sm-2 control-label"> 培训名称 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name"
-											type="text" placeholder="请输入培训计划名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入培训计划名称">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="disabledTextInput" class="col-sm-2 control-label">
-										培训简介 </label>
+									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description"
-											class="form-control" placeholder="请输入培训计划简介/简单描述">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入培训计划简介/简单描述">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary"
-									onclick="addTerm()" data-dismiss="modal">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addTerm()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>
@@ -150,10 +134,8 @@
 		</div>
 		<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
 		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-		<script
-			src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+		<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 		<script src="${pageContext.request.contextPath}/js/term.js"></script>
 </body>
 </html>

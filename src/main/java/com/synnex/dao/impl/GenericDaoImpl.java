@@ -111,10 +111,11 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		// 创建查询对象
 		Query query = this.getSession().createQuery(hql);// Hql
 		// 添加查询条件，参数
-		for (int i = 0; i < objects.length; i++) {
-			query.setParameter(i, objects[i]);
+		if (null != objects && objects.length > 0) {
+			for (int i = 0; i < objects.length; i++) {
+				query.setParameter(i, objects[i]);
+			}
 		}
 		return query.list();
 	}
-
 }
