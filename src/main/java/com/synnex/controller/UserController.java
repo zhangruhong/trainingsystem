@@ -1,9 +1,13 @@
 package com.synnex.controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,19 +58,35 @@ public class UserController extends GenericController {
 		return "redirect:/admin/showusers";
 	}
 
-	@RequestMapping(value = "updatapass")
-	public String changePassword(User user) {
-		User databassuser = userService.getUser(user.getId());
-		// 验证登录状态
-		// 验证原密码
-		if (null == user.getPassword() || user.getPassword().equals("")) {
-			// 返回“原密码不能为空”
+	@RequestMapping(value = "/updatapass")
+	public String changePassword(@Valid User user, BindingResult errors, String newpass, String passconfig) {
+		if (errors.hasErrors()) {
+			return "/admin/user/updatapass";
 		}
+		// 验证登录状态
+		// 验证两次新密码
+		Pattern pattern_newpass = Pattern.compile("^[a-zA-Z]\\w{5,15}$");
+		boolean pattern_newpass_result = pattern_newpass.matcher(newpass).matches();
+		if (pattern_newpass_result) {
+			errors.rejectValue("newpass", "新密码必须是以字母开头的6-16位字符");
+			return "/admin/user/updatapass";
+		}
+		if (!newpass.equals(passconfig)) {
+			errors.rejectValue("passconfig", "两次输入的密码不匹配");
+			return "/admin/user/updatapass";
+		}
+		// 验证原密码
+		User databassuser = userService.getUser(user.getId());
 		String encodepass = Md5Encode.getStringMD5(user.getPassword());
 		if (!encodepass.equals(databassuser.getPassword())) {
 			// 返回原密码错误
+			errors.rejectValue("password", "原密码不匹配");
+			return "/admin/user/updatapass";
 		}
-		// 验证两次新密码
 		// 更新
+		databassuser.setPassword(user.getPassword());
+		userService.updateUser(databassuser);
+		// TODO 在修改页面弹出修改成功 即可
+		return "/admin/user/updatapass";
 	}
 }

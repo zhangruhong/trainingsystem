@@ -3,9 +3,16 @@ package com.synnex.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Term {
 	private int id;
+	@NotEmpty(message = "培训计划名称不能为空")
+	@Length(max = 30, min = 1, message = "命名长度不合适（1~30）")
 	private String name;
+	@NotEmpty(message = "简介/描述不能为空")
+	@Length(min = 1, max = 100, message = "简介/描述字符长度不对（不能超过100）")
 	private String description;
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
 	private Set<Course> courses = new HashSet<Course>();
@@ -57,7 +64,7 @@ public class Term {
 	@Override
 	public String toString() {
 		return "Term [id=" + id + ", name=" + name + ", description="
-				+ description + ", usergroups=" + "省略" + "]";
+ + description + ", usergroups=" + "省略" + "]";
 	}
 
 }

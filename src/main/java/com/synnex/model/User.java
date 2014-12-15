@@ -4,15 +4,30 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 744077601120584167L;
 	private int id;
+	@Email(message = "请输入正确的email地址")
 	private String email;
+
+	@NotEmpty(message = "用户名不能为空")
+	@Length(max = 20, min = 2, message = "用户名长度应该介于2~20之间")
 	private String loginname;
+
+	@NotEmpty(message = "用户名不能为空")
+	@Length(max = 16, min = 6, message = "密码长度应该介于6~16之间")
 	private String password;
+
 	private String phoneno;
 	// 0:TrainingManager（培训管理者）、1:Trainer（培训讲师）、2:NewComer（新员工）
+
+	@Range(max = 3, min = 0, message = "选择的用户角色不在合法范围内")
 	private int role;
 	private Set<Course> course = new HashSet<Course>();
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();

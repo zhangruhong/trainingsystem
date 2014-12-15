@@ -42,7 +42,8 @@
 
 							<div class="table-responsive">
 								<h4 class="margin-bottom-15">培训总体信息</h4>
-								<table class="table table-striped table-hover table-bordered">
+								<div id="actiontip" align="center"></div>
+								<table class="table table-striped table-hover table-bordered ">
 									<thead>
 										<tr>
 											<th>#id</th>
@@ -55,9 +56,9 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="tbodyterms">
 										<c:forEach items="${terms}" var="term">
-											<tr class="danger">
+											<tr >
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
@@ -135,7 +136,7 @@
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>
 								<button id="addterm" type="button" class="btn btn-primary"
-									onclick="addTerm()">提交</button>
+									onclick="addTerm()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>
@@ -147,10 +148,10 @@
 			<!-- 页脚 -->
 			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-		<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
 		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 		<script
-			src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+			src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 		<script src="${pageContext.request.contextPath}/js/term.js"></script>

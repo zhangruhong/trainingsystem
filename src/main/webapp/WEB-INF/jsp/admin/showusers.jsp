@@ -119,10 +119,10 @@
 
 		</div>
 	</div>
-	<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-	<script
-		src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+		<script
+			src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 </body>
