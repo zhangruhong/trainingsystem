@@ -68,4 +68,10 @@ public interface GenericDao<T, PK> {
 	 */
 	public List<T> findByHql(String hql, Object... objects);
 
+	/**
+	 * 获取总记录数
+	 * 
+	 * @return
+	 */
+	public int getTotolCount();
 }

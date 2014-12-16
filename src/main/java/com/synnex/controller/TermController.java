@@ -1,5 +1,6 @@
 package com.synnex.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.synnex.dao.Order;
 import com.synnex.model.Term;
 import com.synnex.service.TermService;
 
@@ -38,7 +40,10 @@ public class TermController {
 	public Map addTerm(@RequestBody Term term) {
 		termServiceImpl.addTerm(term);
 		logger.info("term:" + term.toString());
-		List<Term> terms = termServiceImpl.getAllTerms(null, null, 0, 8);
+		Order order = Order.asc("id");
+		List<Order> orders = new ArrayList<Order>();
+		orders.add(order);
+		List<Term> terms = termServiceImpl.getAllTerms(null, orders, 0, 8);
 		Map termmap = new TreeMap();
 		termmap.put("success", true);
 		termmap.put("terms", terms);

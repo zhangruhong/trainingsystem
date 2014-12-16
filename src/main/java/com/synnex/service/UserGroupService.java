@@ -45,4 +45,11 @@ public interface UserGroupService {
 	 * @param ug
 	 */
 	public void updateGroup(Usergroup ug);
+
+	/**
+	 * 获取记录数
+	 * 
+	 * @return
+	 */
+	public int getCount();
 }

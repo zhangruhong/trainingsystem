@@ -52,4 +52,9 @@ public class UserGroupServiceImpl implements UserGroupService {
 		userGroupDaoImpl.update(ug);
 	}
 
+	@Override
+	public int getCount() {
+		return userGroupDaoImpl.getTotolCount();
+	}
+
 }

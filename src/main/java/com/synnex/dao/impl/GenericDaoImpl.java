@@ -23,19 +23,17 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 
 	@Autowired
 	protected SessionFactory sessionFactory;
-	protected Class<T> entityClass ;
-	
+	protected Class<T> entityClass;
+
 	@SuppressWarnings("unchecked")
 	private Class<T> getClz() {
 		if (entityClass == null) {
 			// 获取泛型的Class对象
-			entityClass = ((Class<T>) (((ParameterizedType) (this.getClass()
-					.getGenericSuperclass())).getActualTypeArguments()[0]));
+			entityClass = ((Class<T>) (((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0]));
 			System.out.println("entityClass：" + entityClass);
 		}
 		return entityClass;
 	}
-	
 
 	@Override
 	public Session getSession() {
@@ -49,8 +47,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	}
 
 	@Override
-	public List<T> list(Object condition, List<Order> orders, int begin,
-			int size) {
+	public List<T> list(Object condition, List<Order> orders, int begin, int size) {
 		Criteria criteria = this.getSession().createCriteria(getClz());
 		// TODO 条件限定没有用
 		if (condition != null) {
@@ -60,11 +57,9 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		if (orders != null) {
 			for (Order order : orders) {
 				if (order.isAsc()) {
-					criteria.addOrder(org.hibernate.criterion.Order.asc(order
-							.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.asc(order.getField()));
 				} else {
-					criteria.addOrder(org.hibernate.criterion.Order.desc(order
-							.getField()));
+					criteria.addOrder(org.hibernate.criterion.Order.desc(order.getField()));
 				}
 			}
 		}
@@ -117,5 +112,10 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 			}
 		}
 		return query.list();
+	}
+
+	@Override
+	public int getTotolCount() {
+		return list(null, null, -1, 0).size();
 	}
 }

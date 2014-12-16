@@ -31,7 +31,7 @@ public class TestTermService {
 	
 	@Test
 	public void getallterms(){
-		System.out.println(tsi.getAllTerms());
+		System.out.println(tsi.getAllTerms(null, null, 0, 10));
 	}
 
 }

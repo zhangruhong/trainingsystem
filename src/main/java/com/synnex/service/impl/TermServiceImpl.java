@@ -28,7 +28,7 @@ public class TermServiceImpl implements TermService {
 
 	@Override
 	public List<Term> getAllTerms(Object condition, List<Order> orders, int begin, int size) {
-		return termDaoImpl.list(null, null, begin, size);
+		return termDaoImpl.list(condition, orders, begin, size);
 	}
 
 	@Override

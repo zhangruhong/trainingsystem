@@ -15,7 +15,7 @@ import com.synnex.model.Usergroup;
 import com.synnex.service.UserGroupService;
 
 @Controller
-@RequestMapping(value = { "/admin/usergroup" })
+@RequestMapping(value = { "/admin/term" })
 public class UserGroupController {
 	@Resource
 	private UserGroupService userGroupServiceImpl;
@@ -25,13 +25,13 @@ public class UserGroupController {
 		return "/admin/usergroup/addpage";
 	}
 
-	@RequestMapping(value = { "/add" }, method = { RequestMethod.POST })
+	@RequestMapping(value = { "/{termid}/usergroup/add" }, method = { RequestMethod.POST })
 	public String addUserGroup(Usergroup usergroup) {
 		userGroupServiceImpl.addGroup(usergroup, usergroup.getTerm().getId());
 		return "redirect:/admin/showall";
 	}
 
-	@RequestMapping(value = { "/show/{groupid}" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/{termid}/usergroup/{groupid}" }, method = { RequestMethod.GET })
 	public String showUsergroup(@PathVariable("groupid") String usergroupid,
 			Model model) {
 		Usergroup usergroup = userGroupServiceImpl.getGroup(Integer
@@ -40,7 +40,7 @@ public class UserGroupController {
 		return "/admin/usergroup/show";
 	}
 
-	@RequestMapping(value = { "/show" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/{termid}/usergroup/show" }, method = { RequestMethod.GET })
 	public String showAllUsergroup(
 			@RequestParam(value = "page", required = false) Integer page,
 			String termid, Model model) {
@@ -56,7 +56,7 @@ public class UserGroupController {
 		return "/admin/usergroup/show";
 	}
 
-	@RequestMapping(value = { "/delete/{groupid}" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/{termid}/usergroup/delete/{groupid}" }, method = { RequestMethod.GET })
 	public String deleteUsergroup(@PathVariable("groupid") String usergroupid) {
 		userGroupServiceImpl.deleteGroup(Integer.valueOf(usergroupid));
 		return "rediret:/admin/showall";
