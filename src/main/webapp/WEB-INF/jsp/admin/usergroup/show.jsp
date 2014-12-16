@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-<title>TermAdmin</title>
+<title>UsergroupAdmin</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
@@ -34,27 +34,27 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建计划</button>
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建分组</button>
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">培训总体信息</h4>
+								<h4 class="margin-bottom-15">第1期英语培训分组情况</h4>
 								<table class="table table-striped table-hover table-bordered ">
 								<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
 											<th>#id</th>
-											<th>Term Name</th>
+											<th>Group Name</th>
 											<th>Discription</th>
 											<th>其他二</th>
 											<th>其他三</th>
-											<th>进度</th>
-											<th>分组管理</th>
+											<th>其他四</th>
+											<th>组员管理</th>
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody id="tbodyterms">
-										<c:forEach items="${terms}" var="term">
+									<tbody id="tbodyusergroup">
+										<c:forEach items="${usergroups}" var="term">
 											<tr>
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
@@ -62,7 +62,7 @@
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">分组管理</a></td>
+												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">组员管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -85,7 +85,7 @@
 							<ul class="pagination pull-right">
 								<li class="disabled"><a href="#">&laquo;</a></li>
 								<c:forEach begin="1" end="${totolpages}" var="iterm">
-									<li><a href="showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
+									<li><a href="show?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
 								</c:forEach>
 								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
 								<li><a href="showall?page=${totolpages}">&raquo;</a></li>
@@ -101,20 +101,20 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建培训计划</h4>
+								<h4 class="modal-title" id="myModalLabel">第一届英语培训——新建分组</h4>
 							</div>
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 培训名称 </label>
+									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入培训计划名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入分组名称  如：C组、MyCIS组">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入培训计划简介/简单描述">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入分组简介/简单描述">
 									</div>
 								</div>
 							</div>
@@ -132,10 +132,9 @@
 			<!-- 页脚 -->
 			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-		<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
-		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-		<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<script src="${pageContext.request.contextPath}/js/term.js"></script>
+		<script src="${pageContext.request.contextPath}/js/usergroup.js"></script>
 </body>
 </html>

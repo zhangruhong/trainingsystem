@@ -44,10 +44,14 @@ public class TermController {
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
 		List<Term> terms = termServiceImpl.getAllTerms(null, orders, 0, 8);
-		Map termmap = new TreeMap();
-		termmap.put("success", true);
-		termmap.put("terms", terms);
-		return termmap;
+		Map termsmap = new TreeMap();
+		termsmap.put("success", true);
+		termsmap.put("msg", "");
+		termsmap.put("terms", terms);
+		return termsmap;
+		/*
+		 * JsonBean jsonBean = new JsonBean(true, "", terms); return jsonBean;
+		 */
 	}
 
 	// TODO showall的时候将termid写到URL上去
@@ -59,13 +63,12 @@ public class TermController {
 	}
 
 	@RequestMapping(value = { "/showall" }, method = { RequestMethod.GET })
-	public String showPagerTerm(@RequestParam(value="page",required=false) Integer page, Model model) {
+	public String showPagerTerm(@RequestParam(value = "page", required = false) Integer page, Model model) {
 		int size = 10;
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		List<Term> terms = termServiceImpl.getAllTerms(null, null, size
-				* (page - 1), size);
+		List<Term> terms = termServiceImpl.getAllTerms(null, null, size * (page - 1), size);
 		int count = termServiceImpl.getCount();
 		model.addAttribute("terms", terms);
 		model.addAttribute("totolpages", count / 10 + 1);

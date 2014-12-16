@@ -62,7 +62,7 @@
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">分组管理</a></td>
+												<td><a href="term/${term['id']}/usergroup/show" class="btn btn-default">分组管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -132,9 +132,8 @@
 			<!-- 页脚 -->
 			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-		<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
-		<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-		<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 		<script src="${pageContext.request.contextPath}/js/term.js"></script>
 </body>
