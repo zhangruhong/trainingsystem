@@ -94,7 +94,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- 模态框（Modal） -->
+			<!--新建 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
 					<form class="form-horizontal" role="form">
@@ -104,6 +104,42 @@
 								<h4 class="modal-title" id="myModalLabel">第一届英语培训——新建分组</h4>
 							</div>
 							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入分组名称  如：C组、MyCIS组">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
+									<div class="col-sm-10">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入分组简介/简单描述">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addTerm()" data-dismiss="modal">提交</button>
+							</div>
+						</div>
+					</form>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			
+			<!--组员管理  模态框（Modal） -->
+			<div class="modal fade" id="member_Manage_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<form class="form-horizontal" role="form">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">第一届英语培训——xxx组员管理</h4>
+							</div>
+							<div class="modal-body">
+							id/loginname/phoneno/role 功能 添加新组员、移除组员、用ajax显示所有组员
 
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
