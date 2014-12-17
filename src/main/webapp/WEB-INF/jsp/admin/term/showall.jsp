@@ -62,7 +62,7 @@
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><a href="term/${term['id']}/usergroup/show" class="btn btn-default">分组管理</a></td>
+												<td><a href="${term['id']}/usergroup/show" class="btn btn-default">分组管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
