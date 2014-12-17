@@ -1,12 +1,14 @@
 function addTerm() {
 	var mydata = '{"name":"' + $("#nameInput").val() + '","description":"' + $('#descriptionInput').val() + '"}';
-	$.ajax({
+	$
+			.ajax({
 				type : "POST",
 				url : "add",
 				data : mydata,
 				dataType : "json",
 				contentType : "application/json; charset=utf8",
 				success : function(data) {
+					data = data.termmap;
 					if (data.success == true) {
 						var terms = data.terms;
 						createShowingTable(terms);
@@ -24,7 +26,7 @@ function addTerm() {
 					$("#actiontip")
 							.html(
 									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
-					alert("-"+XMLHttpRequest.status+"-"+XMLHttpRequest.readyState+"-"+textStatus+"-"+errorThrown);
+					alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
 				}
 			});
 }

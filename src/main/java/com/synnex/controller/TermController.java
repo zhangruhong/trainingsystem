@@ -2,8 +2,6 @@ package com.synnex.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.synnex.dao.Order;
 import com.synnex.model.Term;
 import com.synnex.service.TermService;
+import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
 @RequestMapping(value = { "/admin/term" })
@@ -37,21 +36,17 @@ public class TermController {
 
 	@RequestMapping(value = { "/add" }, method = { RequestMethod.POST })
 	@ResponseBody
-	public Map addTerm(@RequestBody Term term) {
+	public JsonBean addTerm(@RequestBody Term term) {
 		termServiceImpl.addTerm(term);
 		logger.info("term:" + term.toString());
 		Order order = Order.asc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
 		List<Term> terms = termServiceImpl.getAllTerms(null, orders, 0, 8);
-		Map termsmap = new TreeMap();
-		termsmap.put("success", true);
-		termsmap.put("msg", "");
-		termsmap.put("terms", terms);
-		return termsmap;
-		/*
-		 * JsonBean jsonBean = new JsonBean(true, "", terms); return jsonBean;
-		 */
+		// TODO 加入@valid验证 将错误放入json对象返回 前端js显示出来
+		JsonBean jsonBean = new JsonBean(true, "", terms);
+		return jsonBean;
+
 	}
 
 	// TODO showall的时候将termid写到URL上去

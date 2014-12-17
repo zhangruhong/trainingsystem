@@ -1,6 +1,7 @@
 package com.synnex.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -25,7 +26,9 @@ public class UserGroupServiceImpl implements UserGroupService {
 	public void addGroup(Usergroup ug, int termid) {
 		Term term = termDaoImpl.get(termid);
 		ug.setTerm(term);
-		term.getUsergroups().add(ug);
+		Set<Usergroup> usergroups = term.getUsergroups();
+		usergroups.add(ug);
+		term.setUsergroups(usergroups);
 		userGroupDaoImpl.save(ug);
 	}
 

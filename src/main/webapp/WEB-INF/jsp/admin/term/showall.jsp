@@ -53,7 +53,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody id="tbodyterms">
+ 									<tbody id="tbodyterms">
 										<c:forEach items="${terms}" var="term">
 											<tr>
 												<td>${term["id"]}</td>

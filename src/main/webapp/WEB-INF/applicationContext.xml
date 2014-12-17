@@ -29,6 +29,8 @@
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop><!-- 配置显示sql语句 -->
+				<prop key="format_sql">${hibernate.format_sql}</prop><!-- 让输出的sql语句格式化 -->
 			</props>
 		</property>
 		<property name="mappingDirectoryLocations">

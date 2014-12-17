@@ -40,7 +40,7 @@
 							<div class="table-responsive">
 								<h4 class="margin-bottom-15">第1期英语培训分组情况</h4>
 								<table class="table table-striped table-hover table-bordered ">
-								<div id="actiontip" align="center"></div>
+									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
 											<th>#id</th>
@@ -73,7 +73,7 @@
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
 															<li><a href="#">Font Awesome</a></li>
-															<li><a href="#">jQuery</a></li>
+															<li><a  onclick="deleteUserGroup(${term['id']})">删除/解散该组</a></li>
 														</ul>
 													</div>
 												</td>

@@ -55,10 +55,10 @@ public interface GenericDao<T, PK> {
 
 	/**
 	 * @tags Delete by id.
-	 * @param object
-	 *            The delete object
+	 * @param entity
+	 *            The delete entity
 	 */
-	void delete(Object object);
+	void delete(T entity);
 
 	/**
 	 * 

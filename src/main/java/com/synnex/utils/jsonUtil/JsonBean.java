@@ -10,11 +10,20 @@ import java.util.TreeMap;
  *
  */
 public class JsonBean {
-	Map termmap = new TreeMap();
+	private Map termmap = new TreeMap();
 
-	public JsonBean(boolean success, String msg, Object obj) {
-		termmap.put("success", true);
+	public JsonBean(boolean trueOrfalse, String msg, Object obj) {
+		termmap.put("success", trueOrfalse);
 		termmap.put("msg", msg);
 		termmap.put("terms", obj);
 	}
+
+	public Map getTermmap() {
+		return termmap;
+	}
+
+	public void setTermmap(Map termmap) {
+		this.termmap = termmap;
+	}
+
 }

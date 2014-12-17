@@ -43,6 +43,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public T get(PK id) {
+		logger.info("get");
 		return (T) this.getSession().get(getClz(), (Serializable) id);
 	}
 
@@ -74,7 +75,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	@Override
 	public void save(T entity) {
 		this.getSession().save(entity);
-		logger.info(entity.toString());
+		logger.info("save");
 	}
 
 	@Override
@@ -86,6 +87,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 
 	@Override
 	public void update(T entity) {
+		logger.info("update");
 		this.getSession().update(entity);
 	}
 
@@ -97,12 +99,14 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	}
 
 	@Override
-	public void delete(Object object) {
-		this.getSession().delete(object);
+	public void delete(T entity) {
+		logger.info("delete");
+		this.getSession().delete(entity);
 	}
 
 	@Override
 	public List<T> findByHql(String hql, Object... objects) {
+		logger.info("findByHql");
 		// 创建查询对象
 		Query query = this.getSession().createQuery(hql);// Hql
 		// 添加查询条件，参数
@@ -116,6 +120,7 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 
 	@Override
 	public int getTotolCount() {
+		logger.info("getTotolCount");
 		return list(null, null, -1, 0).size();
 	}
 }
