@@ -21,7 +21,7 @@ public class User implements Serializable {
 	private String loginname;
 
 	@NotEmpty(message = "用户名不能为空")
-	@Length(max = 16, min = 6, message = "密码长度应该介于6~16之间")
+	@Length(max = 33, min = 6, message = "密码长度应该介于6~16之间")
 	private String password;
 
 	private String phoneno;

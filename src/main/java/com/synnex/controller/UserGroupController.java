@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -29,7 +30,6 @@ import com.synnex.utils.jsonUtil.JsonBean;
 @RequestMapping(value = { "/admin/term" })
 public class UserGroupController extends GenericController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-
 
 	/**
 	 * 接收json数据添加分组
@@ -98,18 +98,35 @@ public class UserGroupController extends GenericController {
 
 	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/add" }, method = { RequestMethod.POST })
 	@ResponseBody
-	public JsonBean addUserToGroup(String loginname,@PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
-		User user=new User();
-		user.setLoginname(loginname);
-		Order order = Order.asc("loginname");
-		List<Order> orders=new ArrayList<Order>();
-		orders.add(order);
-		List<User> users = userService.listByNameSimilar(user, orders, 0, 8);
-		JsonBean jsonBean=null;
-		if (users.size()>0) {
-			jsonBean = new JsonBean(true, "查询成功", users);
+	public void addUserToGroup(@RequestBody User user, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+		// 双向多对多
+		User u = userServiceImpl.getUser(user.getId());
+		Usergroup usergroup = userGroupServiceImpl.getGroup(usergroupid);
+		// 将需要添加的user添加到usergroup
+		Set<User> users = usergroup.getUsers();
+		users.add(u);
+		usergroup.setUsers(users);
+		// 将usergroup也关联到user
+		Set<Usergroup> usergroups = u.getUsergroups();
+		usergroups.add(usergroup);
+		u.setUsergroups(usergroups);
+
+		userServiceImpl.updateUser(u);
+		userGroupServiceImpl.updateGroup(usergroup);
+		// 不返回数据 由前端发起ajax请求获取数据
+	}
+
+	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/users" }, method = { RequestMethod.GET })
+	@ResponseBody
+	public JsonBean showUserOfGroup(@PathVariable(value = "termid") int termid, @PathVariable("groupid") int groupid) {
+		Usergroup usergroup = userGroupServiceImpl.getGroup(groupid);
+		Set<User> users = usergroup.getUsers();
+		JsonBean jsonBean = null;
+		if (null != users && users.size() > 0) {
+			jsonBean = new JsonBean(true, "" + users.size(), users);
+		} else {
+			jsonBean = new JsonBean(false, "没有记录", null);
 		}
-		
 		return jsonBean;
 	}
 

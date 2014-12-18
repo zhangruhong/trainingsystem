@@ -27,7 +27,7 @@ public class LoginController extends GenericController {
 	public String checkLogin(String username, String password, Map<String, Object> map, HttpSession session) throws Exception {
 		User user = null;
 		try {
-			user = userService.checkLogin(username, password);
+			user = userServiceImpl.checkLogin(username, password);
 			// 把用户放入session
 			session.setAttribute("USER_IN_SESSION", user);
 			// 成功提示

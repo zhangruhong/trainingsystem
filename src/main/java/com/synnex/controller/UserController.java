@@ -1,5 +1,6 @@
 package com.synnex.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -8,10 +9,14 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.synnex.dao.Order;
 import com.synnex.model.User;
+import com.synnex.utils.jsonUtil.JsonBean;
 import com.synnex.utils.md5Util.Md5Encode;
 
 @Controller
@@ -25,7 +30,7 @@ public class UserController extends GenericController {
 	 */
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public String createUser(User user) {
-		userService.addUser(user);
+		userServiceImpl.addUser(user);
 		return "redirect:/admin/showusers";
 	}
 
@@ -33,14 +38,14 @@ public class UserController extends GenericController {
 	public String showUsers(Model model) {
 		User user = new User();
 		user.setRole(1);
-		List<User> users = userService.getUsersByCondition(user, null, -1, 0);
+		List<User> users = userServiceImpl.getUsersByCondition(user, null, -1, 0);
 		model.addAttribute("users", users);
 		return "/admin/showusers";
 	}
 
 	@RequestMapping(value = "/deleteuser")
 	public String deleteUser(User user) {
-		userService.deleteUser(user);
+		userServiceImpl.deleteUser(user);
 		return "redirect:/admin/showusers";
 	}
 
@@ -52,9 +57,9 @@ public class UserController extends GenericController {
 	 */
 	@RequestMapping(value = "/updateuser")
 	public String updateUser(User user) {
-		User databaseuser = userService.getUser(user.getId());
+		User databaseuser = userServiceImpl.getUser(user.getId());
 		user.setPassword(databaseuser.getPassword());
-		userService.updateUser(user);
+		userServiceImpl.updateUser(user);
 		return "redirect:/admin/showusers";
 	}
 
@@ -76,7 +81,7 @@ public class UserController extends GenericController {
 			return "/admin/user/updatapass";
 		}
 		// 验证原密码
-		User databassuser = userService.getUser(user.getId());
+		User databassuser = userServiceImpl.getUser(user.getId());
 		String encodepass = Md5Encode.getStringMD5(user.getPassword());
 		if (!encodepass.equals(databassuser.getPassword())) {
 			// 返回原密码错误
@@ -85,8 +90,26 @@ public class UserController extends GenericController {
 		}
 		// 更新
 		databassuser.setPassword(user.getPassword());
-		userService.updateUser(databassuser);
+		userServiceImpl.updateUser(databassuser);
 		// TODO 在修改页面弹出修改成功 即可
 		return "/admin/user/updatapass";
+	}
+
+	@RequestMapping(value = { "/search" }, method = { RequestMethod.POST })
+	@ResponseBody
+	public JsonBean searchUserByName(String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+		User user = new User();
+		user.setLoginname(loginname);
+		Order order = Order.asc("loginname");
+		List<Order> orders = new ArrayList<Order>();
+		orders.add(order);
+		List<User> users = userServiceImpl.listByNameSimilar(user, orders, 0, 8);
+		JsonBean jsonBean = null;
+		if (null != users && users.size() > 0) {
+			jsonBean = new JsonBean(true, "" + users.size(), users);
+		} else {
+			jsonBean = new JsonBean(false, "没有记录", null);
+		}
+		return jsonBean;
 	}
 }

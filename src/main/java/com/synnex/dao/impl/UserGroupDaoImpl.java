@@ -11,6 +11,6 @@ import com.synnex.model.Usergroup;
  * @author Davisz
  *
  */
-@Repository("userGroupDao")
+@Repository("userGroupDaoImpl")
 public class UserGroupDaoImpl extends GenericDaoImpl<Usergroup, Integer> implements UserGroupDao {
 }

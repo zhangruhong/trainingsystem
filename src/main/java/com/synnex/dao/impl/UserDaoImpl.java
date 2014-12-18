@@ -27,7 +27,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 	public List<User> listByNameSimilar(User condition, List<Order> orders, int begin, int size) {
 		Criteria criteria = this.getSession().createCriteria(User.class);
 		if (null != condition) {
-			criteria.add(Restrictions.like("loginname", "%" + condition.getLoginname() + "%"));
+			criteria.add(Restrictions.like("loginname", "%" + condition.getLoginname() + "%")).add(Restrictions.eq("role", condition.getRole()));
 		}
 		if (orders != null) {
 			for (Order order : orders) {

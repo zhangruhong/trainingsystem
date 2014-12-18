@@ -13,10 +13,10 @@ import com.synnex.service.UserService;
 public class GenericController {
 	
 	@Resource(name = "userServiceImpl")
-	public UserService userService;
+	public UserService userServiceImpl;
 
 	@Resource(name = "courseServiceImpl")
-	public CourseService courseService;
+	public CourseService courseServiceImpl;
 
 	@Resource(name = "userGroupServiceImpl")
 	public UserGroupService userGroupServiceImpl;
