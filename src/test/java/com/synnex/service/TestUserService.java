@@ -24,7 +24,7 @@ public class TestUserService {
 	@Test
 	public void addUserTest() {
 		User user = new User();
-		user.setLoginname("1123");
+		user.setLoginname("1123a");
 		user.setPassword("1231234");
 		user.setRole(1);
 		user.setPhoneno("123456789");
@@ -75,7 +75,7 @@ public class TestUserService {
 		List<User> users = new ArrayList<User>();
 		List<Order> orderss = new ArrayList<Order>();
 		User condition = new User();
-		condition.setRole(5);
+		condition.setRole(0);
 		Order orders = Order.asc("role");
 		Order orders1 = Order.asc("phoneno");
 		orderss.add(orders);
@@ -86,11 +86,11 @@ public class TestUserService {
 			System.out.println(user);
 			user.setRole(7);
 		}
+		userServiceImpl.updateUsers(users);
 		System.out.println("-------------------");
 		for (User user : users) {
 			System.out.println(user);
 		}
-		userServiceImpl.updateUsers(users);
 
 	}
 

@@ -9,9 +9,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
-<!-- <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
-
 <body>
 	<div id="main-wrapper">
 		<!-- 导航 -->
