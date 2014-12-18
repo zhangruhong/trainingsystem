@@ -69,6 +69,7 @@ public class UserGroupController extends GenericController {
 		return "/admin/usergroup/show";
 	}
 
+	//TODO 这里的关联关系没有建立起 不同学期分组无效
 	@RequestMapping(value = { "/{termid}/usergroup/show" }, method = { RequestMethod.GET })
 	public String showAllUsergroup(@RequestParam(value = "page", required = false) Integer page, @PathVariable String termid, Model model) {
 		int size = 10;
