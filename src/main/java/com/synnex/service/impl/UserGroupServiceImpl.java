@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
@@ -14,10 +15,11 @@ import com.synnex.model.Term;
 import com.synnex.model.Usergroup;
 import com.synnex.service.UserGroupService;
 
-@Service
+@Transactional
+@Service("userGroupService")
 public class UserGroupServiceImpl implements UserGroupService {
 
-	@Resource(name = "userGroupDaoImpl")
+	@Resource(name = "userGroupDao")
 	private UserGroupDao userGroupDaoImpl;
 	@Resource(name = "termDaoImpl")
 	private TermDao termDaoImpl;

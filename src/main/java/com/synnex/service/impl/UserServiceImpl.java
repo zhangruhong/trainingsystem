@@ -76,4 +76,12 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * 已在底层添加前后%实现了 向前、向后都匹配搜索
+	 */
+	@Override
+	public List<User> listByNameSimilar(User condition, List<Order> orders, int startpage, int pagesize) {
+		return userDao.listByNameSimilar(condition, orders, startpage, pagesize);
+	}
+
 }

@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -22,16 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
+import com.synnex.model.User;
 import com.synnex.model.Usergroup;
-import com.synnex.service.UserGroupService;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
 @RequestMapping(value = { "/admin/term" })
-public class UserGroupController {
+public class UserGroupController extends GenericController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Resource
-	private UserGroupService userGroupServiceImpl;
+
 
 	/**
 	 * 接收json数据添加分组
@@ -95,6 +93,23 @@ public class UserGroupController {
 		orders.add(order);
 		List<Usergroup> terms = userGroupServiceImpl.getAllGroups(termid, orders, 0, 8);
 		JsonBean jsonBean = new JsonBean(true, "数据删除成功", terms);
+		return jsonBean;
+	}
+
+	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/add" }, method = { RequestMethod.POST })
+	@ResponseBody
+	public JsonBean addUserToGroup(String loginname,@PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+		User user=new User();
+		user.setLoginname(loginname);
+		Order order = Order.asc("loginname");
+		List<Order> orders=new ArrayList<Order>();
+		orders.add(order);
+		List<User> users = userService.listByNameSimilar(user, orders, 0, 8);
+		JsonBean jsonBean=null;
+		if (users.size()>0) {
+			jsonBean = new JsonBean(true, "查询成功", users);
+		}
+		
 		return jsonBean;
 	}
 

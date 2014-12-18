@@ -62,7 +62,8 @@
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">组员管理</a></td>
+												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal">组员管理</button></td>
+												<%-- <a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">组员管理</a> --%>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -73,7 +74,7 @@
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
 															<li><a href="#">Font Awesome</a></li>
-															<li><a  onclick="deleteUserGroup(${term['id']})">删除/解散该组</a></li>
+															<li><a onclick="deleteUserGroup(${term['id']})">删除/解散该组</a></li>
 														</ul>
 													</div>
 												</td>
@@ -128,9 +129,10 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-			
+
 			<!--组员管理  模态框（Modal） -->
-			<div class="modal fade" id="member_Manage_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal fade" id="member_Manage_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+				data-backdrop="static">
 				<div class="modal-dialog">
 					<form class="form-horizontal" role="form">
 						<div class="modal-content">
@@ -139,24 +141,47 @@
 								<h4 class="modal-title" id="myModalLabel">第一届英语培训——xxx组员管理</h4>
 							</div>
 							<div class="modal-body">
-							id/loginname/phoneno/role 功能 添加新组员、移除组员、用ajax显示所有组员
-
-								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
-									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入分组名称  如：C组、MyCIS组">
+								<table class="form-inline" role="form">
+									<div class="input-group">
+										 <input type="text" class="form-control" id="name" placeholder="请输入英文名"> <span
+											class="input-group-btn">
+											<button type="submit" class="btn btn-primary">添加组员</button>
+										</span>
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
-									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入分组简介/简单描述">
-									</div>
-								</div>
+								</table>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th>#id</th>
+											<th>loginname</th>
+											<th>phoneno</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Tanmay</td>
+											<td>Bangalore</td>
+											<td>560001</td>
+											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
+										</tr>
+										<tr>
+											<td>Sachin</td>
+											<td>Mumbai</td>
+											<td>400003</td>
+											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
+										</tr>
+										<tr>
+											<td>Uma</td>
+											<td>Pune</td>
+											<td>411027</td>
+											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addTerm()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>

@@ -33,6 +33,7 @@ public interface GenericDao<T, PK> {
 	 */
 	public List<T> list(Object condition, List<Order> orders, int begin, int size);
 
+
 	/**
 	 * @tags Save entity to DB.
 	 */

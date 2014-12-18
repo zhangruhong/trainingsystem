@@ -123,4 +123,6 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		logger.info("getTotolCount");
 		return list(null, null, -1, 0).size();
 	}
+
+
 }

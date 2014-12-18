@@ -74,6 +74,17 @@ public interface UserService {
 	 * @return
 	 */
 	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size);
+	
+	/**
+	 * 根据名字搜索
+	 * 
+	 * @param condition
+	 * @param order
+	 * @param startpage
+	 * @param pagesize
+	 * @return
+	 */
+	public List<User> listByNameSimilar(User condition, List<Order> orders, int startpage, int pagesize);
 
 	/**
 	 * 
