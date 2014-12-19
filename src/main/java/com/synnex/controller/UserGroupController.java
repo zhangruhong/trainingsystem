@@ -8,8 +8,6 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +27,6 @@ import com.synnex.utils.jsonUtil.JsonBean;
 @Controller
 @RequestMapping(value = { "/admin/term" })
 public class UserGroupController extends GenericController {
-	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * 接收json数据添加分组
@@ -69,7 +66,7 @@ public class UserGroupController extends GenericController {
 		return "/admin/usergroup/show";
 	}
 
-	//TODO 这里的关联关系没有建立起 不同学期分组无效
+	// TODO 这里的关联关系没有建立起 不同学期分组无效
 	@RequestMapping(value = { "/{termid}/usergroup/show" }, method = { RequestMethod.GET })
 	public String showAllUsergroup(@RequestParam(value = "page", required = false) Integer page, @PathVariable String termid, Model model) {
 		int size = 10;
@@ -99,14 +96,24 @@ public class UserGroupController extends GenericController {
 
 	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/add" }, method = { RequestMethod.POST })
 	@ResponseBody
-	public void addUserToGroup(@RequestBody User user, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+	public JsonBean addUserToGroup(@RequestBody String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+		JsonBean jsonBean = null;
+		logger.info("--loginname----:" + loginname);
 		// 双向多对多
-		User u = userServiceImpl.getUser(user.getId());
+		User user = new User();
+		user.setLoginname(loginname);
+		user.setRole(1);
+		List<User> users = userServiceImpl.getUsersByCondition(user, null, 0, 1);
+		if (null == users || users.isEmpty()) {
+			jsonBean = new JsonBean(false, "添加失败！loginname不存在", null);
+			return jsonBean;
+		}
+		User u = users.get(0);
 		Usergroup usergroup = userGroupServiceImpl.getGroup(usergroupid);
 		// 将需要添加的user添加到usergroup
-		Set<User> users = usergroup.getUsers();
-		users.add(u);
-		usergroup.setUsers(users);
+		Set<User> groupusers = usergroup.getUsers();
+		groupusers.add(u);
+		usergroup.setUsers(groupusers);
 		// 将usergroup也关联到user
 		Set<Usergroup> usergroups = u.getUsergroups();
 		usergroups.add(usergroup);
@@ -115,6 +122,8 @@ public class UserGroupController extends GenericController {
 		userServiceImpl.updateUser(u);
 		userGroupServiceImpl.updateGroup(usergroup);
 		// 不返回数据 由前端发起ajax请求获取数据
+		jsonBean = new JsonBean(true, "添加成功", null);
+		return jsonBean;
 	}
 
 	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/users" }, method = { RequestMethod.GET })

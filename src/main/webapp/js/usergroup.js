@@ -40,9 +40,8 @@ function createShowingTable(data) {
 				"<div class='btn-group'>" + "<button type='button' class='btn btn-info'>Action</button>"
 				+ "<button type='button' class='btn btn-info dropdown-toggle' data-toggle='dropdown'>"
 				+ "<span class='caret'></span> <span class='sr-only'>Toggle Dropdown</span> </button>" + "<ul class='dropdown-menu' role='menu'>"
-				+ "<li><a href='" + '#功能待定'+ "'>Bootstrap</a></li>'"
-				+ "<li><a href='" + '#功能待定' + "'>Bootstrap</a></li>'"
-				+ "<li><a onclick='deleteUserGroup("+term.id+")'>删除/解散该组</a></li>'" + "</ul> </div> </td>" + "</tr>";
+				+ "<li><a href='" + '#功能待定' + "'>Bootstrap</a></li>'" + "<li><a href='" + '#功能待定' + "'>Bootstrap</a></li>'"
+				+ "<li><a onclick='deleteUserGroup(" + term.id + ")'>删除/解散该组</a></li>'" + "</ul> </div> </td>" + "</tr>";
 		tableStr = tableStr + termstring;
 	});
 	// 将动态生成的table添加的事先隐藏的div中.
@@ -50,7 +49,8 @@ function createShowingTable(data) {
 }
 
 function deleteUserGroup(groupid) {
-	$.ajax({
+	$
+			.ajax({
 				type : "GET",
 				url : groupid + "/delete",
 				dataType : "json",
@@ -75,4 +75,49 @@ function deleteUserGroup(groupid) {
 									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！删除失败！请练习davisz@synnex.com。</div>");
 				}
 			});
+}
+
+function setgroupidvalue(groupid) {
+	$("#groupidvalue").text(groupid);
+}
+
+function addUserToGroup() {
+	var groupidvalue = $("#groupidvalue").text();
+	var loginname = $("#addusertogroup_name").val();
+	$.ajax({
+		type : "POST",
+		url : groupidvalue + "/add",
+		data : loginname,
+		dataType : "json",
+		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			var terms = data.terms;
+			if (data.success == true) {
+				alert("成功！" + data.msg);
+				// createShowingTable(terms);
+				// $("#actiontip").html(
+				// "<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'
+				// aria-hidden='true'>&times;</button>"
+				// + data.msg + "</div>");
+			} else {
+				// $("#actiontip").html(
+				// "<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'
+				// aria-hidden='true'>&times;</button>"
+				// + data.msg + "</div>");
+				alert("失败" + data.msg);
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// $("#actiontip")
+			// .html(
+			// "<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'
+			// aria-hidden='true'>&times;</button>网络或兼容性错误！删除失败！请练习davisz@synnex.com。</div>");
+			alert("错误");
+		}
+	});
+}
+
+function loadUsersOfGroup() {
+	
 }

@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -65,6 +67,29 @@ public class TestUserService {
 		orderss.add(orders1);
 
 		users = userServiceImpl.getUsersByCondition(condition, orderss, 0, 50);
+		for (User user : users) {
+			System.out.println("user:" + user);
+		}
+	}
+
+	@Test
+	public void getUsersByName() {
+		System.out.println("_______________begin");
+		List<User> users = new ArrayList<User>();
+		// List<Order> orderss = new ArrayList<Order>();
+		User condition = new User();
+		condition.setLoginname("123");
+		condition.setRole(1);
+		// condition.setId(1);
+		// Order orders = Order.asc("role");
+		// Order orders1 = Order.asc("phoneno");
+		// orderss.add(orders);
+		// orderss.add(orders1);
+
+		Logger logger = LoggerFactory.getLogger(this.getClass());
+		logger.info("---begin--");
+		users = userServiceImpl.getUsersByCondition(condition, null, -1, 50);
+		logger.info("-----" + users.size());
 		for (User user : users) {
 			System.out.println("user:" + user);
 		}

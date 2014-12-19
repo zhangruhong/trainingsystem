@@ -60,7 +60,7 @@
 												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td><a href="#" class="btn btn-link">Delete</a></td>
-												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal">组员管理</button></td>
+												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue(${term['id']})">组员管理</button></td>
 												<%-- <a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">组员管理</a> --%>
 												<td>
 													<!-- Split button -->
@@ -137,13 +137,14 @@
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								<h4 class="modal-title" id="myModalLabel">第一届英语培训——xxx组员管理</h4>
+								<div hidden="true" id="groupidvalue" ></div>
 							</div>
 							<div class="modal-body">
 								<table class="form-inline" role="form">
 									<div class="input-group">
-										 <input type="text" class="form-control" id="name" placeholder="请输入英文名"> <span
+										 <input type="text" class="form-control" id="addusertogroup_name" placeholder="请输入英文名"> <span
 											class="input-group-btn">
-											<button type="submit" class="btn btn-primary">添加组员</button>
+											<button  class="btn btn-primary" onclick="addUserToGroup();return false">添加组员</button>
 										</span>
 									</div>
 								</table>
@@ -156,23 +157,11 @@
 											<th>操作</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="show_users_of_group">
 										<tr>
 											<td>Tanmay</td>
 											<td>Bangalore</td>
 											<td>560001</td>
-											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
-										</tr>
-										<tr>
-											<td>Sachin</td>
-											<td>Mumbai</td>
-											<td>400003</td>
-											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
-										</tr>
-										<tr>
-											<td>Uma</td>
-											<td>Pune</td>
-											<td>411027</td>
 											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
 										</tr>
 									</tbody>

@@ -38,7 +38,10 @@ public class UserController extends GenericController {
 	public String showUsers(Model model) {
 		User user = new User();
 		user.setRole(1);
-		List<User> users = userServiceImpl.getUsersByCondition(user, null, -1, 0);
+		Order o1 = Order.desc("id");
+		List<Order> orders = new ArrayList<Order>();
+		orders.add(o1);
+		List<User> users = userServiceImpl.getUsersByCondition(user, orders, -1, 0);
 		model.addAttribute("users", users);
 		return "/admin/showusers";
 	}

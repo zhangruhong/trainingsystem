@@ -36,7 +36,7 @@ function createShowingTable(data) {
 	$.each(data, function(n, term) {
 		var termstring = "<tr><td>" + term.id + "</td>" + "<td>" + term.name + "</td>" + "<td>" + term.description + "</td>" + "<td>" + '功能待定'
 				+ "</td>" + "<td><a href='" + '#连接到编辑页面（暂不支持）' + " class='btn btn-default'>" + 'Edit' + "</a></td>" + "<td><a href='" + '#连接到删除页面'
-				+ " class='btn btn-link'>" + 'Delete' + "</a></td>" + "<td><a href='" + "href111" + " class='btn btn-default'>" + '分组管理'
+				+ " class='btn btn-link'>" + 'Delete' + "</a></td>" + "<td><a href='" + term.id + "/usergroup/show' class='btn btn-default'>" + '分组管理'
 				+ "</a></td>" + "<td>" +
 				// <!-- Split button -->
 				"<div class='btn-group'>" + "<button type='button' class='btn btn-info'>Action</button>"

@@ -2,7 +2,11 @@ package com.synnex.controller;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.synnex.service.CourseService;
+import com.synnex.service.TermService;
 import com.synnex.service.UserGroupService;
 import com.synnex.service.UserService;
 
@@ -11,7 +15,8 @@ import com.synnex.service.UserService;
  *@tags
  */
 public class GenericController {
-	
+	public Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Resource(name = "userServiceImpl")
 	public UserService userServiceImpl;
 
@@ -20,4 +25,7 @@ public class GenericController {
 
 	@Resource(name = "userGroupServiceImpl")
 	public UserGroupService userGroupServiceImpl;
+
+	@Resource(name = "termServiceImpl")
+	public TermService termServiceImpl;
 }

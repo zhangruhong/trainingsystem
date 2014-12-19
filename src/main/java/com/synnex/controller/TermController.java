@@ -3,10 +3,6 @@ package com.synnex.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,15 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
 import com.synnex.model.Term;
-import com.synnex.service.TermService;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
 @RequestMapping(value = { "/admin/term" })
-public class TermController {
-	@Resource
-	private TermService termServiceImpl;
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+public class TermController extends GenericController {
 
 	// TODO 暂时用模态框处理 还不需要单独的一个页面来处理
 	@RequestMapping(value = { "/add" }, method = { RequestMethod.GET })
