@@ -14,7 +14,7 @@
 		</id>
 		<property name="email"/>
 		<property name="loginname"/>
-		<property name="password"/>
+		<property name="password" length="40"/>
 		<property name="phoneno"/>
 		<property name="role"/>
 		<!-- 多对多 -->
