@@ -3,21 +3,20 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<!--
-  - Mapping file for the Hibernate implementation of the Clinic interface.
-	-->
+<!-- - Mapping file for the Hibernate implementation of the Clinic interface. -->
 <hibernate-mapping package="com.synnex.model">
 
 	<class name="Course">
 		<id name="id">
-			<generator class="native"/>
+			<generator class="native" />
 		</id>
-		<property name="starttime" type="timestamp"/>
-		<property name="endtime" type="timestamp"/>
-		<property name="name"/>
-		<property name="content"/>
-		<property name="goal"/>
-		<property name="practise" type="text"/>
+		<property name="starttime" type="timestamp" />
+		<property name="endtime" type="timestamp" />
+		<property name="name" />
+		<property name="content" />
+		<property name="goal" />
+		<property name="location" />
+		<property name="practise" type="text" />
 		<!-- 多对一 -->
 		<many-to-one name="trainer" column="trainer_id" cascade="save-update">
 		</many-to-one>
@@ -30,7 +29,7 @@
 		<!-- 多对多 -->
 		<set name="users" table="user_course" cascade="save-update">
 			<key column="course_id"></key>
-			<many-to-many class="User" column="user_id"/>
+			<many-to-many class="User" column="user_id" />
 		</set>
 	</class>
 

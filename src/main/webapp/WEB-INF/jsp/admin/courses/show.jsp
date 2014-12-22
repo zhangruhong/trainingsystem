@@ -9,7 +9,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
-<!-- <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -27,42 +26,42 @@
 
 					<ol class="breadcrumb">
 						<li><a href="index.html">Admin Panel</a></li>
-						<li><a href="#">Manage Users</a></li>
+						<li><a href="#">Manage Courses</a></li>
 						<li class="active">Tables</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建计划</button>
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建课程</button>
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">培训总体信息</h4>
+								<h4 class="margin-bottom-15">课程计划</h4>
 								<table class="table table-striped table-hover table-bordered ">
-								<div id="actiontip" align="center"></div>
+									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
-											<th>#id</th>
-											<th>Term Name</th>
-											<th>Discription</th>
-											<th>其他二</th>
-											<th>其他三</th>
+											<th>课程分类</th>
+											<th>课程名字</th>
+											<th>简介</th>
+											<th>讲师</th>
+											<th>时间</th>
+											<th>地点</th>
 											<th>课程管理</th>
-											<th>分组管理</th>
 											<th>Action</th>
 										</tr>
 									</thead>
- 									<tbody id="tbodyterms">
+									<tbody id="tbodyterms">
 										<c:forEach items="${terms}" var="term">
 											<tr>
-												<td>${term["id"]}</td>
+												<td>${term["dictionary"]["value"]}</td>
 												<td>${term["name"]}</td>
-												<td>${term["description"]}</td>
-												<td>me@company.com</td>
+												<td>${term["content"]}</td>
+												<td>${term["trainer"]["loginname"]}</td>
+												<td>${term["starttime"]}~${term["endtime"]}</td>
+												<td>${term["location"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
-												<td><a href="${term['id']}/courses/showall" class="btn btn-default">课程管理</a></td>
-												<td><a href="${term['id']}/usergroup/show" class="btn btn-default">分组管理</a></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
