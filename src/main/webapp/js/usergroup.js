@@ -138,6 +138,7 @@ function addUserToGroup() {
 			var terms = data.terms;
 			if (data.success == true) {
 				alert("成功！" + data.msg);
+				loadUsersOfGroup();
 				// createShowingTable(terms);
 				// $("#actiontip").html(
 				// "<div class='alert alert-success alert-dismissable'> <button

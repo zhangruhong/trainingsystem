@@ -25,4 +25,12 @@ public class TestTermDao {
 		termDaoImpl.save(term);
 	}
 
+	@Test
+	@Transactional
+	public void testUpdate() {
+		Term term = termDaoImpl.get(6);
+		term.setDescription("hahahah5");
+		termDaoImpl.update(term);
+	}
+
 }

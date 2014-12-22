@@ -54,8 +54,8 @@ public class UserGroupController extends GenericController {
 		Order order = Order.asc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
-		List<Usergroup> terms = userGroupServiceImpl.getAllGroups(termid, orders, 0, 8);
-		jsonBean = new JsonBean(true, "", terms);
+		List<Usergroup> usergroups = userGroupServiceImpl.getAllGroups(termid, orders, 0, 8);
+		jsonBean = new JsonBean(true, "", usergroups);
 		return jsonBean;
 	}
 
