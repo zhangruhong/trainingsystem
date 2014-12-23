@@ -37,4 +37,11 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.getTotolCount();
 	}
 
+	@Override
+	public void update(Term term) {
+		termDaoImpl.update(term);
+		return;
+		
+	}
+
 }
