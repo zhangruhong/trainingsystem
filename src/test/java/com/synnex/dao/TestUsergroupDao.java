@@ -27,14 +27,13 @@ public class TestUsergroupDao {
 		// Usergroup ug_new = new Usergroup();
 		// userGroupDaoImpl.update(ug);
 		// userGroupDaoImpl.delete(ug);
-		Usergroup ug = userGroupService.getGroup(new Integer(5));
+		Usergroup ug = userGroupService.getGroup(new Integer(1));
 		System.out.println("desc:" + ug.getDescription());
 		ug.setDescription("---+++a");
 		System.out.println("desc:" + ug.getDescription());
 		userGroupService.updateGroup(ug);
 
-		Usergroup ug_update = userGroupService.getGroup(new Integer(5));
-		System.out.println("desc:" + ug.getDescription());
+		Usergroup ug_update = userGroupService.getGroup(new Integer(2));
 		// userGroupDaoImpl.delete(ug);
 	}
 

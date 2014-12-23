@@ -12,14 +12,14 @@ public interface CourseService {
 	 * 
 	 * @param course
 	 */
-	public void addCourse(Course course);
+	public void addCourse(Course course, int termid);
 
 	/**
 	 * 批量新建Course对象
 	 * 
 	 * @param courses
 	 */
-	public void addCourses(List<Course> courses);
+	public void addCourses(List<Course> courses, int termid);
 
 	/**
 	 * 删除一个课程

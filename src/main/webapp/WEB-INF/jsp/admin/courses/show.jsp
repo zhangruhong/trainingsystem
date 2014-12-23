@@ -9,6 +9,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.css"/ >
 </head>
 
 <body>
@@ -96,30 +97,63 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" id="courseaddform">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建培训计划</h4>
+								<h4 class="modal-title" id="myModalLabel">新建课程</h4>
 							</div>
 							<div class="modal-body">
-
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 培训名称 </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入培训计划名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入课程名称">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程讲师 </label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入培训计划简介/简单描述">
+										<input class="form-control" id="trainerInput" name="trainer" type="text" placeholder="请输入课程讲师">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请输入课程时间">
+									</div>
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请输入课程时间">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程地点 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="localInput" name="location" type="text" placeholder="请输入课程地点 ">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程简介 </label>
+									<div class="col-sm-10">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入课程简介/简单描述">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程内容 </label>
+									<div class="col-sm-10">
+										<input type="text" id="contentInput" name="content" class="form-control" placeholder="请输入课程内容 简单描述">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程目标 </label>
+									<div class="col-sm-10">
+										<input type="text" id="goalInput" name="goal" class="form-control" placeholder="请输入课程目标 简单描述">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addTerm()" data-dismiss="modal">提交</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addCourseToTerm()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>
@@ -134,6 +168,15 @@
 		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<script src="${pageContext.request.contextPath}/js/term.js"></script>
+		<script src="${pageContext.request.contextPath}/js/course.js"></script>
+		<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
+		<script type="text/javascript">
+			jQuery('#starttimeInput').datetimepicker({
+				step : 10
+			});
+			jQuery('#endtimeInput').datetimepicker({
+				step : 10
+			});
+		</script>
 </body>
 </html>

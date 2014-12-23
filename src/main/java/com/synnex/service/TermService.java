@@ -9,5 +9,7 @@ public interface TermService {
 	public void addTerm(Term term);
 	public Term getTerm(int id);
 	public int getCount();
+
+	public void update(Term term);
 	public List<Term> getAllTerms(Object condition, List<Order> orders, int begin, int size);
 }

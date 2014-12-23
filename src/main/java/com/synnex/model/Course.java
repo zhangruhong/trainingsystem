@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 课程
@@ -15,14 +17,16 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private int id;
-	private Date starttime;
-	private Date endtime;
+	@NotEmpty
 	private String name;
-	private String content;
-	private String goal;
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm")
+	private Date starttime;
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm")
+	private Date endtime;
 	private String location;
+	private String goal;
+	private String content;
 	// 由trainer发布的练习题
 	private String practise;
 	private User trainer;
@@ -130,5 +134,12 @@ public class Course implements Serializable {
 	public void setTerm(Term term) {
 		this.term = term;
 	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", starttime=" + starttime + ", endtime=" + endtime + ", location=" + location + ", goal="
+				+ goal + ", content=" + content + ", practise=" + practise + ", dictionary=" + dictionary + "]";
+	}
+
 
 }
