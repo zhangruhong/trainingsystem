@@ -14022,7 +14022,7 @@ UE.plugin.register('wordimage',function(){
                 var attrs = img.attrs,
                     flag = parseInt(attrs.width) < 128 || parseInt(attrs.height) < 43,
                     opt = me.options,
-                    src = opt.UEDITOR_HOME_URL + 'ueditor/themes/default/images/spacer.gif';
+                    src = opt.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif';
                 if (attrs['src'] && /^(?:(file:\/+))/.test(attrs['src'])) {
                     img.setAttr({
                         width:attrs.width,
@@ -14407,7 +14407,7 @@ UE.plugin.register('copy', function () {
 
         ZeroClipboard.config({
             debug: false,
-            swfPath: me.options.UEDITOR_HOME_URL + 'ueditor/third-party/zeroclipboard/ZeroClipboard.swf'
+            swfPath: me.options.UEDITOR_HOME_URL + 'third-party/zeroclipboard/ZeroClipboard.swf'
         });
 
         var client = me.zeroclipboard = new ZeroClipboard();
@@ -14446,7 +14446,7 @@ UE.plugin.register('copy', function () {
                         initZeroClipboard();
                     } else {
                         utils.loadFile(document, {
-                            src: me.options.UEDITOR_HOME_URL + "ueditor/third-party/zeroclipboard/ZeroClipboard.js",
+                            src: me.options.UEDITOR_HOME_URL + "third-party/zeroclipboard/ZeroClipboard.js",
                             tag: "script",
                             type: "text/javascript",
                             defer: "defer"
@@ -17599,7 +17599,7 @@ UE.plugins['video'] = function (){
         switch (type){
             case 'image':
                 str = '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + classname.replace(/\bvideo-js\b/, '') + '"'  +
-                    ' src="' + me.options.UEDITOR_HOME_URL+'ueditor/themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'ueditor/themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
+                    ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
                 break;
             case 'embed':
                 str = '<embed type="application/x-shockwave-flash" class="' + classname + '" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
@@ -23455,7 +23455,7 @@ UE.plugin.register('webapp', function (){
     function createInsertStr(obj,toEmbed){
         return  !toEmbed ?
             '<img title="'+obj.title+'" width="' + obj.width + '" height="' + obj.height + '"' +
-                ' src="' + me.options.UEDITOR_HOME_URL + 'ueditor/themes/default/images/spacer.gif" _logo_url="'+obj.logo+'" style="background:url(' + obj.logo
+                ' src="' + me.options.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif" _logo_url="'+obj.logo+'" style="background:url(' + obj.logo
                 +') no-repeat center center; border:1px solid gray;" class="edui-faked-webapp" _url="' + obj.url + '" ' +
                 (obj.align && !obj.cssfloat? 'align="' + obj.align + '"' : '') +
                 (obj.cssfloat ? 'style="float:' + obj.cssfloat + '"' : '') +
@@ -24731,7 +24731,7 @@ UE.plugin.register('insertfile', function (){
                     var i, item, icon, title,
                         html = '',
                         URL = me.getOpt('UEDITOR_HOME_URL'),
-                        iconDir = URL + (URL.substr(URL.length - 1) == '/' ? '':'/') + 'ueditor/dialogs/attachment/fileTypeImages/';
+                        iconDir = URL + (URL.substr(URL.length - 1) == '/' ? '':'/') + 'dialogs/attachment/fileTypeImages/';
                     for (i = 0; i < filelist.length; i++) {
                         item = filelist[i];
                         icon = iconDir + getFileIcon(item.url);
@@ -27661,30 +27661,30 @@ UE.ui = baidu.editor.ui = {};
     };
 
     var iframeUrlMap = {
-        'anchor':'~/ueditor/dialogs/anchor/anchor.html',
-        'insertimage':'~/ueditor/dialogs/image/image.html',
-        'link':'~/ueditor/dialogs/link/link.html',
-        'spechars':'~/ueditor/dialogs/spechars/spechars.html',
-        'searchreplace':'~/ueditor/dialogs/searchreplace/searchreplace.html',
-        'map':'~/ueditor/dialogs/map/map.html',
-        'gmap':'~/ueditor/dialogs/gmap/gmap.html',
-        'insertvideo':'~/ueditor/dialogs/video/video.html',
-        'help':'~/ueditor/dialogs/help/help.html',
-        'preview':'~/ueditor/dialogs/preview/preview.html',
-        'emotion':'~/ueditor/dialogs/emotion/emotion.html',
-        'wordimage':'~/ueditor/dialogs/wordimage/wordimage.html',
-        'attachment':'~/ueditor/dialogs/attachment/attachment.html',
-        'insertframe':'~/ueditor/dialogs/insertframe/insertframe.html',
-        'edittip':'~/ueditor/dialogs/table/edittip.html',
-        'edittable':'~/ueditor/dialogs/table/edittable.html',
-        'edittd':'~/ueditor/dialogs/table/edittd.html',
-        'webapp':'~/ueditor/dialogs/webapp/webapp.html',
-        'snapscreen':'~/ueditor/dialogs/snapscreen/snapscreen.html',
-        'scrawl':'~/ueditor/dialogs/scrawl/scrawl.html',
-        'music':'~/ueditor/dialogs/music/music.html',
-        'template':'~/ueditor/dialogs/template/template.html',
-        'background':'~/ueditor/dialogs/background/background.html',
-        'charts': '~/ueditor/dialogs/charts/charts.html'
+        'anchor':'~/dialogs/anchor/anchor.html',
+        'insertimage':'~/dialogs/image/image.html',
+        'link':'~/dialogs/link/link.html',
+        'spechars':'~/dialogs/spechars/spechars.html',
+        'searchreplace':'~/dialogs/searchreplace/searchreplace.html',
+        'map':'~/dialogs/map/map.html',
+        'gmap':'~/dialogs/gmap/gmap.html',
+        'insertvideo':'~/dialogs/video/video.html',
+        'help':'~/dialogs/help/help.html',
+        'preview':'~/dialogs/preview/preview.html',
+        'emotion':'~/dialogs/emotion/emotion.html',
+        'wordimage':'~/dialogs/wordimage/wordimage.html',
+        'attachment':'~/dialogs/attachment/attachment.html',
+        'insertframe':'~/dialogs/insertframe/insertframe.html',
+        'edittip':'~/dialogs/table/edittip.html',
+        'edittable':'~/dialogs/table/edittable.html',
+        'edittd':'~/dialogs/table/edittd.html',
+        'webapp':'~/dialogs/webapp/webapp.html',
+        'snapscreen':'~/dialogs/snapscreen/snapscreen.html',
+        'scrawl':'~/dialogs/scrawl/scrawl.html',
+        'music':'~/dialogs/music/music.html',
+        'template':'~/dialogs/template/template.html',
+        'background':'~/dialogs/background/background.html',
+        'charts': '~/dialogs/charts/charts.html'
     };
     //为工具栏添加按钮，以下都是统一的按钮触发命令，所以写在一起
     var btnCmds = ['undo', 'redo', 'formatmatch',
