@@ -96,19 +96,6 @@
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
-        
-        /**
-         * 配置图片上传
-         */
-        ,imageActionName: "uploadimage"
-        ,imageFieldName: "upfile"
-        ,imageMaxSize: 2048000
-        ,imageAllowFiles: [".png", ".jpg", ".jpeg", ".gif", ".bmp"]
-        ,imageCompressEnable: true
-        ,imageCompressBorder: 1600
-        ,imageInsertAlign: "none"
-        ,imageUrlPrefix: "/Content/ueditor/net/"
-        ,imagePathFormat: "upload/image/{yyyy}{mm}{dd}/{time}{rand:6}"
 
         //启用自动保存
         //,enableAutoSave: true
