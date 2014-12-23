@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
 			http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
@@ -15,25 +14,26 @@
 			http://www.springframework.org/schema/tx 
 			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
+	<context:component-scan base-package="com.synnex" />
 	<context:property-placeholder location="classpath:persistence-mysql.properties" />
 
-	<context:annotation-config />
-	<!-- 自动加载SERVICE DAO CONTROLLER -->
-	<context:component-scan base-package="com.synnex.dao.*" />
-	<context:component-scan base-package="com.synnex.service.*" />
-	<context:component-scan base-package="com.synnex.controller.*" />
-
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.synnex.model" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop><!-- 配置显示sql语句 -->
 				<prop key="format_sql">${hibernate.format_sql}</prop><!-- 让输出的sql语句格式化 -->
-				<prop key="hibernate.connection.autocommit">true</prop>
 			</props>
 		</property>
 		<property name="mappingDirectoryLocations">
@@ -43,45 +43,27 @@
 		</property>
 	</bean>
 
-	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean>
 
-	<bean id="persistenceExceptionTranslationPostProcessor"
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
-			<tx:method name="update*" propagation="REQUIRED"
-				rollback-for="java.lang.Exception" />
-			<tx:method name="delete*" propagation="REQUIRED"
-				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
 			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="query*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-
-	<aop:config>
-		<aop:pointcut id="daoMethods"
-			expression="execution(* com.synnex.service.impl..*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods" />
-	</aop:config>
-
 	<!-- Spring Aop Config -->
-	<!-- <aop:config> <aop:pointcut id="pointcut" expression=" execution(* com.synnex.service.impl.*.*(..))" 
-		/> <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" /> </aop:config> -->
-
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<aop:config>
+		<aop:pointcut id="pointcut" expression="execution(* com.synnex.service.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
+	</aop:config>
 </beans>
 
