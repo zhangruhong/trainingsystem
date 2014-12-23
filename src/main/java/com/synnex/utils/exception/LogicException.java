@@ -1,19 +1,25 @@
 package com.synnex.utils.exception;
 
+/**
+ * 在页面上显示错误信息
+ * 
+ * @author hiramh
+ *
+ */
 public class LogicException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
-	
+
 	// 不同异常，对应不同的错误码
 	private Integer errorCode = -999;
-	
+
 	public Integer getErrorCode() {
 		return errorCode;
 	}
-	
+
 	public LogicException() {
 		super();
 	}
-	
+
 	public LogicException(String message, Throwable cause) {
 		super(message, cause);
 	}
@@ -21,8 +27,8 @@ public class LogicException extends RuntimeException {
 	public LogicException(String message) {
 		super(message);
 	}
-	
-	public LogicException(String message,Integer errorCode) {
+
+	public LogicException(String message, Integer errorCode) {
 		super(message);
 		this.errorCode = errorCode;
 	}
