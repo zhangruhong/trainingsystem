@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
+import com.synnex.model.PageResult;
 import com.synnex.model.Term;
+import com.synnex.query.BaseQuery;
+import com.synnex.query.TermQuery;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
@@ -55,10 +58,20 @@ public class TermController extends GenericController {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		List<Term> terms = termServiceImpl.getAllTerms(null, null, size * (page - 1), size);
-		int count = termServiceImpl.getCount();
+		// List<Term> terms = termServiceImpl.getAllTerms(null, null, size * (page - 1), size);
+		// int count = termServiceImpl.getCount();
+		// model.addAttribute("terms", terms);
+		// model.addAttribute("totolpages", count / 10 + 1);
+		BaseQuery query = new TermQuery();
+		query.setCurrentPage(page);
+		query.setPageSize(size);
+		PageResult<Term> listPageResult = termServiceImpl.listPageResult(query);
+		List<Term> terms = listPageResult.getRows();
+		for (Term term : terms) {
+			System.out.println(term);
+		}
 		model.addAttribute("terms", terms);
-		model.addAttribute("totolpages", count / 10 + 1);
+		model.addAttribute("totolpages", listPageResult.getTotalPages());
 		return "/admin/term/showall";
 	}
 }
