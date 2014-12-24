@@ -1,4 +1,4 @@
-package com.synnex.utils.exception;
+package com.synnex.exception;
 
 /**
  * 在页面上显示错误信息

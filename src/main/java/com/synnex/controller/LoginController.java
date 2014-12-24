@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.synnex.exception.LogicException;
 import com.synnex.model.User;
-import com.synnex.utils.exception.LogicException;
 
 /**
  * @author Hiram
