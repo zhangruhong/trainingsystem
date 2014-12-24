@@ -40,12 +40,11 @@
 							</div>
 							<!-- 富文本编辑器 -->
 							<div>
-								<form action="ReceiveAndSendData" method="post">
-									<!-- 加载编辑器的容器 -->
-									<script id="container" name="editcontent" type="text/plain" style="width:1024px;height:500px;">
-        							</script>
-									<input type="submit" name="提交">
-								</form>
+								<input type="hidden" id="courseId" name="courseId" value="courseId">
+								<!-- 加载编辑器的容器 -->
+								<script id="container" name="editcontent" type="text/plain" style="width:1024px;height:500px;"></script>
+								<br>
+								<button class="btn btn-info" type="button" onclick="uploadHtml();">上传</button>
 							</div>
 							<ul class="pagination pull-right">
 								<li class="disabled"><a href="#">&laquo;</a></li>
@@ -76,7 +75,15 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<!-- 实例化编辑器 -->
 		<script type="text/javascript">
-			var editor = UE.getEditor('container');
+			var ue = UE.getEditor('container');
+			
+			function uploadHtml(){
+				var html = ue.getContent();
+				var courseId = $("#courseId");
+				$.post(url, {id:courseId,content:html},function(data){
+					
+				});
+			}
 		</script>
 	</div>
 </body>
