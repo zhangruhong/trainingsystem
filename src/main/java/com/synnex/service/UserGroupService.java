@@ -54,5 +54,12 @@ public interface UserGroupService {
 	 */
 	public int getCount();
 
+	/**
+	 * 将User与分组绑定
+	 * 
+	 * @param loginname
+	 * @param usergroupid
+	 * @throws UserException
+	 */
 	public void addUserToGroup(String loginname, int usergroupid) throws UserException;
 }

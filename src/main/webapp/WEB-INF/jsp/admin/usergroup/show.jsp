@@ -103,7 +103,6 @@
 								<h4 class="modal-title" id="myModalLabel">第一届英语培训——新建分组</h4>
 							</div>
 							<div class="modal-body">
-
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
 									<div class="col-sm-10">
@@ -132,7 +131,7 @@
 			<div class="modal fade" id="member_Manage_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 				data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" id="addusertogroup_inputform">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -142,7 +141,7 @@
 							<div class="modal-body">
 								<table class="form-inline" role="form">
 									<div class="input-group">
-										 <input type="text" class="form-control" id="addusertogroup_name" placeholder="请输入英文名"> <span
+										 <input type="text" class="form-control" id="addusertogroup_name" name="loginname" placeholder="请输入英文名"> <span
 											class="input-group-btn">
 											<button  class="btn btn-primary" onclick="addUserToGroup();return false">添加组员</button>
 										</span>
@@ -162,7 +161,7 @@
 											<td>Tanmay</td>
 											<td>Bangalore</td>
 											<td>560001</td>
-											<td><button type="button" class="btn btn-danger btn-sm">移除</button></td>
+											<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(groupid,userid) ;return false">移除</button></td>
 										</tr>
 									</tbody>
 								</table>

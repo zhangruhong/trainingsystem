@@ -100,7 +100,7 @@ public class UserController extends GenericController {
 
 	@RequestMapping(value = { "/search" }, method = { RequestMethod.POST })
 	@ResponseBody
-	public JsonBean searchUserByName(String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+	public JsonBean searchTrainerByName(String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
 		User user = new User();
 		user.setLoginname(loginname);
 		Order order = Order.asc("loginname");

@@ -83,5 +83,4 @@ public class UserServiceImpl implements UserService {
 	public List<User> listByNameSimilar(User condition, List<Order> orders, int startpage, int pagesize) {
 		return userDao.listByNameSimilar(condition, orders, startpage, pagesize);
 	}
-
 }

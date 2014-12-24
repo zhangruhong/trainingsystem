@@ -95,4 +95,5 @@ public interface UserService {
 	 * @return user对象
 	 */
 	public User checkLogin(String username, String password);
+
 }

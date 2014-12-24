@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -29,7 +30,9 @@ public class User implements Serializable {
 
 	@Range(max = 3, min = 0, message = "选择的用户角色不在合法范围内")
 	private int role;
+	@JsonIgnore
 	private Set<Course> course = new HashSet<Course>();
+	@JsonIgnore
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
 
 	public User() {

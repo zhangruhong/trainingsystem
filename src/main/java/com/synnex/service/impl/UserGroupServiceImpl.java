@@ -44,7 +44,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 	@Override
 	public Usergroup getGroup(int groupid) {
-		return userGroupDaoImpl.get(groupid);
+		 Usergroup usergroup= userGroupDaoImpl.get(groupid);
+		// TODO 有待改进
+		// usergroup.getUsers().size();
+		return usergroup;
 	}
 
 	@Override
@@ -82,12 +85,11 @@ public class UserGroupServiceImpl implements UserGroupService {
 		usergroup.setUsers(groupusers);
 
 		// 将usergroup也关联到user
-		Set<Usergroup> usergroups = u.getUsergroups();
-		usergroups.add(usergroup);
-		u.setUsergroups(usergroups);
+		// Set<Usergroup> usergroups = u.getUsergroups();
+		// usergroups.add(usergroup);
+		// u.setUsergroups(usergroups);
 
 		userDaoImpl.update(u);
-		this.updateGroup(usergroup);
+		// this.updateGroup(usergroup);
 	}
-
 }
