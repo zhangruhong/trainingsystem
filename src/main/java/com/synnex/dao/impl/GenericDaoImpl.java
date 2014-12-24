@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.GenericDao;
 import com.synnex.dao.Order;
+import com.synnex.model.PageResult;
+import com.synnex.query.BaseQuery;
 
 @Repository
 public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
@@ -123,5 +125,34 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		return list(null, null, -1, 0).size();
 	}
 
+	@Override
+	public PageResult<T> listPageResult(BaseQuery baseQuery) {
+		// 先查询count
+		// 创建查询对象 查询 CountHql（总记录数）
+		Query query = this.getSession().createQuery(baseQuery.getCountHql());
+		// 添加查询条件，参数
+		for (int i = 0; i < baseQuery.getParamList().size(); i++) {
+			query.setParameter(i, baseQuery.getParamList().get(i));
+		}
+		Long count = (Long) query.uniqueResult();
+		// 如果没有查询到数据，不用查baseQuery.getHql()
+		if (count.intValue() == 0) {
+			return new PageResult<T>();
+		}
+		final PageResult<T> pageResult = new PageResult<T>(baseQuery.getCurrentPage(), baseQuery.getPageSize(), count.intValue());
+		// 创建查询对象 查询数据
+		Query queryDate = this.getSession().createQuery(baseQuery.getHql());
+		// 添加查询条件，参数
+		for (int i = 0; i < baseQuery.getParamList().size(); i++) {
+			queryDate.setParameter(i, baseQuery.getParamList().get(i));
+		}
+		// 处理分页:传入经过处理后的对象pageResult
+		int first = (pageResult.getCurrentPage() - 1) * pageResult.getPageSize();
+		int max = pageResult.getPageSize();
+		queryDate.setFirstResult(first).setMaxResults(max);
+		List<T> rows = queryDate.list();
+		pageResult.setRows(rows);
+		return pageResult;
+	}
 
 }
