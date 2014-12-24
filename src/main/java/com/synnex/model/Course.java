@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 课程
@@ -20,9 +19,7 @@ public class Course implements Serializable {
 	private int id;
 	@NotEmpty
 	private String name;
-	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm")
 	private Date starttime;
-	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm")
 	private Date endtime;
 	private String location;
 	private String goal;

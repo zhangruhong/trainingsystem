@@ -3,6 +3,7 @@ package com.synnex.service;
 import java.util.List;
 
 import com.synnex.dao.Order;
+import com.synnex.exception.UserException;
 import com.synnex.model.Usergroup;
 
 public interface UserGroupService {
@@ -52,4 +53,6 @@ public interface UserGroupService {
 	 * @return
 	 */
 	public int getCount();
+
+	public void addUserToGroup(String loginname, int usergroupid) throws UserException;
 }

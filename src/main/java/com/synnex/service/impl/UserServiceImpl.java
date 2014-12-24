@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
+import com.synnex.exception.LogicException;
 import com.synnex.model.User;
 import com.synnex.service.UserService;
-import com.synnex.utils.exception.LogicException;
 import com.synnex.utils.md5Util.Md5Encode;
 
 @Service("userServiceImpl")

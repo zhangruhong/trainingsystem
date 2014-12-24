@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
+import com.synnex.dao.UserDao;
 import com.synnex.dao.UserGroupDao;
+import com.synnex.exception.UserException;
 import com.synnex.model.Term;
+import com.synnex.model.User;
 import com.synnex.model.Usergroup;
 import com.synnex.service.UserGroupService;
 
@@ -21,6 +24,8 @@ public class UserGroupServiceImpl implements UserGroupService {
 	private UserGroupDao userGroupDaoImpl;
 	@Resource(name = "termDaoImpl")
 	private TermDao termDaoImpl;
+	@Resource(name = "userDaoImpl")
+	private UserDao userDaoImpl;
 
 	@Override
 	public void addGroup(Usergroup ug, int termid) {
@@ -46,7 +51,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 	public List<Usergroup> getAllGroups(int termid, List<Order> orders, int begin, int size) {
 		Usergroup usergroup = new Usergroup();
 		usergroup.setTerm(termDaoImpl.get(termid));
-		List<Usergroup> usergroups = userGroupDaoImpl.list(usergroup,orders, begin,size);
+		List<Usergroup> usergroups = userGroupDaoImpl.list(usergroup, orders, begin, size);
 		return usergroups;
 	}
 
@@ -58,6 +63,31 @@ public class UserGroupServiceImpl implements UserGroupService {
 	@Override
 	public int getCount() {
 		return userGroupDaoImpl.getTotolCount();
+	}
+
+	@Override
+	public void addUserToGroup(String loginname, int usergroupid) throws UserException {
+		User user = new User();
+		user.setLoginname(loginname);
+		user.setRole(1);
+		List<User> users = userDaoImpl.list(user, null, 0, 1);
+		if (null == users || users.isEmpty()) {
+			throw new UserException("用户名不存在");
+		}
+		User u = users.get(0);
+		Usergroup usergroup = getGroup(usergroupid);
+		// 将需要添加的user添加到usergroup
+		Set<User> groupusers = usergroup.getUsers();
+		groupusers.add(u);
+		usergroup.setUsers(groupusers);
+
+		// 将usergroup也关联到user
+		Set<Usergroup> usergroups = u.getUsergroups();
+		usergroups.add(usergroup);
+		u.setUsergroups(usergroups);
+
+		userDaoImpl.update(u);
+		this.updateGroup(usergroup);
 	}
 
 }

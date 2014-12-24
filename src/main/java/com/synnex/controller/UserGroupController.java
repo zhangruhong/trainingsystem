@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
+import com.synnex.exception.UserException;
 import com.synnex.model.User;
 import com.synnex.model.Usergroup;
 import com.synnex.utils.jsonUtil.JsonBean;
@@ -100,27 +101,13 @@ public class UserGroupController extends GenericController {
 		JsonBean jsonBean = null;
 		logger.info("--loginname----:" + loginname);
 		// 双向多对多
-		User user = new User();
-		user.setLoginname(loginname);
-		user.setRole(1);
-		List<User> users = userServiceImpl.getUsersByCondition(user, null, 0, 1);
-		if (null == users || users.isEmpty()) {
+		try {
+			userGroupServiceImpl.addUserToGroup(loginname, usergroupid);
+		} catch (UserException e) {
+			logger.error(e.getMessage());
 			jsonBean = new JsonBean(false, "添加失败！loginname不存在", null);
 			return jsonBean;
 		}
-		User u = users.get(0);
-		Usergroup usergroup = userGroupServiceImpl.getGroup(usergroupid);
-		// 将需要添加的user添加到usergroup
-		Set<User> groupusers = usergroup.getUsers();
-		groupusers.add(u);
-		usergroup.setUsers(groupusers);
-		// 将usergroup也关联到user
-		Set<Usergroup> usergroups = u.getUsergroups();
-		usergroups.add(usergroup);
-		u.setUsergroups(usergroups);
-
-		userServiceImpl.updateUser(u);
-		userGroupServiceImpl.updateGroup(usergroup);
 		// 不返回数据 由前端发起ajax请求获取数据
 		jsonBean = new JsonBean(true, "添加成功", null);
 		return jsonBean;
@@ -133,7 +120,7 @@ public class UserGroupController extends GenericController {
 		Set<User> users = usergroup.getUsers();
 		JsonBean jsonBean = null;
 		if (null != users && users.size() > 0) {
-			jsonBean = new JsonBean(true, "" + users.size(), users);
+			jsonBean = new JsonBean(true, "", users);
 		} else {
 			jsonBean = new JsonBean(false, "没有记录", null);
 		}

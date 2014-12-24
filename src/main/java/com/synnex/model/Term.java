@@ -3,6 +3,7 @@ package com.synnex.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -14,7 +15,9 @@ public class Term {
 	@NotEmpty(message = "简介/描述不能为空")
 	@Length(min = 1, max = 100, message = "简介/描述字符长度不对（不能超过100）")
 	private String description;
+	@JsonIgnore
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
+	@JsonIgnore
 	private Set<Course> courses = new HashSet<Course>();
 
 	public Term() {
