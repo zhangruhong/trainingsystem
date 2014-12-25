@@ -1,16 +1,23 @@
 package com.synnex.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,10 +67,26 @@ public class CourseController extends GenericController {
 		return "/admin/courses/show";
 	}
 
+	/**
+	 * @author jennifert
+	 * 从前台传入后台的时间处理
+	 * @param binder
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
+	}
+
+	
 	@ResponseBody
 	@RequestMapping(value = "/{termid}/courses/add", method = { RequestMethod.POST })
-	public JsonBean addCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
+	public JsonBean addCourse(Course course, BindingResult brt, @PathVariable("termid") int termid, HttpServletRequest request) {
 		JsonBean jsonBean = null;
+		String name = request.getParameter("name");
+		String time = request.getParameter("starttime");
 		System.out.println("---course:" + course);
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
