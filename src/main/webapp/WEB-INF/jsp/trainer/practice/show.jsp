@@ -31,29 +31,21 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">上传</button>
-							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">XXCourse 练习添加</h4>
+								<h4 class="margin-bottom-15">${course.name}  Course 练习添加</h4>
 							</div>
 							<!-- 富文本编辑器 -->
 							<div>
-								<input type="hidden" id="courseId" name="courseId" value="${courseId}">
+								<input type="hidden" id="courseId" value="${course.id}">
+								<input type="hidden" id="coursePractise" value="${course.practise}">
 								<!-- 加载编辑器的容器 -->
-								<script id="container" name="editcontent" type="text/plain" style="width:1024px;height:500px;"></script>
-								<br>
-								<button class="btn btn-info" type="button" onclick="uploadHtml();">上传</button>
+								<script id="container" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
+								
+								<button type="button" class="btn btn-default" style="margin-left: 850px;">返回</button>
+								<button type="button" class="btn btn-primary" onclick="uploadHtml();">提交更改</button>
+								
 							</div>
-							<ul class="pagination pull-right">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<c:forEach begin="1" end="${totolpages}" var="iterm">
-									<li><a href="show?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
-								</c:forEach>
-								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
-								<li><a href="showall?page=${totolpages}">&raquo;</a></li>
-							</ul>
 						</div>
 					</div>
 				</div>
@@ -65,26 +57,14 @@
 		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<script src="${pageContext.request.contextPath}/js/usergroup.js"></script>
 		<!-- 配置文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 		<!-- 编辑器源码文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.js"></script>
 		<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-	    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
-		<!-- 实例化编辑器 -->
-		<script type="text/javascript">
-			var ue = UE.getEditor('container');
-			
-			function uploadHtml(){
-				var html = ue.getContent();
-				var courseId = $("#courseId").val();
-				$.post(url, {id:courseId,content:html},function(data){
-					
-				});
-			}
-		</script>
+		<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+		<script src="${pageContext.request.contextPath}/js/practice.js"></script>
 	</div>
 </body>
 </html>

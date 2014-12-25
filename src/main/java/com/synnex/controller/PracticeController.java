@@ -2,8 +2,12 @@ package com.synnex.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.synnex.model.Course;
 
 /**
  * 作业相关操作
@@ -21,7 +25,8 @@ public class PracticeController extends GenericController {
 	 */
 	@RequestMapping("/trainer/practice/input")
 	public String trainerInput(@RequestParam("id") String id, Model model) {
-		model.addAttribute("courseId", id);
+		Course course = courseServiceImpl.getCourse(Integer.valueOf(id));
+		model.addAttribute("course", course);
 		return "/trainer/practice/show";
 	}
 
@@ -31,7 +36,9 @@ public class PracticeController extends GenericController {
 	 * 需要trainer的id和课程的id
 	 */
 	@RequestMapping(value = { "/trainer/practice/save" })
-	public String trainSave(String courseId) {
+	@ResponseBody
+	public String trainSave(@RequestBody Course course) {
+
 		return "/trainer/practice/show";
 	}
 }

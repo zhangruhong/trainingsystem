@@ -1,16 +1,16 @@
 function addCourseToTerm() {
-	 var mydata = $("#courseaddform").form2json();
-//	var mydata = {
-//		'name' : 'hibernate',
-//		'starttime' : '2014-12-25 10:00',
-//		'endtime' : '2014-12-25 12:00',
-//	};
+	var mydata = $("#courseaddform").form2json();
+	// var mydata = {
+	// 'name' : 'hibernate',
+	// 'starttime' : '2014-12-25 10:00',
+	// 'endtime' : '2014-12-25 12:00',
+	// };
 	$.ajax({
 		type : "POST",
 		url : "add",
 		data : mydata,
 		dataType : "json",
-//		contentType : "application/json; charset=utf8",
+		// contentType : "application/json; charset=utf8",
 		success : function(data) {
 			data = data.termmap;
 			if (data.success == true) {
@@ -56,10 +56,10 @@ function paramString2obj(serializedParams) {
 		}
 
 		var array = attributeName.split(".");
-		for ( var i = 1; i < array.length; i++) {
+		for (var i = 1; i < array.length; i++) {
 			var tmpArray = Array();
 			tmpArray.push("obj");
-			for ( var j = 0; j < i; j++) {
+			for (var j = 0; j < i; j++) {
 				tmpArray.push(array[j]);
 			}
 			;
@@ -75,7 +75,7 @@ function paramString2obj(serializedParams) {
 	}
 	;
 	var properties = serializedParams.split("&");
-	for ( var i = 0; i < properties.length; i++) {
+	for (var i = 0; i < properties.length; i++) {
 		evalThem(properties[i]);
 	}
 	;
@@ -86,3 +86,12 @@ $.fn.form2json = function() {
 	var obj = paramString2obj(serializedParams);
 	return JSON.stringify(obj);
 }
+
+$(function() {
+	jQuery('#starttimeInput').datetimepicker({
+		step : 10
+	});
+	jQuery('#endtimeInput').datetimepicker({
+		step : 10
+	});
+});

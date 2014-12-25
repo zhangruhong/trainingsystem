@@ -73,7 +73,7 @@
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
 															<li><a href="#">Font Awesome</a></li>
-															<li><a href="#">jQuery</a></li>
+															<li><a href="${pageContext.request.contextPath}/trainer/practice/input?id=${term['id']}">管理练习</a></li>
 														</ul>
 													</div>
 												</td>
@@ -162,21 +162,22 @@
 				<!-- /.modal -->
 			</div>
 
-			<!-- 页脚 -->
-			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<script src="${pageContext.request.contextPath}/js/course.js"></script>
-		<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
-		<script type="text/javascript">
-			jQuery('#starttimeInput').datetimepicker({
-				step : 10
-			});
-			jQuery('#endtimeInput').datetimepicker({
-				step : 10
-			});
-		</script>
+
+		<!-- 页脚 -->
+		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
+	</div>
+	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/course.js"></script>
+	<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
+	<!-- 配置文件 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+	<!-- 编辑器源码文件 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.js"></script>
+	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 </body>
 </html>
