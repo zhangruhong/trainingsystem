@@ -1,21 +1,28 @@
 function addCourseToTerm() {
-	var mydata = $("#courseaddform").form2json();
-	// var mydata = {
-	// 'name' : 'hibernate',
-	// 'starttime' : '2014-12-25 10:00',
-	// 'endtime' : '2014-12-25 12:00',
-	// };
+//	 var mydata = $("#courseaddform").form2json();
+//	var mydata = {
+//		'name' : 'hibernate',
+//		'starttime' : '2014-12-25 10:00',
+//		'endtime' : '2014-12-25 12:00',
+//	};
+	var mydata = '{"name":"' + $("#nameInput").val() 
+				+ '","trainerloginname":"' + $('#trainerInput').val()  
+				+ '","starttime":"' + $('#starttimeInput').val() 
+				+ '","endtime":"' + $('#endtimeInput').val() 
+				+ '","location":"' + $('#localInput').val() 
+				+ '","description":"' + $('#descriptionInput').val() 
+				+ '","content":"' + $('#contentInput').val() 
+				+ '","goal":"' + $('#goalInput').val() +'"}';
 	$.ajax({
 		type : "POST",
 		url : "add",
 		data : mydata,
 		dataType : "json",
-		// contentType : "application/json; charset=utf8",
+		contentType : "application/json; charset=utf8",
 		success : function(data) {
 			data = data.termmap;
 			if (data.success == true) {
 				var terms = data.terms;
-
 			} else {
 			}
 		},
@@ -85,6 +92,7 @@ $.fn.form2json = function() {
 	var serializedParams = this.serialize();
 	var obj = paramString2obj(serializedParams);
 	return JSON.stringify(obj);
+//	return obj;
 }
 
 $(function() {

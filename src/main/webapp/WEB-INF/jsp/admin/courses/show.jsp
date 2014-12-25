@@ -53,14 +53,14 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody id="tbodyterms">
+									<tbody id="tbodyterms" class="text-left">
 										<c:forEach items="${terms}" var="term">
 											<tr>
 												<td>${term["dictionary"]["value"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["content"]}</td>
 												<td>${term["trainer"]["loginname"]}</td>
-												<td>${term["starttime"]}~${term["endtime"]}</td>
+												<td> ${term["starttime"]}<br/>~${term["endtime"]}</td>
 												<td>${term["location"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td>
@@ -97,7 +97,7 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form" id="courseaddform">
+					<form class="form-horizontal" role="form" id="courseaddform" >
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -162,7 +162,11 @@
 				<!-- /.modal -->
 			</div>
 
+<<<<<<< HEAD
+			</div>
+=======
 		</div>
+>>>>>>> refs/remotes/origin/master
 
 		<!-- 页脚 -->
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>

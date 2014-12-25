@@ -115,6 +115,7 @@ public class Course implements Serializable {
 		this.users = users;
 	}
 
+	@JsonIgnore
 	public User getTrainer() {
 		return trainer;
 	}

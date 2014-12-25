@@ -8,9 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,8 +65,7 @@ public class CourseController extends GenericController {
 	}
 
 	/**
-	 * @author jennifert
-	 * 从前台传入后台的时间处理
+	 * @author jennifert 从前台传入后台的时间处理
 	 * @param binder
 	 */
 	@InitBinder
@@ -83,11 +79,10 @@ public class CourseController extends GenericController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/{termid}/courses/add", method = { RequestMethod.POST })
-	public JsonBean addCourse(Course course, BindingResult brt, @PathVariable("termid") int termid, HttpServletRequest request) {
+	public JsonBean addCourse(@RequestBody Course course, BindingResult brt, @PathVariable("termid") int termid, String trainerloginname) {
 		JsonBean jsonBean = null;
-		String name = request.getParameter("name");
-		String time = request.getParameter("starttime");
 		System.out.println("---course:" + course);
+		logger.info("trainerloginname:" + trainerloginname);
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
 			Map<String, String> mapErrors = new LinkedHashMap<String, String>();
