@@ -1,24 +1,28 @@
 function addCourseToTerm() {
-	var mydata =  $("#courseaddform").form2json(); 
-	$
-			.ajax({
-				type : "POST",
-				url : "add",
-				data : mydata,
-				dataType : "json",
-				contentType : "application/json; charset=utf8",
-				success : function(data) {
-					data = data.termmap;
-					if (data.success == true) {
-						var terms = data.terms;
+	// var mydata = $("#courseaddform").form2json();
+	var mydata = {
+		'name' : 'hibernate',
+		'starttime' : '2014-12-25 10:00',
+		'endtime' : '2014-12-25 12:00',
+	};
+	$.ajax({
+		type : "POST",
+		url : "add",
+		data : mydata,
+		dataType : "json",
+//		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			if (data.success == true) {
+				var terms = data.terms;
 
-					} else {
-					}
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-//					alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
-				}
-			});
+			} else {
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+		}
+	});
 }
 function createShowingTable(data) {
 	// 此处需要让其动态的生成一个table并填充数据
@@ -52,10 +56,10 @@ function paramString2obj(serializedParams) {
 		}
 
 		var array = attributeName.split(".");
-		for (var i = 1; i < array.length; i++) {
+		for ( var i = 1; i < array.length; i++) {
 			var tmpArray = Array();
 			tmpArray.push("obj");
-			for (var j = 0; j < i; j++) {
+			for ( var j = 0; j < i; j++) {
 				tmpArray.push(array[j]);
 			}
 			;
@@ -71,7 +75,7 @@ function paramString2obj(serializedParams) {
 	}
 	;
 	var properties = serializedParams.split("&");
-	for (var i = 0; i < properties.length; i++) {
+	for ( var i = 0; i < properties.length; i++) {
 		evalThem(properties[i]);
 	}
 	;
