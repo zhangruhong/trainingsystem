@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import com.synnex.dao.GenericDao;
 import com.synnex.dao.Order;
 import com.synnex.model.PageResult;
-import com.synnex.query.BaseQuery;
 
 @Repository
 public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
@@ -126,25 +125,26 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 	}
 
 	@Override
-	public PageResult<T> listPageResult(BaseQuery baseQuery) {
+	public PageResult<T> listPageResult(int begin, int size, String hql, Object... objects) {
 		// 先查询count
 		// 创建查询对象 查询 CountHql（总记录数）
-		Query query = this.getSession().createQuery(baseQuery.getCountHql());
+		String cHql = getCountHql(hql);
+		Query query = this.getSession().createQuery(cHql);
 		// 添加查询条件，参数
-		for (int i = 0; i < baseQuery.getParamList().size(); i++) {
-			query.setParameter(i, baseQuery.getParamList().get(i));
+		for (int i = 0; i < objects.length; i++) {
+			query.setParameter(i, objects[i]);
 		}
 		Long count = (Long) query.uniqueResult();
 		// 如果没有查询到数据，不用查baseQuery.getHql()
 		if (count.intValue() == 0) {
 			return new PageResult<T>();
 		}
-		final PageResult<T> pageResult = new PageResult<T>(baseQuery.getCurrentPage(), baseQuery.getPageSize(), count.intValue());
+		final PageResult<T> pageResult = new PageResult<T>(begin, size, count.intValue());
 		// 创建查询对象 查询数据
-		Query queryDate = this.getSession().createQuery(baseQuery.getHql());
+		Query queryDate = this.getSession().createQuery(hql);
 		// 添加查询条件，参数
-		for (int i = 0; i < baseQuery.getParamList().size(); i++) {
-			queryDate.setParameter(i, baseQuery.getParamList().get(i));
+		for (int i = 0; i < objects.length; i++) {
+			queryDate.setParameter(i, objects[i]);
 		}
 		// 处理分页:传入经过处理后的对象pageResult
 		int first = (pageResult.getCurrentPage() - 1) * pageResult.getPageSize();
@@ -153,6 +153,17 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		List<T> rows = queryDate.list();
 		pageResult.setRows(rows);
 		return pageResult;
+	}
+
+	private String getCountHql(String hql) {
+		String s = hql.substring(0, hql.indexOf("from"));
+		if (s == null || s.trim().equals("")) {
+			hql = "select count(*) " + hql;
+		} else {
+			hql = hql.replace(s, "select count(*) ");
+		}
+		hql = hql.replace("fetch", "");
+		return hql;
 	}
 
 }

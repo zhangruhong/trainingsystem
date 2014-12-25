@@ -10,7 +10,6 @@ import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
 import com.synnex.model.PageResult;
 import com.synnex.model.Term;
-import com.synnex.query.BaseQuery;
 import com.synnex.service.TermService;
 
 @Service
@@ -47,8 +46,8 @@ public class TermServiceImpl implements TermService {
 	}
 
 	@Override
-	public PageResult<Term> listPageResult(BaseQuery baseQuery) {
-		return termDaoImpl.listPageResult(baseQuery);
+	public PageResult<Term> listPageResult(int begin, int size) {
+		return termDaoImpl.showByPage(begin, size);
 	}
 
 }

@@ -19,7 +19,7 @@ public class PracticeController extends GenericController {
 	 * 
 	 * 需要课程id和trainer的id
 	 */
-	@RequestMapping(value = { "/trainer/practice/input" })
+	@RequestMapping("/trainer/practice/input")
 	public String trainerInput(@RequestParam("id") String id, Model model) {
 		model.addAttribute("courseId", id);
 		return "/trainer/practice/show";

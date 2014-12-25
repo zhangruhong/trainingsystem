@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.synnex.model.PageResult;
-import com.synnex.query.BaseQuery;
 
 /**
  * @author Jeniss Dec 3, 2014 9:25:39 PM
@@ -84,5 +83,5 @@ public interface GenericDao<T, PK> {
 	 * @param baseQuery
 	 * @return
 	 */
-	public PageResult<T> listPageResult(final BaseQuery baseQuery);
+	public PageResult<T> listPageResult(int begin, int size, String hql, Object... objects);
 }

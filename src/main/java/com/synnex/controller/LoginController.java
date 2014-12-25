@@ -45,7 +45,7 @@ public class LoginController extends GenericController {
 			case 0:
 				return null;
 			case 1:
-				return null;
+				return "forward:/trainer/practice/input?id=1";
 			default:
 				return "/common/homepage";
 		}

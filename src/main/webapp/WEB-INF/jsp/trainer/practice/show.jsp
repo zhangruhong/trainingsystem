@@ -40,7 +40,7 @@
 							</div>
 							<!-- 富文本编辑器 -->
 							<div>
-								<input type="hidden" id="courseId" name="courseId" value="courseId">
+								<input type="hidden" id="courseId" name="courseId" value="${courseId}">
 								<!-- 加载编辑器的容器 -->
 								<script id="container" name="editcontent" type="text/plain" style="width:1024px;height:500px;"></script>
 								<br>
@@ -79,7 +79,7 @@
 			
 			function uploadHtml(){
 				var html = ue.getContent();
-				var courseId = $("#courseId");
+				var courseId = $("#courseId").val();
 				$.post(url, {id:courseId,content:html},function(data){
 					
 				});

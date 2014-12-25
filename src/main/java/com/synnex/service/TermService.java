@@ -5,7 +5,6 @@ import java.util.List;
 import com.synnex.dao.Order;
 import com.synnex.model.PageResult;
 import com.synnex.model.Term;
-import com.synnex.query.BaseQuery;
 
 public interface TermService {
 	public void addTerm(Term term);
@@ -24,5 +23,5 @@ public interface TermService {
 	 * @param baseQuery
 	 * @return
 	 */
-	public PageResult<Term> listPageResult(final BaseQuery baseQuery);
+	public PageResult<Term> listPageResult(int begin, int size);
 }
