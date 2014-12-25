@@ -95,9 +95,10 @@ public class UserGroupController extends GenericController {
 		return jsonBean;
 	}
 
-	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/add" }, method = { RequestMethod.POST })
+	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/add/{loginname}" }, method = { RequestMethod.GET })
 	@ResponseBody
-	public JsonBean addUserToGroup(@RequestBody String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
+	public JsonBean addUserToGroup(@PathVariable("loginname") String loginname, @PathVariable(value = "termid") int termid,
+			@PathVariable("groupid") int usergroupid) {
 		JsonBean jsonBean = null;
 		logger.info("--loginname----:" + loginname);
 		// 双向多对多
@@ -124,6 +125,26 @@ public class UserGroupController extends GenericController {
 		} else {
 			jsonBean = new JsonBean(false, "没有记录", null);
 		}
+		return jsonBean;
+	}
+
+	@RequestMapping(value = { "/{termid}/usergroup/{groupid}/delete/{userid}" }, method = { RequestMethod.GET })
+	@ResponseBody
+	public JsonBean deleteUserFromGroup(@PathVariable("userid") int userid, @PathVariable(value = "termid") int termid,
+			@PathVariable("groupid") int usergroupid) {
+		JsonBean jsonBean = null;
+		// 双向多对多
+		try {
+			logger.info(userid + "-_-" + usergroupid);
+			userGroupServiceImpl.deleteUserFromGroup(userid, usergroupid);
+
+		} catch (UserException e) {
+			logger.error(e.getMessage());
+			jsonBean = new JsonBean(false, "移除失败！" + e.getMessage(), null);
+			return jsonBean;
+		}
+		// 不返回数据 由前端发起ajax请求获取数据
+		jsonBean = new JsonBean(true, "移除成功", null);
 		return jsonBean;
 	}
 

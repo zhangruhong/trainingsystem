@@ -44,10 +44,7 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 	@Override
 	public Usergroup getGroup(int groupid) {
-		 Usergroup usergroup= userGroupDaoImpl.get(groupid);
-		// TODO 有待改进
-		// usergroup.getUsers().size();
-		return usergroup;
+		return userGroupDaoImpl.get(groupid);
 	}
 
 	@Override
@@ -83,13 +80,20 @@ public class UserGroupServiceImpl implements UserGroupService {
 		Set<User> groupusers = usergroup.getUsers();
 		groupusers.add(u);
 		usergroup.setUsers(groupusers);
-
-		// 将usergroup也关联到user
-		// Set<Usergroup> usergroups = u.getUsergroups();
-		// usergroups.add(usergroup);
-		// u.setUsergroups(usergroups);
-
 		userDaoImpl.update(u);
-		// this.updateGroup(usergroup);
+	}
+
+	@Override
+	public void deleteUserFromGroup(int userid, int usergroupid) throws UserException {
+		String hql = "select u from User u left join u.usergroups ugs  where u.id=? and ugs.id=?";
+		List<User> users = userDaoImpl.findByHql(hql, new Object[] { userid, usergroupid });
+		if (null == users || users.isEmpty()) {
+			throw new UserException("英文名没有关联在该分组");
+		}
+		User user = users.get(0);
+		Set<Usergroup> usergroups = user.getUsergroups();
+		usergroups.remove(userGroupDaoImpl.get(usergroupid));
+		user.setUsergroups(usergroups);
+		userDaoImpl.update(user);
 	}
 }

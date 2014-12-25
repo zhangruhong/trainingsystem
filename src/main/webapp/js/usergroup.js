@@ -84,11 +84,11 @@ function setgroupidvalue(groupid) {
 
 function addUserToGroup() {
 	var groupidvalue = $("#groupidvalue").text();
-	var mydata = $("#addusertogroup_inputform").form2json();
+	var loginname = $("#addusertogroup_name").val();
 	$.ajax({
-		type : "POST",
-		url : groupidvalue + "/add",
-		data : mydata,
+		type : "GET",
+		url : groupidvalue + "/add/"+loginname,
+		data : "",
 		dataType : "json",
 		contentType : "application/json; charset=utf8",
 		success : function(data) {
@@ -115,19 +115,23 @@ function loadUsersOfGroup() {
 			data = data.termmap
 			if (data.success == true) {
 				data = data.terms;
-				var trvar = $("<tr></tr>");
+				$("#show_users_of_group").html("");
 				$.each(data, function(index, term) {
+					var trvarmodel = $("<tr></tr>");
 					var tdvar = $("<td></td>");
 					var tdvar1 = tdvar.clone().text(term.loginname);
 					var tdvar2 = tdvar.clone().text(term.email);
 					var tdvar3 = tdvar.clone().text(term.phoneno);
 					var tdvar4 = '<button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(' + groupidvalue + ',' + term.id
-							+ ') ;return false">移除</button>'
-					trvar = trvar.append(tdvar1, tdvar2, tdvar3, tdvar4);
+							+ ') ;return false">移除</button>';
+					trvarmodel.append(tdvar1, tdvar2, tdvar3, tdvar4)
+					$("#show_users_of_group").append(trvarmodel);
 				})
-				$("#show_users_of_group").html(trvar);
+				
 			} else {
-				alert("没有获取到记录" + data.msg)
+//				alert("没有获取到记录" + data.msg)
+				//此处应该清空
+				$("#show_users_of_group").html("额额"+data.msg);
 			}
 		} else {
 			// 标识网络连接状态没有成功
@@ -138,7 +142,26 @@ function loadUsersOfGroup() {
 }
 
 function deleteUserfromGroup(groupid, userid) {
-
+	$.ajax({
+		type : "GET",
+		url : groupid + "/delete/"+userid,
+		data : "",
+		dataType : "json",
+		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			var terms = data.terms;
+			if (data.success == true) {
+				alert("移除成功！" + data.msg);
+				loadUsersOfGroup();
+			} else {
+				alert("移除失败" + data.msg);
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("错误");
+		}
+	});
 }
 
 /*******************************************************************************************************************************************

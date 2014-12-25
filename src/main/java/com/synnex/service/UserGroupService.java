@@ -62,4 +62,13 @@ public interface UserGroupService {
 	 * @throws UserException
 	 */
 	public void addUserToGroup(String loginname, int usergroupid) throws UserException;
+
+	/**
+	 * 移除User与分组的关联关系
+	 * 
+	 * @param loginname
+	 * @param usergroupid
+	 * @throws UserException
+	 */
+	public void deleteUserFromGroup(int userid, int usergroupid) throws UserException;
 }

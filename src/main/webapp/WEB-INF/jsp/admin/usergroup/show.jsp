@@ -103,6 +103,7 @@
 								<h4 class="modal-title" id="myModalLabel">第一届英语培训——新建分组</h4>
 							</div>
 							<div class="modal-body">
+
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
 									<div class="col-sm-10">

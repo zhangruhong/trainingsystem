@@ -1,10 +1,10 @@
 function addCourseToTerm() {
-	// var mydata = $("#courseaddform").form2json();
-	var mydata = {
-		'name' : 'hibernate',
-		'starttime' : '2014-12-25 10:00',
-		'endtime' : '2014-12-25 12:00',
-	};
+	 var mydata = $("#courseaddform").form2json();
+//	var mydata = {
+//		'name' : 'hibernate',
+//		'starttime' : '2014-12-25 10:00',
+//		'endtime' : '2014-12-25 12:00',
+//	};
 	$.ajax({
 		type : "POST",
 		url : "add",
