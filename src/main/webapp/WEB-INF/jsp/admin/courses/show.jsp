@@ -60,7 +60,7 @@
 												<td>${term["name"]}</td>
 												<td>${term["content"]}</td>
 												<td>${term["trainer"]["loginname"]}</td>
-												<td> ${term["starttime"]}<br/>~${term["endtime"]}</td>
+												<td>${term["starttime"]}<br />~${term["endtime"]} </td>
 												<td>${term["location"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td>
@@ -97,7 +97,7 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form" id="courseaddform" >
+					<form class="form-horizontal" role="form" id="courseaddform">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -117,11 +117,11 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> 开始时间 </label>
 									<div class="col-sm-10">
 										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请输入课程时间">
 									</div>
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> 结束时间 </label>
 									<div class="col-sm-10">
 										<input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请输入课程时间">
 									</div>
@@ -161,21 +161,26 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-
-<<<<<<< HEAD
-			</div>
-=======
+		
 		</div>
->>>>>>> refs/remotes/origin/master
 
-		<!-- 页脚 -->
-		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
+	</div>
+	<!-- 页脚 -->
+	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 	</div>
 	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
 	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 	<script src="${pageContext.request.contextPath}/js/course.js"></script>
 	<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
+	<script src="http://momentjs.com/downloads/moment.min.js">
+		Date.parseDate = function(input, format) {
+			return moment(input, format).toDate();
+		};
+		Date.prototype.dateFormat = function(format) {
+			return moment(this).format(format);
+		};
+	</script>
 	<!-- 配置文件 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 	<!-- 编辑器源码文件 -->

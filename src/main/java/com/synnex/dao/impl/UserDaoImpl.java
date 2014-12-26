@@ -54,4 +54,15 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		// System.out.println(users);
 		return users;
 	}
+
+	@Override
+	public User findUserbyName(String loginname, int role) {
+		String hql = "from User u where u.loginname=? and role=?";
+		List<User> users = this.findByHql(hql, loginname, role);
+		if (null == users || users.isEmpty()) {
+			return null;
+		}
+		return users.get(0);
+	}
+
 }

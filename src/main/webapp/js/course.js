@@ -1,18 +1,8 @@
 function addCourseToTerm() {
-//	 var mydata = $("#courseaddform").form2json();
-//	var mydata = {
-//		'name' : 'hibernate',
-//		'starttime' : '2014-12-25 10:00',
-//		'endtime' : '2014-12-25 12:00',
-//	};
-	var mydata = '{"name":"' + $("#nameInput").val() 
-				+ '","trainerloginname":"' + $('#trainerInput').val()  
-				+ '","starttime":"' + $('#starttimeInput').val() 
-				+ '","endtime":"' + $('#endtimeInput').val() 
-				+ '","location":"' + $('#localInput').val() 
-				+ '","description":"' + $('#descriptionInput').val() 
-				+ '","content":"' + $('#contentInput').val() 
-				+ '","goal":"' + $('#goalInput').val() +'"}';
+	var mydata = '{"name":"' + $("#nameInput").val() +  '","starttime":"'
+	+ $('#starttimeInput').val() + '","endtime":"' + $('#endtimeInput').val() + '","location":"' + $('#localInput').val()
+	+ '","dictionary1":"' + $('#descriptionInput').val() + '","content":"' + $('#contentInput').val() + '","goal":"' + $('#goalInput').val()
+	+'","trainer":{"loginname":"' + $('#trainerInput').val() + '"}}';
 	$.ajax({
 		type : "POST",
 		url : "add",
@@ -50,56 +40,18 @@ function createShowingTable(data) {
 	// 将动态生成的table添加的事先隐藏的div中.
 	$("#tbodyterms").html(tableStr);
 }
-/*******************************************************************************************************************************************
- * @serializedParams looks like "prop1=value1&prop2=value2". Nested property like 'prop.subprop=value' is also supported
- ******************************************************************************************************************************************/
-function paramString2obj(serializedParams) {
-	var obj = {};
-	function evalThem(str) {
-		var attributeName = str.split("=")[0];
-		var attributeValue = str.split("=")[1];
-		if (!attributeValue) {
-			return;
-		}
-
-		var array = attributeName.split(".");
-		for (var i = 1; i < array.length; i++) {
-			var tmpArray = Array();
-			tmpArray.push("obj");
-			for (var j = 0; j < i; j++) {
-				tmpArray.push(array[j]);
-			}
-			;
-			var evalString = tmpArray.join(".");
-			// alert(evalString);
-			if (!eval(evalString)) {
-				eval(evalString + "={};");
-			}
-		}
-		;
-		eval("obj." + attributeName + "='" + attributeValue + "';");
-
-	}
-	;
-	var properties = serializedParams.split("&");
-	for (var i = 0; i < properties.length; i++) {
-		evalThem(properties[i]);
-	}
-	;
-	return obj;
-}
-$.fn.form2json = function() {
-	var serializedParams = this.serialize();
-	var obj = paramString2obj(serializedParams);
-	return JSON.stringify(obj);
-//	return obj;
-}
 
 $(function() {
 	jQuery('#starttimeInput').datetimepicker({
-		step : 10
+		step : 10,
+		format : 'Y-m-d H:i:s',
+		formatTime : 'H:i',
+		formatDate : 'Y-m-d'
 	});
 	jQuery('#endtimeInput').datetimepicker({
-		step : 10
+		step : 10,
+		format : 'Y-m-d H:i:s',
+		formatTime : 'H:i',
+		formatDate : 'Y-m-d'
 	});
 });

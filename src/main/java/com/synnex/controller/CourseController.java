@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.synnex.dao.Order;
 import com.synnex.model.Course;
 import com.synnex.model.Term;
+import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
@@ -70,10 +73,18 @@ public class CourseController extends GenericController {
 
 	@ResponseBody
 	@RequestMapping(value = "/{termid}/courses/add", method = { RequestMethod.POST })
-	public JsonBean addCourse(@RequestBody Course course, BindingResult brt, @PathVariable("termid") int termid, String trainerloginname) {
+	public JsonBean addCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
 		JsonBean jsonBean = null;
-		System.out.println("---course:" + course);
-		logger.info("trainerloginname:" + trainerloginname);
+		String tranername = course.getTrainer().getLoginname();
+		User u = userServiceImpl.findTranerbyName(tranername);
+		if (null == u) {
+			brt.rejectValue("trainer", "", "讲师不存在诶！");
+		}
+		if (course.getStarttime().after(course.getEndtime())) {
+			brt.rejectValue("endtime", "", "开始时间晚于结束时间！");
+		}
+
+		course.setTrainer(u);
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
 			Map<String, String> mapErrors = new LinkedHashMap<String, String>();

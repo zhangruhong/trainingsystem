@@ -24,4 +24,13 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 * @return
 	 */
 	public List<User> queryUserByCourse(Integer courseId);
+
+
+	/**
+	 * 根据名字找全匹配的User
+	 * 
+	 * @param loginname
+	 * @return
+	 */
+	public User findUserbyName(String loginname, int role);
 }

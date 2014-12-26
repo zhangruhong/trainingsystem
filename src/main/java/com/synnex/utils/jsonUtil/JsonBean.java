@@ -9,8 +9,10 @@ import java.util.TreeMap;
  * @author wzy
  *
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class JsonBean {
 	private Map termmap = new TreeMap();
+
 
 	public JsonBean(boolean trueOrfalse, String msg, Object obj) {
 		termmap.put("success", trueOrfalse);

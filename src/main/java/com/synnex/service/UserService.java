@@ -96,4 +96,12 @@ public interface UserService {
 	 */
 	public User checkLogin(String username, String password);
 
+	/**
+	 * 根据名字找‘讲师’
+	 * 
+	 * @param loginname
+	 * @return
+	 */
+	public User findTranerbyName(String loginname);
+
 }

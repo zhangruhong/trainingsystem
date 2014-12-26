@@ -3,8 +3,12 @@ package com.synnex.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 课程
@@ -12,6 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Davisz
  *
  */
+@JsonIgnoreProperties(value = { "dictionary1" })
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -41,6 +46,8 @@ public class Course implements Serializable {
 		this.id = id;
 	}
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getStarttime() {
 		return starttime;
 	}
@@ -49,6 +56,8 @@ public class Course implements Serializable {
 		this.starttime = starttime;
 	}
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getEndtime() {
 		return endtime;
 	}

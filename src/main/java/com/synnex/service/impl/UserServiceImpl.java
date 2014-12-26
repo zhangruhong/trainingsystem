@@ -17,21 +17,21 @@ import com.synnex.utils.md5Util.Md5Encode;
 public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDaoImpl")
-	private UserDao userDao;
+	private UserDao userDaoImpl;
 
 	@Override
 	public void addUser(User user) {
-		userDao.save(user);
+		userDaoImpl.save(user);
 	}
 
 	@Override
 	public void addUsers(List<User> users) {
-		userDao.save(users);
+		userDaoImpl.save(users);
 	}
 
 	@Override
 	public void deleteUser(User user) {
-		userDao.delete(user);
+		userDaoImpl.delete(user);
 	}
 
 	@Override
@@ -44,23 +44,23 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void updateUser(User user) {
-		userDao.update(user);
+		userDaoImpl.update(user);
 
 	}
 
 	@Override
 	public void updateUsers(List<User> users) {
-		userDao.update(users);
+		userDaoImpl.update(users);
 	}
 
 	@Override
 	public User getUser(Integer id) {
-		return userDao.get(id);
+		return userDaoImpl.get(id);
 	}
 
 	@Override
 	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size) {
-		return userDao.list(condition, orders, begin, size);
+		return userDaoImpl.list(condition, orders, begin, size);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 		// 验证用户名
 		password = Md5Encode.getStringMD5(password);
 		String hql = "FROM User o WHERE o.loginname=? and o.password=?";
-		List<User> users = userDao.findByHql(hql, username, password);
+		List<User> users = userDaoImpl.findByHql(hql, username, password);
 		if (users == null || users.size() != 1) {
 			throw new LogicException("用户名或密码错误！！", -101);
 		}
@@ -81,6 +81,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> listByNameSimilar(User condition, List<Order> orders, int startpage, int pagesize) {
-		return userDao.listByNameSimilar(condition, orders, startpage, pagesize);
+		return userDaoImpl.listByNameSimilar(condition, orders, startpage, pagesize);
+	}
+
+	@Override
+	public User findTranerbyName(String loginname) {
+		return userDaoImpl.findUserbyName(loginname, 1);
 	}
 }
