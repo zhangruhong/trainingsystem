@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.synnex.dao.Order;
 import com.synnex.dao.PracticeDao;
 import com.synnex.dao.UserDao;
 import com.synnex.model.Course;
@@ -72,7 +71,8 @@ public class PracticeServiceImpl implements PracticeService {
 	}
 
 	@Override
-	public List<Practice> getPracticesByCondition(Practice condition, List<Order> orders, int begin, int size) {
-		return practiceDao.list(condition, orders, begin, size);
+	public Practice findPracticeByCourseAndUser(int courseId, int traineeId) {
+		Practice practice = practiceDao.findPracticeByCourseAndUser(courseId, traineeId);
+		return practice;
 	}
 }

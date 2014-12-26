@@ -2,8 +2,6 @@ package com.synnex.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,7 +29,6 @@ public class Course implements Serializable {
 	private User trainer;
 	private Dictionary dictionary;
 	private Term term;
-	private Set<User> users = new HashSet<User>();
 
 	public Course() {
 	}
@@ -114,15 +111,6 @@ public class Course implements Serializable {
 
 	public void setDictionary(Dictionary dictionary) {
 		this.dictionary = dictionary;
-	}
-
-	@JsonIgnore
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
 	}
 
 	@JsonIgnore

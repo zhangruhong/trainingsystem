@@ -2,9 +2,13 @@ package com.synnex.service;
 
 import java.util.List;
 
-import com.synnex.dao.Order;
 import com.synnex.model.Practice;
 
+/**
+ * 
+ * @author hiramh
+ *
+ */
 public interface PracticeService {
 	/**
 	 * 新建一个Practice对象
@@ -58,16 +62,10 @@ public interface PracticeService {
 	public Practice getPractice(Integer id);
 
 	/**
+	 * 根据courseId和traineeId找practice
 	 * 
-	 * @param condition
-	 *            查询条件 被赋值的当前类
-	 * @param orders
-	 *            排列方式
-	 * @param begin
-	 *            开始页面
-	 * @param size
-	 *            步长
-	 * @return
+	 * @param courseId
+	 * @param traineeId
 	 */
-	public List<Practice> getPracticesByCondition(Practice condition, List<Order> orders, int begin, int size);
+	public Practice findPracticeByCourseAndUser(int courseId, int traineeId);
 }

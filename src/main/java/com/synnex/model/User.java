@@ -30,8 +30,7 @@ public class User implements Serializable {
 
 	@Range(max = 3, min = 0, message = "选择的用户角色不在合法范围内")
 	private int role;
-	@JsonIgnore
-	private Set<Course> course = new HashSet<Course>();
+
 	@JsonIgnore
 	private Set<Usergroup> usergroups = new HashSet<Usergroup>();
 
@@ -86,14 +85,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public Set<Course> getCourse() {
-		return course;
-	}
-
-	public void setCourse(Set<Course> course) {
-		this.course = course;
-	}
-
 	public Set<Usergroup> getUsergroups() {
 		return usergroups;
 	}
@@ -105,7 +96,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", loginname=" + loginname + ", password=" + password + ", phoneno=" + phoneno + ", role="
-				+ role + ", course==null" + (course == null) + "]";
+				+ role + "]";
 	}
 
 }

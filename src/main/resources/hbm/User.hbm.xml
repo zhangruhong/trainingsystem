@@ -18,11 +18,6 @@
 		<property name="phoneno"/>
 		<property name="role"/>
 		<!-- 多对多 -->
-		<set name="course" table="user_course" cascade="save-update">
-			<key column="user_id"></key>
-			<many-to-many class="Course" column="course_id"/>
-		</set>
-		<!-- 多对多 -->
 		<set name="usergroups" table="user_usergroup" cascade="save-update">
 			<key column="user_id"></key>
 			<many-to-many class="Usergroup" column="group_id"/>

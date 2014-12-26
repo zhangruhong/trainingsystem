@@ -27,11 +27,6 @@
 		<!-- 多对一 -->
 		<many-to-one name="term" column="term_id" cascade="save-update" fetch="join">
 		</many-to-one>
-		<!-- 多对多 -->
-		<set name="users" table="user_course" cascade="save-update">
-			<key column="course_id"></key>
-			<many-to-many class="User" column="user_id" />
-		</set>
 	</class>
 
 </hibernate-mapping>
