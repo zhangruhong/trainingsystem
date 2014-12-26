@@ -49,7 +49,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 	// 通过courseId查询所有的user
 	@Override
 	public List<User> queryUserByCourse(Integer courseId) {
-		String hql = "select distinct u from User u,com.synnex.model.Course c where c.id in elements (u.course) and c.id = ?";
+		String hql = "select distinct u from User u,com.synnex.model.Usergroup g,com.synnex.model.Term t,com.synnex.model.Course c where c.term.id = t.id and g.term.id = t.id and u in elements(g.users) and c.id = ?";
 		List<User> users = super.findByHql(hql, courseId);
 		// System.out.println(users);
 		return users;
