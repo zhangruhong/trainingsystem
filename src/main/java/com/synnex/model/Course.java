@@ -122,7 +122,6 @@ public class Course implements Serializable {
 		this.dictionary = dictionary;
 	}
 
-	@JsonIgnore
 	public User getTrainer() {
 		return trainer;
 	}
