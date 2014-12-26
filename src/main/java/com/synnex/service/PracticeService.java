@@ -14,11 +14,11 @@ public interface PracticeService {
 	public void addPractice(Practice practice);
 
 	/**
-	 * 批量新建Practice对象（应用场景-讲师输入学员名字批量建用户并发邮件通知）
+	 * 批量新建Practice对象（应用场景-讲师上传作业后自动为用户添加作业并发邮件通知）
 	 * 
-	 * @param practices
+	 * @param courseId
 	 */
-	public void addPractices(List<Practice> practices);
+	public void addPractices(Integer courseId);
 
 	/**
 	 * 删除/冻结一个用户（应用场景-培训学员离职，或者不再参加培训等）

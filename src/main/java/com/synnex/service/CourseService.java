@@ -65,4 +65,12 @@ public interface CourseService {
 	 */
 	public List<Course> getCoursesByCondition(Course condition, List<Order> orders, int begin, int size);
 
+	/**
+	 * 通过term找course
+	 * 
+	 * @param termid
+	 * @return
+	 */
+	public List<Course> ListCourseByTerm(int termid);
+
 }

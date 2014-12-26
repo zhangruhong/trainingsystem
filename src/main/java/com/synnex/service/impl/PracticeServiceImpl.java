@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.PracticeDao;
+import com.synnex.dao.UserDao;
+import com.synnex.model.Course;
 import com.synnex.model.Practice;
+import com.synnex.model.User;
 import com.synnex.service.PracticeService;
 
 @Service("practiceServiceImpl")
@@ -17,14 +20,26 @@ public class PracticeServiceImpl implements PracticeService {
 	@Resource(name = "practiceDaoImpl")
 	private PracticeDao practiceDao;
 
+	@Resource(name = "userDaoImpl")
+	private UserDao userDao;
+
 	@Override
 	public void addPractice(Practice practice) {
 		practiceDao.save(practice);
 	}
 
 	@Override
-	public void addPractices(List<Practice> practices) {
-		practiceDao.save(practices);
+	public void addPractices(Integer courseId) {
+		List<User> users = userDao.queryUserByCourse(courseId);
+		for (User user : users) {
+			Practice practice = new Practice();
+			practice.setStatus(0);
+			practice.setUser(user);
+			Course course = new Course();
+			course.setId(courseId);
+			practice.setCourse(course);
+			practiceDao.save(practice);
+		}
 	}
 
 	@Override

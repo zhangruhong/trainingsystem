@@ -33,19 +33,33 @@
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">${course.name}  Course 练习添加</h4>
+								<h4 class="margin-bottom-15">${course.name}Course 练习添加</h4>
 							</div>
 							<!-- 富文本编辑器 -->
 							<div>
-								<input type="hidden" id="courseId" value="${course.id}">
-								<input type="hidden" id="coursePractise" value="${course.practise}">
+								<input type="hidden" id="courseId" value="${course.id}"/> 
+								<input type="hidden" id="coursePractise" value="${course.practise}"/>
 								<!-- 加载编辑器的容器 -->
 								<script id="container" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
-								
+
 								<button type="button" class="btn btn-default" style="margin-left: 850px;">返回</button>
-								<button type="button" class="btn btn-primary" onclick="uploadHtml();">提交更改</button>
-								
+								<button id="uploadButton" type="button" class="btn btn-primary">提交更改</button>
+
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">你已经成功上传</h4>
+						</div>
+						<div class="modal-footer">
+							<a href="${pageContext.request.contextPath}/admin/term/${course.term.id}/courses/showall" class="btn btn-primary">确定</a>
 						</div>
 					</div>
 				</div>

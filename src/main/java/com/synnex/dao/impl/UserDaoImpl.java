@@ -45,4 +45,13 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		logger.info(tlist.toString());
 		return tlist;
 	}
+
+	// 通过courseId查询所有的user
+	@Override
+	public List<User> queryUserByCourse(Integer courseId) {
+		String hql = "select distinct u from User u,com.synnex.model.Course c where c.id in elements (u.course) and c.id = ?";
+		List<User> users = super.findByHql(hql, courseId);
+		// System.out.println(users);
+		return users;
+	}
 }

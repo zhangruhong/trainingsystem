@@ -26,6 +26,8 @@ public class Course implements Serializable {
 	private String content;
 	// 由trainer发布的练习题
 	private String practise;
+	// 练习题状态 0：未上传， 1：已上传
+	private Integer practiseStatus = 0;
 	private User trainer;
 	private Dictionary dictionary;
 	private Term term;
@@ -98,6 +100,14 @@ public class Course implements Serializable {
 		this.practise = practise;
 	}
 
+	public Integer getPractiseStatus() {
+		return practiseStatus;
+	}
+
+	public void setPractiseStatus(Integer practiseStatus) {
+		this.practiseStatus = practiseStatus;
+	}
+
 	public Dictionary getDictionary() {
 		return dictionary;
 	}
@@ -138,6 +148,5 @@ public class Course implements Serializable {
 		return "Course [id=" + id + ", name=" + name + ", starttime=" + starttime + ", endtime=" + endtime + ", location=" + location + ", goal="
 				+ goal + ", content=" + content + ", practise=" + practise + ", dictionary=" + dictionary + "]";
 	}
-
 
 }

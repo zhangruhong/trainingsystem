@@ -67,4 +67,13 @@ public class CourseServiceImpl implements CourseService {
 		return courseDaoImpl.list(condition, orders, begin, size);
 	}
 
+	@Override
+	public List<Course> ListCourseByTerm(int termid) {
+		List<Course> courses = courseDaoImpl.ListCourseByTerm(termid);
+		for (Course course : courses) {
+			course.getTerm().getName();
+		}
+		return courses;
+	}
+
 }

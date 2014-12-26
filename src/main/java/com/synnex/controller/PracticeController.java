@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.model.Course;
+import com.synnex.utils.jsonUtil.JsonBean;
 
 /**
  * 作业相关操作
@@ -37,8 +38,15 @@ public class PracticeController extends GenericController {
 	 */
 	@RequestMapping(value = { "/trainer/practice/save" })
 	@ResponseBody
-	public String trainSave(@RequestBody Course course) {
-
-		return "/trainer/practice/show";
+	public JsonBean trainSave(@RequestBody Course course) {
+		Course courseDate = courseServiceImpl.getCourse(course.getId());
+		if (courseDate.getPractiseStatus() == null || courseDate.getPractiseStatus() == 0) {
+			practiceServiceImpl.addPractices(course.getId());
+			courseDate.setPractiseStatus(1);
+		}
+		courseDate.setPractise(course.getPractise());
+		courseServiceImpl.updateCourse(courseDate);
+		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
+		return jsonBean;
 	}
 }

@@ -32,15 +32,15 @@ public class CourseController extends GenericController {
 	@ResponseBody
 	@RequestMapping(value = "/{termid}/courses/show")
 	public JsonBean showCourseByTermjson(@PathVariable int termid) {
-		Term term=new Term();
+		Term term = new Term();
 		term.setId(termid);
 		Course course = new Course();
 		course.setTerm(term);
-		Order order1=Order.asc("id");
-		List<Order> orders=new ArrayList<Order>();
+		Order order1 = Order.asc("id");
+		List<Order> orders = new ArrayList<Order>();
 		orders.add(order1);
 		List<Course> courses = courseServiceImpl.getCoursesByCondition(course, orders, 0, 8);
-		JsonBean jsonBean=null;
+		JsonBean jsonBean = null;
 		if (null == course || courses.isEmpty()) {
 			jsonBean = new JsonBean(false, "没有数据", null);
 			return jsonBean;
@@ -51,16 +51,9 @@ public class CourseController extends GenericController {
 
 	@RequestMapping(value = "/{termid}/courses/showall")
 	public String showCourseByTerm(@PathVariable int termid, Model model) {
-		System.out.println("hhaaaaaaaaaaa");
-		Term term = new Term();
-		term.setId(termid);
-		Course course = new Course();
-		course.setTerm(term);
-		Order order1 = Order.asc("id");
-		List<Order> orders = new ArrayList<Order>();
-		orders.add(order1);
-		List<Course> courses = courseServiceImpl.getCoursesByCondition(course, orders, 0, 8);
+		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
 		model.addAttribute("terms", courses);
+		System.out.println(courses);
 		return "/admin/courses/show";
 	}
 
@@ -72,11 +65,9 @@ public class CourseController extends GenericController {
 	public void initBinder(WebDataBinder binder) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		dateFormat.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(
-				dateFormat, true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
-	
 	@ResponseBody
 	@RequestMapping(value = "/{termid}/courses/add", method = { RequestMethod.POST })
 	public JsonBean addCourse(@RequestBody Course course, BindingResult brt, @PathVariable("termid") int termid, String trainerloginname) {

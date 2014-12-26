@@ -3,21 +3,27 @@ $(function() {
 	
 	var practise = $("#coursePractise").val();
 	if(practise!=null && practise!=""){
-		ue.setContent(practise);
+		ue.ready(function() {
+			ue.setContent(practise);
+		});
 	}
 	
-	function uploadHtml() {
+	$("#uploadButton").on("click", function(){
 		var html = ue.getContent();
 		var courseId = $("#courseId").val();
-		$.ajax(url, {
+		var mydata = '{"id":"' + courseId + '","practise":"' + html + '"}';
+		$.ajax({
 			type : "POST",
-			url : "${pageContext.request.contextPath }/trainer/practice/save",
-			data : 	{"id":courseId,"content":html},
+			url : "save",
+			data : 	mydata,
 			dataType : "json",
 			contentType : "application/json; charset=utf8",
 			success : function(data) {
-				
+				data = data.termmap;
+				if (data.success == true) {
+					$("#confirmModal").modal('show');
+				}
 			}
 		});
-	}
+	});
 });

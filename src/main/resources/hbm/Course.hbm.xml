@@ -17,6 +17,7 @@
 		<property name="goal" />
 		<property name="location" />
 		<property name="practise" type="text" />
+		<property name="practiseStatus"/>
 		<!-- 多对一 -->
 		<many-to-one name="trainer" column="trainer_id" cascade="save-update" fetch="join">
 		</many-to-one>
