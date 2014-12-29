@@ -32,6 +32,7 @@ public class Course implements Serializable {
 	// 练习题状态 0：未上传， 1：已上传
 	private Integer practiseStatus = 0;
 	private User trainer;
+	// 课程所属分类 如：技术类 业务类 spring maven 等
 	private Dictionary dictionary;
 	private Term term;
 

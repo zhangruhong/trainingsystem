@@ -1,22 +1,16 @@
 package com.synnex.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
 import com.synnex.model.Course;
+import com.synnex.model.Dictionary;
 import com.synnex.model.Term;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
@@ -55,20 +50,11 @@ public class CourseController extends GenericController {
 	@RequestMapping(value = "/{termid}/courses/showall")
 	public String showCourseByTerm(@PathVariable int termid, Model model) {
 		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
+		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
 		model.addAttribute("terms", courses);
+		model.addAttribute("dictionaries", dictionaries);
 		System.out.println(courses);
 		return "/admin/courses/show";
-	}
-
-	/**
-	 * @author jennifert 从前台传入后台的时间处理
-	 * @param binder
-	 */
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		dateFormat.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 	@ResponseBody
@@ -77,6 +63,11 @@ public class CourseController extends GenericController {
 		JsonBean jsonBean = null;
 		String tranername = course.getTrainer().getLoginname();
 		User u = userServiceImpl.findTranerbyName(tranername);
+		int dictionaryid = course.getDictionary().getId();
+		Dictionary dictionary = dictionaryServiceImpl.get(dictionaryid);
+		if (null == dictionary) {
+			brt.rejectValue("dictionary", "", "分类不存在诶");
+		}
 		if (null == u) {
 			brt.rejectValue("trainer", "", "讲师不存在诶！");
 		}
@@ -84,7 +75,6 @@ public class CourseController extends GenericController {
 			brt.rejectValue("endtime", "", "开始时间晚于结束时间！");
 		}
 
-		course.setTrainer(u);
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
 			Map<String, String> mapErrors = new LinkedHashMap<String, String>();
@@ -94,6 +84,8 @@ public class CourseController extends GenericController {
 			jsonBean = new JsonBean(false, "添加失败！", mapErrors);
 			return jsonBean;
 		}
+		course.setDictionary(dictionary);
+		course.setTrainer(u);
 		courseServiceImpl.addCourse(course, termid);
 		// 添加与获取分离 不再写在一起
 		jsonBean = new JsonBean(true, "添加成功！", null);

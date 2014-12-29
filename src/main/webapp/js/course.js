@@ -1,7 +1,8 @@
 function addCourseToTerm() {
 	var mydata = '{"name":"' + $("#nameInput").val() + '","starttime":"' + $('#starttimeInput').val() + '","endtime":"' + $('#endtimeInput').val()
 			+ '","location":"' + $('#localInput').val() + '","dictionary1":"' + $('#descriptionInput').val() + '","content":"'
-			+ $('#contentInput').val() + '","goal":"' + $('#goalInput').val() + '","trainer":{"loginname":"' + $('#trainerInput').val() + '"}}';
+			+ $('#contentInput').val() + '","goal":"' + $('#goalInput').val() + '","trainer":{"loginname":"' + $('#trainerInput').val()
+			+ '"},"dictionary":{"id":"' + $('#dictionaries option:selected').val() + '"}}';
 	$.ajax({
 		type : "POST",
 		url : "add",
@@ -40,7 +41,6 @@ function createShowingTable(data) {
 	$("#tbodyterms").html(tableStr);
 }
 
-
 $(function() {
 	jQuery('#starttimeInput').datetimepicker({
 		step : 10,
@@ -62,3 +62,6 @@ Date.parseDate = function(input, format) {
 Date.prototype.dateFormat = function(format) {
 	return moment(this).format(format);
 };
+/*
+ * 课程类别 写页面刷新代码 通过js更新数据
+ */

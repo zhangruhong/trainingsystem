@@ -106,6 +106,17 @@
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程分类 </label>
+									<div class="col-sm-10">
+										<select id="dictionaries" class="form-control">
+											<option value="-1" selected="selected">请选择分类</option>
+											<c:forEach items="${dictionaries}" var="term">
+												<option value="${term['id'] }">${term['value'] }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
 									<div class="col-sm-10">
 										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入课程名称">
@@ -120,8 +131,8 @@
 								<div class="form-group form-inline">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" readonly="readonly">
-										—— <input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间" readonly="readonly">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" readonly="readonly"> —— <input
+											class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间" readonly="readonly">
 									</div>
 								</div>
 								<div class="form-group">

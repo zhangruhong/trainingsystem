@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.synnex.service.CourseService;
+import com.synnex.service.DictionaryService;
 import com.synnex.service.PracticeService;
 import com.synnex.service.TermService;
 import com.synnex.service.UserGroupService;
@@ -32,4 +33,7 @@ public class GenericController {
 
 	@Resource(name = "practiceServiceImpl")
 	public PracticeService practiceServiceImpl;
+
+	@Resource(name = "dictionaryServiceImpl")
+	public DictionaryService dictionaryServiceImpl;
 }
