@@ -9,27 +9,29 @@ import org.springframework.stereotype.Service;
 
 import com.synnex.dao.CourseDao;
 import com.synnex.dao.Order;
+import com.synnex.dao.TermDao;
 import com.synnex.model.Course;
 import com.synnex.model.Term;
 import com.synnex.service.CourseService;
-import com.synnex.service.TermService;
 
 @Service("courseServiceImpl")
 public class CourseServiceImpl implements CourseService {
 	@Resource(name = "courseDaoImpl")
 	private CourseDao courseDaoImpl;
-	@Resource(name = "termServiceImpl")
-	private TermService termServiceImpl;
+	@Resource(name = "termDaoImpl")
+	private TermDao termDaoImpl;
 
 	@Override
 	public void addCourse(Course course, int termid) {
-		Term term = termServiceImpl.getTerm(termid);
-		course.setTerm(term);
+		Term term = termDaoImpl.get(termid);
+
 		Set<Course> courses = term.getCourses();
 		courses.add(course);
 		term.setCourses(courses);
+		termDaoImpl.update(term);
+
+		course.setTerm(term);
 		courseDaoImpl.save(course);
-		termServiceImpl.update(term);
 	}
 
 	@Override

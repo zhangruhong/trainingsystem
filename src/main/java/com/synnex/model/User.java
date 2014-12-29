@@ -12,8 +12,7 @@ import org.hibernate.validator.constraints.Range;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class User implements Serializable {
-
-	private static final long serialVersionUID = 744077601120584167L;
+	private static final long serialVersionUID = 2112284214014246959L;
 	private int id;
 	@Email(message = "请输入正确的email地址")
 	private String email;
