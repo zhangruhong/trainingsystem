@@ -16,4 +16,15 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements Co
 		return super.findByHql(hql, termid);
 	}
 
+	@Override
+	public List<Course> listCourseByTrainer(int trainerId) {
+		String hql = "select c from Course c where c.trainer.id = ?";
+		List<Course> courses = super.findByHql(hql, trainerId);
+		for (Course course : courses) {
+			course.getTerm().getName();
+			course.getDictionary().getValue();
+		}
+		return courses;
+	}
+
 }

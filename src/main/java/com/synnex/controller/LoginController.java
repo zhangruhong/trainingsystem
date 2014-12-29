@@ -45,9 +45,9 @@ public class LoginController extends GenericController {
 			case 0:
 				return null;
 			case 1:
-				return "forward:/trainer/practice/input?id=1";
+				return "redirect:/trainer/practice/input?id=1";
 			default:
-				return "forward:/trainee/practice/commit?id=1";
+				return "redirect:/trainee/practice/commit?id=1";
 		}
 	}
 

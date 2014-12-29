@@ -73,4 +73,12 @@ public interface CourseService {
 	 */
 	public List<Course> ListCourseByTerm(int termid);
 
+	/**
+	 * 通过trianer找course
+	 * 
+	 * @param trainerId
+	 * @return
+	 */
+	public List<Course> listCourseByTrainer(int trainerId);
+
 }

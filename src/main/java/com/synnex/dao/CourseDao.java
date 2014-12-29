@@ -14,4 +14,12 @@ public interface CourseDao extends GenericDao<Course, Integer> {
 	 */
 	List<Course> ListCourseByTerm(int termid);
 
+	/**
+	 * 通过trainer找course
+	 * 
+	 * @param trainerId
+	 * @return
+	 */
+	List<Course> listCourseByTrainer(int trainerId);
+
 }

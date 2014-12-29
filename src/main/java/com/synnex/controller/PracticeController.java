@@ -1,5 +1,7 @@
 package com.synnex.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,7 @@ public class PracticeController extends GenericController {
 	 * 需要课程id和trainer的id
 	 */
 	@RequestMapping("/trainer/practice/input")
-	public String trainerInput(@RequestParam("id") String id, Model model) {
+	public String trainerInputPractice(@RequestParam("id") String id, Model model) {
 		Course course = courseServiceImpl.getCourse(Integer.valueOf(id));
 		model.addAttribute("course", course);
 		return "/trainer/practice/show";
@@ -42,7 +44,7 @@ public class PracticeController extends GenericController {
 	 */
 	@RequestMapping(value = { "/trainer/practice/save" })
 	@ResponseBody
-	public JsonBean trainerSave(@RequestBody Course course) {
+	public JsonBean trainerSavePractice(@RequestBody Course course) {
 		Course courseDate = courseServiceImpl.getCourse(course.getId());
 		if (courseDate.getPractiseStatus() == null || courseDate.getPractiseStatus() == 0) {
 			practiceServiceImpl.addPractices(course.getId());
@@ -55,12 +57,40 @@ public class PracticeController extends GenericController {
 	}
 
 	/**
+	 * trainer查看练习进度页面
+	 * 
+	 * 需要trainer的id
+	 */
+	@RequestMapping(value = { "/trainer/practice/view" })
+	public String trainerViewPractice(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		int TrainerId = user.getId();
+		List<Course> courses = courseServiceImpl.listCourseByTrainer(TrainerId);
+		model.addAttribute("courses", courses);
+		return "/trainer/practice/view";
+	}
+
+	/**
+	 * trainer查看练习进度详细页面
+	 * 
+	 * 需要trainer的id
+	 */
+	@RequestMapping(value = { "/trainer/practice/viewDetail" })
+	public String trainerViewPracticeDetail(@RequestParam("id") int id, Model model) {
+		List<Practice> practices = practiceServiceImpl.findPracticeByCourse(id);
+		model.addAttribute("practices", practices);
+		Course course = courseServiceImpl.getCourse(id);
+		model.addAttribute("course", course);
+		return "/trainer/practice/viewDetail";
+	}
+
+	/**
 	 * trainee跳转到提交练习页面
 	 * 
 	 * 需要课程id和trainee的id
 	 */
 	@RequestMapping("/trainee/practice/commit")
-	public String traineeInput(@RequestParam("id") String id, HttpSession session, Model model) {
+	public String traineeInputPractice(@RequestParam("id") String id, HttpSession session, Model model) {
 		Course course = courseServiceImpl.getCourse(Integer.valueOf(id));
 		model.addAttribute("course", course);
 		User user = (User) session.getAttribute("USER_IN_SESSION");
@@ -78,10 +108,11 @@ public class PracticeController extends GenericController {
 	 */
 	@RequestMapping(value = { "/trainee/practice/save" })
 	@ResponseBody
-	public JsonBean traineeSave(@RequestBody Practice practice) {
+	public JsonBean traineeSavePractice(@RequestBody Practice practice) {
 		Practice practiceDate = practiceServiceImpl.getPractice(practice.getId());
 		practiceDate.setContent(practice.getContent());
 		practiceDate.setStatus(1);
+		practiceServiceImpl.addPractice(practiceDate);
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}

@@ -68,4 +68,11 @@ public interface PracticeService {
 	 * @param traineeId
 	 */
 	public Practice findPracticeByCourseAndUser(int courseId, int traineeId);
+
+	/**
+	 * 根据courseId找practice
+	 * 
+	 * @param courseId
+	 */
+	public List<Practice> findPracticeByCourse(int courseId);
 }
