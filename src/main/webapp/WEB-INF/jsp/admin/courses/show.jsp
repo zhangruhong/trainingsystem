@@ -60,7 +60,8 @@
 												<td>${term["name"]}</td>
 												<td>${term["content"]}</td>
 												<td>${term["trainer"]["loginname"]}</td>
-												<td>${term["starttime"]}<br />~${term["endtime"]} </td>
+												<td>${term["starttime"]}<br />~${term["endtime"]}
+												</td>
 												<td>${term["location"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
 												<td>
@@ -116,14 +117,11 @@
 										<input class="form-control" id="trainerInput" name="trainer" type="text" placeholder="请输入课程讲师">
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 开始时间 </label>
+								<div class="form-group form-inline">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请输入课程时间">
-									</div>
-									<label for="inputlabel" class="col-sm-2 control-label"> 结束时间 </label>
-									<div class="col-sm-10">
-										<input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请输入课程时间">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" readonly="readonly">
+										—— <input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间" readonly="readonly">
 									</div>
 								</div>
 								<div class="form-group">
@@ -161,7 +159,7 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-		
+
 		</div>
 
 	</div>
@@ -174,12 +172,7 @@
 	<script src="${pageContext.request.contextPath}/js/course.js"></script>
 	<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
 	<script src="http://momentjs.com/downloads/moment.min.js">
-		Date.parseDate = function(input, format) {
-			return moment(input, format).toDate();
-		};
-		Date.prototype.dateFormat = function(format) {
-			return moment(this).format(format);
-		};
+		
 	</script>
 	<!-- 配置文件 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>

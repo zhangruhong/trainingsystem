@@ -1,8 +1,7 @@
 function addCourseToTerm() {
-	var mydata = '{"name":"' + $("#nameInput").val() +  '","starttime":"'
-	+ $('#starttimeInput').val() + '","endtime":"' + $('#endtimeInput').val() + '","location":"' + $('#localInput').val()
-	+ '","dictionary1":"' + $('#descriptionInput').val() + '","content":"' + $('#contentInput').val() + '","goal":"' + $('#goalInput').val()
-	+'","trainer":{"loginname":"' + $('#trainerInput').val() + '"}}';
+	var mydata = '{"name":"' + $("#nameInput").val() + '","starttime":"' + $('#starttimeInput').val() + '","endtime":"' + $('#endtimeInput').val()
+			+ '","location":"' + $('#localInput').val() + '","dictionary1":"' + $('#descriptionInput').val() + '","content":"'
+			+ $('#contentInput').val() + '","goal":"' + $('#goalInput').val() + '","trainer":{"loginname":"' + $('#trainerInput').val() + '"}}';
 	$.ajax({
 		type : "POST",
 		url : "add",
@@ -41,6 +40,7 @@ function createShowingTable(data) {
 	$("#tbodyterms").html(tableStr);
 }
 
+
 $(function() {
 	jQuery('#starttimeInput').datetimepicker({
 		step : 10,
@@ -55,3 +55,10 @@ $(function() {
 		formatDate : 'Y-m-d'
 	});
 });
+
+Date.parseDate = function(input, format) {
+	return moment(input, format).toDate();
+};
+Date.prototype.dateFormat = function(format) {
+	return moment(this).format(format);
+};
