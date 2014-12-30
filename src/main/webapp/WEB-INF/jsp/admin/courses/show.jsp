@@ -65,7 +65,7 @@
 												<td>${term["starttime"]}<br />~${term["endtime"]}
 												</td>
 												<td>${term["location"]}</td>
-												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#myModal" onclick="loadCourse(${term['id']})">编辑</button></td>
+												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">编辑</button></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -224,7 +224,7 @@
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="idInput_update" name="id" type="text" hidden="true">
+										<input class="form-control" id="idInput_update" name="id" type="hidden" >
 										<input class="form-control" id="nameInput_update" name="name" type="text" placeholder="请输入课程名称">
 									</div>
 								</div>

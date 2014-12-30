@@ -11,7 +11,7 @@ function addCourseToTerm() {
 		success : function(data) {
 			data = data.termmap;
 			if (data.success == true) {
-				var terms = data.terms;
+				location.reload(true);
 			} else {
 			}
 		},
