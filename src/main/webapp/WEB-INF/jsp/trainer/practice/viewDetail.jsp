@@ -66,16 +66,18 @@
 												</td>
 												<td>
 													<c:if test="${practice.status == 1 || practice.status == 2}">
-														<a id="viewPracticeContent" class="btn btn-default">查看作业</a>
+														<input type="button" name="viewPracticeContent" class="btn btn-default" value="查看作业"/>
 													</c:if> 
+													<input type="hidden" value="${practice.content}"/>
 												</td>
 												<td>
 													<c:if test="${practice.status == 1}">
-														<a id="" class="btn btn-default">录入分数</a>
+														<input type="button" name="inputScore" class="btn btn-default" value="录入分数"/>
 													</c:if> 
 													<c:if test="${practice.status == 2}">
 														${practice.score}分
 													</c:if>
+													<input type="hidden" value="${practice.id}"/>
 												</td>
 											</tr>
 										</c:forEach>
@@ -97,8 +99,28 @@
 							<h4 class="modal-title">${course.name}-课程</h4>
 						</div>
 						<div class="modal-body">
-           					
+           					<script id="practiceViewContainer" name="editcontent" type="text/plain"></script>
         				</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="inputScoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+				data-backdrop="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">${course.name}-分数录入</h4>
+						</div>
+						<div class="modal-body">
+							<input id="practiceId" type="hidden"/>
+           					<input id="practiceScore" type="text" class="form-control" placeholder="100分为满分">
+        				</div>
+        				<div class="modal-footer">
+							<a id="confirmScore" class="btn btn-primary">录入分数</a>
+						</div>
 					</div>
 				</div>
 			</div>

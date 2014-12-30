@@ -85,6 +85,22 @@ public class PracticeController extends GenericController {
 	}
 
 	/**
+	 * trainer录入分数
+	 * 
+	 * 需要practice的id和score
+	 */
+	@RequestMapping(value = { "/trainer/practice/inputScore" })
+	@ResponseBody
+	public JsonBean trainerInputScore(@RequestBody Practice practice) {
+		Practice practiceData = practiceServiceImpl.getPractice(practice.getId());
+		practiceData.setScore(practice.getScore());
+		practiceData.setStatus(2);
+		practiceServiceImpl.updatePractice(practiceData);
+		JsonBean jsonBean = new JsonBean(true, "录入成功", null);
+		return jsonBean;
+	}
+
+	/**
 	 * trainee跳转到提交练习页面
 	 * 
 	 * 需要课程id和trainee的id

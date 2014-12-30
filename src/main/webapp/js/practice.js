@@ -4,6 +4,8 @@ $(function() {
 	
 	var practise = $("#coursePractise").val();
 	if(practise!=null && practise!=""){
+		practise=practise.toString().replace(new RegExp('(["\"])', 'g'),"\\\"");
+		console.debug(practise);
 		ue.ready(function() {
 			ue.setContent(practise);
 		});
@@ -12,6 +14,7 @@ $(function() {
 	$("#uploadButton").on("click", function(){
 		var html = ue.getContent();
 		var courseId = $("#courseId").val();
+		html=html.toString().replace(new RegExp('(["\"])', 'g'),"\\\""); 
 		var mydata = '{"id":"' + courseId + '","practise":"' + html + '"}';
 		$.ajax({
 			type : "POST",
