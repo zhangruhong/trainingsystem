@@ -20,7 +20,7 @@ function addCourseToTerm() {
 			// alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
 		}
 	});
-}
+};
 function createShowingTable(data) {
 	// 此处需要让其动态的生成一个table并填充数据
 	var tableStr = "";
@@ -39,6 +39,38 @@ function createShowingTable(data) {
 	});
 	// 将动态生成的table添加的事先隐藏的div中.
 	$("#tbodyterms").html(tableStr);
+};
+
+function addDictionary() {
+	var mydata = '{"name":"' + $("#dictionnarynameInput").val() + '"}';
+	$
+			.ajax({
+				type : "POST",
+				url : "/trainingsystem/admin/dictionary/add",
+				data : mydata,
+				dataType : "json",
+				contentType : "application/json; charset=utf8",
+				success : function(data) {
+					data = data.termmap;
+					if (data.success == true) {
+						$("#actiontip")
+								.html(
+										"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
+						location.reload(true);
+
+					} else {
+						$("#actiontip")
+								.html(
+										"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>错误！添加失败！请联系davisz@synnex.com。</div>");
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#actiontip")
+							.html(
+									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
+					alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+				}
+			});
 }
 
 $(function() {

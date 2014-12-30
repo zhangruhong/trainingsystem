@@ -33,7 +33,9 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="btn-group pull-right" id="templatemo_sort_btn">
+
+							<div class="pull-right" id="templatemo_sort_btn">
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addDictionary">新建分类</button>
 								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建课程</button>
 							</div>
 
@@ -56,7 +58,7 @@
 									<tbody id="tbodyterms" class="text-left">
 										<c:forEach items="${terms}" var="term">
 											<tr>
-												<td>${term["dictionary"]["value"]}</td>
+												<td>${term["dictionary"]["name"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["content"]}</td>
 												<td>${term["trainer"]["loginname"]}</td>
@@ -95,7 +97,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- 模态框（Modal） -->
+			<!--新建课程 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
 					<form class="form-horizontal" role="form" id="courseaddform">
@@ -111,7 +113,7 @@
 										<select id="dictionaries" class="form-control">
 											<option value="-1" selected="selected">请选择分类</option>
 											<c:forEach items="${dictionaries}" var="term">
-												<option value="${term['id'] }">${term['value'] }</option>
+												<option value="${term['id'] }">${term['name'] }</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -170,6 +172,35 @@
 				</div>
 				<!-- /.modal -->
 			</div>
+
+			<!--新建课程分类模态框-->
+			<div class="modal fade" id="addDictionary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<form class="form-horizontal" role="form">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">新建课程分类</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label"> 分类名称 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="dictionnarynameInput" name="name" type="text" placeholder="请输入课程分类名称">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addDictionary()" data-dismiss="modal">提交</button>
+							</div>
+						</div>
+					</form>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
 
 		</div>
 

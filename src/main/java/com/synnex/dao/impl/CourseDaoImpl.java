@@ -22,7 +22,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements Co
 		List<Course> courses = super.findByHql(hql, trainerId);
 		for (Course course : courses) {
 			course.getTerm().getName();
-			course.getDictionary().getValue();
+			course.getDictionary().getName();
 		}
 		return courses;
 	}
