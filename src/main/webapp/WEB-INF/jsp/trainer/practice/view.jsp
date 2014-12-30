@@ -49,7 +49,7 @@
 									<tbody id="tbodycourses" class="text-left">
 										<c:forEach items="${courses}" var="course">
 											<tr>
-												<td>${course["dictionary"]["value"]}</td>
+												<td>${course["dictionary"]["name"]}</td>
 												<td>${course["name"]}</td>
 												<td>${course["content"]}</td>
 												<td>${course["starttime"]}<br />~${course["endtime"]}
