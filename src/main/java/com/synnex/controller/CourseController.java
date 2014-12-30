@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
@@ -89,6 +91,60 @@ public class CourseController extends GenericController {
 		courseServiceImpl.addCourse(course, termid);
 		// 添加与获取分离 不再写在一起
 		jsonBean = new JsonBean(true, "添加成功！", null);
+		return jsonBean;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/{termid}/courses/update", method = { RequestMethod.POST })
+	public JsonBean updateCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
+		JsonBean jsonBean = null;
+		// 获取修改后的course的trainer
+		String tranername = course.getTrainer().getLoginname();
+		User u = userServiceImpl.findTranerbyName(tranername);
+
+		// 获取修改后的course的所属分类
+		int dictionaryid = course.getDictionary().getId();
+		Dictionary dictionary = dictionaryServiceImpl.get(dictionaryid);
+		if (null == dictionary) {
+			brt.rejectValue("dictionary", "", "分类不存在诶");
+		}
+		if (null == u) {
+			brt.rejectValue("trainer", "", "讲师不存在诶！");
+		}
+		if (course.getStarttime().after(course.getEndtime())) {
+			brt.rejectValue("endtime", "", "开始时间晚于结束时间！");
+		}
+		if (brt.hasErrors()) {
+			List<FieldError> errors = brt.getFieldErrors();
+			Map<String, String> mapErrors = new LinkedHashMap<String, String>();
+			for (FieldError fieldError : errors) {
+				mapErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			jsonBean = new JsonBean(false, "修改失败！", mapErrors);
+			return jsonBean;
+		}
+		Course course2 = courseServiceImpl.getCourse(course.getId());
+		// 将修改后的course属性值全部复制到查出来的上面
+		BeanUtils.copyProperties(course, course2, "id");
+		course2.setDictionary(dictionary);
+		course2.setTrainer(u);
+		// 不需要再次关联学期了
+		courseServiceImpl.updateCourse(course2);
+		// 添加与获取分离 不再写在一起
+		jsonBean = new JsonBean(true, "修改成功！", null);
+		return jsonBean;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/{termid}/courses/get", method = { RequestMethod.GET })
+	public JsonBean getCourse(@RequestParam(value = "id", required = true) int courseid) {
+		JsonBean jsonBean =null;
+		Course course = courseServiceImpl.getCourse(courseid);
+		if (null==course) {
+			jsonBean = new JsonBean(false, "获取该Course失败！", null);
+			logger.debug("courseid=" + courseid + "的course不能获取到（通过该id获取到的course为空）。");
+		}
+		jsonBean = new JsonBean(true, "获取成功", course);
 		return jsonBean;
 	}
 }

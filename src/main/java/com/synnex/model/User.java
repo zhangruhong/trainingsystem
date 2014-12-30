@@ -21,6 +21,7 @@ public class User implements Serializable {
 	@Length(max = 20, min = 2, message = "用户名长度应该介于2~20之间")
 	private String loginname;
 
+	@JsonIgnore
 	@NotEmpty(message = "用户名不能为空")
 	@Length(max = 33, min = 6, message = "密码长度应该介于6~16之间")
 	private String password;

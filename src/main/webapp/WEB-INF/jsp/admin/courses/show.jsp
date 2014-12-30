@@ -65,7 +65,7 @@
 												<td>${term["starttime"]}<br />~${term["endtime"]}
 												</td>
 												<td>${term["location"]}</td>
-												<td><a href="#" class="btn btn-default">Edit</a></td>
+												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#myModal" onclick="loadCourse(${term['id']})">编辑</button></td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -133,8 +133,8 @@
 								<div class="form-group form-inline">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" > —— <input
-											class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间"> —— <input class="form-control"
+											id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间">
 									</div>
 								</div>
 								<div class="form-group">
@@ -193,6 +193,76 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 								<button id="addterm" type="button" class="btn btn-primary" onclick="addDictionary()" data-dismiss="modal">提交</button>
+							</div>
+						</div>
+					</form>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+			<!--修改课程 模态框-->
+			<div class="modal fade" id="updateCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<form class="form-horizontal" role="form" id="courseaddform">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">修改课程</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程分类 </label>
+									<div class="col-sm-10">
+										<select id="dictionaries_update" class="form-control">
+											<c:forEach items="${dictionaries}" var="term">
+												<option value="${term['id'] }">${term['name'] }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="idInput_update" name="id" type="text" hidden="true">
+										<input class="form-control" id="nameInput_update" name="name" type="text" placeholder="请输入课程名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程讲师 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="trainerInput_update" name="trainer" type="text" placeholder="请输入课程讲师">
+									</div>
+								</div>
+								<div class="form-group form-inline">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— <input class="form-control"
+											id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程地点 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="localInput_update" name="location" type="text" placeholder="请输入课程地点 ">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程内容 </label>
+									<div class="col-sm-10">
+										<input type="text" id="contentInput_update" name="content" class="form-control" placeholder="请输入课程内容 简单描述">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 课程目标 </label>
+									<div class="col-sm-10">
+										<input type="text" id="goalInput_update" name="goal" class="form-control" placeholder="请输入课程目标 简单描述">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button id="updateterm_update" type="button" class="btn btn-primary" onclick="updateCourseToTerm()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>

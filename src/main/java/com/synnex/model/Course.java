@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 课程
@@ -16,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author Davisz
  *
  */
-@JsonIgnoreProperties(value = { "dictionary1" })
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;

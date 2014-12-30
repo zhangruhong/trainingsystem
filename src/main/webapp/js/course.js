@@ -1,8 +1,7 @@
 function addCourseToTerm() {
 	var mydata = '{"name":"' + $("#nameInput").val() + '","starttime":"' + $('#starttimeInput').val() + '","endtime":"' + $('#endtimeInput').val()
-			+ '","location":"' + $('#localInput').val() + '","dictionary1":"' + $('#descriptionInput').val() + '","content":"'
-			+ $('#contentInput').val() + '","goal":"' + $('#goalInput').val() + '","trainer":{"loginname":"' + $('#trainerInput').val()
-			+ '"},"dictionary":{"id":"' + $('#dictionaries option:selected').val() + '"}}';
+			+ '","location":"' + $('#localInput').val() + '","content":"' + $('#contentInput').val() + '","goal":"' + $('#goalInput').val()
+			+ '","trainer":{"loginname":"' + $('#trainerInput').val() + '"},"dictionary":{"id":"' + $('#dictionaries option:selected').val() + '"}}';
 	$.ajax({
 		type : "POST",
 		url : "add",
@@ -56,6 +55,35 @@ function addDictionary() {
 					alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
 				}
 			});
+}
+
+function loadCourse(id) {
+	var url = "get?id=" + id;
+	$.getJSON(url, function(data, status, xhr) {
+		if (status == "success") {
+			data = data.termmap
+			if (data.success == true) {
+				data = data.terms;
+				$("#dictionaries_update").get(0).selectedIndex = data["dictionary"]["id"];
+				$("#idInput_update").val(data["id"]);
+				$("#nameInput_update").val(data["name"]);
+				$("#trainerInput_update").val(data["trainer"]["loginname"]);
+				$("#starttimeInput_update").val(data["starttime"]);
+				$("#endtimeInput_update").val(data["endtime"]);
+				$("#localInput_update").val(data["location"]);
+				$("#contentInput_update").val(data["content"]);
+				$("#goalInput_update").val(data["goal"]);
+			} else {
+				// alert("没有获取到记录" + data.msg)
+				// 此处应该清空
+				alert("拉取已有信息失败")
+			}
+		} else {
+			// 标识网络连接状态没有成功
+			alert("status:" + status + "data:" + data);
+		}
+
+	})
 }
 
 $(function() {
