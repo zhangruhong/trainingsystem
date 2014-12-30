@@ -133,8 +133,8 @@
 								<div class="form-group form-inline">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" readonly="readonly"> —— <input
-											class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间" readonly="readonly">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间" > —— <input
+											class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间">
 									</div>
 								</div>
 								<div class="form-group">
