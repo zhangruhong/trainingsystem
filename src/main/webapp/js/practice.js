@@ -4,8 +4,6 @@ $(function() {
 	
 	var practise = $("#coursePractise").val();
 	if(practise!=null && practise!=""){
-		practise=practise.toString().replace(new RegExp('(["\"])', 'g'),"\\\"");
-		console.debug(practise);
 		ue.ready(function() {
 			ue.setContent(practise);
 		});

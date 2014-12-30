@@ -44,7 +44,6 @@
 
 								<button type="button" class="btn btn-default" style="margin-left: 850px;">返回</button>
 								<button id="uploadButton" type="button" class="btn btn-primary">提交更改</button>
-								<img src="/trainingsystem/ueditor/dialogs/emotion/images/jx2/j_0001.gif">
 							</div>
 						</div>
 					</div>
