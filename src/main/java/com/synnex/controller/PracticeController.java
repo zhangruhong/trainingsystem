@@ -128,7 +128,7 @@ public class PracticeController extends GenericController {
 		Practice practiceDate = practiceServiceImpl.getPractice(practice.getId());
 		practiceDate.setContent(practice.getContent());
 		practiceDate.setStatus(1);
-		practiceServiceImpl.addPractice(practiceDate);
+		practiceServiceImpl.updatePractice(practiceDate);
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}
