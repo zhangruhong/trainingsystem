@@ -95,7 +95,7 @@ public class CourseController extends GenericController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{termid}/courses/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/{termid}/courses/{courseid}/update", method = { RequestMethod.POST })
 	public JsonBean updateCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
 		JsonBean jsonBean = null;
 		// 获取修改后的course的trainer
@@ -125,10 +125,9 @@ public class CourseController extends GenericController {
 		}
 		Course course2 = courseServiceImpl.getCourse(course.getId());
 		// 将修改后的course属性值全部复制到查出来的上面
-		BeanUtils.copyProperties(course, course2, "id");
+		BeanUtils.copyProperties(course, course2, "id", "term");
 		course2.setDictionary(dictionary);
 		course2.setTrainer(u);
-		// 不需要再次关联学期了
 		courseServiceImpl.updateCourse(course2);
 		// 添加与获取分离 不再写在一起
 		jsonBean = new JsonBean(true, "修改成功！", null);

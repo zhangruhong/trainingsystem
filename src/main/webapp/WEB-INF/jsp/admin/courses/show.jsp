@@ -262,7 +262,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="updateterm_update" type="button" class="btn btn-primary" onclick="updateCourseToTerm()" data-dismiss="modal">提交</button>
+								<button id="updateterm_update" type="button" class="btn btn-primary" onclick="updateCourse()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>

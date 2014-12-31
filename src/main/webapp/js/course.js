@@ -86,6 +86,32 @@ function loadCourse(id) {
 	})
 }
 
+function updateCourse() {
+	var mydata = '{"name":"' + $("#nameInput_update").val() + '","id":"' + $('#idInput_update').val() + '","starttime":"'
+			+ $('#starttimeInput_update').val() + '","endtime":"' + $('#endtimeInput_update').val() + '","location":"'
+			+ $('#localInput_update').val() + '","content":"' + $('#contentInput_update').val() + '","goal":"' + $('#goalInput_update').val()
+			+ '","trainer":{"loginname":"' + $('#trainerInput_update').val() + '"},"dictionary":{"id":"'
+			+ $('#dictionaries_update option:selected').val() + '"}}';
+	var url = $('#idInput_update').val() + "/update";
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : mydata,
+		dataType : "json",
+		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			if (data.success == true) {
+				location.reload(true);
+			} else {
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+		}
+	});
+}
+
 $(function() {
 	jQuery('#starttimeInput').datetimepicker({
 		step : 10,
