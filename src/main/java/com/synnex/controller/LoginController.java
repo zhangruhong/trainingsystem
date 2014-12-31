@@ -43,11 +43,11 @@ public class LoginController extends GenericController {
 		int role = user.getRole();
 		switch (role) {
 			case 0:
-				return null;
+				return "redirect:/admin/term/showall";
 			case 1:
-				return "redirect:/trainer/practice/input?id=1";
+				return "redirect:/trainer/practice/view";
 			default:
-				return "redirect:/trainee/practice/commit?id=1";
+				return "redirect:/trainee/term/view";
 		}
 	}
 

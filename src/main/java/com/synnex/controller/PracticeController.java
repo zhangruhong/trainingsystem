@@ -132,5 +132,4 @@ public class PracticeController extends GenericController {
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}
-
 }

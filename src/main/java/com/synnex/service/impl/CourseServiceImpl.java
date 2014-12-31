@@ -84,4 +84,10 @@ public class CourseServiceImpl implements CourseService {
 		return courses;
 	}
 
+	@Override
+	public List<Course> listCourseByTrainee(int traineeId) {
+		List<Course> courses = courseDaoImpl.listCourseByTrainee(traineeId);
+		return courses;
+	}
+
 }

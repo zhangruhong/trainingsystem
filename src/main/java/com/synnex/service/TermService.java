@@ -24,4 +24,12 @@ public interface TermService {
 	 * @return
 	 */
 	public PageResult<Term> listPageResult(int begin, int size);
+
+	/**
+	 * 通过trainee找term
+	 * 
+	 * @param traineeId
+	 * @return
+	 */
+	public List<Term> listTermByTrainee(int traineeId);
 }

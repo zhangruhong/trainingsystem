@@ -27,10 +27,9 @@ import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
-@RequestMapping("/admin/term")
 public class CourseController extends GenericController {
 	@ResponseBody
-	@RequestMapping(value = "/{termid}/courses/show")
+	@RequestMapping(value = "/admin/term/{termid}/courses/show")
 	public JsonBean showCourseByTermjson(@PathVariable int termid) {
 		Term term = new Term();
 		term.setId(termid);
@@ -49,18 +48,17 @@ public class CourseController extends GenericController {
 		return jsonBean;
 	}
 
-	@RequestMapping(value = "/{termid}/courses/showall")
+	@RequestMapping(value = "/admin/term/{termid}/courses/showall")
 	public String showCourseByTerm(@PathVariable int termid, Model model) {
 		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
 		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
 		model.addAttribute("terms", courses);
 		model.addAttribute("dictionaries", dictionaries);
-		System.out.println(courses);
 		return "/admin/courses/show";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{termid}/courses/add", method = { RequestMethod.POST })
+	@RequestMapping(value = "/admin/term/{termid}/courses/add", method = { RequestMethod.POST })
 	public JsonBean addCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
 		JsonBean jsonBean = null;
 		String tranername = course.getTrainer().getLoginname();
@@ -95,7 +93,7 @@ public class CourseController extends GenericController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{termid}/courses/{courseid}/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/admin/term/{termid}/courses/{courseid}/update", method = { RequestMethod.POST })
 	public JsonBean updateCourse(@RequestBody @Valid Course course, BindingResult brt, @PathVariable("termid") int termid) {
 		JsonBean jsonBean = null;
 		// 获取修改后的course的trainer
@@ -135,15 +133,31 @@ public class CourseController extends GenericController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{termid}/courses/get", method = { RequestMethod.GET })
+	@RequestMapping(value = "/admin/term/{termid}/courses/get", method = { RequestMethod.GET })
 	public JsonBean getCourse(@RequestParam(value = "id", required = true) int courseid) {
-		JsonBean jsonBean =null;
+		JsonBean jsonBean = null;
 		Course course = courseServiceImpl.getCourse(courseid);
-		if (null==course) {
+		if (null == course) {
 			jsonBean = new JsonBean(false, "获取该Course失败！", null);
 			logger.debug("courseid=" + courseid + "的course不能获取到（通过该id获取到的course为空）。");
 		}
 		jsonBean = new JsonBean(true, "获取成功", course);
 		return jsonBean;
+	}
+
+	/**
+	 * trainee查看课程
+	 * 
+	 * @param termid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/trainee/{termid}/course/view")
+	public String traineeViewCrouse(@PathVariable int termid, Model model) {
+		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
+		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
+		model.addAttribute("courses", courses);
+		model.addAttribute("dictionaries", dictionaries);
+		return "/trainee/course/view";
 	}
 }

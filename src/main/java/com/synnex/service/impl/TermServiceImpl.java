@@ -50,4 +50,10 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.showByPage(begin, size);
 	}
 
+	@Override
+	public List<Term> listTermByTrainee(int traineeId) {
+		List<Term> terms = termDaoImpl.listTermByTrainee(traineeId);
+		return terms;
+	}
+
 }

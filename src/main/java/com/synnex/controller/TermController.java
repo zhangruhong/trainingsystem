@@ -3,6 +3,8 @@ package com.synnex.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,19 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.synnex.dao.Order;
 import com.synnex.model.PageResult;
 import com.synnex.model.Term;
+import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
-@RequestMapping(value = { "/admin/term" })
 public class TermController extends GenericController {
 
 	// TODO 暂时用模态框处理 还不需要单独的一个页面来处理
-	@RequestMapping(value = { "/add" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/admin/term/add" }, method = { RequestMethod.GET })
 	public String addTermpage() {
 		return "/admin/term/add";
 	}
 
-	@RequestMapping(value = { "/add" }, method = { RequestMethod.POST })
+	@RequestMapping(value = { "/admin/term/add" }, method = { RequestMethod.POST })
 	@ResponseBody
 	public JsonBean addTerm(@RequestBody Term term) {
 		termServiceImpl.addTerm(term);
@@ -43,14 +45,14 @@ public class TermController extends GenericController {
 	}
 
 	// TODO showall的时候将termid写到URL上去
-	@RequestMapping(value = { "/show/{termid}" }, method = { RequestMethod.POST })
+	@RequestMapping(value = { "/admin/term/show/{termid}" }, method = { RequestMethod.POST })
 	public String showTerm(@PathVariable("termid") int id, Model model) {
 		Term term = termServiceImpl.getTerm(id);
 		model.addAttribute("term", term);
 		return "/admin/term/show";
 	}
 
-	@RequestMapping(value = { "/showall" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/admin/term/showall" }, method = { RequestMethod.GET })
 	public String showPagerTerm(@RequestParam(value = "page", required = false) Integer page, Model model) {
 		int size = 10;
 		if (null == page || page < 1) {
@@ -65,5 +67,19 @@ public class TermController extends GenericController {
 		model.addAttribute("terms", terms);
 		model.addAttribute("totolpages", listPageResult.getTotalPages());
 		return "/admin/term/showall";
+	}
+
+	/**
+	 * trainee跳转到学期查看页面
+	 * 
+	 * 需要trainee的id
+	 */
+	@RequestMapping("/trainee/term/view")
+	public String traineeViewTerm(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		int userId = user.getId();
+		List<Term> terms = termServiceImpl.listTermByTrainee(userId);
+		model.addAttribute("terms", terms);
+		return "/trainee/term/view";
 	}
 }
