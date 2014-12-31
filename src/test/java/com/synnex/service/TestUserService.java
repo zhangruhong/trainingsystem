@@ -66,7 +66,7 @@ public class TestUserService {
 		orderss.add(orders);
 		orderss.add(orders1);
 
-		users = userServiceImpl.getUsersByCondition(condition, orderss, 0, 50);
+		users = userServiceImpl.getAllUsers();
 		for (User user : users) {
 			System.out.println("user:" + user);
 		}
@@ -88,7 +88,7 @@ public class TestUserService {
 
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		logger.info("---begin--");
-		users = userServiceImpl.getUsersByCondition(condition, null, -1, 50);
+		users = userServiceImpl.getAllUsers();
 		logger.info("-----" + users.size());
 		for (User user : users) {
 			System.out.println("user:" + user);
@@ -106,7 +106,7 @@ public class TestUserService {
 		orderss.add(orders);
 		orderss.add(orders1);
 
-		users = userServiceImpl.getUsersByCondition(condition, orderss, 0, 50);
+		users = userServiceImpl.getAllUsers();
 		for (User user : users) {
 			System.out.println(user);
 			user.setRole(7);

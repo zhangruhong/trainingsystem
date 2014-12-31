@@ -137,7 +137,6 @@ public class UserGroupController extends GenericController {
 		try {
 			logger.info(userid + "-_-" + usergroupid);
 			userGroupServiceImpl.deleteUserFromGroup(userid, usergroupid);
-
 		} catch (UserException e) {
 			logger.error(e.getMessage());
 			jsonBean = new JsonBean(false, "移除失败！" + e.getMessage(), null);

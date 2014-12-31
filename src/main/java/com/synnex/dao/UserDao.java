@@ -33,4 +33,12 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 * @return
 	 */
 	public User findUserbyName(String loginname, int role);
+
+	/**
+	 * 查询所有非培训管理者的用户
+	 * 
+	 * @return
+	 */
+	public List<User> findAllUsers();
+
 }

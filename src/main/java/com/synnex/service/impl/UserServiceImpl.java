@@ -59,11 +59,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size) {
-		return userDaoImpl.list(condition, orders, begin, size);
-	}
-
-	@Override
 	public User checkLogin(String username, String password) {
 		// 验证用户名
 		password = Md5Encode.getStringMD5(password);
@@ -87,5 +82,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findTranerbyName(String loginname) {
 		return userDaoImpl.findUserbyName(loginname, 1);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userDaoImpl.findAllUsers();
+	}
+
+	@Override
+	public User gettraineeByName(String loginname) {
+		return userDaoImpl.findUserbyName(loginname, 2);
 	}
 }

@@ -133,6 +133,21 @@ Date.parseDate = function(input, format) {
 Date.prototype.dateFormat = function(format) {
 	return moment(this).format(format);
 };
-/*
- * 课程类别 写页面刷新代码 通过js更新数据
- */
+//删除课程操作
+$("#yestodelete").click(function() {
+	var deleteurl = $("#yestodelete").val();
+	$.getJSON(deleteurl, function(data, status, xhr) {
+		if (status == "success") {
+			data = data.termmap
+			if (data.success == true) {
+				location.reload(true);
+			}
+		}
+	})
+});
+
+//点击删除按钮 准备工作
+function setdelvalue(id) {
+	var urldelete= id + "/delete";
+	$("#yestodelete").val(urldelete);
+}

@@ -1,7 +1,9 @@
 package com.synnex.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.validation.Valid;
@@ -9,7 +11,9 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,22 +32,38 @@ public class UserController extends GenericController {
 	 * 
 	 * @param user
 	 */
-	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-	public String createUser(User user) {
+	@ResponseBody
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public JsonBean createUser(@RequestBody @Valid User user, BindingResult brt) {
+		JsonBean jsonBean = null;
+		user.setPassword("000000");
+		User user2 = userServiceImpl.gettraineeByName(user.getLoginname());
+		if (user2 == null) {
+			brt.rejectValue("log", "", "分类不存在诶");
+		}
+		if (brt.hasErrors()) {
+			List<FieldError> errors = brt.getFieldErrors();
+			Map<String, String> mapErrors = new LinkedHashMap<String, String>();
+			for (FieldError fieldError : errors) {
+				mapErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			jsonBean = new JsonBean(false, "添加失败！", mapErrors);
+			return jsonBean;
+		}
 		userServiceImpl.addUser(user);
-		return "redirect:/admin/showusers";
+		return jsonBean;
 	}
 
-	@RequestMapping(value = "/showusers", method = RequestMethod.GET)
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public String showUsers(Model model) {
 		User user = new User();
 		user.setRole(1);
 		Order o1 = Order.desc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(o1);
-		List<User> users = userServiceImpl.getUsersByCondition(user, orders, -1, 0);
+		List<User> users = userServiceImpl.getAllUsers();
 		model.addAttribute("users", users);
-		return "/admin/showusers";
+		return "/admin/user/show";
 	}
 
 	@RequestMapping(value = "/deleteuser")

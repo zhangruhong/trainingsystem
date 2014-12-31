@@ -62,20 +62,6 @@ public interface UserService {
 	public User getUser(Integer id);
 
 	/**
-	 * 
-	 * @param condition
-	 *            查询条件 被赋值的当前类
-	 * @param orders
-	 *            排列方式
-	 * @param begin
-	 *            开始页面
-	 * @param size
-	 *            步长
-	 * @return
-	 */
-	public List<User> getUsersByCondition(User condition, List<Order> orders, int begin, int size);
-	
-	/**
 	 * 根据名字搜索
 	 * 
 	 * @param condition
@@ -103,5 +89,20 @@ public interface UserService {
 	 * @return
 	 */
 	public User findTranerbyName(String loginname);
+
+	/**
+	 * 获取所有的非培训管理员的用户
+	 * 
+	 * @return
+	 */
+	public List<User> getAllUsers();
+
+	/**
+	 * 根据loginname找user
+	 * 
+	 * @param loginname
+	 * @return
+	 */
+	public User gettraineeByName(String loginname);
 
 }

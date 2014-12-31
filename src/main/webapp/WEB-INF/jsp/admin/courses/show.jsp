@@ -285,7 +285,7 @@
 						<div class="modal-body">删除课程后不可恢复！</div>
 						<div class="modal-footer">
 							<button id="cancaltodelete" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button id="yestodelete" type="button" class="btn btn-primary" onclick="dodelete()" value="">确认删除</button>
+							<button id="yestodelete" type="button" class="btn btn-primary" value="">确认删除</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -297,8 +297,10 @@
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 	</div>
-	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+	<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 	<script src="${pageContext.request.contextPath}/js/course.js"></script>
 	<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>
@@ -313,29 +315,9 @@
 	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
-	function setdelvalue(id){
-        $('#deleteconfirm').modal('show').on('shown',function(){
-            $("#yestodelete").val(id+"/delete");
-        return false;
-        })
-    }
-    $(function() {
-        $("#cancaltodelete").click(function(){return false;});     
-    });
-    function dodelete() {
-    	$("#yestodelete").click(function() {
-    		var deleteurl=$("#yestodelete").val();
-    		$getJSON(deleteurl,function(data, status, xhr){
-    		if (status == "success") {
-			data = data.termmap
-			if (data.success == true) {
-				location.reload(true);
-				}
-    		  }
-    		})
-		});
+		
+   
     	
-	}
 	</script>
 </body>
 </html>

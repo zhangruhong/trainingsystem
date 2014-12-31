@@ -169,7 +169,7 @@ public class CourseController extends GenericController {
 			Course course = courseServiceImpl.getCourse(courseid);
 			courseServiceImpl.deleteCourse(course);
 		} catch (Exception e) {
-			jsonBean = new JsonBean(false, "删除失败！", null);
+			jsonBean = new JsonBean(false, "删除失败！该课程已有作业，不能删除！", null);
 			return jsonBean;
 		}
 		jsonBean = new JsonBean(true, "删除成功", null);
