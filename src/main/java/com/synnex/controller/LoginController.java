@@ -62,4 +62,14 @@ public class LoginController extends GenericController {
 		session.removeAttribute("USER_IN_SESSION");
 		return "redirect:/login.html";
 	}
+
+	/**
+	 * 跳转到密码修改页面
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/updatepassword")
+	public String updatepassword() throws Exception {
+		return "/common/updatepassword";
+	}
 }

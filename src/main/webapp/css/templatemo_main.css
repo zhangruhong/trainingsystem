@@ -30,6 +30,10 @@ h1 { font-size: 24px; }
     font-size: 24px;
     margin: 10px 15px;
 }
+.userInfo{
+	display: inline-block;
+	margin-left: 1169px;
+}
 .templatemo-content-wrapper {
     float: left;
     width: 100%;
