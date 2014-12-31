@@ -65,7 +65,10 @@
 												<td>${term["starttime"]}<br />~${term["endtime"]}
 												</td>
 												<td>${term["location"]}</td>
-												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">编辑</button></td>
+												<td>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">编辑</button>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">删除</button>
+												</td>
 												<td>
 													<!-- Split button -->
 													<div class="btn-group">
@@ -224,8 +227,8 @@
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="idInput_update" name="id" type="hidden" >
-										<input class="form-control" id="nameInput_update" name="name" type="text" placeholder="请输入课程名称">
+										<input class="form-control" id="idInput_update" name="id" type="hidden"> <input class="form-control" id="nameInput_update"
+											name="name" type="text" placeholder="请输入课程名称">
 									</div>
 								</div>
 								<div class="form-group">
@@ -237,8 +240,8 @@
 								<div class="form-group form-inline">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— <input class="form-control"
-											id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
+										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— <input
+											class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
 									</div>
 								</div>
 								<div class="form-group">
@@ -271,9 +274,25 @@
 				<!-- /.modal -->
 			</div>
 
-
+			<!-- 确认删除 模态框（Modal） -->
+			<div class="modal fade" id="deleteconfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">确认删除？</h4>
+						</div>
+						<div class="modal-body">删除课程后不可恢复！</div>
+						<div class="modal-footer">
+							<button id="cancaltodelete" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button id="yestodelete" type="button" class="btn btn-primary" onclick="dodelete()" value="">确认删除</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
 		</div>
-
 	</div>
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
@@ -293,5 +312,30 @@
 	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript">
+	function setdelvalue(id){
+        $('#deleteconfirm').modal('show').on('shown',function(){
+            $("#yestodelete").val(id+"/delete");
+        return false;
+        })
+    }
+    $(function() {
+        $("#cancaltodelete").click(function(){return false;});     
+    });
+    function dodelete() {
+    	$("#yestodelete").click(function() {
+    		var deleteurl=$("#yestodelete").val();
+    		$getJSON(deleteurl,function(data, status, xhr){
+    		if (status == "success") {
+			data = data.termmap
+			if (data.success == true) {
+				location.reload(true);
+				}
+    		  }
+    		})
+		});
+    	
+	}
+	</script>
 </body>
 </html>

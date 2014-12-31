@@ -64,7 +64,7 @@ function loadCourse(id) {
 			data = data.termmap
 			if (data.success == true) {
 				data = data.terms;
-				$("#dictionaries_update").get(0).selectedIndex = data["dictionary"]["id"];
+				$("#dictionaries_update").val(data["dictionary"]["id"]);
 				$("#idInput_update").val(data["id"]);
 				$("#nameInput_update").val(data["name"]);
 				$("#trainerInput_update").val(data["trainer"]["loginname"]);

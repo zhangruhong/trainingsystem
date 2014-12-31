@@ -123,7 +123,7 @@ public class CourseController extends GenericController {
 		}
 		Course course2 = courseServiceImpl.getCourse(course.getId());
 		// 将修改后的course属性值全部复制到查出来的上面
-		BeanUtils.copyProperties(course, course2, "id", "term");
+		BeanUtils.copyProperties(course, course2, "id", "term", "practiseStatus", "practise");
 		course2.setDictionary(dictionary);
 		course2.setTrainer(u);
 		courseServiceImpl.updateCourse(course2);
@@ -159,5 +159,20 @@ public class CourseController extends GenericController {
 		model.addAttribute("courses", courses);
 		model.addAttribute("dictionaries", dictionaries);
 		return "/trainee/course/view";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/admin/term/{termid}/courses/{courseid}/delete", method = { RequestMethod.GET })
+	public JsonBean deleteCourse(@PathVariable("termid") int termid, @PathVariable("courseid") int courseid) {
+		JsonBean jsonBean = null;
+		try {
+			Course course = courseServiceImpl.getCourse(courseid);
+			courseServiceImpl.deleteCourse(course);
+		} catch (Exception e) {
+			jsonBean = new JsonBean(false, "删除失败！", null);
+			return jsonBean;
+		}
+		jsonBean = new JsonBean(true, "删除成功", null);
+		return jsonBean;
 	}
 }
