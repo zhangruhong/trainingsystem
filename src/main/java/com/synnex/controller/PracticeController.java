@@ -132,4 +132,26 @@ public class PracticeController extends GenericController {
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}
+
+	/**
+	 * admin跳转到练习查看页面（主要是查看分数）
+	 * 
+	 */
+	@RequestMapping("/admin/practice/view")
+	public String adminViewPractice() {
+		return "/admin/practice/show";
+	}
+
+	/**
+	 * admin查询practice页面（主要是查看分数）
+	 * 
+	 */
+	@RequestMapping("/admin/practice/search")
+	@ResponseBody
+	public JsonBean adminSearchPractice(@RequestBody User user) {
+		String loginname = user.getLoginname();
+		List<Practice> practices = practiceServiceImpl.findPracticeByLoginname(loginname);
+		JsonBean jsonBean = new JsonBean(true, "上传成功", practices);
+		return jsonBean;
+	}
 }

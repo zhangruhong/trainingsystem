@@ -75,4 +75,12 @@ public interface PracticeService {
 	 * @param courseId
 	 */
 	public List<Practice> findPracticeByCourse(int courseId);
+
+	/**
+	 * 根据loginname找practice
+	 * 
+	 * @param loginname
+	 * @return
+	 */
+	public List<Practice> findPracticeByLoginname(String loginname);
 }

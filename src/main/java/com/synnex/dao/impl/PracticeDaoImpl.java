@@ -27,4 +27,15 @@ public class PracticeDaoImpl extends GenericDaoImpl<Practice, Integer> implement
 		}
 		return pracices;
 	}
+
+	@Override
+	public List<Practice> findPracticeByLoginname(String loginname) {
+		String hql = "select p from User u , Practice p on p.user.id = u.id where u.loginname = ?";
+		List<Practice> pracices = super.findByHql(hql, loginname);
+		for (Practice practice : pracices) {
+			practice.getUser().getLoginname();
+			practice.getCourse().getName();
+		}
+		return pracices;
+	}
 }

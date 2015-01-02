@@ -66,4 +66,44 @@ $(function() {
 			}
 		});
 	});
+	
+	//----------   admin的jsp        ---------------------//
+	$("#sec_btn_admin").on("click", function(){
+		//debugger
+		var name = $("#sec_box_admin").val();
+		if(name != null && name != ""){
+			var mydata = '{"loginname":"' + name + '"}';
+			$.ajax({
+				type : "POST",
+				url : "search",
+				data : 	mydata,
+				dataType : "json",
+				contentType : "application/json; charset=utf8",
+				success : function(data) {
+					data = data.termmap;
+					if (data.success == true) {
+						if(data.terms == null){
+							$("tbody > tr").remove();
+							$(".input_message").show();
+							$(".input_message span").text(" the name which you input does not exist");
+						} else{
+							var practices = data.terms;
+							var tableHtml = null;
+							$.each(practices, function(i, practice){      
+							      var trHtml = "<tr><td>"+ (i+1) +"</td><td>"+ practice.course.name +"</td><td>"+
+							      practice.score+"</td><td>"+practice.scoreDescription+"</td></tr>";
+							      tableHtml = trHtml + tableHtml;
+							});  
+							$(".input_message").hide();
+							$("tbody").html(tableHtml);
+						}
+					}
+				}
+			});
+		}else{
+			$("tbody > tr").remove();
+			$(".input_message").show();
+			$(".input_message span").text("please input search condition!");
+		}
+	});
 });
