@@ -108,20 +108,20 @@
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 英文名 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入课程名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入英文名">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 手机 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="phoneInput" name="phone" type="text" placeholder="请输入课程地点 ">
+										<input class="form-control" id="phoneInput" name="phone" type="text" placeholder="请输入手机 ">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> email </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="emailInput" name="email" type="text" placeholder="请输入课程地点 ">
+										<input class="form-control" id="emailInput" name="email" type="text" placeholder="请输入email ">
 									</div>
 								</div>
 							</div>
@@ -147,5 +147,6 @@
 	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/adminuser.js"></script>
 </body>
 </html>

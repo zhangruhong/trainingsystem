@@ -1,5 +1,5 @@
-function addCourseToTerm() {
-	var mydata = '{"loginname":"' + $("#nameInput").val() + '","phoneno":"' + $('#phoneInput').val() + '","email":"' + $('#emailInput').val() + '","role":"2"}}';
+function addtranee() {
+	var mydata = '{"loginname":"' + $("#nameInput").val() + '","phoneno":"' + $('#phoneInput').val() + '","email":"' + $('#emailInput').val() + '","role":"2"}';
 	$.ajax({
 		type : "POST",
 		url : "add",

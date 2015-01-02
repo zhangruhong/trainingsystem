@@ -54,7 +54,7 @@ public class TermController extends GenericController {
 
 	@RequestMapping(value = { "/admin/term/showall" }, method = { RequestMethod.GET })
 	public String showPagerTerm(@RequestParam(value = "page", required = false) Integer page, Model model) {
-		int size = 10;
+		int size = 1;
 		if (null == page || page < 1) {
 			page = 1;
 		}
