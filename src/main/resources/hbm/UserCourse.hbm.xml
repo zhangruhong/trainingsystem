@@ -8,15 +8,12 @@
 	-->
 <hibernate-mapping package="com.synnex.model">
 
-	<class name="Practice">
+	<class name="UserCourse" table="user_course">
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="score"/>
-		<property name="scoreDescription" column="score_description"/>
-		<property name="status"/>
-		<property name="content"/>
-		<property name="attachment"/>
+		<property name="attendCourseStatus" column="attend_course_status"/>
+		<property name="description"/>
 		<!-- 多对一 -->
 		<many-to-one name="user" column="user_id">
 		</many-to-one>

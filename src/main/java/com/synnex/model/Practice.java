@@ -13,6 +13,7 @@ public class Practice implements Serializable {
 
 	private int id;
 	private int score;
+	private String scoreDescription;
 	// 0 : Unsubmit, 1 ： Checking ，2 ：Completed
 	private int status;
 	private String content;
@@ -34,6 +35,14 @@ public class Practice implements Serializable {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getScoreDescription() {
+		return scoreDescription;
+	}
+
+	public void setScoreDescription(String scoreDescription) {
+		this.scoreDescription = scoreDescription;
 	}
 
 	public int getStatus() {
