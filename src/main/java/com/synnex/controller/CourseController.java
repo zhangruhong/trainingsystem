@@ -74,7 +74,6 @@ public class CourseController extends GenericController {
 		if (course.getStarttime().after(course.getEndtime())) {
 			brt.rejectValue("endtime", "", "开始时间晚于结束时间！");
 		}
-
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
 			Map<String, String> mapErrors = new LinkedHashMap<String, String>();
@@ -87,7 +86,7 @@ public class CourseController extends GenericController {
 		course.setDictionary(dictionary);
 		course.setTrainer(u);
 		courseServiceImpl.addCourse(course, termid);
-		// 添加与获取分离 不再写在一起
+
 		jsonBean = new JsonBean(true, "添加成功！", null);
 		return jsonBean;
 	}

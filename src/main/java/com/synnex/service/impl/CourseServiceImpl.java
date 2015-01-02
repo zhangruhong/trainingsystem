@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 import com.synnex.dao.CourseDao;
 import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
+import com.synnex.dao.UserCourseDao;
+import com.synnex.dao.UserDao;
 import com.synnex.model.Course;
 import com.synnex.model.Term;
+import com.synnex.model.UserCourse;
 import com.synnex.service.CourseService;
 
 @Service("courseServiceImpl")
@@ -20,6 +23,10 @@ public class CourseServiceImpl implements CourseService {
 	private CourseDao courseDaoImpl;
 	@Resource(name = "termDaoImpl")
 	private TermDao termDaoImpl;
+	@Resource(name = "userCourseDaoImpl")
+	private UserCourseDao userCourseDaoImpl;
+	@Resource(name = "userDaoImpl")
+	private UserDao userDaoImpl;
 
 	@Override
 	public void addCourse(Course course, int termid) {
@@ -29,8 +36,10 @@ public class CourseServiceImpl implements CourseService {
 		courses.add(course);
 		term.setCourses(courses);
 		termDaoImpl.update(term);
-
 		course.setTerm(term);
+		UserCourse us = new UserCourse();
+		us.setCourse(course);
+
 		courseDaoImpl.save(course);
 	}
 

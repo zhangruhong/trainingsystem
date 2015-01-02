@@ -9,6 +9,7 @@ import com.synnex.service.CourseService;
 import com.synnex.service.DictionaryService;
 import com.synnex.service.PracticeService;
 import com.synnex.service.TermService;
+import com.synnex.service.UserCourseService;
 import com.synnex.service.UserGroupService;
 import com.synnex.service.UserService;
 
@@ -36,4 +37,7 @@ public class GenericController {
 
 	@Resource(name = "dictionaryServiceImpl")
 	public DictionaryService dictionaryServiceImpl;
+
+	@Resource(name = "userCourseServiceImpl")
+	public UserCourseService userCourseServiceImpl;
 }

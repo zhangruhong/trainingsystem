@@ -41,4 +41,12 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 */
 	public List<User> findAllUsers();
 
+	/**
+	 * 查找该term下的所有学员
+	 * 
+	 * @param term_id
+	 * @return
+	 */
+	public List<User> findAllTraineeInTerm(int term_id);
+
 }

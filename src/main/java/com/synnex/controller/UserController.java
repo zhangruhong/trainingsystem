@@ -51,6 +51,7 @@ public class UserController extends GenericController {
 			return jsonBean;
 		}
 		userServiceImpl.addUser(user);
+		jsonBean = new JsonBean(false, "添加成功！", null);
 		return jsonBean;
 	}
 

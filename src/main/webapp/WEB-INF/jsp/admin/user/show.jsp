@@ -44,7 +44,7 @@
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th>#id</th>
+											<th>角色</th>
 											<th>loginname</th>
 											<th>email</th>
 											<th>phoneno</th>
@@ -55,7 +55,7 @@
 									<tbody>
 										<c:forEach items="${users}" var="user" varStatus="status">
 											<tr>
-												<td>${user["id"]}</td>
+												<td>${user["role"]==1?"讲师":"学员"}</td>
 												<td>${user["loginname"]}</td>
 												<td>${user["email"]}</td>
 												<td>${user["phoneno"]}</td>
@@ -108,26 +108,68 @@
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 英文名 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入英文名">
+										<input class="form-control" id="nameInput_trainee" name="name" type="text" placeholder="请输入英文名">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 手机 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="phoneInput" name="phone" type="text" placeholder="请输入手机 ">
+										<input class="form-control" id="phoneInput_trainee" name="phone" type="text" placeholder="请输入手机 ">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> email </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="emailInput" name="email" type="text" placeholder="请输入email ">
+										<input class="form-control" id="emailInput_trainee" name="email" type="text" placeholder="请输入email ">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 								<button id="addterm" type="button" class="btn btn-primary" onclick="addtranee()" data-dismiss="modal">提交</button>
+							</div>
+						</div>
+					</form>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+
+			<!--新建讲师 模态框（Modal） -->
+			<div class="modal fade" id="addtrainermodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<form class="form-horizontal" role="form" id="courseaddform">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">新建讲师</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 英文名 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="nameInput_trainer" name="name" type="text" placeholder="请输入英文名">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> 手机 </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="phoneInput_trainer" name="phone" type="text" placeholder="请输入手机 ">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label"> email </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="emailInput_trainer" name="email" type="text" placeholder="请输入email ">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button id="addterm_trainer" type="button" class="btn btn-primary" onclick="addtraner()" data-dismiss="modal">提交</button>
 							</div>
 						</div>
 					</form>
