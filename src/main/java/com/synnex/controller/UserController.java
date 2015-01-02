@@ -36,10 +36,10 @@ public class UserController extends GenericController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public JsonBean createUser(@RequestBody @Valid User user, BindingResult brt) {
 		JsonBean jsonBean = null;
-		user.setPassword("000000");
 		User user2 = userServiceImpl.gettraineeByName(user.getLoginname());
-		if (user2 == null) {
-			brt.rejectValue("log", "", "分类不存在诶");
+		user.setPassword("000000");
+		if (user2 != null) {
+			brt.rejectValue("loginname", "", "该用户名已存在诶");
 		}
 		if (brt.hasErrors()) {
 			List<FieldError> errors = brt.getFieldErrors();
