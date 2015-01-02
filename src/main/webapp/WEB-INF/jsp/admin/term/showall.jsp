@@ -15,7 +15,7 @@
 <body>
 	<div id="main-wrapper">
 		<!-- 导航 -->
-		<jsp:include page="/WEB-INF/jsp/admin/navigate.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/jsp/common/navigate.jsp"></jsp:include>
 
 		<div class="template-page-wrapper">
 			<!-- 菜单 -->

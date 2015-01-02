@@ -13,7 +13,7 @@
 <body>
 	<div id="main-wrapper">
 		<!-- 导航 -->
-		<jsp:include page="/WEB-INF/jsp/trainer/navigate.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/jsp/common/navigate.jsp"></jsp:include>
 
 		<div class="template-page-wrapper">
 			<!-- 菜单 -->
