@@ -105,4 +105,12 @@ public interface UserService {
 	 */
 	public User gettraineeByName(String loginname);
 
+	/**
+	 * 找到该学期的所有学员
+	 * 
+	 * @param term_id
+	 * @return
+	 */
+	public List<User> findAllTraineeInTerm(int term_id);
+
 }

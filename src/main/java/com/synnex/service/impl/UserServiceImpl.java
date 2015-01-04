@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
 	public User gettraineeByName(String loginname) {
 		return userDaoImpl.findUserbyName(loginname, 2);
 	}
+
+	@Override
+	public List<User> findAllTraineeInTerm(int term_id) {
+		return userDaoImpl.findAllTraineeInTerm(term_id);
+	}
 }

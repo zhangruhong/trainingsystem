@@ -1,5 +1,7 @@
 package com.synnex.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.model.PageResult;
+import com.synnex.model.User;
 import com.synnex.model.UserCourse;
 import com.synnex.utils.jsonUtil.JsonBean;
 
@@ -17,8 +20,10 @@ public class UserCourseController extends GenericController {
 	@RequestMapping(value = { "/trainer/term/{termid}/courses/{courseid}/attendstatus/show" })
 	public String showAttendStatusByCourse(@PathVariable("termid") int termid, @PathVariable("courseid") int courseid, Model model) {
 		PageResult<UserCourse> ucs = userCourseServiceImpl.getAttendStatusByCourseid(1, 10, courseid);
-		model.addAttribute("usercourses", ucs);
-		return "////xxx";
+		List<User> users = userServiceImpl.findAllTraineeInTerm(termid);
+		model.addAttribute("pageresult", ucs);
+		model.addAttribute("users", users);
+		return "/trainer/usercourse/show";
 	}
 
 	@RequestMapping(value = { "/admin/user/{userid}/attendstatus/show", "/trainee/{userid}/courses/attendstatus/show" })
