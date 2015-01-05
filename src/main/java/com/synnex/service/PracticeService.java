@@ -83,4 +83,12 @@ public interface PracticeService {
 	 * @return
 	 */
 	public List<Practice> findPracticeByLoginname(String loginname);
+
+	/**
+	 * 根据trainee id找practice
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Practice> findPracticeByUser(int traineeId);
 }

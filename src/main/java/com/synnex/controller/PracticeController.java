@@ -94,10 +94,24 @@ public class PracticeController extends GenericController {
 	public JsonBean trainerInputScore(@RequestBody Practice practice) {
 		Practice practiceData = practiceServiceImpl.getPractice(practice.getId());
 		practiceData.setScore(practice.getScore());
+		practiceData.setScoreDescription(practice.getScoreDescription());
 		practiceData.setStatus(2);
 		practiceServiceImpl.updatePractice(practiceData);
 		JsonBean jsonBean = new JsonBean(true, "录入成功", null);
 		return jsonBean;
+	}
+
+	/**
+	 * trainee跳转到查看练习页面
+	 * 
+	 */
+	@RequestMapping("/trainee/practice/show")
+	public String traineeViewPractice(HttpSession session, Model model) {
+		User trainee = (User) session.getAttribute("USER_IN_SESSION");
+		int traineeId = trainee.getId();
+		List<Practice> practices = practiceServiceImpl.findPracticeByUser(traineeId);
+		model.addAttribute("practices", practices);
+		return "/trainee/practice/show";
 	}
 
 	/**

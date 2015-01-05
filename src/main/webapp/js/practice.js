@@ -69,7 +69,6 @@ $(function() {
 	
 	//----------   admin的jsp        ---------------------//
 	$("#sec_btn_admin").on("click", function(){
-		//debugger
 		var name = $("#sec_box_admin").val();
 		if(name != null && name != ""){
 			var mydata = '{"loginname":"' + name + '"}';
@@ -80,19 +79,28 @@ $(function() {
 				dataType : "json",
 				contentType : "application/json; charset=utf8",
 				success : function(data) {
+					//debugger
 					data = data.termmap;
 					if (data.success == true) {
-						if(data.terms == null){
+						if(data.terms.length == 0){
 							$("tbody > tr").remove();
 							$(".input_message").show();
 							$(".input_message span").text(" the name which you input does not exist");
 						} else{
 							var practices = data.terms;
 							var tableHtml = null;
-							$.each(practices, function(i, practice){      
-							      var trHtml = "<tr><td>"+ (i+1) +"</td><td>"+ practice.course.name +"</td><td>"+
-							      practice.score+"</td><td>"+practice.scoreDescription+"</td></tr>";
-							      tableHtml = trHtml + tableHtml;
+							$.each(practices, function(i, practice){
+								var practiceScore = practice.score;
+								if(practice.score==0){
+									practiceScore = "未打分";
+								}
+								var practiceScoreDescription = practice.scoreDescription;
+								if(practice.scoreDescription==null){
+									practiceScoreDescription = "未评价";
+								}
+						        var trHtml = "<tr><td>"+ (i+1) +"</td><td>"+name+"</td><td>"+ practice.course.name +"</td><td>"+
+						        practiceScore+"</td><td>"+practiceScoreDescription+"</td></tr>";
+						        tableHtml = trHtml + tableHtml;
 							});  
 							$(".input_message").hide();
 							$("tbody").html(tableHtml);

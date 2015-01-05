@@ -76,8 +76,11 @@
 													</c:if> 
 													<c:if test="${practice.status == 2}">
 														${practice.score}分
+														<input type="button" name="inputScore" class="btn btn-default" value="修改分数"/>
 													</c:if>
 													<input type="hidden" value="${practice.id}"/>
+													<input type="hidden" value="${practice.score}"/>
+													<input type="hidden" value="${practice.scoreDescription}"/>
 												</td>
 											</tr>
 										</c:forEach>
@@ -109,19 +112,32 @@
 			<div class="modal fade" id="inputScoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 				data-backdrop="false">
 				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">${course.name}-分数录入</h4>
+					<form class="form-horizontal" role="form">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title">${course.name}-input score</h4>
+							</div>
+							<div class="modal-body">
+								<input id="practiceId" type="hidden"/>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">score</label>
+									<div class="col-sm-10">
+	           							<input id="practiceScore" type="text" class="form-control" placeholder="The points system used percentile"/>
+	           						</div>
+	           					</div>
+	           					<div class="form-group">
+									<label class="col-sm-2 control-label">description</label>
+									<div class="col-sm-10">
+	           							<textarea id="practiceScoreDescription" class="form-control" rows="3"></textarea>
+	           						</div>
+	           					</div>
+	        				</div>
+	        				<div class="modal-footer">
+								<a id="confirmScore" class="btn btn-primary">Save Record</a>
+							</div>
 						</div>
-						<div class="modal-body">
-							<input id="practiceId" type="hidden"/>
-           					<input id="practiceScore" type="text" class="form-control" placeholder="100分为满分">
-        				</div>
-        				<div class="modal-footer">
-							<a id="confirmScore" class="btn btn-primary">录入分数</a>
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 
@@ -131,12 +147,8 @@
 		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<!-- 配置文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
-		<!-- 编辑器源码文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.js"></script>
-		<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-		<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<script src="${pageContext.request.contextPath}/js/viewPractice.js"></script>
 	</div>

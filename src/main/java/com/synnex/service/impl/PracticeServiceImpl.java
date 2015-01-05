@@ -87,4 +87,10 @@ public class PracticeServiceImpl implements PracticeService {
 		List<Practice> practices = practiceDao.findPracticeByLoginname(loginname);
 		return practices;
 	}
+
+	@Override
+	public List<Practice> findPracticeByUser(int traineeId) {
+		List<Practice> practices = practiceDao.findPracticeByUser(traineeId);
+		return practices;
+	}
 }

@@ -17,11 +17,19 @@ $(function() {
 	});
 	$("input[name='inputScore']").on("click", function(){
 		var practiceId=$(this).next().val();
+		var practiceScore=$(this).next().next().val();
+		var practiceSD=$(this).next().next().next().val();
 		$("#practiceId").val(practiceId);
+		if(practiceScore!=null){
+			$("#practiceScore").val(practiceScore)
+		}
+		if(practiceSD!=null){
+			$("#practiceScoreDescription").val(practiceSD)
+		}
 		$('#inputScoreModal').modal('show');
 	});
 	$("#confirmScore").on("click", function(){
-		var mydata = '{"id":"' + $("#practiceId").val() + '","score":"' + $("#practiceScore").val() + '"}';
+		var mydata = '{"id":"' + $("#practiceId").val() + '","score":"' + $("#practiceScore").val() + '","scoreDescription":"' + $("#practiceScoreDescription").val() + '"}';
 		$.ajax({
 			type : "POST",
 			url : "inputScore",

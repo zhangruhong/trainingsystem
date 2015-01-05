@@ -26,19 +26,12 @@
 				<div class="templatemo-content">
 					<!--导航-->
 					<ol class="breadcrumb">
-						<li><a href="index.html">Admin Panel</a></li>
+						<li><a href="index.html">Trainee Panel</a></li>
 						<li class="active">View Practice Score</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="btn-group pull-right"	>
-								<form class="navbar-form">
-									<input type="text" class="form-control" id="sec_box_admin" placeholder="Search...by name"/>
-									<input type="button" value="search" id="sec_btn_admin" class="btn btn-default" />
-								</form>
-							</div>
-
 							<div class="table-responsive">
 								<h3 class="margin-bottom-15">view trainee practice</h3>
 								<table class="table table-striped table-hover table-bordered">
@@ -52,12 +45,23 @@
 										</tr>
 									</thead>
 									<tbody>
-										
+										<c:forEach items="${practices}" var="practice" varStatus="status">
+											<tr>
+												<td>${status.count}</td>
+												<td>${practice.user.loginname}</td>
+												<td>${practice.course.name}</td>
+												<td>
+													<c:if test="${practice.score==0}">未打分</c:if>
+													<c:if test="${practice.score!=0}">${practice.score}</c:if>
+												</td>
+												<td>
+													<c:if test="${practice.scoreDescription==null}">未评价</c:if>
+													<c:if test="${practice.scoreDescription!=null}">${practice.score}</c:if>
+												</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
-								<div class="input_message">
-									<span style="color: red">please input search condition</span>
-								</div>
 							</div>
 							<ul class="pagination pull-right">
 								<li class="disabled"><a href="#">&laquo;</a></li>

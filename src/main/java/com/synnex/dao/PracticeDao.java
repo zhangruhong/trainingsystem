@@ -30,4 +30,12 @@ public interface PracticeDao extends GenericDao<Practice, Integer> {
 	 * @return
 	 */
 	List<Practice> findPracticeByLoginname(String loginname);
+
+	/**
+	 * 根据traineeId找practice集合
+	 * 
+	 * @param traineeId
+	 * @return
+	 */
+	List<Practice> findPracticeByUser(int traineeId);
 }

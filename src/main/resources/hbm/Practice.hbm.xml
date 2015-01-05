@@ -18,9 +18,9 @@
 		<property name="content"/>
 		<property name="attachment"/>
 		<!-- 多对一 -->
-		<many-to-one name="user" column="user_id">
+		<many-to-one name="user" column="user_id" lazy="false">
 		</many-to-one>
-		<many-to-one name="course" column="course_id">
+		<many-to-one name="course" column="course_id" lazy="false">
 		</many-to-one>
 		
 	</class>
