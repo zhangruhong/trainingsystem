@@ -12,6 +12,10 @@ public class UserCourse implements Serializable {
 	private User user;
 	private Course course;
 
+	public UserCourse() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}

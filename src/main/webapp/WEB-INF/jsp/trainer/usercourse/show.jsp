@@ -27,44 +27,55 @@
 					</ol>
 					<div class="row">
 						<div class="col-md-12">
+							<form action="update" method="post" id="bashupdate">
+								<div class="pull-right" id="templatemo_sort_btn">
+									<input class="btn btn-primary btn-lg" data-toggle="modal" id="savechange" data-target="#myModal" value="保存更改">
+									</button>
+								</div>
 
-							<div class="pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">保存更改</button>
-							</div>
-
-							<div class="table-responsive">
-								<h4 class="margin-bottom-15">出勤管理</h4>
-								<table class="table table-striped table-hover table-bordered ">
-									<div id="actiontip" align="center"></div>
-									<thead>
-										<tr>
-											<th>学员</th>
-											<th>出勤状态</th>
-											<th>备注</th>
-										</tr>
-									</thead>
-									<tbody id="tbodyterms" class="text-left">
-									<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set> 
-										<c:forEach items="${users}" var="item">
+								<div class="table-responsive">
+									<h4 class="margin-bottom-15">出勤管理</h4>
+									<table class="table table-striped table-hover table-bordered ">
+										<div id="actiontip" align="center"></div>
+										<thead>
 											<tr>
-												<td>${item["loginname"]}</td>
-												<%-- <td>${nowDate-item["course"]["endtime"]>0?item[attendCourseStatus]==0?"完成":"缺席":"课程还没有结束"}</td> --%>
-												<td>下拉选项</td>
-												<td>等待添加</td>
+												<th>学员</th>
+												<th>出勤状态</th>
+												<th>备注</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<ul class="pagination pull-right">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<c:forEach begin="1" end="${totolpages}" var="iterm">
-									<li><a href="showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
-								</c:forEach>
-								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
-								<li><a href="showall?page=${totolpages}">&raquo;</a></li>
-							</ul>
+										</thead>
+
+										<tbody id="tbodyterms" class="text-left">
+											<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
+											<c:forEach items="${users}" var="item" varStatus="vs">
+												<tr>
+													<td>${item["loginname"]}<input name="userCourses[${vs.index}].user.loginname" value="${item['loginname']}" type="hidden" /></td>
+													<%-- <td>${nowDate-item["course"]["endtime"]>0?item[attendCourseStatus]==0?"完成":"缺席":"课程还没有结束"}</td> --%>
+													<input name="userCourses[${vs.index}].course.id" value="${courseid}" type="hidden" />
+													<td><select class="form-control" name="userCourses[${vs.index}].attendCourseStatus">
+															<option value="0">正常</option>
+															<option value="1">缺勤</option>
+															<option value="2">请假</option>
+													</select></td>
+													<td><textarea class="form-control " rows="1" name="userCourses[${vs.index}].description"></textarea></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+
+									</table>
+								</div>
+								<ul class="pagination pull-right">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<c:forEach begin="1" end="${totolpages}" var="iterm">
+										<li><a href="showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
+									</c:forEach>
+									<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
+									<li><a href="showall?page=${totolpages}">&raquo;</a></li>
+								</ul>
 						</div>
+
+
+						</form>
 					</div>
 				</div>
 			</div>
@@ -74,14 +85,81 @@
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 	</div>
-	<!-- <script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-	<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		
-   
-    	
+	<script type="text/javascript">
+		/*******************************************************************************************************************************************
+		 * @serializedParams looks like "prop1=value1&prop2=value2". Nested property like 'prop.subprop=value' is also supported
+		 ******************************************************************************************************************************************/
+		function paramString2obj(serializedParams) {
+			var obj = {};
+			function evalThem(str) {
+				var attributeName = str.split("=")[0];
+				var attributeValue = str.split("=")[1];
+				if (!attributeValue) {
+					return;
+				}
+
+				var array = attributeName.split(".");
+				for (var i = 1; i < array.length; i++) {
+					var tmpArray = Array();
+					tmpArray.push("obj");
+					for (var j = 0; j < i; j++) {
+						tmpArray.push(array[j]);
+					}
+					;
+					var evalString = tmpArray.join(".");
+					// alert(evalString);
+					if (!eval(evalString)) {
+						eval(evalString + "={};");
+					}
+				}
+				;
+				eval("obj." + attributeName + "='" + attributeValue + "';");
+
+			}
+			;
+			var properties = serializedParams.split("&");
+			for (var i = 0; i < properties.length; i++) {
+				evalThem(properties[i]);
+			}
+			;
+			return obj;
+		}
+		$.fn.form2json = function() {
+			var serializedParams = this.serialize();
+			var obj = paramString2obj(serializedParams);
+			return JSON.stringify(obj);
+		}
+
+		$(document).ready(function() {
+			$("#savechange").click(function() {
+				//序列化表单元素，返回json数据  
+				 var params = $("#bashupdate").serializeArray(); 
+				 /* var jsonobj = $("#bashupdate").form2json(); */ 
+
+				//也可以把表单之外的元素按照name value的格式存进来  
+				//params.push({name:"hello",value:"man"});  
+				$.ajax({
+					type : "POST",
+					url : "update",
+					dataType : "json",
+					contentType : "application/json; charset=utf8",
+					data : params,
+					success : function(data) {
+						alert("成功");
+					},
+					error : function(e) {
+						alert("出错：" + e);
+					}
+				});
+			});
+		});
 	</script>
+
+
 </body>
 </html>
