@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
 import com.synnex.exception.LogicException;
+import com.synnex.model.Course;
 import com.synnex.model.User;
 import com.synnex.service.UserService;
+import com.synnex.utils.mailUtil.MailSenderInfo;
+import com.synnex.utils.mailUtil.SimpleMailSender;
 import com.synnex.utils.md5Util.Md5Encode;
 
 @Service("userServiceImpl")
@@ -97,5 +100,36 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAllTraineeInTerm(int term_id) {
 		return userDaoImpl.findAllTraineeInTerm(term_id);
+	}
+
+	@Override
+	public void sendPracticeMailToTrainee(Course course) {
+		List<User> users = userDaoImpl.queryUserByCourse(course.getId());
+		for (User user : users) {
+			MailSenderInfo mailInfo = new MailSenderInfo();
+			mailInfo.setMailServerHost("smtp.163.com");
+			mailInfo.setMailServerPort("25");
+			mailInfo.setValidate(true);
+			mailInfo.setUserName("hty181818@163.com");
+			mailInfo.setPassword("wwwcom130");// 您的邮箱密码
+			mailInfo.setFromAddress("hty181818@163.com");
+			mailInfo.setToAddress(user.getEmail());
+			mailInfo.setSubject(course.getName() + "课程作业习题");
+			StringBuilder s = new StringBuilder();
+			s.append("<!DOCTYPE html><html><head><meta charset='utf-8'>");
+			s.append("<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->");
+			s.append("<title>Training System</title><meta name='keywords' content='' />");
+			s.append("<meta name='description' content='' /><meta name='viewport' content='width=device-width'>");
+			s.append("</head><body>");
+			s.append("Hi ").append(user.getLoginname()).append(",<br/>");
+			s.append("&nbsp;&nbsp;Your trainer ").append(course.getTrainer().getLoginname()).append(" have assigned you some exercises about ");
+			s.append(course.getName()).append(",please finish it as soon as possible.").append("<br/>");
+			s.append("Thanks,<br/>Training System Admin");
+			s.append("</body></html>");
+			mailInfo.setContent(s.toString());
+			// 这个类主要来发送邮件
+			SimpleMailSender sms = new SimpleMailSender();
+			sms.sendHtmlMail(mailInfo);
+		}
 	}
 }

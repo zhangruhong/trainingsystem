@@ -70,7 +70,9 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Course getCourse(Integer id) {
-		return courseDaoImpl.get(id);
+		Course course = courseDaoImpl.get(id);
+		course.getTrainer().getLoginname();
+		return course;
 	}
 
 	@Override

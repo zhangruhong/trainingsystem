@@ -3,6 +3,7 @@ package com.synnex.service;
 import java.util.List;
 
 import com.synnex.dao.Order;
+import com.synnex.model.Course;
 import com.synnex.model.User;
 
 public interface UserService {
@@ -113,4 +114,10 @@ public interface UserService {
 	 */
 	public List<User> findAllTraineeInTerm(int term_id);
 
+	/**
+	 * 给这个课程下的所有学生发邮件
+	 * 
+	 * @param courseId
+	 */
+	public void sendPracticeMailToTrainee(Course course);
 }

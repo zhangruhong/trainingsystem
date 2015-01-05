@@ -91,4 +91,11 @@ public interface PracticeService {
 	 * @return
 	 */
 	public List<Practice> findPracticeByUser(int traineeId);
+
+	/**
+	 * 根据practice给trainer发送作业完成的邮件
+	 * 
+	 * @param id
+	 */
+	public void sendPracticeMailToTrainer(int practiceId);
 }

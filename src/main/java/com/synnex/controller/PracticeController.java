@@ -52,6 +52,7 @@ public class PracticeController extends GenericController {
 		}
 		courseDate.setPractise(course.getPractise());
 		courseServiceImpl.updateCourse(courseDate);
+		userServiceImpl.sendPracticeMailToTrainee(courseDate);
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}
@@ -143,6 +144,7 @@ public class PracticeController extends GenericController {
 		practiceDate.setContent(practice.getContent());
 		practiceDate.setStatus(1);
 		practiceServiceImpl.updatePractice(practiceDate);
+		practiceServiceImpl.sendPracticeMailToTrainer(practiceDate.getId());
 		JsonBean jsonBean = new JsonBean(true, "上传成功", null);
 		return jsonBean;
 	}
