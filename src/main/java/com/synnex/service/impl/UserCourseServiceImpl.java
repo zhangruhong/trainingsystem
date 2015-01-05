@@ -1,5 +1,7 @@
 package com.synnex.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -39,6 +41,19 @@ public class UserCourseServiceImpl implements UserCourseService {
 	@Override
 	public PageResult<UserCourse> getAttendStatusByCourseid(int begin, int size, int course_id) {
 		return userCourseDaoImpl.getUserCoursesByCourseid(begin, size, course_id);
+	}
+
+	@Override
+	public void addAttendStatuss(List<UserCourse> usercourses, int courseid) {
+		for (UserCourse userCourse : usercourses) {
+			int id = userCourse.getUser().getId();
+			User user = userDaoImpl.get(id);
+			Course course = courseDaoImpl.get(courseid);
+			userCourse.setUser(user);
+			userCourse.setCourse(course);
+			//TODO 应该先查一下有没有 没有再执行
+			userCourseDaoImpl.getSession().saveOrUpdate(userCourse);
+		}
 	}
 
 }

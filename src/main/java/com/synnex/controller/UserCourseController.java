@@ -37,15 +37,13 @@ public class UserCourseController extends GenericController {
 	}
 
 	@RequestMapping(value = { "/trainer/term/{termid}/courses/{courseid}/attendstatus/update" })
-	@ResponseBody
-	public JsonBean addAttendStatus(@RequestBody UserCourseList usercourses, @PathVariable("courseid") int courseid) {
+	public String addAttendStatus(UserCourseList usercourses, @PathVariable("courseid") int courseid,@PathVariable("termid") int termid) {
 		// 谁、出勤状态、备注
-		List<UserCourse> usercoursess = new ArrayList<UserCourse>();
-		for (UserCourse userCourse2 : usercoursess) {
-			System.out.println(userCourse2.toString());
+		List<UserCourse> ucs=usercourses.getUserCourses();
+		if (null==ucs) {
+			return "redirect:/trainer/term/"+termid+"/courses/"+courseid+"/attendstatus/show";
 		}
-		// userCourseServiceImpl.addAttendStatus(userCourse, courseid);
-		// JsonBean jsonBean = new JsonBean(true, "标注成功", null);
-		return null;
+		userCourseServiceImpl.addAttendStatuss(ucs, courseid);	
+		return "redirect:/trainer/term/"+termid+"/courses/"+courseid+"/attendstatus/show";
 	}
 }
