@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.synnex.dao.Order;
 import com.synnex.exception.UserException;
+import com.synnex.model.PageResult;
 import com.synnex.model.Usergroup;
 
 public interface UserGroupService {
@@ -71,4 +72,13 @@ public interface UserGroupService {
 	 * @throws UserException
 	 */
 	public void deleteUserFromGroup(int userid, int usergroupid) throws UserException;
+
+	/**
+	 * 查询userGroup带分页
+	 * 
+	 * @param begin
+	 * @param size
+	 * @return
+	 */
+	public PageResult<Usergroup> listUserGroupPage(int begin, int size, int termid);
 }

@@ -2,6 +2,7 @@ package com.synnex.dao;
 
 import java.util.List;
 
+import com.synnex.model.PageResult;
 import com.synnex.model.User;
 
 public interface UserDao extends GenericDao<User, Integer> {
@@ -25,7 +26,6 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 */
 	public List<User> queryUserByCourse(Integer courseId);
 
-
 	/**
 	 * 根据名字找全匹配的User
 	 * 
@@ -41,5 +41,13 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 */
 	public List<User> findAllUsers();
 
+	/**
+	 * 查询user带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @return
+	 */
+	public PageResult<User> listUserPage(Integer page, int pagesize);
 
 }

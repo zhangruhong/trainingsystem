@@ -12,6 +12,7 @@ import com.synnex.dao.TermDao;
 import com.synnex.dao.UserDao;
 import com.synnex.dao.UserGroupDao;
 import com.synnex.exception.UserException;
+import com.synnex.model.PageResult;
 import com.synnex.model.Term;
 import com.synnex.model.User;
 import com.synnex.model.Usergroup;
@@ -91,5 +92,15 @@ public class UserGroupServiceImpl implements UserGroupService {
 		usergroups.remove(userGroupDaoImpl.get(usergroupid));
 		user.setUsergroups(usergroups);
 		userDaoImpl.update(user);
+	}
+
+	@Override
+	public PageResult<Usergroup> listUserGroupPage(int begin, int size, int termid) {
+		PageResult<Usergroup> pageResult = userGroupDaoImpl.listUserGroupPage(begin, size, termid);
+		List<Usergroup> Usergroups = pageResult.getRows();
+		for (Usergroup usergroup : Usergroups) {
+			usergroup.getTerm().getName();
+		}
+		return pageResult;
 	}
 }

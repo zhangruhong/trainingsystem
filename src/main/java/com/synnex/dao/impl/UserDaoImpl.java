@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
+import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.utils.md5Util.Md5Encode;
 
@@ -75,5 +76,11 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		return users;
 	}
 
+	@Override
+	public PageResult<User> listUserPage(Integer page, int pagesize) {
+		String hql = "from User u where u.role != 0 ";
+		PageResult<User> pageResult = super.listPageResult(page, pagesize, hql);
+		return pageResult;
+	}
 
 }

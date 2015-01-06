@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
+import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
 import com.synnex.utils.md5Util.Md5Encode;
+import com.synnex.utils.variable.SystemVariable;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -56,14 +59,12 @@ public class UserController extends GenericController {
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String showUsers(Model model) {
-		User user = new User();
-		user.setRole(1);
-		Order o1 = Order.desc("id");
-		List<Order> orders = new ArrayList<Order>();
-		orders.add(o1);
-		List<User> users = userServiceImpl.getAllUsers();
-		model.addAttribute("users", users);
+	public String showUsers(@RequestParam(value = "page", required = false) Integer page, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<User> pageResult = userServiceImpl.listUserPage(page, SystemVariable.PageSize);
+		model.addAttribute("pageResult", pageResult);
 		return "/admin/user/show";
 	}
 

@@ -58,8 +58,8 @@ public class TermController extends GenericController {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<Term> listPageResult = termServiceImpl.listPageResult(page, SystemVariable.PageSize);
-		model.addAttribute("pageResult", listPageResult);
+		PageResult<Term> pageResult = termServiceImpl.listPageResult(page, SystemVariable.PageSize);
+		model.addAttribute("pageResult", pageResult);
 		return "/admin/term/showall";
 	}
 

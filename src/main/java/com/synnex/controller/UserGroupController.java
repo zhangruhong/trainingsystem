@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
 import com.synnex.exception.UserException;
+import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.model.Usergroup;
 import com.synnex.utils.jsonUtil.JsonBean;
+import com.synnex.utils.variable.SystemVariable;
 
 @Controller
 @RequestMapping(value = { "/admin/term" })
@@ -70,14 +72,11 @@ public class UserGroupController extends GenericController {
 	// TODO 这里的关联关系没有建立起 不同学期分组无效
 	@RequestMapping(value = { "/{termid}/usergroup/show" }, method = { RequestMethod.GET })
 	public String showAllUsergroup(@RequestParam(value = "page", required = false) Integer page, @PathVariable String termid, Model model) {
-		int size = 10;
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		int count = userGroupServiceImpl.getCount();
-		List<Usergroup> usergroups = userGroupServiceImpl.getAllGroups(Integer.valueOf(termid), null, size * (page - 1), size);
-		model.addAttribute("usergroups", usergroups);
-		model.addAttribute("totolpages", count / 10 + 1);
+		PageResult<Usergroup> pageResult = userGroupServiceImpl.listUserGroupPage(page, SystemVariable.PageSize, Integer.parseInt(termid));
+		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("termid", termid);
 		return "/admin/usergroup/show";
 	}

@@ -10,6 +10,7 @@ import com.synnex.dao.Order;
 import com.synnex.dao.UserDao;
 import com.synnex.exception.LogicException;
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.service.UserService;
 import com.synnex.utils.mailUtil.MailSenderInfo;
@@ -131,5 +132,11 @@ public class UserServiceImpl implements UserService {
 			SimpleMailSender sms = new SimpleMailSender();
 			sms.sendHtmlMail(mailInfo);
 		}
+	}
+
+	@Override
+	public PageResult<User> listUserPage(Integer page, int pagesize) {
+		PageResult<User> pageResult = userDaoImpl.listUserPage(page, pagesize);
+		return pageResult;
 	}
 }

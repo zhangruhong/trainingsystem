@@ -120,4 +120,13 @@ public interface UserService {
 	 * @param courseId
 	 */
 	public void sendPracticeMailToTrainee(Course course);
+
+	/**
+	 * 查询user带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @return
+	 */
+	public com.synnex.model.PageResult<User> listUserPage(Integer page, int pagesize);
 }
