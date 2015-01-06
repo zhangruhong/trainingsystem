@@ -13,6 +13,7 @@ import com.synnex.dao.TermDao;
 import com.synnex.dao.UserCourseDao;
 import com.synnex.dao.UserDao;
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 import com.synnex.model.Term;
 import com.synnex.model.UserCourse;
 import com.synnex.service.CourseService;
@@ -99,6 +100,16 @@ public class CourseServiceImpl implements CourseService {
 	public List<Course> listCourseByTrainee(int traineeId) {
 		List<Course> courses = courseDaoImpl.listCourseByTrainee(traineeId);
 		return courses;
+	}
+
+	@Override
+	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid) {
+		PageResult<Course> pageResult = courseDaoImpl.ListCoursePageByTerm(begin, size, termid);
+		List<Course> courses = pageResult.getRows();
+		for (Course course : courses) {
+			course.getTerm().getName();
+		}
+		return pageResult;
 	}
 
 }

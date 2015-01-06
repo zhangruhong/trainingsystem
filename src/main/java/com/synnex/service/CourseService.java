@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.synnex.dao.Order;
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 
 public interface CourseService {
 
@@ -88,5 +89,13 @@ public interface CourseService {
 	 * @return
 	 */
 	public List<Course> listCourseByTrainee(int traineeId);
+
+	/**
+	 * 通过term找course带分页
+	 * 
+	 * @param termid
+	 * @return
+	 */
+	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid);
 
 }

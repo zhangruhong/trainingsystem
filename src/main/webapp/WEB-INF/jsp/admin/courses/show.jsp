@@ -56,7 +56,7 @@
 										</tr>
 									</thead>
 									<tbody id="tbodyterms" class="text-left">
-										<c:forEach items="${terms}" var="item">
+										<c:forEach items="${pageResult.rows}" var="item">
 											<tr>
 												<td>${item["dictionary"]["name"]}</td>
 												<td>${item["name"]}</td>
@@ -89,14 +89,38 @@
 									</tbody>
 								</table>
 							</div>
-							<ul class="pagination pull-right">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<c:forEach begin="1" end="${totolpages}" var="iterm">
-									<li><a href="showall?page=${iterm}">${iterm}<span class="sr-only">(current)</span></a></li>
-								</c:forEach>
-								<!-- <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li> -->
-								<li><a href="showall?page=${totolpages}">&raquo;</a></li>
-							</ul>
+							<!-- page begin  -->
+							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<div style="float: right">
+								<ul class="pagination">
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="showall?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">Previous</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="showall?page=${pageResult.currentPage-1}">Previous</a></li>
+									</c:if>
+									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="showall?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="showall?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+								</ul>
+							</div>
+							<!-- page end  -->
 						</div>
 					</div>
 				</div>

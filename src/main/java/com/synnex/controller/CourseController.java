@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.synnex.dao.Order;
 import com.synnex.model.Course;
 import com.synnex.model.Dictionary;
+import com.synnex.model.PageResult;
 import com.synnex.model.Term;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
+import com.synnex.utils.variable.SystemVariable;
 
 @Controller
 public class CourseController extends GenericController {
@@ -49,10 +51,13 @@ public class CourseController extends GenericController {
 	}
 
 	@RequestMapping(value = "/admin/term/{termid}/courses/showall")
-	public String showCourseByTerm(@PathVariable int termid, Model model) {
-		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
+	public String showCourseByTerm(@PathVariable int termid, @RequestParam(value = "page", required = false) Integer page, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Course> pageResult = courseServiceImpl.ListCoursePageByTerm(page, SystemVariable.PageSize, termid);
 		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
-		model.addAttribute("terms", courses);
+		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("dictionaries", dictionaries);
 		return "/admin/courses/show";
 	}

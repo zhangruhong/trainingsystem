@@ -3,6 +3,7 @@ package com.synnex.dao;
 import java.util.List;
 
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 
 public interface CourseDao extends GenericDao<Course, Integer> {
 
@@ -29,5 +30,13 @@ public interface CourseDao extends GenericDao<Course, Integer> {
 	 * @return
 	 */
 	List<Course> listCourseByTrainee(int traineeId);
+
+	/**
+	 * 通过term找course带分页
+	 * 
+	 * @param termid
+	 * @return
+	 */
+	PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid);
 
 }

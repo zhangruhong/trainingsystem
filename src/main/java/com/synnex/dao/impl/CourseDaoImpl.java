@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.CourseDao;
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 
 @Repository
 public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements CourseDao {
@@ -36,6 +37,13 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements Co
 			course.getDictionary().getName();
 		}
 		return courses;
+	}
+
+	@Override
+	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid) {
+		String hql = "select c from Course c where c.term.id = ?";
+		PageResult<Course> pageResult = super.listPageResult(begin, size, hql, termid);
+		return pageResult;
 	}
 
 }

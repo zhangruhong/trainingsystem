@@ -19,6 +19,7 @@ import com.synnex.model.PageResult;
 import com.synnex.model.Term;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
+import com.synnex.utils.variable.SystemVariable;
 
 @Controller
 public class TermController extends GenericController {
@@ -54,18 +55,11 @@ public class TermController extends GenericController {
 
 	@RequestMapping(value = { "/admin/term/showall" }, method = { RequestMethod.GET })
 	public String showPagerTerm(@RequestParam(value = "page", required = false) Integer page, Model model) {
-		int size = 1;
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		// List<Term> terms = termServiceImpl.getAllTerms(null, null, size * (page - 1), size);
-		// int count = termServiceImpl.getCount();
-		// model.addAttribute("terms", terms);
-		// model.addAttribute("totolpages", count / 10 + 1);
-		PageResult<Term> listPageResult = termServiceImpl.listPageResult(page, size);
-		List<Term> terms = listPageResult.getRows();
-		model.addAttribute("terms", terms);
-		model.addAttribute("totolpages", listPageResult.getTotalPages());
+		PageResult<Term> listPageResult = termServiceImpl.listPageResult(page, SystemVariable.PageSize);
+		model.addAttribute("pageResult", listPageResult);
 		return "/admin/term/showall";
 	}
 
