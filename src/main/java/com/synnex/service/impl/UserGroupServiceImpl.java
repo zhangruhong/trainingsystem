@@ -67,20 +67,16 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 	@Override
 	public void addUserToGroup(String loginname, int usergroupid) throws UserException {
-		User user = new User();
-		user.setLoginname(loginname);
-		user.setRole(1);
-		List<User> users = userDaoImpl.list(user, null, 0, 1);
-		if (null == users || users.isEmpty()) {
+		User user = userDaoImpl.findUserbyName(loginname, 2);// list(user, null, 0, 1);
+		if (null == user) {
 			throw new UserException("用户名不存在");
 		}
-		User u = users.get(0);
 		Usergroup usergroup = getGroup(usergroupid);
 		// 将需要添加的user添加到usergroup
 		Set<User> groupusers = usergroup.getUsers();
-		groupusers.add(u);
+		groupusers.add(user);
 		usergroup.setUsers(groupusers);
-		userDaoImpl.update(u);
+		userDaoImpl.update(user);
 	}
 
 	@Override

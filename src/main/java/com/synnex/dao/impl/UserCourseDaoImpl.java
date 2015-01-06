@@ -1,5 +1,7 @@
 package com.synnex.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.UserCourseDao;
@@ -22,4 +24,12 @@ public class UserCourseDaoImpl extends GenericDaoImpl<UserCourse, Integer> imple
 		PageResult<UserCourse> ucs = listPageResult(begin, size, hql, user_id);
 		return ucs;
 	}
+
+	@Override
+	public List<UserCourse> checkExist(int userid, int courseid) {
+		String hql = "from UserCourse uc where uc.user.id=? and uc.course.id=?";
+		List<UserCourse> userCourses = findByHql(hql, userid, courseid);
+		return userCourses;
+	}
+
 }

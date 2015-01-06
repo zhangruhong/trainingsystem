@@ -35,7 +35,11 @@ public class UserCourseServiceImpl implements UserCourseService {
 
 	@Override
 	public PageResult<UserCourse> getAttendStatusByUser(int begin, int size, int user_id) {
-		return userCourseDaoImpl.getUserCoursesByUserid(begin, size, user_id);
+		 PageResult<UserCourse> ucs=userCourseDaoImpl.getUserCoursesByUserid(begin, size, user_id);
+		for (UserCourse uc : ucs.getRows()) {
+			uc.getCourse().getName();
+		}
+		return ucs;
 	}
 
 	@Override
@@ -46,13 +50,23 @@ public class UserCourseServiceImpl implements UserCourseService {
 	@Override
 	public void addAttendStatuss(List<UserCourse> usercourses, int courseid) {
 		for (UserCourse userCourse : usercourses) {
-			int id = userCourse.getUser().getId();
-			User user = userDaoImpl.get(id);
-			Course course = courseDaoImpl.get(courseid);
-			userCourse.setUser(user);
-			userCourse.setCourse(course);
-			//TODO 应该先查一下有没有 没有再执行
-			userCourseDaoImpl.getSession().saveOrUpdate(userCourse);
+			int userid = userCourse.getUser().getId();
+			List<UserCourse> existlist = userCourseDaoImpl.checkExist(courseid, userid);
+			// 没有获取到即不存在
+			if (null == existlist || existlist.size() == 0) {
+				User user = userDaoImpl.get(userid);
+				Course course = courseDaoImpl.get(courseid);
+				userCourse.setUser(user);
+				userCourse.setCourse(course);
+				userCourseDaoImpl.save(userCourse);
+			} else {
+				// 存在就更新
+				UserCourse updatebean = existlist.get(0);
+				updatebean.setAttendCourseStatus(userCourse.getAttendCourseStatus());
+				updatebean.setDescription(userCourse.getDescription());
+				userCourseDaoImpl.update(updatebean);
+			}
+
 		}
 	}
 

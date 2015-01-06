@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findAllTraineeInTerm(int term_id) {
-		return userDaoImpl.findAllTraineeInTerm(term_id);
+	public List<User> findAllTraineeInTerm(int course_id) {
+		return userDaoImpl.queryUserByCourse(course_id);
 	}
 
 	@Override

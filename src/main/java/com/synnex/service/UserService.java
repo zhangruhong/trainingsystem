@@ -112,7 +112,7 @@ public interface UserService {
 	 * @param term_id
 	 * @return
 	 */
-	public List<User> findAllTraineeInTerm(int term_id);
+	public List<User> findAllTraineeInTerm(int course_id);
 
 	/**
 	 * 给这个课程下的所有学生发邮件

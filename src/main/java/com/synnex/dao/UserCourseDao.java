@@ -1,5 +1,7 @@
 package com.synnex.dao;
 
+import java.util.List;
+
 import com.synnex.model.PageResult;
 import com.synnex.model.UserCourse;
 
@@ -23,4 +25,13 @@ public interface UserCourseDao extends GenericDao<UserCourse, Integer> {
 	 * @return
 	 */
 	public PageResult<UserCourse> getUserCoursesByUserid(int begin, int size, int user_id);
+
+	/**
+	 * 根据courseid 和 userid查询该出勤记录是否存在
+	 * 
+	 * @param courseid
+	 * @param userid
+	 * @return
+	 */
+	public List<UserCourse> checkExist(int courseid, int userid);
 }

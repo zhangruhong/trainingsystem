@@ -56,18 +56,19 @@
 										</tr>
 									</thead>
 									<tbody id="tbodyterms" class="text-left">
-										<c:forEach items="${terms}" var="term">
+										<c:forEach items="${terms}" var="item">
 											<tr>
-												<td>${term["dictionary"]["name"]}</td>
-												<td>${term["name"]}</td>
-												<td>${term["content"]}</td>
-												<td>${term["trainer"]["loginname"]}</td>
-												<td>${term["starttime"]}<br />~${term["endtime"]}
+												<td>${item["dictionary"]["name"]}</td>
+												<td>${item["name"]}</td>
+												<td>${item["content"]}</td>
+												<td>${item["trainer"]["loginname"]}</td>
+												<td>${item["starttime"]}<br />~${item["endtime"]}
 												</td>
-												<td>${term["location"]}</td>
+												<td>${item["location"]}</td>
 												<td>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">编辑</button>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">删除</button>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${item['id']})">编辑</button>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">删除</button>
+													<a class="btn btn-primary btn-default" href="${pageContext.request.contextPath}/trainer/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">进度</a>
 												</td>
 												<td>
 													<!-- Split button -->
@@ -79,7 +80,7 @@
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#">Bootstrap</a></li>
 															<li><a href="#">Font Awesome</a></li>
-															<li><a href="${pageContext.request.contextPath}/trainer/practice/input?id=${term['id']}">管理练习</a></li>
+															<li><a href="${pageContext.request.contextPath}/trainer/practice/input?id=${item['id']}">管理练习</a></li>
 														</ul>
 													</div>
 												</td>
@@ -297,10 +298,10 @@
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 	</div>
-	<!-- <script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-	<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	 <script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 	<script src="${pageContext.request.contextPath}/js/course.js"></script>
 	<script src="${pageContext.request.contextPath}/timepicker/jquery.datetimepicker.js"></script>

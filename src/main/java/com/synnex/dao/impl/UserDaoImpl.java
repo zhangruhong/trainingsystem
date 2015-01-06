@@ -75,9 +75,5 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		return users;
 	}
 
-	@Override
-	public List<User> findAllTraineeInTerm(int term_id) {
-		return this.findByHql("select u from User u,Term t left join t.usergroups tugs where t.id=? and u in tugs", term_id);
-	}
 
 }

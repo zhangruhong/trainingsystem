@@ -57,13 +57,13 @@
 													<input name="userCourses[${vs.index}].course.id"
 														value="${courseid}" type="hidden" />
 													<td><select class="form-control"
-														name="userCourses[${vs.index}].attendCourseStatus">
-															<option value="0">正常</option>
-															<option value="1">缺勤</option>
-															<option value="2">请假</option>
+														name="userCourses[${vs.index}].attendCourseStatus" >
+															<option value="0" ${usercoursemap[item['id']]['attendCourseStatus']==0?'selected':''}>正常</option>
+															<option value="1" ${usercoursemap[item['id']]['attendCourseStatus']==1?'selected':''}>缺勤</option>
+															<option value="2" ${usercoursemap[item['id']]['attendCourseStatus']==2?'selected':''}>请假</option>
 													</select></td>
 													<td><textarea class="form-control " rows="1"
-															name="userCourses[${vs.index}].description"></textarea></td>
+															name="userCourses[${vs.index}].description" >${usercoursemap[item['id']]['description']}</textarea></td>
 												</tr>
 											</c:forEach>
 										</tbody>
