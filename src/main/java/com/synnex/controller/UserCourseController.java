@@ -34,6 +34,19 @@ public class UserCourseController extends GenericController {
 		return "/trainer/usercourse/show";
 	}
 
+	@RequestMapping(value = { "/admin/term/{termid}/courses/{courseid}/attendstatus/show" })
+	public String showAttendStatusByCourseForAdmin(@PathVariable("termid") int termid, @PathVariable("courseid") int courseid, Model model) {
+		PageResult<UserCourse> ucs = userCourseServiceImpl.getAttendStatusByCourseid(1, 10, courseid);
+		Map<String, UserCourse> usercoursemap = new TreeMap<String, UserCourse>();
+		for (UserCourse usercourse : ucs.getRows()) {
+			usercoursemap.put(usercourse.getUser().getLoginname(), usercourse);
+		}
+
+		model.addAttribute("courseid", courseid);
+		model.addAttribute("usercoursemap", usercoursemap);
+		return "/admin/usercourse/listuserbycourse";
+	}
+
 	@RequestMapping(value = { "/admin/term/{termid}/user/{userid}/courses/attendstatus/show",
 			"/term/{termid}/trainee/{userid}/courses/attendstatus/show" })
 	public String showAttendStatusByUser(@PathVariable("userid") int userid, @PathVariable("termid") int termid, Model model) {
@@ -44,7 +57,7 @@ public class UserCourseController extends GenericController {
 			listCourseofuser.put(userCourse.getCourse().getName(), userCourse);
 		}
 		model.addAttribute("listCourseofuser", listCourseofuser);
-		return "/admin/usercourse/show";
+		return "/admin/usercourse/listcoursebyuser";
 	}
 
 	@RequestMapping(value = { "/trainer/term/{termid}/courses/{courseid}/attendstatus/update" })

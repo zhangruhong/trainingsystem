@@ -21,19 +21,6 @@ public interface GenericDao<T, PK> {
 	 */
 	T get(PK id);
 
-	/**
-	 * @tags List the limit object by condition, orders, begin, size.
-	 * @param condition
-	 *            The condition
-	 * @param orders
-	 *            The order by
-	 * @param begin
-	 *            The begin
-	 * @param size
-	 *            The max query size
-	 * @return Return List
-	 */
-	public List<T> list(Object condition, List<Order> orders, int begin, int size);
 
 	/**
 	 * @tags Save entity to DB.
@@ -70,12 +57,6 @@ public interface GenericDao<T, PK> {
 	 */
 	public List<T> findByHql(String hql, Object... objects);
 
-	/**
-	 * 获取总记录数
-	 * 
-	 * @return
-	 */
-	public int getTotolCount();
 
 	/**
 	 * 分页列表

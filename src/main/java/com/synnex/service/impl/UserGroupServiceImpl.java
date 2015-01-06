@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
 import com.synnex.dao.UserDao;
 import com.synnex.dao.UserGroupDao;
@@ -48,22 +47,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 		return userGroupDaoImpl.get(groupid);
 	}
 
-	@Override
-	public List<Usergroup> getAllGroups(int termid, List<Order> orders, int begin, int size) {
-		Usergroup usergroup = new Usergroup();
-		usergroup.setTerm(termDaoImpl.get(termid));
-		List<Usergroup> usergroups = userGroupDaoImpl.list(usergroup, orders, begin, size);
-		return usergroups;
-	}
 
 	@Override
 	public void updateGroup(Usergroup ug) {
 		userGroupDaoImpl.update(ug);
-	}
-
-	@Override
-	public int getCount() {
-		return userGroupDaoImpl.getTotolCount();
 	}
 
 	@Override

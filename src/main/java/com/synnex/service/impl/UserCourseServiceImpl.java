@@ -35,7 +35,7 @@ public class UserCourseServiceImpl implements UserCourseService {
 
 	@Override
 	public PageResult<UserCourse> getAttendStatusByUser(int begin, int size, int user_id) {
-		 PageResult<UserCourse> ucs=userCourseDaoImpl.getUserCoursesByUserid(begin, size, user_id);
+		PageResult<UserCourse> ucs = userCourseDaoImpl.getUserCoursesByUserid(begin, size, user_id);
 		for (UserCourse uc : ucs.getRows()) {
 			uc.getCourse().getName();
 		}
@@ -44,7 +44,11 @@ public class UserCourseServiceImpl implements UserCourseService {
 
 	@Override
 	public PageResult<UserCourse> getAttendStatusByCourseid(int begin, int size, int course_id) {
-		return userCourseDaoImpl.getUserCoursesByCourseid(begin, size, course_id);
+		PageResult<UserCourse> ucs = userCourseDaoImpl.getUserCoursesByCourseid(begin, size, course_id);
+		for (UserCourse uc : ucs.getRows()) {
+			uc.getUser().getLoginname();
+		}
+		return ucs;
 	}
 
 	@Override

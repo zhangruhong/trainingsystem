@@ -4,18 +4,15 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.GenericDao;
-import com.synnex.dao.Order;
 import com.synnex.model.PageResult;
 
 @Repository
@@ -48,29 +45,6 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		return (T) this.getSession().get(getClz(), (Serializable) id);
 	}
 
-	@Override
-	public List<T> list(Object condition, List<Order> orders, int begin, int size) {
-		Criteria criteria = this.getSession().createCriteria(getClz());
-		if (condition != null) {
-			// criteria.add(Example.create(condition).excludeZeroes());
-			criteria.add(Example.create(condition));
-		}
-		if (orders != null) {
-			for (Order order : orders) {
-				if (order.isAsc()) {
-					criteria.addOrder(org.hibernate.criterion.Order.asc(order.getField()));
-				} else {
-					criteria.addOrder(org.hibernate.criterion.Order.desc(order.getField()));
-				}
-			}
-		}
-		if (begin >= 0) {
-			criteria.setFirstResult(begin).setMaxResults(size);
-		}
-		List<T> tlist = criteria.list();
-		logger.info(tlist.toString());
-		return tlist;
-	}
 
 	@Override
 	public void save(T entity) {
@@ -118,11 +92,6 @@ public class GenericDaoImpl<T, PK> implements GenericDao<T, PK> {
 		return query.list();
 	}
 
-	@Override
-	public int getTotolCount() {
-		logger.info("getTotolCount");
-		return list(null, null, -1, 0).size();
-	}
 
 	@Override
 	public PageResult<T> listPageResult(int begin, int size, String hql, Object... objects) {

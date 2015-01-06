@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.synnex.dao.CourseDao;
-import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
 import com.synnex.dao.UserCourseDao;
 import com.synnex.dao.UserDao;
@@ -76,10 +75,6 @@ public class CourseServiceImpl implements CourseService {
 		return course;
 	}
 
-	@Override
-	public List<Course> getCoursesByCondition(Course condition, List<Order> orders, int begin, int size) {
-		return courseDaoImpl.list(condition, orders, begin, size);
-	}
 
 	@Override
 	public List<Course> ListCourseByTerm(int termid) {

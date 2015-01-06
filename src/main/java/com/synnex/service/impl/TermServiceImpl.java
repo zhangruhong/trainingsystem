@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.synnex.dao.Order;
 import com.synnex.dao.TermDao;
 import com.synnex.model.PageResult;
 import com.synnex.model.Term;
@@ -27,16 +26,6 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.get(id);
 	}
 
-	@Override
-	public List<Term> getAllTerms(Object condition, List<Order> orders, int begin, int size) {
-		return termDaoImpl.list(condition, orders, begin, size);
-	}
-
-	@Override
-	public int getCount() {
-
-		return termDaoImpl.getTotolCount();
-	}
 
 	@Override
 	public void update(Term term) {

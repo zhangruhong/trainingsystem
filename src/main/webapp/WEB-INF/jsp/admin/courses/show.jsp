@@ -65,10 +65,10 @@
 												<td>${item["starttime"]}<br />~${item["endtime"]}
 												</td>
 												<td>${item["location"]}</td>
-												<td>
+												<td><a class="btn btn-primary btn-default"
+													href="${pageContext.request.contextPath}/admin/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">进度</a>
 													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${item['id']})">编辑</button>
 													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">删除</button>
-													<a class="btn btn-primary btn-default" href="${pageContext.request.contextPath}/trainer/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">进度</a>
 												</td>
 												<td>
 													<!-- Split button -->
@@ -90,7 +90,7 @@
 								</table>
 							</div>
 							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
 							<div style="float: right">
 								<ul class="pagination">
 									<c:if test="${pageResult.currentPage-1<=0}">
@@ -322,8 +322,8 @@
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 	</div>
-	 <script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>

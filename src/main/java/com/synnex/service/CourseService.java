@@ -2,7 +2,6 @@ package com.synnex.service;
 
 import java.util.List;
 
-import com.synnex.dao.Order;
 import com.synnex.model.Course;
 import com.synnex.model.PageResult;
 
@@ -51,20 +50,6 @@ public interface CourseService {
 	 * @return
 	 */
 	public Course getCourse(Integer id);
-
-	/**
-	 * 
-	 * @param condition
-	 *            查询条件 被赋值的当前类
-	 * @param orders
-	 *            排列方式
-	 * @param begin
-	 *            开始页面
-	 * @param size
-	 *            步长
-	 * @return
-	 */
-	public List<Course> getCoursesByCondition(Course condition, List<Order> orders, int begin, int size);
 
 	/**
 	 * 通过term找course
