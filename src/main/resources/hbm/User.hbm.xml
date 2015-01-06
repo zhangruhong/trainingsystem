@@ -9,7 +9,7 @@
 <hibernate-mapping package="com.synnex.model">
 
 	<class name="User">
-		<id name="id">
+		<id name="id" type="int">
 			<generator class="native"/>
 		</id>
 		<property name="email"/>

@@ -1,5 +1,6 @@
 package com.synnex.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.model.UserCourse;
+import com.synnex.model.UserCourseList;
 import com.synnex.utils.jsonUtil.JsonBean;
 
 @Controller
@@ -19,9 +21,10 @@ public class UserCourseController extends GenericController {
 	// 根据讲师这节课 显示所有学生的出勤状态
 	@RequestMapping(value = { "/trainer/term/{termid}/courses/{courseid}/attendstatus/show" })
 	public String showAttendStatusByCourse(@PathVariable("termid") int termid, @PathVariable("courseid") int courseid, Model model) {
-		PageResult<UserCourse> ucs = userCourseServiceImpl.getAttendStatusByCourseid(1, 10, courseid);
+		// PageResult<UserCourse> ucs = userCourseServiceImpl.getAttendStatusByCourseid(1, 10, courseid);
 		List<User> users = userServiceImpl.findAllTraineeInTerm(termid);
-		model.addAttribute("pageresult", ucs);
+		// model.addAttribute("pageresult", ucs);
+		model.addAttribute("courseid", courseid);
 		model.addAttribute("users", users);
 		return "/trainer/usercourse/show";
 	}
@@ -33,12 +36,14 @@ public class UserCourseController extends GenericController {
 		return "////xxx";
 	}
 
-	@RequestMapping(value = { "/trainer/courses/{courseid}/attendstatus/add" })
-	@ResponseBody
-	public JsonBean addAttendStatus(@RequestBody UserCourse userCourse, @PathVariable("courseid") int courseid) {
+	@RequestMapping(value = { "/trainer/term/{termid}/courses/{courseid}/attendstatus/update" })
+	public String addAttendStatus(UserCourseList usercourses, @PathVariable("courseid") int courseid,@PathVariable("termid") int termid) {
 		// 谁、出勤状态、备注
-		userCourseServiceImpl.addAttendStatus(userCourse, courseid);
-		JsonBean jsonBean = new JsonBean(true, "标注成功", null);
-		return jsonBean;
+		List<UserCourse> ucs=usercourses.getUserCourses();
+		if (null==ucs) {
+			return "redirect:/trainer/term/"+termid+"/courses/"+courseid+"/attendstatus/show";
+		}
+		userCourseServiceImpl.addAttendStatuss(ucs, courseid);	
+		return "redirect:/trainer/term/"+termid+"/courses/"+courseid+"/attendstatus/show";
 	}
 }
