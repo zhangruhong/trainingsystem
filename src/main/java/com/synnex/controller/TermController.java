@@ -38,7 +38,7 @@ public class TermController extends GenericController {
 		Order order = Order.asc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
-		List<Term> terms = termServiceImpl.getAllTerms(null, orders, 0, 8);
+		List<Term> terms = termServiceImpl.listPageResult(0, 8).getRows();
 		// TODO 加入@valid验证 将错误放入json对象返回 前端js显示出来
 		JsonBean jsonBean = new JsonBean(true, "", terms);
 		return jsonBean;

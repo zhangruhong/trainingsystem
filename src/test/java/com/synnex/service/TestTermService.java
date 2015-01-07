@@ -29,9 +29,6 @@ public class TestTermService {
 		System.out.println(t);
 	}
 	
-	@Test
-	public void getallterms(){
-		System.out.println(tsi.getAllTerms(null, null, 0, 10));
-	}
+
 
 }

@@ -1,6 +1,5 @@
 package com.synnex.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.synnex.dao.Order;
 import com.synnex.model.Course;
 import com.synnex.model.Dictionary;
 import com.synnex.model.PageResult;
-import com.synnex.model.Term;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
 import com.synnex.utils.variable.SystemVariable;
@@ -33,20 +30,13 @@ public class CourseController extends GenericController {
 	@ResponseBody
 	@RequestMapping(value = "/admin/term/{termid}/courses/show")
 	public JsonBean showCourseByTermjson(@PathVariable int termid) {
-		Term term = new Term();
-		term.setId(termid);
-		Course course = new Course();
-		course.setTerm(term);
-		Order order1 = Order.asc("id");
-		List<Order> orders = new ArrayList<Order>();
-		orders.add(order1);
-		List<Course> courses = courseServiceImpl.getCoursesByCondition(course, orders, 0, 8);
+		List<Course> courses = courseServiceImpl.ListCoursePageByTerm(0, 8, termid).getRows();
 		JsonBean jsonBean = null;
-		if (null == course || courses.isEmpty()) {
+		if (null == courses || courses.isEmpty()) {
 			jsonBean = new JsonBean(false, "没有数据", null);
 			return jsonBean;
 		}
-		jsonBean = new JsonBean(true, "获取数据成功！", jsonBean);
+		jsonBean = new JsonBean(true, "获取数据成功！", courses);
 		return jsonBean;
 	}
 

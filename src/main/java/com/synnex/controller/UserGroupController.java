@@ -57,7 +57,7 @@ public class UserGroupController extends GenericController {
 		Order order = Order.asc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
-		List<Usergroup> usergroups = userGroupServiceImpl.getAllGroups(termid, orders, 0, 8);
+		List<Usergroup> usergroups = userGroupServiceImpl.listUserGroupPage(0, 8, termid).getRows();
 		jsonBean = new JsonBean(true, "", usergroups);
 		return jsonBean;
 	}
@@ -89,7 +89,7 @@ public class UserGroupController extends GenericController {
 		Order order = Order.asc("id");
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
-		List<Usergroup> terms = userGroupServiceImpl.getAllGroups(termid, orders, 0, 8);
+		List<Usergroup> terms = userGroupServiceImpl.listUserGroupPage(0, 8, termid).getRows();
 		JsonBean jsonBean = new JsonBean(true, "数据删除成功", terms);
 		return jsonBean;
 	}
