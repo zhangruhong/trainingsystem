@@ -20,7 +20,7 @@
 		<div class="template-page-wrapper">
 
 			<!-- 菜单 -->
-			<jsp:include page="/WEB-INF/jsp/admin/menu.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/jsp/trainee/menu.jsp"></jsp:include>
 
 			<div class="templatemo-content-wrapper">
 				<div class="templatemo-content">

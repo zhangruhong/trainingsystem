@@ -17,7 +17,7 @@
 
 		<div class="template-page-wrapper">
 			<!-- 菜单 -->
-			<jsp:include page="/WEB-INF/jsp/trainer/menu.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/jsp/trainee/menu.jsp"></jsp:include>
 			<!--/.navbar-collapse -->
 
 			<div class="templatemo-content-wrapper">
@@ -57,7 +57,7 @@
 								</table>
 							</div>
 							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
 							<div style="float: right">
 								<ul class="pagination">
 									<c:if test="${pageResult.currentPage-1<=0}">
@@ -102,9 +102,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="practiceModalH4"></h4>
 						</div>
-						<div class="modal-body">
-           					
-        				</div>
+						<div class="modal-body"></div>
 					</div>
 				</div>
 			</div>
@@ -121,7 +119,7 @@
 		<script src="${pageContext.request.contextPath}/js/viewPractice.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
-		
+
 	</div>
 </body>
 </html>

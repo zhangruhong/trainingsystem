@@ -17,7 +17,7 @@
 
 		<div class="template-page-wrapper">
 			<!-- 菜单 -->
-			<jsp:include page="/WEB-INF/jsp/trainer/menu.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/jsp/trainee/menu.jsp"></jsp:include>
 			<!--/.navbar-collapse -->
 
 			<div class="templatemo-content-wrapper">
