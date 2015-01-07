@@ -9,7 +9,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatemo_main.css">
-<!-- <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -156,9 +155,12 @@
 			<!-- 页脚 -->
 			<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 		</div>
-		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<script src="${pageContext.request.contextPath}/js/term.js"></script>
+	</div>
+	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/term.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
 </body>
 </html>

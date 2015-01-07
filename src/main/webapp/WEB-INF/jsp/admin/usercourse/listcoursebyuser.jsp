@@ -86,16 +86,15 @@
 			</div>
 
 		</div>
-	</div>
 	<!-- 页脚 -->
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
-	</div>
+</div>
 	<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
-	<script
-		src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-	<script
-		src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
 </body>
 </html>

@@ -214,5 +214,7 @@
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 	<script src="${pageContext.request.contextPath}/js/adminuser.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
 </body>
 </html>

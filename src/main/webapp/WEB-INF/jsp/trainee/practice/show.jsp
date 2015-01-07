@@ -91,5 +91,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 	<script src="${pageContext.request.contextPath}/js/practice.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
 </body>
 </html>

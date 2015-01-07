@@ -56,6 +56,38 @@
 									</tbody>
 								</table>
 							</div>
+							<!-- page begin  -->
+							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<div style="float: right">
+								<ul class="pagination">
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="showall?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">Previous</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="showall?page=${pageResult.currentPage-1}">Previous</a></li>
+									</c:if>
+									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="showall?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="showall?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+								</ul>
+							</div>
+							<!-- page end  -->
 						</div>
 					</div>
 				</div>
@@ -83,14 +115,13 @@
 		<script src="http://libs.useso.com/js/jquery/2.0.3/jquery.min.js"></script>
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
-		<!-- 配置文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
-		<!-- 编辑器源码文件 -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.js"></script>
-		<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-		<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<script src="${pageContext.request.contextPath}/js/viewPractice.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
+		
 	</div>
 </body>
 </html>

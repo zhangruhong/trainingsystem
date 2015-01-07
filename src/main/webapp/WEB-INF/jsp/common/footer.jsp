@@ -19,7 +19,7 @@
 <!-- Moda2 -->
 <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 	<div class="modal-dialog">
-		<form class="form-horizontal" role="form">
+		<form id="updatePasswordForm" class="form-horizontal" role="form">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
@@ -29,21 +29,21 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputlabel" class="col-sm-2 control-label"> old password </label>
+						<label for="inputlabel" class="col-sm-2 control-label"> old </label>
 						<div class="col-sm-10">
-							<input class="form-control" id="oldPd" type="text" placeholder="please input old password">
+							<input class="form-control" name="oldPd" type="password" placeholder="please input old password">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputlabel" class="col-sm-2 control-label"> new password </label>
+						<label for="inputlabel" class="col-sm-2 control-label"> new </label>
 						<div class="col-sm-10">
-							<input class="form-control" id="newPd" type="text" placeholder="please input new password">
+							<input class="form-control" name="newPd" type="password" placeholder="please input new password">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputlabel" class="col-sm-2 control-label"> confirm password </label>
+						<label for="inputlabel" class="col-sm-2 control-label"> confirm </label>
 						<div class="col-sm-10">
-							<input class="form-control" id="confirmPd" type="text" placeholder="please input confirm password">
+							<input class="form-control" name="confirmPd" type="password" placeholder="please input confirm password">
 						</div>
 					</div>
 				</div>
@@ -59,8 +59,7 @@
 <footer class="templatemo-footer">
 	<div class="templatemo-copyright">
 		<p>
-			Copyright &copy; 2084 synnex <a href="http://www.synnex.com/" title="聚思力信息技术有限公司" target="_blank">聚思力信息技术有限公司</a> - More Information <a
-				href="http://www.cssmoban.com/" target="_blank" title="聚思力信息技术有限公司">聚思力信息技术有限公司</a>
+			Copyright &copy; 2084 synnex <a href="http://www.synnex.com/" title="SYNNEX Global Intranet" target="_blank">SYNNEX Global Intranet</a>
 		</p>
 	</div>
 </footer>
