@@ -10,9 +10,7 @@ public interface TermService {
 
 	public Term getTerm(int id);
 
-
 	public void update(Term term);
-
 
 	/**
 	 * 分页列表
@@ -29,4 +27,14 @@ public interface TermService {
 	 * @return
 	 */
 	public List<Term> listTermByTrainee(int traineeId);
+
+	/**
+	 * 通过trainee找term带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @param userId
+	 * @return
+	 */
+	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId);
 }

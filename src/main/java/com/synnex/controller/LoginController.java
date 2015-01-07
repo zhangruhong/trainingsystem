@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.synnex.exception.LogicException;
 import com.synnex.model.User;
+import com.synnex.utils.md5Util.Md5Encode;
+import com.synnex.utils.variable.SystemVariable;
 
 /**
  * @author Hiram
@@ -69,7 +71,14 @@ public class LoginController extends GenericController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/updatepassword")
-	public String updatepassword() throws Exception {
-		return "/common/updatepassword";
+	public String updatepassword(String oldPd, String newPd, String confirmPd, HttpSession session) throws Exception {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		String encodePd = Md5Encode.getStringMD5(user.getPassword());
+		if (!encodePd.equals(oldPd)) {
+			// 返回原密码错误
+			session.setAttribute(SystemVariable.FiledError, "原密码错误");
+			return "/admin/user/updatapass";
+		}
+		return null;
 	}
 }

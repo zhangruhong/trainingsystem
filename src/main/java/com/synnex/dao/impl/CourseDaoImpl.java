@@ -40,9 +40,16 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements Co
 	}
 
 	@Override
-	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid) {
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid) {
 		String hql = "select c from Course c where c.term.id = ?";
 		PageResult<Course> pageResult = super.listPageResult(begin, size, hql, termid);
+		return pageResult;
+	}
+
+	@Override
+	public PageResult<Course> listCoursePageByTrainer(Integer page, int pagesize, int trainerId) {
+		String hql = "select c from Course c where c.trainer.id = ?";
+		PageResult<Course> pageResult = super.listPageResult(page, pagesize, hql, trainerId);
 		return pageResult;
 	}
 

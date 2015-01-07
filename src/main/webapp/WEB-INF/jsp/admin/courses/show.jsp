@@ -204,7 +204,7 @@
 			<!--新建课程分类模态框-->
 			<div class="modal fade" id="addDictionary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form">
+					<form id="addDictionaryForm" class="form-horizontal" role="form">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -220,7 +220,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addDictionary()" data-dismiss="modal">提交</button>
+								<button id="addterm" type="submit" class="btn btn-primary">提交</button>
 							</div>
 						</div>
 					</form>
@@ -242,7 +242,7 @@
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程分类 </label>
 									<div class="col-sm-10">
-										<select id="dictionaries_update" class="form-control">
+										<select id="dictionaries_update" class="form-control" name="dictionaries">
 											<c:forEach items="${dictionaries}" var="term">
 												<option value="${term['id'] }">${term['name'] }</option>
 											</c:forEach>
@@ -265,8 +265,8 @@
 								<div class="form-group form-inline">
 									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— <input
-											class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
+										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— 
+										<input class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
 									</div>
 								</div>
 								<div class="form-group">
@@ -290,7 +290,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="updateterm_update" type="button" class="btn btn-primary" onclick="updateCourse()" data-dismiss="modal">提交</button>
+								<button id="updateterm_update" type="submit" class="btn btn-primary">提交</button>
 							</div>
 						</div>
 					</form>

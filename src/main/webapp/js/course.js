@@ -27,34 +27,33 @@ function createShowingTable(data) {
 
 function addDictionary() {
 	var mydata = '{"name":"' + $("#dictionnarynameInput").val() + '"}';
-	$
-			.ajax({
-				type : "POST",
-				url : "/trainingsystem/admin/dictionary/add",
-				data : mydata,
-				dataType : "json",
-				contentType : "application/json; charset=utf8",
-				success : function(data) {
-					data = data.termmap;
-					if (data.success == true) {
-						$("#actiontip")
-								.html(
-										"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
-						location.reload(true);
+	$.ajax({
+		type : "POST",
+		url : "/trainingsystem/admin/dictionary/add",
+		data : mydata,
+		dataType : "json",
+		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			if (data.success == true) {
+				location.reload(true);
+				$("#actiontip")
+						.html(
+								"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
 
-					} else {
-						$("#actiontip")
-								.html(
-										"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>错误！添加失败！请联系davisz@synnex.com。</div>");
-					}
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					$("#actiontip")
-							.html(
-									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
-					alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
-				}
-			});
+			} else {
+				$("#actiontip")
+						.html(
+								"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>错误！添加失败！请联系davisz@synnex.com。</div>");
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$("#actiontip")
+					.html(
+							"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
+			alert("-" + XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+		}
+	});
 }
 
 function loadCourse(id) {
@@ -151,3 +150,91 @@ function setdelvalue(id) {
 	var urldelete= id + "/delete";
 	$("#yestodelete").val(urldelete);
 }
+//course添加界面验证
+$(function(){
+	$('#courseaddform').bootstrapValidator({
+		message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	dictionaries: {
+                validators: {
+                    notEmpty: {
+                        message: 'The course dictionary is required and can\'t be empty'
+                    }
+                }
+            },	
+            name: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The course name is required and can\'t be empty'
+            		}
+            	}
+            },	
+            trainer: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The trainer is required and can\'t be empty'
+            		}
+            	}
+            },	
+            starttime: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The start time is required and can\'t be empty'
+            		}
+            	}
+            },	
+            endtime: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The end time is required and can\'t be empty'
+            		}
+            	}
+            },	
+            location: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The course location is required and can\'t be empty'
+            		}
+            	}
+            },	
+            content: {
+            	validators: {
+            		notEmpty: {
+            			message: 'The course content is required and can\'t be empty'
+            		}
+            	}
+            }
+        }
+	}).on('success.form.bv', function(e) {
+		$('#updateCourse').modal('hide');
+		updateCourse();
+		return false;
+    });	
+	//dictionary添加界面验证
+	$('#addDictionaryForm').bootstrapValidator({
+		message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The dictionary name is required and can\'t be empty'
+                    }
+                }
+        	}
+        }
+	}).on('success.form.bv', function(e) {
+		$('#addDictionary').modal('hide');
+		addDictionary();
+		return false;
+    });
+});

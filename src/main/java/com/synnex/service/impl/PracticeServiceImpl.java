@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import com.synnex.dao.PracticeDao;
 import com.synnex.dao.UserDao;
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 import com.synnex.model.Practice;
 import com.synnex.model.User;
 import com.synnex.service.PracticeService;
 import com.synnex.utils.mailUtil.MailSenderInfo;
 import com.synnex.utils.mailUtil.SimpleMailSender;
+import com.synnex.utils.variable.SystemVariable;
 
 @Service("practiceServiceImpl")
 public class PracticeServiceImpl implements PracticeService {
@@ -122,5 +124,22 @@ public class PracticeServiceImpl implements PracticeService {
 		mailInfo.setContent(s.toString());
 		SimpleMailSender sms = new SimpleMailSender();
 		sms.sendHtmlMail(mailInfo);
+	}
+
+	@Override
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId) {
+		PageResult<Practice> pageResult = practiceDao.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId);
+		return pageResult;
+	}
+
+	@Override
+	public PageResult<Practice> listPracticePageByCourse(Integer page, int pagesize, int courseId) {
+		PageResult<Practice> pageResult = practiceDao.listPracticePageByCourse(page, SystemVariable.PageSize, courseId);
+		List<Practice> practices = pageResult.getRows();
+		for (Practice practice : practices) {
+			practice.getUser().getLoginname();
+			practice.getCourse().getName();
+		}
+		return pageResult;
 	}
 }

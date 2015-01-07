@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.synnex.dao.PracticeDao;
+import com.synnex.model.PageResult;
 import com.synnex.model.Practice;
 
 @Repository
@@ -40,5 +41,19 @@ public class PracticeDaoImpl extends GenericDaoImpl<Practice, Integer> implement
 		String hql = "select p from Practice p where p.user.id = ?";
 		List<Practice> pracices = super.findByHql(hql, traineeId);
 		return pracices;
+	}
+
+	@Override
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId) {
+		String hql = "select p from Practice p where p.user.id = ?";
+		PageResult<Practice> pageResult = super.listPageResult(page, pagesize, hql, traineeId);
+		return pageResult;
+	}
+
+	@Override
+	public PageResult<Practice> listPracticePageByCourse(Integer page, int pagesize, int courseId) {
+		String hql = "select p from Practice p where p.course.id = ?";
+		PageResult<Practice> pageResult = super.listPageResult(page, pagesize, hql, courseId);
+		return pageResult;
 	}
 }

@@ -26,7 +26,6 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.get(id);
 	}
 
-
 	@Override
 	public void update(Term term) {
 		termDaoImpl.update(term);
@@ -43,6 +42,12 @@ public class TermServiceImpl implements TermService {
 	public List<Term> listTermByTrainee(int traineeId) {
 		List<Term> terms = termDaoImpl.listTermByTrainee(traineeId);
 		return terms;
+	}
+
+	@Override
+	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId) {
+		PageResult<Term> pageResult = termDaoImpl.listTermPageByTrainee(page, pagesize, userId);
+		return pageResult;
 	}
 
 }

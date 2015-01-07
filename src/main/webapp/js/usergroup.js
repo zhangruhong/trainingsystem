@@ -1,32 +1,32 @@
 function addTerm() {
 	var mydata = '{"name":"' + $("#nameInput").val() + '","description":"' + $('#descriptionInput').val() + '"}';
-	$
-			.ajax({
-				type : "POST",
-				url : "add",
-				data : mydata,
-				dataType : "json",
-				contentType : "application/json; charset=utf8",
-				success : function(data) {
-					data = data.termmap;
-					var terms = data.terms;
-					if (data.success == true) {
-						createShowingTable(terms);
-						$("#actiontip")
-								.html(
-										"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
-					} else {
-						$("#actiontip").html(
-								"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>"
-										+ data.msg + '<br/>' + terms.name + '<br/>' + terms.description + "</div>");
-					}
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					$("#actiontip")
-							.html(
-									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
-				}
-			});
+	$.ajax({
+		type : "POST",
+		url : "add",
+		data : mydata,
+		dataType : "json",
+		contentType : "application/json; charset=utf8",
+		success : function(data) {
+			data = data.termmap;
+			var terms = data.terms;
+			if (data.success == true) {
+				//createShowingTable(terms);
+				location.reload(true);
+				$("#actiontip")
+						.html(
+								"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
+			} else {
+				$("#actiontip").html(
+						"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>"
+								+ data.msg + '<br/>' + terms.name + '<br/>' + terms.description + "</div>");
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$("#actiontip")
+					.html(
+							"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
+		}
+	});
 }
 function createShowingTable(data) {
 	// 此处需要让其动态的生成一个table并填充数据
@@ -207,3 +207,27 @@ $.fn.form2json = function() {
 	var obj = paramString2obj(serializedParams);
 	return JSON.stringify(obj);
 }
+//新建分组验证
+$(function(){
+	$('#createGroupForm').bootstrapValidator({
+		message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The term name is required and can\'t be empty'
+                    }
+                }
+            }
+        }
+	}).on('success.form.bv', function(e) {
+		$('#myModal').modal('hide');
+		addTerm();
+		return false;
+    });
+});

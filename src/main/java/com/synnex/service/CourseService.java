@@ -81,6 +81,16 @@ public interface CourseService {
 	 * @param termid
 	 * @return
 	 */
-	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid);
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid);
+
+	/**
+	 * 通过trianer找course带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @param trainerId
+	 * @return
+	 */
+	public PageResult<Course> listCoursePageByTrainer(Integer page, int pagesize, int trainerId);
 
 }

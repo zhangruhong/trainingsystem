@@ -75,7 +75,6 @@ public class CourseServiceImpl implements CourseService {
 		return course;
 	}
 
-
 	@Override
 	public List<Course> ListCourseByTerm(int termid) {
 		List<Course> courses = courseDaoImpl.ListCourseByTerm(termid);
@@ -98,11 +97,22 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid) {
-		PageResult<Course> pageResult = courseDaoImpl.ListCoursePageByTerm(begin, size, termid);
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid) {
+		PageResult<Course> pageResult = courseDaoImpl.listCoursePageByTerm(begin, size, termid);
 		List<Course> courses = pageResult.getRows();
 		for (Course course : courses) {
 			course.getTerm().getName();
+		}
+		return pageResult;
+	}
+
+	@Override
+	public PageResult<Course> listCoursePageByTrainer(Integer page, int pagesize, int trainerId) {
+		PageResult<Course> pageResult = courseDaoImpl.listCoursePageByTrainer(page, pagesize, trainerId);
+		List<Course> courses = pageResult.getRows();
+		for (Course course : courses) {
+			course.getTerm().getName();
+			course.getDictionary().getName();
 		}
 		return pageResult;
 	}

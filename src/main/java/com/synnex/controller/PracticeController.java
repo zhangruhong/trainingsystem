@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.model.Course;
+import com.synnex.model.PageResult;
 import com.synnex.model.Practice;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
+import com.synnex.utils.variable.SystemVariable;
 
 /**
  * 作业相关操作
@@ -63,11 +65,14 @@ public class PracticeController extends GenericController {
 	 * 需要trainer的id
 	 */
 	@RequestMapping(value = { "/trainer/practice/view" })
-	public String trainerViewPractice(HttpSession session, Model model) {
+	public String trainerViewPractice(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
 		User user = (User) session.getAttribute("USER_IN_SESSION");
 		int TrainerId = user.getId();
-		List<Course> courses = courseServiceImpl.listCourseByTrainer(TrainerId);
-		model.addAttribute("courses", courses);
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTrainer(page, SystemVariable.PageSize, TrainerId);
+		model.addAttribute("pageResult", pageResult);
 		return "/trainer/practice/view";
 	}
 
@@ -77,9 +82,12 @@ public class PracticeController extends GenericController {
 	 * 需要trainer的id
 	 */
 	@RequestMapping(value = { "/trainer/practice/viewDetail" })
-	public String trainerViewPracticeDetail(@RequestParam("id") int id, Model model) {
-		List<Practice> practices = practiceServiceImpl.findPracticeByCourse(id);
-		model.addAttribute("practices", practices);
+	public String trainerViewPracticeDetail(@RequestParam(value = "page", required = false) Integer page, @RequestParam("id") int id, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Practice> pageResult = practiceServiceImpl.listPracticePageByCourse(page, SystemVariable.PageSize, id);
+		model.addAttribute("pageResult", pageResult);
 		Course course = courseServiceImpl.getCourse(id);
 		model.addAttribute("course", course);
 		return "/trainer/practice/viewDetail";
@@ -107,11 +115,14 @@ public class PracticeController extends GenericController {
 	 * 
 	 */
 	@RequestMapping("/trainee/practice/show")
-	public String traineeViewPractice(HttpSession session, Model model) {
+	public String traineeViewPractice(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
 		User trainee = (User) session.getAttribute("USER_IN_SESSION");
 		int traineeId = trainee.getId();
-		List<Practice> practices = practiceServiceImpl.findPracticeByUser(traineeId);
-		model.addAttribute("practices", practices);
+		PageResult<Practice> pageResult = practiceServiceImpl.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId);
+		model.addAttribute("pageResult", pageResult);
 		return "/trainee/practice/show";
 	}
 

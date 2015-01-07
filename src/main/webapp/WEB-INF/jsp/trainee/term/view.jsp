@@ -44,7 +44,7 @@
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
-										<c:forEach items="${terms}" var="term">
+										<c:forEach items="${pageResult.rows}" var="term">
 											<tr>
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
@@ -64,26 +64,26 @@
 										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="showall?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+										<li><a href="view?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage-1<=0}">
 										<li class="disabled"><a href="#">Previous</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="showall?page=${pageResult.currentPage-1}">Previous</a></li>
+										<li><a href="view?page=${pageResult.currentPage-1}">Previous</a></li>
 									</c:if>
 									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
 									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
 										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="showall?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+										<li><a href="view?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
 										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
 									</c:if>
 									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="showall?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+										<li><a href="view?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
 									</c:if>
 								</ul>
 							</div>

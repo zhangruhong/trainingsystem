@@ -120,7 +120,7 @@
 			<!--新建 模态框（Modal） -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form">
+					<form id="createGroupForm" class="form-horizontal" role="form">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -143,7 +143,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addTerm()" data-dismiss="modal">提交</button>
+								<button id="addterm" type="submit" class="btn btn-primary">提交</button>
 							</div>
 						</div>
 					</form>
@@ -208,5 +208,7 @@
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/templatemo_script.js"></script>
 		<script src="${pageContext.request.contextPath}/js/usergroup.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/validator/js/bootstrapValidator.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/personValidate.js"></script>
 </body>
 </html>

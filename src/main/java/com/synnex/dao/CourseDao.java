@@ -37,6 +37,16 @@ public interface CourseDao extends GenericDao<Course, Integer> {
 	 * @param termid
 	 * @return
 	 */
-	PageResult<Course> ListCoursePageByTerm(int begin, int size, int termid);
+	PageResult<Course> listCoursePageByTerm(int begin, int size, int termid);
+
+	/**
+	 * 通过trainer找course带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @param trainerId
+	 * @return
+	 */
+	PageResult<Course> listCoursePageByTrainer(Integer page, int pagesize, int trainerId);
 
 }

@@ -47,7 +47,7 @@
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
-										<c:forEach items="${courses}" var="course">
+										<c:forEach items="${pageResult.rows}" var="course">
 											<tr>
 												<td>${course["dictionary"]["name"]}</td>
 												<td>${course["name"]}</td>
@@ -68,6 +68,38 @@
 									</tbody>
 								</table>
 							</div>
+							<!-- page begin  -->
+							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<div style="float: right">
+								<ul class="pagination">
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="view?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1<=0}">
+										<li class="disabled"><a href="#">Previous</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage-1>0}">
+										<li><a href="view?page=${pageResult.currentPage-1}">Previous</a></li>
+									</c:if>
+									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="view?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
+										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
+										<li><a href="view?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
+									</c:if>
+								</ul>
+							</div>
+							<!-- page end  -->
 						</div>
 					</div>
 				</div>

@@ -22,4 +22,11 @@ public class TermDaoImpl extends GenericDaoImpl<Term, Integer> implements TermDa
 		String hql = "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
 		return super.findByHql(hql, traineeId);
 	}
+
+	@Override
+	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId) {
+		String hql = "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
+		PageResult<Term> pageResult = super.listPageResult(page, pagesize, hql, userId);
+		return pageResult;
+	}
 }

@@ -69,11 +69,14 @@ public class TermController extends GenericController {
 	 * 需要trainee的id
 	 */
 	@RequestMapping("/trainee/term/view")
-	public String traineeViewTerm(HttpSession session, Model model) {
+	public String traineeViewTerm(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
 		User user = (User) session.getAttribute("USER_IN_SESSION");
 		int userId = user.getId();
-		List<Term> terms = termServiceImpl.listTermByTrainee(userId);
-		model.addAttribute("terms", terms);
+		PageResult<Term> pageResult = termServiceImpl.listTermPageByTrainee(page, SystemVariable.PageSize, userId);
+		model.addAttribute("pageResult", pageResult);
 		return "/trainee/term/view";
 	}
 }

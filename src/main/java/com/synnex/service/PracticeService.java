@@ -2,6 +2,7 @@ package com.synnex.service;
 
 import java.util.List;
 
+import com.synnex.model.PageResult;
 import com.synnex.model.Practice;
 
 /**
@@ -98,4 +99,24 @@ public interface PracticeService {
 	 * @param id
 	 */
 	public void sendPracticeMailToTrainer(int practiceId);
+
+	/**
+	 * 根据trainee id找practice，带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @param traineeId
+	 * @return
+	 */
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId);
+
+	/**
+	 * 根据course id找practice，带分页
+	 * 
+	 * @param page
+	 * @param pagesize
+	 * @param id
+	 * @return
+	 */
+	public PageResult<Practice> listPracticePageByCourse(Integer page, int pagesize, int courseId);
 }

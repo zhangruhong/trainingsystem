@@ -30,7 +30,7 @@ public class CourseController extends GenericController {
 	@ResponseBody
 	@RequestMapping(value = "/admin/term/{termid}/courses/show")
 	public JsonBean showCourseByTermjson(@PathVariable int termid) {
-		List<Course> courses = courseServiceImpl.ListCoursePageByTerm(0, 8, termid).getRows();
+		List<Course> courses = courseServiceImpl.listCoursePageByTerm(0, 8, termid).getRows();
 		JsonBean jsonBean = null;
 		if (null == courses || courses.isEmpty()) {
 			jsonBean = new JsonBean(false, "没有数据", null);
@@ -45,7 +45,7 @@ public class CourseController extends GenericController {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<Course> pageResult = courseServiceImpl.ListCoursePageByTerm(page, SystemVariable.PageSize, termid);
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid);
 		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("dictionaries", dictionaries);
@@ -147,11 +147,12 @@ public class CourseController extends GenericController {
 	 * @return
 	 */
 	@RequestMapping(value = "/trainee/{termid}/course/view")
-	public String traineeViewCrouse(@PathVariable int termid, Model model) {
-		List<Course> courses = courseServiceImpl.ListCourseByTerm(termid);
-		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
-		model.addAttribute("courses", courses);
-		model.addAttribute("dictionaries", dictionaries);
+	public String traineeViewCrouse(@RequestParam(value = "page", required = false) Integer page, @PathVariable int termid, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid);
+		model.addAttribute("pageResult", pageResult);
 		return "/trainee/course/view";
 	}
 
