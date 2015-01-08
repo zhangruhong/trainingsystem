@@ -32,50 +32,41 @@
 					</ol>
 
 					<div class="row">
-						<div class="col-md-12">
-							<div class="pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addtraineemodel">新建学员</button>
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addtrainermodel">新建讲师</button>
-							</div>
 
+						<div class="col-md-12">
+						<h3 class="margin-bottom-15">User Information</h3>
+							<div class="pull-right" id="templatemo_sort_btn">
+								<button class="btn btn-primary  " data-toggle="modal" data-target="#addtraineemodel">Create Trainee</button>
+								<button class="btn btn-primary  " data-toggle="modal" data-target="#addtrainermodel">Create Trainer</button>
+							</div>
+							<div class="btn-group pull-left">
+								<form class="navbar-form">
+									<input type="text" class="form-control" id="sec_box_admin" placeholder="Search...by name" /> <input type="button" value="search"
+										id="sec_btn_admin" class="btn btn-default" />
+								</form>
+							</div>
 							<div class="table-responsive">
-								<h3 class="margin-bottom-15">学员信息</h3>
-								<p>这里还须添加根据名字搜索user</p>
+								
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th>角色</th>
-											<th>loginname</th>
+											<th>Role</th>
+											<th>name</th>
 											<th>email</th>
 											<th>phoneno</th>
-											<th>管理</th>
-											<th>Action</th>
+											<th>Manage</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${pageResult.rows}" var="user" varStatus="status">
 											<tr>
-												<td>${user["role"]==1?"讲师":"学员"}</td>
+												<td>${user["role"]==1?"Trainer":"Trainee"}</td>
 												<td>${user["loginname"]}</td>
 												<td>${user["email"]}</td>
 												<td>${user["phoneno"]}</td>
 												<td>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">编辑</button>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">锁定</button>
-												</td>
-												<td>
-													<!-- Split button -->
-													<div class="btn-group">
-														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-														</button>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Bootstrap</a></li>
-															<li><a href="#">Font Awesome</a></li>
-															<li><a href="#">jQuery</a></li>
-														</ul>
-													</div>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">Edit</button>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">Lock</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -83,7 +74,7 @@
 								</table>
 							</div>
 							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
 							<div style="float: right">
 								<ul class="pagination">
 									<c:if test="${pageResult.currentPage-1<=0}">
@@ -126,32 +117,32 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建学员</h4>
+								<h4 class="modal-title" id="myModalLabel">Create Trainee</h4>
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 英文名 </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> EName </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput_trainee" name="name" type="text" placeholder="请输入英文名">
+										<input class="form-control" id="nameInput_trainee" name="name" type="text" placeholder="Input Trainee's English Name">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 手机 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">TelPhone</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="phoneInput_trainee" name="phone" type="text" placeholder="请输入手机 ">
+										<input class="form-control" id="phoneInput_trainee" name="phone" type="text" placeholder="Input Trainee's Cell Phone No.">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label"> email </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="emailInput_trainee" name="email" type="text" placeholder="请输入email ">
+										<input class="form-control" id="emailInput_trainee" name="email" type="text" placeholder="Input Trainee's email ">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addtranee()" data-dismiss="modal">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addtranee()" data-dismiss="modal">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -168,32 +159,32 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建讲师</h4>
+								<h4 class="modal-title" id="myModalLabel">Create Trainer</h4>
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 英文名 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Ename</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput_trainer" name="name" type="text" placeholder="请输入英文名">
+										<input class="form-control" id="nameInput_trainer" name="name" type="text" placeholder="Input Trainer's English Name">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 手机 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">TelPhone</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="phoneInput_trainer" name="phone" type="text" placeholder="请输入手机 ">
+										<input class="form-control" id="phoneInput_trainer" name="phone" type="text" placeholder="Input Trainer's Cell Phone No.">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> email </label>
+									<label for="inputlabel" class="col-sm-2 control-label"> Email </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="emailInput_trainer" name="email" type="text" placeholder="请输入email ">
+										<input class="form-control" id="emailInput_trainer" name="email" type="text" placeholder="Input Trainer's email">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm_trainer" type="button" class="btn btn-primary" onclick="addtraner()" data-dismiss="modal">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm_trainer" type="button" class="btn btn-primary" onclick="addtraner()" data-dismiss="modal">Submit</button>
 							</div>
 						</div>
 					</form>

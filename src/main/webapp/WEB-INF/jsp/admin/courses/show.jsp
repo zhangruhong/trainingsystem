@@ -33,7 +33,6 @@
 
 					<div class="row">
 						<div class="col-md-12">
-
 							<div class="pull-right" id="templatemo_sort_btn">
 								<button class="btn btn-primary " data-toggle="modal" data-target="#addDictionary">Create Dictionary</button>
 								<button class="btn btn-primary " data-toggle="modal" data-target="#myModal">Create Course</button>
@@ -47,10 +46,10 @@
 										<tr>
 											<th>Dictionary</th>
 											<th>Course Name</th>
-											<th>summary</th>
+											<th>Content</th>
 											<th>Trainer</th>
 											<th>Time</th>
-											<th>place</th>
+											<th>Place</th>
 											<th>Manage</th>
 										</tr>
 									</thead>
@@ -150,7 +149,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">End Time</label>
+									<label for="inputlabel" class="col-sm-2 control-label">EndTime</label>
 									<div class="col-sm-10">
 										<input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="Input Course Trainer">
 									</div>
@@ -159,12 +158,6 @@
 									<label for="inputlabel" class="col-sm-2 control-label">Place</label>
 									<div class="col-sm-10">
 										<input class="form-control" id="localInput" name="location" type="text" placeholder="Input Course Place">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">Summary</label>
-									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="Input Course summary">
 									</div>
 								</div>
 								<div class="form-group">
@@ -240,31 +233,32 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">Course Name </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Name </label>
 									<div class="col-sm-10">
 										<input class="form-control" id="idInput_update" name="id" type="hidden"> <input class="form-control" id="nameInput_update"
 											name="name" type="text" placeholder="Input Course Name">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">Course Trainer</label>
+									<label for="inputlabel" class="col-sm-2 control-label">Trainer</label>
 									<div class="col-sm-10">
 										<input class="form-control" id="trainerInput_update" name="trainer" type="text" placeholder="Input Course Trainer">
 									</div>
 								</div>
 								<div class="form-group form-inline">
-									<label for="inputlabel" class="col-sm-2 control-label">Course Time</label>
+									<label for="inputlabel" class="col-sm-2 control-label">Time</label>
 									<div class="col-sm-10">
 										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="Select Course Time"> —— <input
 											class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="Select Course Time">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">Course Place</label>
+									<label for="inputlabel" class="col-sm-2 control-label">Place</label>
 									<div class="col-sm-10">
 										<input class="form-control" id="localInput_update" name="location" type="text" placeholder="Input Course Place ">
 									</div>
 								</div>
+								
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label">Content</label>
 									<div class="col-sm-10">

@@ -33,49 +33,30 @@
 					<div class="row">
 						<div class="col-md-12" style="height: 578px">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建计划</button>
+								<button class="btn btn-primary  btn-default " data-toggle="modal" data-target="#myModal">Create Term</button>
 							</div>
 
 							<div class="table-responsive" style="height: 478px">
-								<h4 class="margin-bottom-15">培训总体信息</h4>
+								<h4 class="margin-bottom-15">Term Information</h4>
 								<table class="table table-striped table-hover table-bordered ">
 								<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
-											<th>#id</th>
 											<th>Term Name</th>
 											<th>Discription</th>
-											<th>其他二</th>
 											<th>其他三</th>
 											<th>课程管理</th>
 											<th>分组管理</th>
-											<th>Action</th>
 										</tr>
 									</thead>
  									<tbody id="tbodyterms">
 										<c:forEach items="${pageResult.rows}" var="term">
 											<tr>
-												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<td>me@company.com</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
-												<td><a href="${term['id']}/courses/showall" class="btn btn-default">课程管理</a></td>
-												<td><a href="${term['id']}/usergroup/show" class="btn btn-default">分组管理</a></td>
-												<td>
-													<!-- Split button -->
-													<div class="btn-group">
-														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-														</button>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Bootstrap</a></li>
-															<li><a href="#">Font Awesome</a></li>
-															<li><a href="#">jQuery</a></li>
-														</ul>
-													</div>
-												</td>
+												<td><a href="${term['id']}/courses/showall" class="btn btn-primary btn-default">课程管理</a></td>
+												<td><a href="${term['id']}/usergroup/show" class="btn btn-primary btn-default">分组管理</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
