@@ -120,7 +120,7 @@ function loadUsersOfGroup() {
 					var tdvar2 = tdvar.clone().text(term.email);
 					var tdvar3 = tdvar.clone().text(term.phoneno);
 					var tdvar4 = '<button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(' + groupidvalue + ',' + term.id
-							+ ') ;return false">移除</button>';
+							+ ') ;return false">Remove</button>';
 					trvarmodel.append(tdvar1, tdvar2, tdvar3, tdvar4)
 					$("#show_users_of_group").append(trvarmodel);
 				})
@@ -128,7 +128,8 @@ function loadUsersOfGroup() {
 			} else {
 //				alert("没有获取到记录" + data.msg)
 				//此处应该清空
-				$("#show_users_of_group").html("额额"+data.msg);
+				$("#show_users_of_group").html ('<tr><td colspan="4" align="center">'+data.msg+'</td></tr>');
+//				$("#show_users_of_group").html ("额额"+data.msg);
 			}
 		} else {
 			// 标识网络连接状态没有成功

@@ -32,19 +32,19 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建分组</button>
+								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Create Group</button>
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">第1期英语培训 Groups Situation</h4>
+								<h4 class="margin-bottom-15">${termname}-Groups Situation</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
 											<th>Group Name</th>
 											<th>Discription</th>
-											<th>组员管理</th>
-											<th>删除分组</th>
+											<th>Manage</th>
+											<th>Delete</th>
 										</tr>
 									</thead>
 									<tbody id="tbodyusergroup">
@@ -52,15 +52,16 @@
 											<tr>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue(${term['id']})">组员管理</button></td>
-												<td><a href="#" class="btn btn-default btn-danger" onclick="deleteUserGroup(${term['id']})">Delete</a></td>
+												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"
+														onclick="setgroupidvalue(${term['id']})">Member Manage</button></td>
+												<td><a href="#" class="btn btn-default btn-danger" onclick="deleteUserGroup(${term['id']})">Delete Group</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
 							<div style="float: right">
 								<ul class="pagination">
 									<c:if test="${pageResult.currentPage-1<=0}">
@@ -102,26 +103,26 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">第一届英语培训——新建分组</h4>
+								<h4 class="modal-title" id="myModalLabel">${termname}-Create A Group</h4>
 							</div>
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 分组名称 </label>
+									<label for="inputPassword" class="col-sm-2 control-label">Name</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入分组名称  如：C组、MyCIS组">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="Input A Group Name">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
+									<label for="disabledTextInput" class="col-sm-2 control-label"> Introduction </label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入分组简介/简单描述">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="Input A Introduction">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="submit" class="btn btn-primary">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -138,15 +139,15 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">第一届英语培训——xxx组员管理</h4>
-								<div hidden="true" id="groupidvalue" ></div>
+								<h4 class="modal-title" id="myModalLabel">Member Manage</h4>
+								<div hidden="true" id="groupidvalue"></div>
 							</div>
 							<div class="modal-body">
 								<table class="form-inline" role="form">
 									<div class="input-group">
-										 <input type="text" class="form-control" id="addusertogroup_name" name="loginname" placeholder="请输入英文名"> <span
+										<input type="text" class="form-control" id="addusertogroup_name" name="loginname" placeholder="Input trainer name"> <span
 											class="input-group-btn">
-											<button  class="btn btn-primary" onclick="addUserToGroup();return false">添加组员</button>
+											<button class="btn btn-primary" onclick="addUserToGroup();return false">Add Member</button>
 										</span>
 									</div>
 								</table>
@@ -156,21 +157,21 @@
 											<th>loginname</th>
 											<th>email</th>
 											<th>phoneno</th>
-											<th>操作</th>
+											<th>Manage</th>
 										</tr>
 									</thead>
 									<tbody id="show_users_of_group">
 										<tr>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>560001</td>
-											<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(groupid,userid) ;return false">移除</button></td>
+											<td>测试name</td>
+											<td>测试email</td>
+											<td>测试phone</td>
+											<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(groupid,userid) ;return false">Remove</button></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 							</div>
 						</div>
 					</form>

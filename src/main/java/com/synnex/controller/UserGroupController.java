@@ -49,7 +49,7 @@ public class UserGroupController extends GenericController {
 			for (FieldError err : errors) {
 				mapErrors.put(err.getField(), err.getDefaultMessage());
 			}
-			jsonBean = new JsonBean(false, "添加失败！", mapErrors);
+			jsonBean = new JsonBean(false, "Add failed！", mapErrors);
 			logger.info("mapErrors:" + mapErrors.toString());
 			return jsonBean;
 		}
@@ -71,13 +71,15 @@ public class UserGroupController extends GenericController {
 
 	// TODO 这里的关联关系没有建立起 不同学期分组无效
 	@RequestMapping(value = { "/{termid}/usergroup/show" }, method = { RequestMethod.GET })
-	public String showAllUsergroup(@RequestParam(value = "page", required = false) Integer page, @PathVariable String termid, Model model) {
+	public String showAllUsergroup(@RequestParam(value = "page", required = false) Integer page, @PathVariable int termid, Model model) {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<Usergroup> pageResult = userGroupServiceImpl.listUserGroupPage(page, SystemVariable.PageSize, Integer.parseInt(termid));
+		String termname=termServiceImpl.getTerm(termid).getName();
+		PageResult<Usergroup> pageResult = userGroupServiceImpl.listUserGroupPage(page, SystemVariable.PageSize,termid);
 		model.addAttribute("pageResult", pageResult);
-		model.addAttribute("termid", termid);
+//		model.addAttribute("termid", termid);
+		model.addAttribute("termname", termname);
 		return "/admin/usergroup/show";
 	}
 
@@ -90,7 +92,7 @@ public class UserGroupController extends GenericController {
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
 		List<Usergroup> terms = userGroupServiceImpl.listUserGroupPage(0, 8, termid).getRows();
-		JsonBean jsonBean = new JsonBean(true, "数据删除成功", terms);
+		JsonBean jsonBean = new JsonBean(true, "data delete success!", terms);
 		return jsonBean;
 	}
 
@@ -105,11 +107,11 @@ public class UserGroupController extends GenericController {
 			userGroupServiceImpl.addUserToGroup(loginname, usergroupid);
 		} catch (UserException e) {
 			logger.error(e.getMessage());
-			jsonBean = new JsonBean(false, "添加失败！loginname不存在", null);
+			jsonBean = new JsonBean(false, "add failed！name does not exist", null);
 			return jsonBean;
 		}
 		// 不返回数据 由前端发起ajax请求获取数据
-		jsonBean = new JsonBean(true, "添加成功", null);
+		jsonBean = new JsonBean(true, "add Success", null);
 		return jsonBean;
 	}
 
@@ -122,7 +124,7 @@ public class UserGroupController extends GenericController {
 		if (null != users && users.size() > 0) {
 			jsonBean = new JsonBean(true, "", users);
 		} else {
-			jsonBean = new JsonBean(false, "没有记录", null);
+			jsonBean = new JsonBean(false, "No user is added to this group", null);
 		}
 		return jsonBean;
 	}
@@ -138,11 +140,11 @@ public class UserGroupController extends GenericController {
 			userGroupServiceImpl.deleteUserFromGroup(userid, usergroupid);
 		} catch (UserException e) {
 			logger.error(e.getMessage());
-			jsonBean = new JsonBean(false, "移除失败！" + e.getMessage(), null);
+			jsonBean = new JsonBean(false, "Remove failed!" + e.getMessage(), null);
 			return jsonBean;
 		}
 		// 不返回数据 由前端发起ajax请求获取数据
-		jsonBean = new JsonBean(true, "移除成功", null);
+		jsonBean = new JsonBean(true, "Remove Succuss", null);
 		return jsonBean;
 	}
 
