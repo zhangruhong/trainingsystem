@@ -24,9 +24,9 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li>Trainer Panel</li>
-						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
-						<li class="active">Group View</li>
+						<li>Trainee Panel</li>
+						<li class="active">Term View</li>
+						<li class="active">Usergroup View</li>
 					</ol>
 
 					<div class="row">
@@ -38,10 +38,10 @@
 									<thead>
 										<tr>
 											<th>#id</th>
-											<th>Term Name</th>
+											<th>Group Name</th>
 											<th>Discription</th>
-											<th>Course View</th>
-											<th>Group View</th>
+											<!-- <th>Course View</th> -->
+											<th>Users View</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -50,7 +50,7 @@
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td>
+												<%-- <td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td> --%>
 												<td><a href="${term['id']}/usergroup/view" class="btn btn-primary">Group View</a></td>
 											</tr>
 										</c:forEach>

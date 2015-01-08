@@ -26,8 +26,8 @@
 
 					<ol class="breadcrumb">
 						<li>Trainee Panel</li>
-						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
 						<li class="active">Course View</li>
+						<li class="active">Course Detail View</li>
 					</ol>
 
 					<div class="row">

@@ -27,9 +27,7 @@
 					<!--导航-->
 					<ol class="breadcrumb">
 						<li>Trainee Panel</li>
-						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
-						<li>Course View</li>
-						<li class="active">Manage Practice</li>
+						<li class="active">Practice View</li>
 					</ol>
 
 					<div class="row">

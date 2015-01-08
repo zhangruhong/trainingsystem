@@ -63,6 +63,16 @@ public class TermController extends GenericController {
 		return "/admin/term/showall";
 	}
 
+	@RequestMapping(value = { "/admin/term/showallforuser" }, method = { RequestMethod.GET })
+	public String showPagerTermForUser(@RequestParam(value = "page", required = false) Integer page, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Term> pageResult = termServiceImpl.listPageResult(page, SystemVariable.PageSize);
+		model.addAttribute("pageResult", pageResult);
+		return "/admin/term/showallforuser";
+	}
+
 	/**
 	 * trainee跳转到学期查看页面
 	 * 
@@ -78,5 +88,16 @@ public class TermController extends GenericController {
 		PageResult<Term> pageResult = termServiceImpl.listTermPageByTrainee(userId, page, SystemVariable.PageSize);
 		model.addAttribute("pageResult", pageResult);
 		return "/trainee/term/view";
+	}
+	@RequestMapping("/trainee/term/viewforcourse")
+	public String traineeViewTermForCourse(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		int userId = user.getId();
+		PageResult<Term> pageResult = termServiceImpl.listTermPageByTrainee(userId, page, SystemVariable.PageSize);
+		model.addAttribute("pageResult", pageResult);
+		return "/trainee/term/viewforcourse";
 	}
 }

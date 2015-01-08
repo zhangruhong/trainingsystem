@@ -45,8 +45,8 @@
 											<th>Term Name</th>
 											<th>Discription</th>
 											<th>编辑（预留）</th>
-											<th>课程管理</th>
-											<!-- <th>分组管理</th> -->
+											<!-- <th>课程管理</th> -->
+											<th>分组管理</th>
 										</tr>
 									</thead>
  									<tbody id="tbodyterms">
@@ -55,8 +55,8 @@
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
-												<td><a href="${term['id']}/courses/showall" class="btn btn-primary btn-default">课程管理</a></td>
-												<%-- <td><a href="${term['id']}/usergroup/show" class="btn btn-primary btn-default">分组管理</a></td> --%>
+												<%-- <td><a href="${term['id']}/courses/showall" class="btn btn-primary btn-default">课程管理</a></td> --%>
+												<td><a href="${term['id']}/usergroup/show" class="btn btn-primary btn-default">分组管理</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

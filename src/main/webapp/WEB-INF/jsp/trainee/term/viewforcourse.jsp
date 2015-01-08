@@ -25,7 +25,7 @@
 
 					<ol class="breadcrumb">
 						<li>Trainee Panel</li>
-						<li class="active">Term View</li>
+						<li class="active">Course View</li>
 					</ol>
 
 					<div class="row">
@@ -39,8 +39,8 @@
 											<th>#id</th>
 											<th>Term Name</th>
 											<th>Discription</th>
-											<!-- <th>Course View</th> -->
-											<th>Group View</th>
+											<th>Course View</th>
+											<!-- <th>Group View</th> -->
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -49,8 +49,8 @@
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<%-- <td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td> --%>
-												<td><a href="${pageContext.request.contextPath}/trainee/group/view" class="btn btn-primary">Group View</a></td>
+												<td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td>
+												<%-- <td><a href="${pageContext.request.contextPath}/trainee/group/view" class="btn btn-primary">Group View</a></td> --%>
 											</tr>
 										</c:forEach>
 									</tbody>
