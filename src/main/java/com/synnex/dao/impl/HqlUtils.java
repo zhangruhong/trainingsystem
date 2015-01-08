@@ -1,75 +1,49 @@
 package com.synnex.dao.impl;
 
-import org.hibernate.type.StandardBasicTypes;
-import org.hibernate.type.Type;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.type.StandardBasicTypes;
+import org.hibernate.type.Type;
+
 //import org.hibernate.Hibernate; before hibernate3.5
 
 /**
  * @author jennifert 2015-1-8
- *
+ * 
  */
 public class HqlUtils {
 
 	public static final String ASCENDING = "ASC";
 	public static final String DESCENDING = "DESC";
+
 	private String baseSql;
-	private List wheres;
-	private List values;
-	private List types;
-	private List orders;
+
+	private int begin = -1;
+
 	private List groups;
+
+	private List orders;
 
 	private Map<String, Object> params;
 
-	private int begin = -1;
 	private int size;
 
-	public Map<String, Object> getParams() {
-		return params;
-	}
+	private List types;
 
-	public void setParams(Map<String, Object> params) {
-		this.params = params;
-	}
-
-	public int getBegin() {
-		return begin;
-	}
-
-	public void setBegin(int begin) {
-		this.begin = begin;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
+	private List values;
+	private List wheres;
 
 	public HqlUtils() {
 		this("", ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList(1))),
 				new HashMap<String, Object>(), ((List) (new ArrayList(1))));
 	}
 
-	public HqlUtils(String baseSql, Map<String, Object> params, List groups) {
-		this(baseSql, ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList(1))), params, groups);
-	}
-
 	public HqlUtils(String baseSql, int initCapacity, Map<String, Object> params, List groups) {
 		this(baseSql, ((List) (new ArrayList(initCapacity))), ((List) (new ArrayList(initCapacity))), ((List) (new ArrayList(initCapacity))),
 				((List) (new ArrayList(1))), params, groups);
-	}
-
-	public HqlUtils(String baseSql, List wheres, List values, List types, Map<String, Object> params, List groups) {
-		this(baseSql, wheres, values, types, ((List) (new ArrayList(1))), params, groups);
 	}
 
 	public HqlUtils(String baseSql, List wheres, List values, List types, List orders, Map<String, Object> params, List groups) {
@@ -82,40 +56,153 @@ public class HqlUtils {
 		this.groups = groups;
 	}
 
-	public String getAndClause() {
-		return getAndClause(wheres, orders);
+	public HqlUtils(String baseSql, List wheres, List values, List types, Map<String, Object> params, List groups) {
+		this(baseSql, wheres, values, types, ((List) (new ArrayList(1))), params, groups);
 	}
 
-	public String getOrClause() {
-		return getOrClause(wheres, orders);
+	public HqlUtils(String baseSql, Map<String, Object> params, List groups) {
+		this(baseSql, ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList())), ((List) (new ArrayList(1))), params, groups);
 	}
 
-	public String getWhereClause() {
-		return getWhereClause(wheres, groups, orders);
-	}
+	public static String getAndClause(List wheres, List orders) {
+		StringBuilder where = new StringBuilder();
+		String segment = "";
+		// if (wheres.size() > 0) {
+		if (!wheres.isEmpty()) {
+			for (int i = 0; i < wheres.size(); i++) {
+				segment = (String) wheres.get(i);
+				if (i == 0) {
+					if (segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0)
+						where.append(" AND");
+				} else if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0)
+					where.append(" AND");
+				where.append(' ').append(segment);
+			}
 
-	public String getHql() {
-		if (baseSql.toLowerCase().contains("where")) {
-			return (new StringBuilder(String.valueOf(baseSql))).append(" ").append(getAndClause()).toString();
-		} else {
-			return (new StringBuilder(String.valueOf(baseSql))).append(" ").append(getWhereClause()).toString();
 		}
+		// if (orders.size() > 0) {
+		if (!orders.isEmpty()) {
+			where.append(" ORDER BY");
+			for (int i = 0; i < orders.size(); i++) {
+				segment = (String) orders.get(i);
+				if (i > 0) {
+					where.append(",");
+				}
+				where.append(' ').append(segment);
+			}
+
+		}
+		return where.toString();
 	}
 
-	public Object[] getValues() {
-		return values.toArray();
+	public static String getOrClause(List wheres, List orders) {
+		StringBuilder where = new StringBuilder();
+		String segment = "";
+		// if (wheres.size() > 0) {
+		if (!wheres.isEmpty()) {
+			where.append(" AND (");
+			for (int i = 0; i < wheres.size(); i++) {
+				segment = (String) wheres.get(i);
+				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
+					where.append(" OR");
+				}
+				where.append(' ').append(segment);
+			}
+			where.append(")");
+		}
+		// if (orders.size() > 0) {
+		if (!orders.isEmpty()) {
+			where.append(" ORDER BY");
+			for (int i = 0; i < orders.size(); i++) {
+				segment = (String) orders.get(i);
+				if (i > 0) {
+					where.append(",");
+				}
+				where.append(' ').append(segment);
+			}
+
+		}
+		return where.toString();
 	}
 
-	public void setValues(List values) {
-		this.values = values;
+	public static String getWhereClause(List wheres, List orders) {
+		StringBuilder where = new StringBuilder();
+		String segment = "";
+		// if (wheres.size() > 0) {
+		if (!wheres.isEmpty()) {
+			where.append(" WHERE");
+			for (int i = 0; i < wheres.size(); i++) {
+				segment = (String) wheres.get(i);
+				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
+					where.append(" AND");
+				}
+				where.append(' ').append(segment);
+			}
+		}
+		// if (orders.size() > 0) {
+		if (!orders.isEmpty()) {
+			where.append(" ORDER BY");
+			for (int i = 0; i < orders.size(); i++) {
+				segment = (String) orders.get(i);
+				if (i > 0) {
+					where.append(",");
+				}
+				where.append(' ').append(segment);
+			}
+		}
+		return where.toString();
 	}
 
-	public Type[] getTypes() {
-		return (Type[]) types.toArray(new Type[0]);
+	public static String getWhereClause(List wheres, List groups, List orders) {
+		StringBuilder where = new StringBuilder();
+		String segment = "";
+		if (!wheres.isEmpty()) {
+			where.append(" WHERE");
+			for (int i = 0; i < wheres.size(); i++) {
+				segment = (String) wheres.get(i);
+				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
+					where.append(" AND");
+				}
+				where.append(' ').append(segment);
+			}
+		}
+		if (!groups.isEmpty()) {
+			where.append(" GROUP BY");
+			for (int i = 0; i < groups.size(); i++) {
+				segment = (String) groups.get(i);
+				if (i > 0)
+					where.append(",");
+				where.append(' ').append(segment);
+			}
+		}
+		// if (orders.size() > 0) {
+		if (!orders.isEmpty()) {
+			where.append(" ORDER BY");
+			for (int i = 0; i < orders.size(); i++) {
+				segment = (String) orders.get(i);
+				if (i > 0)
+					where.append(",");
+				where.append(' ').append(segment);
+			}
+
+		}
+		return where.toString();
 	}
 
-	public void setTypes(List types) {
-		this.types = types;
+	public static boolean isEmptyCondition(Object arg) {
+		if (arg == null)
+			return true;
+		if (arg instanceof String) {
+			if (arg.equals(""))
+				return true;
+			if (arg.equals("%"))
+				return true;
+		}
+		if (((arg instanceof Integer) || (arg instanceof Long)) && arg.toString().equals("-1")) {
+			return true;
+		} else {
+			return (arg instanceof Long) && ((Long) arg).longValue() == 111111111111L;
+		}
 	}
 
 	// 按位置设值
@@ -126,23 +213,6 @@ public class HqlUtils {
 	// 按参数名称设值
 	public HqlUtils add(String where, Object value, String paramName) {
 		return add(where, value, paramName, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addInt0(String where, int value) {
-		if (value > 0) {
-			add(where, Integer.valueOf(value), StandardBasicTypes.INTEGER);
-		}
-		return this;
-	}
-
-	// 按顺序设值
-	public HqlUtils add(String where, Object value, Type type) {
-		if (!isEmptyCondition(value)) {
-			wheres.add(where);
-			values.add(value);
-			types.add(type);
-		}
-		return this;
 	}
 
 	// 按参数名称设值
@@ -156,35 +226,12 @@ public class HqlUtils {
 		return this;
 	}
 
-	public HqlUtils addLike(String where, Object value) {
-		return addLike(where, value, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addLike(String where, Object value, String paramName) {
-		return addLike(where, value, paramName, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addLike(String where, Object value, Type type) {
+	// 按顺序设值
+	public HqlUtils add(String where, Object value, Type type) {
 		if (!isEmptyCondition(value)) {
-			add(where, (new StringBuilder("%")).append(value).append("%").toString(), type);
-		}
-		return this;
-	}
-
-	public HqlUtils addLike(String where, Object value, String paramsName, Type type) {
-		if (!isEmptyCondition(value)) {
-			add(where, (new StringBuilder("%")).append(value).append("%").toString(), paramsName, type);
-		}
-		return this;
-	}
-
-	public HqlUtils addOr(String where, Object value) {
-		return addOr(where, value, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addOr(String where, Object value, Type type) {
-		if (!isEmptyCondition(value)) {
-			add((new StringBuilder("OR ")).append(where).toString(), value, type);
+			wheres.add(where);
+			values.add(value);
+			types.add(type);
 		}
 		return this;
 	}
@@ -200,31 +247,54 @@ public class HqlUtils {
 		return this;
 	}
 
-	public HqlUtils addOrLike(String where, Object value) {
-		return addOrLike(where, value, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addOrLike(String where, Object value, String paramName) {
-		return addOrLike(where, value, paramName, ((Type) (StandardBasicTypes.STRING)));
-	}
-
-	public HqlUtils addOrLike(String where, Object value, Type type) {
-		if (!isEmptyCondition(value)) {
-			add((new StringBuilder("OR ")).append(where).toString(), (new StringBuilder("%")).append(value).append("%").toString(), type);
-		}
-		return this;
-	}
-
-	public HqlUtils addOrLike(String where, Object value, String paramsName, Type type) {
-		if (!isEmptyCondition(value)) {
-			add((new StringBuilder("OR ")).append(where).toString(), (new StringBuilder("%")).append(value).append("%").toString(), paramsName, type);
-		}
-		return this;
-	}
-
 	public HqlUtils addAndLike(String where, Object value, Type type) {
 		if (!isEmptyCondition(value)) {
 			add((new StringBuilder("AND ")).append(where).toString(), (new StringBuilder("%")).append(value).append("%").toString(), type);
+		}
+		return this;
+	}
+
+	public HqlUtils addGroup(String name) {
+		groups.add(name);
+		return this;
+	}
+
+	public HqlUtils addInt0(String where, int value) {
+		if (value > 0) {
+			add(where, Integer.valueOf(value), StandardBasicTypes.INTEGER);
+		}
+		return this;
+	}
+
+	public HqlUtils addLike(String where, Object value) {
+		return addLike(where, value, ((Type) (StandardBasicTypes.STRING)));
+	}
+
+	public HqlUtils addLike(String where, Object value, String paramName) {
+		return addLike(where, value, paramName, ((Type) (StandardBasicTypes.STRING)));
+	}
+
+	public HqlUtils addLike(String where, Object value, String paramsName, Type type) {
+		if (!isEmptyCondition(value)) {
+			add(where, (new StringBuilder("%")).append(value).append("%").toString(), paramsName, type);
+		}
+		return this;
+	}
+
+	public HqlUtils addLike(String where, Object value, Type type) {
+		if (!isEmptyCondition(value)) {
+			add(where, (new StringBuilder("%")).append(value).append("%").toString(), type);
+		}
+		return this;
+	}
+
+	public HqlUtils addOr(String where, Object value) {
+		return addOr(where, value, ((Type) (StandardBasicTypes.STRING)));
+	}
+
+	public HqlUtils addOr(String where, Object value, Type type) {
+		if (!isEmptyCondition(value)) {
+			add((new StringBuilder("OR ")).append(where).toString(), value, type);
 		}
 		return this;
 	}
@@ -244,8 +314,25 @@ public class HqlUtils {
 		return this;
 	}
 
-	public HqlUtils addGroup(String name) {
-		groups.add(name);
+	public HqlUtils addOrLike(String where, Object value) {
+		return addOrLike(where, value, ((Type) (StandardBasicTypes.STRING)));
+	}
+
+	public HqlUtils addOrLike(String where, Object value, String paramName) {
+		return addOrLike(where, value, paramName, ((Type) (StandardBasicTypes.STRING)));
+	}
+
+	public HqlUtils addOrLike(String where, Object value, String paramsName, Type type) {
+		if (!isEmptyCondition(value)) {
+			add((new StringBuilder("OR ")).append(where).toString(), (new StringBuilder("%")).append(value).append("%").toString(), paramsName, type);
+		}
+		return this;
+	}
+
+	public HqlUtils addOrLike(String where, Object value, Type type) {
+		if (!isEmptyCondition(value)) {
+			add((new StringBuilder("OR ")).append(where).toString(), (new StringBuilder("%")).append(value).append("%").toString(), type);
+		}
 		return this;
 	}
 
@@ -254,137 +341,63 @@ public class HqlUtils {
 		return this;
 	}
 
-	public static boolean isEmptyCondition(Object arg) {
-		if (arg == null)
-			return true;
-		if (arg instanceof String) {
-			if (arg.equals(""))
-				return true;
-			if (arg.equals("%"))
-				return true;
-		}
-		if (((arg instanceof Integer) || (arg instanceof Long)) && arg.toString().equals("-1")) {
-			return true;
+	public String getAndClause() {
+		return getAndClause(wheres, orders);
+	}
+
+	public int getBegin() {
+		return begin;
+	}
+
+	public String getHql() {
+		if (baseSql.toLowerCase().contains("where")) {
+			return (new StringBuilder(String.valueOf(baseSql))).append(" ").append(getAndClause()).toString();
 		} else {
-			return (arg instanceof Long) && ((Long) arg).longValue() == 111111111111L;
+			return (new StringBuilder(String.valueOf(baseSql))).append(" ").append(getWhereClause()).toString();
 		}
 	}
 
-	public static String getWhereClause(List wheres, List orders) {
-		StringBuilder where = new StringBuilder();
-		String segment = "";
-		if (wheres.size() > 0) {
-			where.append(" WHERE");
-			for (int i = 0; i < wheres.size(); i++) {
-				segment = (String) wheres.get(i);
-				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
-					where.append(" AND");
-				}
-				where.append(' ').append(segment);
-			}
-		}
-		if (orders.size() > 0) {
-			where.append(" ORDER BY");
-			for (int i = 0; i < orders.size(); i++) {
-				segment = (String) orders.get(i);
-				if (i > 0) {
-					where.append(",");
-				}
-				where.append(' ').append(segment);
-			}
-		}
-		return where.toString();
+	public String getOrClause() {
+		return getOrClause(wheres, orders);
 	}
 
-	public static String getWhereClause(List wheres, List groups, List orders) {
-		StringBuilder where = new StringBuilder();
-		String segment = "";
-		if (wheres.size() > 0) {
-			where.append(" WHERE");
-			for (int i = 0; i < wheres.size(); i++) {
-				segment = (String) wheres.get(i);
-				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
-					where.append(" AND");
-				}
-				where.append(' ').append(segment);
-			}
-		}
-		if (!groups.isEmpty()) {
-			where.append(" GROUP BY");
-			for (int i = 0; i < groups.size(); i++) {
-				segment = (String) groups.get(i);
-				if (i > 0)
-					where.append(",");
-				where.append(' ').append(segment);
-			}
-		}
-		if (orders.size() > 0) {
-			where.append(" ORDER BY");
-			for (int i = 0; i < orders.size(); i++) {
-				segment = (String) orders.get(i);
-				if (i > 0)
-					where.append(",");
-				where.append(' ').append(segment);
-			}
-
-		}
-		return where.toString();
+	public Map<String, Object> getParams() {
+		return params;
 	}
 
-	public static String getAndClause(List wheres, List orders) {
-		StringBuilder where = new StringBuilder();
-		String segment = "";
-		if (wheres.size() > 0) {
-			for (int i = 0; i < wheres.size(); i++) {
-				segment = (String) wheres.get(i);
-				if (i == 0) {
-					if (segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0)
-						where.append(" AND");
-				} else if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0)
-					where.append(" AND");
-				where.append(' ').append(segment);
-			}
-
-		}
-		if (orders.size() > 0) {
-			where.append(" ORDER BY");
-			for (int i = 0; i < orders.size(); i++) {
-				segment = (String) orders.get(i);
-				if (i > 0) {
-					where.append(",");
-				}
-				where.append(' ').append(segment);
-			}
-
-		}
-		return where.toString();
+	public int getSize() {
+		return size;
 	}
 
-	public static String getOrClause(List wheres, List orders) {
-		StringBuilder where = new StringBuilder();
-		String segment = "";
-		if (wheres.size() > 0) {
-			where.append(" AND (");
-			for (int i = 0; i < wheres.size(); i++) {
-				segment = (String) wheres.get(i);
-				if (i > 0 && segment.indexOf("OR ") < 0 && segment.indexOf("AND ") < 0) {
-					where.append(" OR");
-				}
-				where.append(' ').append(segment);
-			}
-			where.append(")");
-		}
-		if (orders.size() > 0) {
-			where.append(" ORDER BY");
-			for (int i = 0; i < orders.size(); i++) {
-				segment = (String) orders.get(i);
-				if (i > 0) {
-					where.append(",");
-				}
-				where.append(' ').append(segment);
-			}
+	public Type[] getTypes() {
+		return (Type[]) types.toArray(new Type[0]);
+	}
 
-		}
-		return where.toString();
+	public Object[] getValues() {
+		return values.toArray();
+	}
+
+	public String getWhereClause() {
+		return getWhereClause(wheres, groups, orders);
+	}
+
+	public void setBegin(int begin) {
+		this.begin = begin;
+	}
+
+	public void setParams(Map<String, Object> params) {
+		this.params = params;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public void setTypes(List types) {
+		this.types = types;
+	}
+
+	public void setValues(List values) {
+		this.values = values;
 	}
 }
