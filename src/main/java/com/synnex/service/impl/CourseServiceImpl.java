@@ -97,8 +97,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid) {
-		PageResult<Course> pageResult = courseDaoImpl.listCoursePageByTerm(begin, size, termid);
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, Integer termid, String searchKey) {
+		PageResult<Course> pageResult = courseDaoImpl.listCoursePageByTerm(begin, size, termid, searchKey);
 		List<Course> courses = pageResult.getRows();
 		for (Course course : courses) {
 			course.getTerm().getName();

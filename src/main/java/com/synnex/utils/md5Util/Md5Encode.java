@@ -7,12 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class Md5Encode {
-//	static MessageDigest md;
 	private static Log logger = LogFactory.getLog("Md5Encode");
 	public final static String getStringMD5(String s) {
 		try {
 			// 生成一个MD5加密计算摘要
-			//TODO MessageDigest单例？
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			// 计算md5函数
 			md.update(s.getBytes());

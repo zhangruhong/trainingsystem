@@ -34,19 +34,19 @@
 					<div class="row">
 
 						<div class="col-md-12">
-						<h3 class="margin-bottom-15">User Information</h3>
+							<h3 class="margin-bottom-15">User Information</h3>
 							<div class="pull-right" id="templatemo_sort_btn">
 								<button class="btn btn-primary  " data-toggle="modal" data-target="#addtraineemodel">Create Trainee</button>
 								<button class="btn btn-primary  " data-toggle="modal" data-target="#addtrainermodel">Create Trainer</button>
 							</div>
 							<div class="btn-group pull-left">
-								<form class="navbar-form">
-									<input type="text" class="form-control" id="sec_box_admin" placeholder="Search...by name" /> <input type="button" value="search"
-										id="sec_btn_admin" class="btn btn-default" />
+								<form class="navbar-form" style="padding-left: 0px" action="/trainingsystem/admin/user/show">
+									<input type="text" class="form-control" id="sec_box_admin" placeholder="Search...by name" name="searchKey" /> <input type="submit"
+										value="search" id="sec_btn_admin" class="btn btn-default" />
 								</form>
 							</div>
 							<div class="table-responsive">
-								
+
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
@@ -66,7 +66,7 @@
 												<td>${user["phoneno"]}</td>
 												<td>
 													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${term['id']})">Edit</button>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">Lock</button>
+													<button class="btn btn-warning btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${term['id']})">Lock</button>
 												</td>
 											</tr>
 										</c:forEach>

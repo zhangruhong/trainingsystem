@@ -46,8 +46,9 @@ public interface UserDao extends GenericDao<User, Integer> {
 	 * 
 	 * @param page
 	 * @param pagesize
+	 * @param searchKey TODO
 	 * @return
 	 */
-	public PageResult<User> listUserPage(Integer page, int pagesize);
+	public PageResult<User> listUserPage(Integer page, int pagesize, String searchKey);
 
 }

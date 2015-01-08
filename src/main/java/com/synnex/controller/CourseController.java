@@ -30,7 +30,7 @@ public class CourseController extends GenericController {
 	@ResponseBody
 	@RequestMapping(value = "/admin/term/{termid}/courses/show")
 	public JsonBean showCourseByTermjson(@PathVariable int termid) {
-		List<Course> courses = courseServiceImpl.listCoursePageByTerm(0, 8, termid).getRows();
+		List<Course> courses = courseServiceImpl.listCoursePageByTerm(0, 8, termid, null).getRows();
 		JsonBean jsonBean = null;
 		if (null == courses || courses.isEmpty()) {
 			jsonBean = new JsonBean(false, "没有数据", null);
@@ -41,14 +41,17 @@ public class CourseController extends GenericController {
 	}
 
 	@RequestMapping(value = "/admin/term/{termid}/courses/showall")
-	public String showCourseByTerm(@PathVariable int termid, @RequestParam(value = "page", required = false) Integer page, Model model) {
+	public String showCourseByTerm(@PathVariable int termid, @RequestParam(value = "searchKey", required = false) String searchKey,
+			@RequestParam(value = "page", required = false) Integer page, Model model) {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid);
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid, searchKey);
 		List<Dictionary> dictionaries = dictionaryServiceImpl.listAll();
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("dictionaries", dictionaries);
+		model.addAttribute("searchKey", searchKey);
+		model.addAttribute("termid", termid);
 		return "/admin/courses/show";
 	}
 
@@ -151,7 +154,7 @@ public class CourseController extends GenericController {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid);
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTerm(page, SystemVariable.PageSize, termid, null);
 		model.addAttribute("pageResult", pageResult);
 		return "/trainee/course/view";
 	}

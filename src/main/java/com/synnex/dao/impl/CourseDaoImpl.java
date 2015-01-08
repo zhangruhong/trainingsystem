@@ -40,9 +40,14 @@ public class CourseDaoImpl extends GenericDaoImpl<Course, Integer> implements Co
 	}
 
 	@Override
-	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid) {
-		String hql = "select c from Course c where c.term.id = ?";
-		PageResult<Course> pageResult = super.listPageResult(begin, size, hql, termid);
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, Integer termid, String name) {
+		String hql = "select c from Course c";
+		HqlUtils hqlUtils = new HqlUtils();
+		hqlUtils.add("c.term.id = ?", termid);
+		hqlUtils.addLike("c.name like ?", name);
+		hqlUtils.addOrder("c.id", HqlUtils.DESCENDING);
+		hql += hqlUtils.getWhereClause();
+		PageResult<Course> pageResult = super.listPageResult(begin, size, hql, hqlUtils.getValues());
 		return pageResult;
 	}
 

@@ -32,7 +32,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Create Group</button>
+								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Group</button>
 							</div>
 
 							<div class="table-responsive">

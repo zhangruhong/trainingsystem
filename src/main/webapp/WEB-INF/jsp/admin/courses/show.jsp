@@ -31,16 +31,24 @@
 						<li><a href="#">Manage Courses</a></li>
 						<li class="active">Tables</li>
 					</ol>
+					<h4 class="margin-bottom-15">Courses Schedule</h4>
 
 					<div class="row">
 						<div class="col-md-12">
+							<div class="btn-group pull-left">
+							<form class="navbar-form"  style="padding-left:0px" action="/trainingsystem/admin/term/${termid}/courses/showall">
+									<input type="text" class="form-control" id="sec_box_admin" name="searchKey" placeholder="Search...by name"> <input type="submit" value="search"
+										id="sec_btn_admin" class="btn btn-default" >
+								</form>
+							</div>
 							<div class="pull-right" id="templatemo_sort_btn">
 								<button class="btn btn-primary " data-toggle="modal" data-target="#addDictionary">Create Dictionary</button>
 								<button class="btn btn-primary " data-toggle="modal" data-target="#myModal">Create Course</button>
 							</div>
 
+
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">Courses Schedule</h4>
+
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
@@ -61,7 +69,7 @@
 												<td>${item["name"]}</td>
 												<td>${item["content"]}</td>
 												<td>${item["trainer"]["loginname"]}</td>
-												<td> ${fn:substring(item["starttime"],0,16)}<br />~${fn:substring(item["endtime"],0,16)}
+												<td>${fn:substring(item["starttime"],0,16)}<br />~${fn:substring(item["endtime"],0,16)}
 												</td>
 												<td>${item["location"]}</td>
 												<td><a class="btn btn-primary btn-default"
@@ -259,7 +267,7 @@
 										<input class="form-control" id="localInput_update" name="location" type="text" placeholder="Input Course Place ">
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label for="inputlabel" class="col-sm-2 control-label">Content</label>
 									<div class="col-sm-10">

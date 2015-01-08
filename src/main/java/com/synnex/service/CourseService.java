@@ -77,11 +77,12 @@ public interface CourseService {
 
 	/**
 	 * 通过term找course带分页
-	 * 
 	 * @param termid
+	 * @param searchKey TODO
+	 * 
 	 * @return
 	 */
-	public PageResult<Course> listCoursePageByTerm(int begin, int size, int termid);
+	public PageResult<Course> listCoursePageByTerm(int begin, int size, Integer termid, String searchKey);
 
 	/**
 	 * 通过trianer找course带分页

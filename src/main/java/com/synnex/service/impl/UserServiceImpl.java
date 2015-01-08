@@ -135,8 +135,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public PageResult<User> listUserPage(Integer page, int pagesize) {
-		PageResult<User> pageResult = userDaoImpl.listUserPage(page, pagesize);
+	public PageResult<User> listUserPage(Integer page, int pagesize, String searchKey) {
+		PageResult<User> pageResult = userDaoImpl.listUserPage(page, pagesize, searchKey);
 		return pageResult;
 	}
 }

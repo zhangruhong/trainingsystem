@@ -126,7 +126,8 @@ public interface UserService {
 	 * 
 	 * @param page
 	 * @param pagesize
+	 * @param searchKey TODO
 	 * @return
 	 */
-	public com.synnex.model.PageResult<User> listUserPage(Integer page, int pagesize);
+	public com.synnex.model.PageResult<User> listUserPage(Integer page, int pagesize, String searchKey);
 }

@@ -59,11 +59,12 @@ public class UserController extends GenericController {
 	}
 
 	@RequestMapping(value = "/admin/user/show", method = RequestMethod.GET)
-	public String showUsers(@RequestParam(value = "page", required = false) Integer page, Model model) {
+	public String showUsers(@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "searchKey", required = false) String searchKey, Model model) {
 		if (null == page || page < 1) {
 			page = 1;
 		}
-		PageResult<User> pageResult = userServiceImpl.listUserPage(page, SystemVariable.PageSize);
+		PageResult<User> pageResult = userServiceImpl.listUserPage(page, SystemVariable.PageSize, searchKey);
 		model.addAttribute("pageResult", pageResult);
 		return "/admin/user/show";
 	}

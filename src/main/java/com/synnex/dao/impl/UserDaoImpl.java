@@ -77,9 +77,14 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 	}
 
 	@Override
-	public PageResult<User> listUserPage(Integer page, int pagesize) {
-		String hql = "from User u where u.role != 0 ";
-		PageResult<User> pageResult = super.listPageResult(page, pagesize, hql);
+	public PageResult<User> listUserPage(Integer page, int pagesize, String searchKey) {
+		String hql = "from User u ";
+		HqlUtils hqlUtils = new HqlUtils();
+		hqlUtils.add("u.role != ?", 0);
+		hqlUtils.addLike("u.loginname like ?", searchKey);
+		hqlUtils.addOrder("u.id", hqlUtils.DESCENDING);
+		hql += hqlUtils.getWhereClause();
+		PageResult<User> pageResult = super.listPageResult(page, pagesize, hql, hqlUtils.getValues());
 		return pageResult;
 	}
 
