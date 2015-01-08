@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html >
 <head>
 <meta charset="utf-8">
@@ -48,7 +49,7 @@
 											<th>Course Name</th>
 											<th>Content</th>
 											<th>Trainer</th>
-											<th width="15%">Time</th>
+											<th width="12%">Time</th>
 											<th width="10%">Place</th>
 											<th width="22%">Manage</th>
 										</tr>
@@ -60,7 +61,7 @@
 												<td>${item["name"]}</td>
 												<td>${item["content"]}</td>
 												<td>${item["trainer"]["loginname"]}</td>
-												<td>${item["starttime"]}<br />~${item["endtime"]}
+												<td> ${fn:substring(item["starttime"],0,16)}<br />~${fn:substring(item["endtime"],0,16)}
 												</td>
 												<td>${item["location"]}</td>
 												<td><a class="btn btn-primary btn-default"

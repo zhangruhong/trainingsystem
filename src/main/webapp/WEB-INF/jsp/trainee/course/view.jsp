@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html >
 <head>
 <meta charset="utf-8">
@@ -52,7 +53,8 @@
 												<td>${course["dictionary"]["name"]}</td>
 												<td>${course["name"]}</td>
 												<td>${course["content"]}</td>
-												<td>${course["starttime"]}<br />~${course["endtime"]}
+												<td> ${fn:substring(item["starttime"],0,16)}<br />~${fn:substring(item["endtime"],0,16)}
+												</td>
 												<td>${course["location"]}</td>
 												<td>${course["goal"]}</td>
 												<td>
