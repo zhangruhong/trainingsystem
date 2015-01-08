@@ -48,9 +48,9 @@
 											<th>Course Name</th>
 											<th>Content</th>
 											<th>Trainer</th>
-											<th>Time</th>
-											<th>Place</th>
-											<th>Manage</th>
+											<th width="15%">Time</th>
+											<th width="10%">Place</th>
+											<th width="22%">Manage</th>
 										</tr>
 									</thead>
 									<tbody id="tbodyterms" class="text-left">
@@ -66,7 +66,7 @@
 												<td><a class="btn btn-primary btn-default"
 													href="${pageContext.request.contextPath}/admin/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">Progress</a>
 													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${item['id']})">Edit</button>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">Delete</button>
+													<button class="btn  btn-default btn-danger" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">Delete</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -293,8 +293,8 @@
 						</div>
 						<div class="modal-body">Unrecoverable if you delete this course!</div>
 						<div class="modal-footer">
-							<button id="cancaltodelete" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-							<button id="yestodelete" type="button" class="btn btn-primary" value="">Yes</button>
+							<button id="cancaltodelete" type="button" class="btn btn-primary btn-default" data-dismiss="modal">Cancel</button>
+							<button id="yestodelete" type="button" class="btn btn-primary btn-danger" value="">Yes</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->

@@ -14,7 +14,7 @@ function addTerm() {
 				location.reload(true);
 				$("#actiontip")
 						.html(
-								"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>数据添加成功！</div>");
+								"<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>Success to add data!</div>");
 			} else {
 				$("#actiontip").html(
 						"<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>"
@@ -24,7 +24,7 @@ function addTerm() {
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			$("#actiontip")
 					.html(
-							"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！添加失败！请练习davisz@synnex.com。</div>");
+							"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>error！failed to add！Pls. contact davisz@synnex.com。</div>");
 		}
 	});
 }
@@ -36,7 +36,7 @@ function createShowingTable(data) {
 		+ term.name
 		+ "</td>" 
 		+ "<td>" + term.description + "</td>" + "<td>" 
-		+ '<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue('+term.id+')">组员管理</button></td>'
+		+ '<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue('+term.id+')">Member Management</button></td>'
 		+'<td><a href="#" class="btn btn-default btn-danger" onclick="deleteUserGroup('+term.id+')">Delete</a></td>'
 		+'</tr>';
 		tableStr = tableStr + termstring;
@@ -69,7 +69,7 @@ function deleteUserGroup(groupid) {
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					$("#actiontip")
 							.html(
-									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>网络或兼容性错误！删除失败！请练习davisz@synnex.com。</div>");
+									"<div class='alert alert-danger alert-dismissable'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>error！failed to add！Pls. contact davisz@synnex.com。</div>");
 				}
 			});
 }
@@ -92,14 +92,14 @@ function addUserToGroup() {
 			data = data.termmap;
 			var terms = data.terms;
 			if (data.success == true) {
-				alert("成功！" + data.msg);
+				alert("Success！" + data.msg);
 				loadUsersOfGroup();
 			} else {
-				alert("失败" + data.msg);
+				alert("Failed" + data.msg);
 			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("错误");
+			alert("Error!");
 		}
 	});
 }
@@ -150,14 +150,14 @@ function deleteUserfromGroup(groupid, userid) {
 			data = data.termmap;
 			var terms = data.terms;
 			if (data.success == true) {
-				alert("移除成功！" + data.msg);
+				alert("Remove Success！" + data.msg);
 				loadUsersOfGroup();
 			} else {
-				alert("移除失败" + data.msg);
+				alert("Remove Failed！" + data.msg);
 			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("错误");
+			alert("Error");
 		}
 	});
 }
