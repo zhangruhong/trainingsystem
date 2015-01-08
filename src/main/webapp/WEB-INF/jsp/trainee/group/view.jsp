@@ -25,7 +25,8 @@
 
 					<ol class="breadcrumb">
 						<li>Trainer Panel</li>
-						<li class="active">Term View</li>
+						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
+						<li class="active">Group View</li>
 					</ol>
 
 					<div class="row">
@@ -50,7 +51,7 @@
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
 												<td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td>
-												<td><a href="${pageContext.request.contextPath}/trainee/group/view" class="btn btn-primary">Group View</a></td>
+												<td><a href="${term['id']}/usergroup/view" class="btn btn-primary">Group View</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

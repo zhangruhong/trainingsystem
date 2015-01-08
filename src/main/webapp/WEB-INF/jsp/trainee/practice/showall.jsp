@@ -36,6 +36,12 @@
 						<div class="col-md-12">
 							<div class="table-responsive">
 								<h3 class="margin-bottom-15">Practice View</h3>
+								<div class="btn-group pull-right"	>
+									<form class="navbar-form">
+										<input type="text" class="form-control" id="sec_box_admin" placeholder="Search...by name"/>
+										<input type="button" value="search" id="sec_btn_admin" class="btn btn-default" />
+									</form>
+								</div>
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>

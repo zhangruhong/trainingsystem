@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,6 @@ import com.synnex.utils.md5Util.Md5Encode;
 import com.synnex.utils.variable.SystemVariable;
 
 @Controller
-@RequestMapping("/admin/user")
 public class UserController extends GenericController {
 
 	/**
@@ -36,7 +36,7 @@ public class UserController extends GenericController {
 	 * @param user
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/user/add", method = RequestMethod.POST)
 	public JsonBean createUser(@RequestBody @Valid User user, BindingResult brt) {
 		JsonBean jsonBean = null;
 		User user2 = userServiceImpl.gettraineeByName(user.getLoginname());
@@ -58,7 +58,7 @@ public class UserController extends GenericController {
 		return jsonBean;
 	}
 
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/user/show", method = RequestMethod.GET)
 	public String showUsers(@RequestParam(value = "page", required = false) Integer page, Model model) {
 		if (null == page || page < 1) {
 			page = 1;
@@ -80,7 +80,7 @@ public class UserController extends GenericController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "/updateuser")
+	@RequestMapping(value = "/admin/user/updateuser")
 	public String updateUser(User user) {
 		User databaseuser = userServiceImpl.getUser(user.getId());
 		user.setPassword(databaseuser.getPassword());
@@ -88,7 +88,7 @@ public class UserController extends GenericController {
 		return "redirect:/admin/showusers";
 	}
 
-	@RequestMapping(value = "/updatapass")
+	@RequestMapping(value = "/admin/user/updatapass")
 	public String changePassword(@Valid User user, BindingResult errors, String newpass, String passconfig) {
 		if (errors.hasErrors()) {
 			return "/admin/user/updatapass";
@@ -120,7 +120,7 @@ public class UserController extends GenericController {
 		return "/admin/user/updatapass";
 	}
 
-	@RequestMapping(value = { "/search" }, method = { RequestMethod.POST })
+	@RequestMapping(value = { "/admin/user/search" }, method = { RequestMethod.POST })
 	@ResponseBody
 	public JsonBean searchTrainerByName(String loginname, @PathVariable(value = "termid") int termid, @PathVariable("groupid") int usergroupid) {
 		User user = new User();
@@ -136,5 +136,12 @@ public class UserController extends GenericController {
 			jsonBean = new JsonBean(false, "没有记录", null);
 		}
 		return jsonBean;
+	}
+
+	@RequestMapping(value = "/trainee/group/view", method = RequestMethod.GET)
+	public String showUserByGroup(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		// List<User> users = userServiceImpl.findUsersInGroup(user.getId());
+		return "/trainee/group/view";
 	}
 }

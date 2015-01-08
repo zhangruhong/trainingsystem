@@ -39,9 +39,8 @@
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th>#id</th>
-											<th width="10%">Trainee Name</th>
-											<th width="10%">Course Name</th>
+											<th width="15%">Term Name</th>
+											<th width="15%">Course Name</th>
 											<th>Practice Manage</th>
 											<th>score</th>
 											<th>score description</th>
@@ -50,8 +49,7 @@
 									<tbody>
 										<c:forEach items="${pageResult.rows}" var="practice" varStatus="status">
 											<tr>
-												<td>${status.count}</td>
-												<td>${practice.user.loginname}</td>
+												<td>${practice.course.term.name}</td>
 												<td>${practice.course.name}</td>
 												<td>
 													<c:if test="${practice.status == 0}">
@@ -74,38 +72,6 @@
 									</tbody>
 								</table>
 							</div>
-							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
-							<div style="float: right">
-								<ul class="pagination">
-									<c:if test="${pageResult.currentPage-1<=0}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="show?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1<=0}">
-										<li class="disabled"><a href="#">Previous</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="show?page=${pageResult.currentPage-1}">Previous</a></li>
-									</c:if>
-									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
-									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="show?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="show?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
-									</c:if>
-								</ul>
-							</div>
-							<!-- page end  -->
 						</div>
 					</div>
 				</div>
