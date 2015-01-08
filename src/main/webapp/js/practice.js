@@ -85,7 +85,7 @@ $(function() {
 						if(data.terms.length == 0){
 							$("tbody > tr").remove();
 							$(".input_message").show();
-							$(".input_message span").text(" the name which you input does not exist");
+							$(".input_message div").text(" the name which you input does not exist");
 						} else{
 							var practices = data.terms;
 							var tableHtml = null;

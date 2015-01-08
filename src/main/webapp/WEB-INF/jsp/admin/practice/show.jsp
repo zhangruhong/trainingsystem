@@ -56,7 +56,7 @@
 									</tbody>
 								</table>
 								<div class="input_message">
-									<span style="color: red">please input search condition</span>
+									<div style="color: red" align="center">please input search condition</span>
 								</div>
 							</div>
 
