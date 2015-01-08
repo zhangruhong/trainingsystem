@@ -39,7 +39,7 @@
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">Courses Plan</h4>
+								<h4 class="margin-bottom-15">Courses Schedule</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
@@ -223,7 +223,7 @@
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label">Course Dictionary </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Dictionary </label>
 									<div class="col-sm-10">
 										<select id="dictionaries_update" class="form-control" name="dictionaries">
 											<c:forEach items="${dictionaries}" var="term">

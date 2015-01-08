@@ -3,7 +3,7 @@
 <!DOCTYPE html >
 <head>
 <meta charset="utf-8">
-<title>学员出勤情况</title>
+<title>Trainee attendance</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
@@ -29,14 +29,14 @@
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">出勤状况</h4>
+								<h4 class="margin-bottom-15">Trainee Attendance</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
-											<th>学员</th>
-											<th>出勤状态</th>
-											<th>备注</th>
+											<th>Trainee</th>
+											<th>Attendance</th>
+											<th>Comments</th>
 										</tr>
 									</thead>
 
@@ -47,9 +47,9 @@
 													<td>${item.key}</td>
 													<%-- <td>${nowDate-item["course"]["endtime"]>0?item[attendCourseStatus]==0?"完成":"缺席":"课程还没有结束"}</td> --%>
 													<td><select class="form-control" disabled="disabled">
-															<option value="0" ${item.value.attendCourseStatus==0?'selected':''}>正常</option>
-															<option value="1" ${item.value.attendCourseStatus==1?'selected':''}>缺勤</option>
-															<option value="2" ${item.value.attendCourseStatus==2?'selected':''}>请假</option>
+															<option value="0" ${item.value.attendCourseStatus==0?'selected':''}>Normal</option>
+															<option value="1" ${item.value.attendCourseStatus==1?'selected':''}>Absence</option>
+															<option value="2" ${item.value.attendCourseStatus==2?'selected':''}>Leave</option>
 													</select></td>
 													<td><textarea class="form-control " rows="1" disabled="disabled">${item.value.description}</textarea></td>
 												</tr>
@@ -57,7 +57,8 @@
 										</c:if>
 										<c:if test="${empty usercoursemap}">
 											<tr>
-												<td colspan="3" align="center">抱歉，数据库里没有该课程的出勤信息，原因可能是老师还没有更新这门课的出勤状态</td>
+												<td colspan="3" align="center">Sorry, no course attendance information in database, the reason may be the teacher did not update
+													this course attendance status</td>
 											</tr>
 										</c:if>
 									</tbody>
@@ -65,7 +66,7 @@
 								</table>
 							</div>
 							<!-- page begin  -->
-							<span style="font-weight: 700;float: left;margin-top: 30px;color: #0071e4;">All(${pageResult.totalRows})</span>
+							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
 							<div style="float: right">
 								<ul class="pagination">
 									<c:if test="${pageResult.currentPage-1<=0}">
@@ -130,10 +131,10 @@
 					contentType : "application/json; charset=utf8",
 					data : params,
 					success : function(data) {
-						alert("成功");
+						alert("Succuss");
 					},
 					error : function(e) {
-						alert("出错：" + e);
+						alert("Error：" + e);
 					}
 				});
 			});

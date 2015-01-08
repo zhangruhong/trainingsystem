@@ -36,46 +36,24 @@
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">第1期英语培训分组情况</h4>
+								<h4 class="margin-bottom-15">第1期英语培训 Groups Situation</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
-											<th>#id</th>
 											<th>Group Name</th>
 											<th>Discription</th>
-											<th>其他二</th>
-											<th>其他三</th>
-											<th>其他四</th>
 											<th>组员管理</th>
-											<th>Action</th>
+											<th>删除分组</th>
 										</tr>
 									</thead>
 									<tbody id="tbodyusergroup">
 										<c:forEach items="${pageResult.rows}" var="term">
 											<tr>
-												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<td>me@company.com</td>
-												<td><a href="#" class="btn btn-default">Edit</a></td>
-												<td><a href="#" class="btn btn-link">Delete</a></td>
 												<td><button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue(${term['id']})">组员管理</button></td>
-												<%-- <a href="连接到分组管理的页面aaa${term['id']}" class="btn btn-default">组员管理</a> --%>
-												<td>
-													<!-- Split button -->
-													<div class="btn-group">
-														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-														</button>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Bootstrap</a></li>
-															<li><a href="#">Font Awesome</a></li>
-															<li><a onclick="deleteUserGroup(${term['id']})">删除/解散该组</a></li>
-														</ul>
-													</div>
-												</td>
+												<td><a href="#" class="btn btn-default btn-danger" onclick="deleteUserGroup(${term['id']})">Delete</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

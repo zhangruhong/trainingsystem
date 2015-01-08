@@ -4,7 +4,7 @@
 <!DOCTYPE html >
 <head>
 <meta charset="utf-8">
-<title>学员出勤管理</title>
+<title>Trainee Attendance Management</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width">
@@ -35,14 +35,14 @@
 								</div>
 
 								<div class="table-responsive">
-									<h4 class="margin-bottom-15">user所有课程的出勤状态</h4>
+									<h4 class="margin-bottom-15">The Attendance of Trainee </h4>
 									<table class="table table-striped table-hover table-bordered ">
 										<div id="actiontip" align="center"></div>
 										<thead>
 											<tr>
-												<th>课程</th>
-												<th>出勤状态</th>
-												<th>备注</th>
+												<th>Course</th>
+												<th>Attendance</th>
+												<th>Comments</th>
 											</tr>
 										</thead>
 
@@ -55,9 +55,9 @@
 													<td>
 													
 													<select class="form-control" disabled="disabled">
-															<option value="0" ${item.value.attendCourseStatus==0?'selected':''}>正常</option>
-															<option value="1" ${item.value.attendCourseStatus==1?'selected':''}>缺勤</option>
-															<option value="2" ${item.value.attendCourseStatus==2?'selected':''}>请假</option>
+															<option value="0" ${item.value.attendCourseStatus==0?'selected':''}>Normal</option>
+															<option value="1" ${item.value.attendCourseStatus==1?'selected':''}>Absence</option>
+															<option value="2" ${item.value.attendCourseStatus==2?'selected':''}>Leave</option>
 													</select>
 													
 													</td>

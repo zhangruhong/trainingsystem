@@ -32,16 +32,13 @@ function createShowingTable(data) {
 	// 此处需要让其动态的生成一个table并填充数据
 	var tableStr = "";
 	$.each(data, function(n, term) {
-		var termstring = "<tr><td>" + term.id + "</td>" + "<td>" + term.name + "</td>" + "<td>" + term.description + "</td>" + "<td>" + '功能待定'
-				+ "</td>" + "<td><a href='" + '#连接到编辑页面（暂不支持）' + " class='btn btn-default'>" + 'Edit' + "</a></td>" + "<td><a href='" + '#连接到删除页面'
-				+ " class='btn btn-link'>" + 'Delete' + "</a></td>" + "<td><a href='" + "href111" + " class='btn btn-default'>" + '组员管理'
-				+ "</a></td>" + "<td>" +
-				// <!-- Split button -->
-				"<div class='btn-group'>" + "<button type='button' class='btn btn-info'>Action</button>"
-				+ "<button type='button' class='btn btn-info dropdown-toggle' data-toggle='dropdown'>"
-				+ "<span class='caret'></span> <span class='sr-only'>Toggle Dropdown</span> </button>" + "<ul class='dropdown-menu' role='menu'>"
-				+ "<li><a href='" + '#功能待定' + "'>Bootstrap</a></li>'" + "<li><a href='" + '#功能待定' + "'>Bootstrap</a></li>'"
-				+ "<li><a onclick='deleteUserGroup(" + term.id + ")'>删除/解散该组</a></li>'" + "</ul> </div> </td>" + "</tr>";
+		var termstring = "<tr><td>" 
+		+ term.name
+		+ "</td>" 
+		+ "<td>" + term.description + "</td>" + "<td>" 
+		+ '<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#member_Manage_Modal"  onclick="setgroupidvalue('+term.id+')">组员管理</button></td>'
+		+'<td><a href="#" class="btn btn-default btn-danger" onclick="deleteUserGroup('+term.id+')">Delete</a></td>'
+		+'</tr>';
 		tableStr = tableStr + termstring;
 	});
 	// 将动态生成的table添加的事先隐藏的div中.

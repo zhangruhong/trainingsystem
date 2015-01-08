@@ -44,7 +44,7 @@
 										<tr>
 											<th>Term Name</th>
 											<th>Discription</th>
-											<th>其他三</th>
+											<th>编辑（预留）</th>
 											<th>课程管理</th>
 											<th>分组管理</th>
 										</tr>
