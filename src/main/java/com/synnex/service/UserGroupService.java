@@ -1,6 +1,6 @@
 package com.synnex.service;
 
-import com.synnex.exception.UserException;
+import com.synnex.exception.BusinessException;
 import com.synnex.model.PageResult;
 import com.synnex.model.Usergroup;
 
@@ -43,18 +43,18 @@ public interface UserGroupService {
 	 * 
 	 * @param loginname
 	 * @param usergroupid
-	 * @throws UserException
+	 * @throws BusinessException
 	 */
-	public void addUserToGroup(String loginname, int usergroupid) throws UserException;
+	public void addUserToGroup(String loginname, int usergroupid) throws BusinessException;
 
 	/**
 	 * 移除User与分组的关联关系
 	 * 
 	 * @param loginname
 	 * @param usergroupid
-	 * @throws UserException
+	 * @throws BusinessException
 	 */
-	public void deleteUserFromGroup(int userid, int usergroupid) throws UserException;
+	public void deleteUserFromGroup(int userid, int usergroupid) throws BusinessException;
 
 	/**
 	 * 查询userGroup带分页

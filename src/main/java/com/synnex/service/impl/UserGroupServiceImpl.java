@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.synnex.dao.TermDao;
 import com.synnex.dao.UserDao;
 import com.synnex.dao.UserGroupDao;
-import com.synnex.exception.UserException;
+import com.synnex.exception.BusinessException;
 import com.synnex.model.PageResult;
 import com.synnex.model.Term;
 import com.synnex.model.User;
@@ -54,10 +54,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 	}
 
 	@Override
-	public void addUserToGroup(String loginname, int usergroupid) throws UserException {
+	public void addUserToGroup(String loginname, int usergroupid) throws BusinessException {
 		User user = userDaoImpl.findUserbyName(loginname, 2);// list(user, null, 0, 1);
 		if (null == user) {
-			throw new UserException("用户名不存在");
+			throw new BusinessException("用户名不存在");
 		}
 		Usergroup usergroup = getGroup(usergroupid);
 		// 将需要添加的user添加到usergroup
@@ -68,11 +68,11 @@ public class UserGroupServiceImpl implements UserGroupService {
 	}
 
 	@Override
-	public void deleteUserFromGroup(int userid, int usergroupid) throws UserException {
+	public void deleteUserFromGroup(int userid, int usergroupid) throws BusinessException {
 		String hql = "select u from User u left join u.usergroups ugs  where u.id=? and ugs.id=?";
 		List<User> users = userDaoImpl.findByHql(hql, new Object[] { userid, usergroupid });
 		if (null == users || users.isEmpty()) {
-			throw new UserException("英文名没有关联在该分组");
+			throw new BusinessException("英文名没有关联在该分组");
 		}
 		User user = users.get(0);
 		Set<Usergroup> usergroups = user.getUsergroups();

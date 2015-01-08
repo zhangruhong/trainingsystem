@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.synnex.exception.BusinessException;
+
 /**
  * 上传附件
  * 
@@ -47,8 +49,9 @@ public class UploadController {
 					System.out.println(finaltime - pre);
 
 				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("上传出错");
+//					e.printStackTrace();
+//					System.out.println("上传出错");
+					throw new BusinessException("上传出错");
 				}
 			}
 		}

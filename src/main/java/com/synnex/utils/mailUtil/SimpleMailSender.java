@@ -13,11 +13,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * 简单邮件（不带附件的邮件）发送器
  */
 public class SimpleMailSender {
+	private static Log logger = LogFactory.getLog("Sending mail");
+
 	/**
 	 * 以文本格式发送邮件
 	 * 
@@ -30,12 +34,10 @@ public class SimpleMailSender {
 		Properties pro = mailInfo.getProperties();
 		if (mailInfo.isValidate()) {
 			// 如果需要身份认证，则创建一个密码验证器
-			authenticator = new MyAuthenticator(mailInfo.getUserName(),
-					mailInfo.getPassword());
+			authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());
 		}
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
-		Session sendMailSession = Session
-				.getDefaultInstance(pro, authenticator);
+		Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
 		try {
 			// 根据session创建一个邮件消息
 			Message mailMessage = new MimeMessage(sendMailSession);
@@ -57,7 +59,7 @@ public class SimpleMailSender {
 			Transport.send(mailMessage);
 			return true;
 		} catch (MessagingException ex) {
-			ex.printStackTrace();
+			logger.error(ex);
 		}
 		return false;
 	}
@@ -74,12 +76,10 @@ public class SimpleMailSender {
 		Properties pro = mailInfo.getProperties();
 		// 如果需要身份认证，则创建一个密码验证器
 		if (mailInfo.isValidate()) {
-			authenticator = new MyAuthenticator(mailInfo.getUserName(),
-					mailInfo.getPassword());
+			authenticator = new MyAuthenticator(mailInfo.getUserName(), mailInfo.getPassword());
 		}
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
-		Session sendMailSession = Session
-				.getDefaultInstance(pro, authenticator);
+		Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
 		try {
 			// 根据session创建一个邮件消息
 			Message mailMessage = new MimeMessage(sendMailSession);
@@ -108,7 +108,8 @@ public class SimpleMailSender {
 			Transport.send(mailMessage);
 			return true;
 		} catch (MessagingException ex) {
-			ex.printStackTrace();
+			logger.error(ex);
+//			ex.printStackTrace();
 		}
 		return false;
 	}

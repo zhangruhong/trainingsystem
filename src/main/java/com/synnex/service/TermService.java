@@ -26,15 +26,15 @@ public interface TermService {
 	 * @param traineeId
 	 * @return
 	 */
-	public List<Term> listTermByTrainee(int traineeId);
+//	public List<Term> listTermByTrainee(int traineeId);
 
 	/**
 	 * 通过trainee找term带分页
-	 * 
+	 * @param userId
 	 * @param page
 	 * @param pagesize
-	 * @param userId
+	 * 
 	 * @return
 	 */
-	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId);
+	public PageResult<Term> listTermPageByTrainee(Integer userId, Integer page, int pagesize);
 }

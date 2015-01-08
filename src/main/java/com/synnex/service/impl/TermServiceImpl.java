@@ -38,15 +38,15 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.showByPage(begin, size);
 	}
 
-	@Override
-	public List<Term> listTermByTrainee(int traineeId) {
-		List<Term> terms = termDaoImpl.listTermByTrainee(traineeId);
-		return terms;
-	}
+//	@Override
+//	public List<Term> listTermByTrainee(int traineeId) {
+//		List<Term> terms = termDaoImpl.listTermByTrainee(traineeId);
+//		return terms;
+//	}
 
 	@Override
-	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId) {
-		PageResult<Term> pageResult = termDaoImpl.listTermPageByTrainee(page, pagesize, userId);
+	public PageResult<Term> listTermPageByTrainee(Integer userId, Integer page, int pagesize) {
+		PageResult<Term> pageResult = termDaoImpl.listTermPageByTrainee(userId, page, pagesize);
 		return pageResult;
 	}
 

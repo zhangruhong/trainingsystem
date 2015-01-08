@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synnex.dao.Order;
-import com.synnex.exception.UserException;
+import com.synnex.exception.BusinessException;
 import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.model.Usergroup;
@@ -105,7 +105,7 @@ public class UserGroupController extends GenericController {
 		// 双向多对多
 		try {
 			userGroupServiceImpl.addUserToGroup(loginname, usergroupid);
-		} catch (UserException e) {
+		} catch (BusinessException e) {
 			logger.error(e.getMessage());
 			jsonBean = new JsonBean(false, "add failed！name does not exist", null);
 			return jsonBean;
@@ -138,7 +138,7 @@ public class UserGroupController extends GenericController {
 		try {
 			logger.info(userid + "-_-" + usergroupid);
 			userGroupServiceImpl.deleteUserFromGroup(userid, usergroupid);
-		} catch (UserException e) {
+		} catch (BusinessException e) {
 			logger.error(e.getMessage());
 			jsonBean = new JsonBean(false, "Remove failed!" + e.getMessage(), null);
 			return jsonBean;

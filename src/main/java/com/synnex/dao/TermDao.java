@@ -8,7 +8,7 @@ import com.synnex.model.Term;
 public interface TermDao extends GenericDao<Term, Integer> {
 	public PageResult<Term> showByPage(int begin, int size);
 
-	public List<Term> listTermByTrainee(int traineeId);
+//	public List<Term> listTermByTrainee(int traineeId);
 
-	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId);
+	public PageResult<Term> listTermPageByTrainee(Integer userId, Integer page, int pagesize);
 }

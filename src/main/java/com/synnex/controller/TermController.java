@@ -75,7 +75,7 @@ public class TermController extends GenericController {
 		}
 		User user = (User) session.getAttribute("USER_IN_SESSION");
 		int userId = user.getId();
-		PageResult<Term> pageResult = termServiceImpl.listTermPageByTrainee(page, SystemVariable.PageSize, userId);
+		PageResult<Term> pageResult = termServiceImpl.listTermPageByTrainee(userId, page, SystemVariable.PageSize);
 		model.addAttribute("pageResult", pageResult);
 		return "/trainee/term/view";
 	}

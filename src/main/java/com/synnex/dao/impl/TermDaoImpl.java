@@ -17,15 +17,24 @@ public class TermDaoImpl extends GenericDaoImpl<Term, Integer> implements TermDa
 		return super.listPageResult(begin, size, hql);
 	}
 
-	@Override
-	public List<Term> listTermByTrainee(int traineeId) {
-		String hql = "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
-		return super.findByHql(hql, traineeId);
-	}
+//	@Override
+//	public List<Term> listTermByTrainee(int traineeId) {
+//		String hql = "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
+//		return super.findByHql(hql, traineeId);
+//	}
 
 	@Override
-	public PageResult<Term> listTermPageByTrainee(Integer page, int pagesize, int userId) {
-		String hql = "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
+	public PageResult<Term> listTermPageByTrainee(Integer userId, Integer page, int pagesize) {
+		// String hql =
+		// "select distinct t from com.synnex.model.User u,com.synnex.model.Usergroup g,com.synnex.model.Term t where g.term.id = t.id and u in elements(g.users) and u.id = ?";
+		// String hql = "select t from Term t,Usergroup g,User u";
+		String hql = "select distinct t from Term t, Usergroup g, User u";
+		HqlUtils hqlUtils = new HqlUtils();
+		hqlUtils.addWhere("g.term.id = t.id and u in elements(g.users)");
+		hqlUtils.add("u.id = ?", userId);
+		hqlUtils.addOrder("t.id", HqlUtils.DESCENDING);
+		hql += hqlUtils.getWhereClause();
+
 		PageResult<Term> pageResult = super.listPageResult(page, pagesize, hql, userId);
 		return pageResult;
 	}
