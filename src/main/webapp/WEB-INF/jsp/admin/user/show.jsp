@@ -113,7 +113,7 @@
 			<!--新建学员 模态框（Modal） -->
 			<div class="modal fade" id="addtraineemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form" id="courseaddform">
+					<form class="form-horizontal" role="form" id="traineeaddform">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -142,7 +142,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addtranee()" data-dismiss="modal">Submit</button>
+								<button id="addterm" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -155,7 +155,7 @@
 			<!--新建讲师 模态框（Modal） -->
 			<div class="modal fade" id="addtrainermodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog">
-					<form class="form-horizontal" role="form" id="courseaddform">
+					<form class="form-horizontal" role="form" id="traineraddform">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -184,7 +184,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<button id="addterm_trainer" type="button" class="btn btn-primary" onclick="addtraner()" data-dismiss="modal">Submit</button>
+								<button id="addterm_trainer" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>
