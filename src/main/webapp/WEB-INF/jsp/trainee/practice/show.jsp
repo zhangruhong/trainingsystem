@@ -35,7 +35,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<h3 class="margin-bottom-15">view trainee practice</h3>
+								<h3 class="margin-bottom-15">Practice View</h3>
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
@@ -62,11 +62,11 @@
 													</c:if>
 												</td>
 												<td>
-													<c:if test="${practice.score==0}">未打分</c:if>
+													<c:if test="${practice.score==0}">No Grade</c:if>
 													<c:if test="${practice.score!=0}">${practice.score}</c:if>
 												</td>
 												<td>
-													<c:if test="${practice.scoreDescription==null}">未评价</c:if>
+													<c:if test="${practice.scoreDescription==null}">No Description</c:if>
 													<c:if test="${practice.scoreDescription!=null}">${practice.score}</c:if>
 												</td>
 											</tr>
