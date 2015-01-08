@@ -35,24 +35,23 @@
 						<div class="col-md-12">
 
 							<div class="pull-right" id="templatemo_sort_btn">
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addDictionary">新建分类</button>
-								<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新建课程</button>
+								<button class="btn btn-primary " data-toggle="modal" data-target="#addDictionary">Create Dictionary</button>
+								<button class="btn btn-primary " data-toggle="modal" data-target="#myModal">Create Course</button>
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">课程计划</h4>
+								<h4 class="margin-bottom-15">Courses Plan</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
 										<tr>
-											<th>课程分类</th>
-											<th>课程名字</th>
-											<th>简介</th>
-											<th>讲师</th>
-											<th>时间</th>
-											<th>地点</th>
-											<th>课程管理</th>
-											<th>Action</th>
+											<th>Dictionary</th>
+											<th>Course Name</th>
+											<th>summary</th>
+											<th>Trainer</th>
+											<th>Time</th>
+											<th>place</th>
+											<th>Manage</th>
 										</tr>
 									</thead>
 									<tbody id="tbodyterms" class="text-left">
@@ -66,23 +65,9 @@
 												</td>
 												<td>${item["location"]}</td>
 												<td><a class="btn btn-primary btn-default"
-													href="${pageContext.request.contextPath}/admin/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">进度</a>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${item['id']})">编辑</button>
-													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">删除</button>
-												</td>
-												<td>
-													<!-- Split button -->
-													<div class="btn-group">
-														<button type="button" class="btn btn-info">Action</button>
-														<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-														</button>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Bootstrap</a></li>
-															<li><a href="#">Font Awesome</a></li>
-															<li><a href="${pageContext.request.contextPath}/trainer/practice/input?id=${item['id']}">管理练习</a></li>
-														</ul>
-													</div>
+													href="${pageContext.request.contextPath}/admin/term/${item['term']['id']}/courses/${item['id']}/attendstatus/show">Progress</a>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#updateCourse" onclick="loadCourse(${item['id']})">Edit</button>
+													<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#deleteconfirm" onclick="setdelvalue(${item['id']})">Delete</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -132,14 +117,14 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建课程</h4>
+								<h4 class="modal-title" id="myModalLabel">Create Course</h4>
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程分类 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Dictionary</label>
 									<div class="col-sm-10">
 										<select id="dictionaries" class="form-control">
-											<option value="-1" selected="selected">请选择分类</option>
+											<option value="-1" selected="selected">select a dictionary</option>
 											<c:forEach items="${dictionaries}" var="term">
 												<option value="${term['id'] }">${term['name'] }</option>
 											</c:forEach>
@@ -147,52 +132,57 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Name </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入课程名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="Input Course Name">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程讲师 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Trainer</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="trainerInput" name="trainer" type="text" placeholder="请输入课程讲师">
-									</div>
-								</div>
-								<div class="form-group form-inline">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
-									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="请选择课程时间"> —— <input class="form-control"
-											id="endtimeInput" name="endtime" type="text" placeholder="请选择课程时间">
+										<input class="form-control" id="trainerInput" name="trainer" type="text" placeholder="Input Course Trainer">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程地点 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">StartTime</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="localInput" name="location" type="text" placeholder="请输入课程地点 ">
+										<input class="form-control" id="starttimeInput" name="starttime" type="text" placeholder="Input Course Trainer">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程简介 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">End Time</label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入课程简介/简单描述">
+										<input class="form-control" id="endtimeInput" name="endtime" type="text" placeholder="Input Course Trainer">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程内容 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Place</label>
 									<div class="col-sm-10">
-										<input type="text" id="contentInput" name="content" class="form-control" placeholder="请输入课程内容 简单描述">
+										<input class="form-control" id="localInput" name="location" type="text" placeholder="Input Course Place">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程目标 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Summary</label>
 									<div class="col-sm-10">
-										<input type="text" id="goalInput" name="goal" class="form-control" placeholder="请输入课程目标 简单描述">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="Input Course summary">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label">Content</label>
+									<div class="col-sm-10">
+										<input type="text" id="contentInput" name="content" class="form-control" placeholder="Input Course Content">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputlabel" class="col-sm-2 control-label">goal</label>
+									<div class="col-sm-10">
+										<input type="text" id="goalInput" name="goal" class="form-control" placeholder="Input Course goal">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="button" class="btn btn-primary" onclick="addCourseToTerm()" data-dismiss="modal">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm" type="button" class="btn btn-primary" onclick="addCourseToTerm()" data-dismiss="modal">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -208,19 +198,19 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建课程分类</h4>
+								<h4 class="modal-title" id="myModalLabel">Create Course Dictionary</h4>
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 分类名称 </label>
+									<label for="inputPassword" class="col-sm-2 control-label">Name</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="dictionnarynameInput" name="name" type="text" placeholder="请输入课程分类名称">
+										<input class="form-control" id="dictionnarynameInput" name="name" type="text" placeholder="Input Courses Dictionary Name">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="submit" class="btn btn-primary">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -236,11 +226,11 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">修改课程</h4>
+								<h4 class="modal-title" id="myModalLabel">Edit Course</h4>
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程分类 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Course Dictionary </label>
 									<div class="col-sm-10">
 										<select id="dictionaries_update" class="form-control" name="dictionaries">
 											<c:forEach items="${dictionaries}" var="term">
@@ -250,47 +240,47 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程名称 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Course Name </label>
 									<div class="col-sm-10">
 										<input class="form-control" id="idInput_update" name="id" type="hidden"> <input class="form-control" id="nameInput_update"
-											name="name" type="text" placeholder="请输入课程名称">
+											name="name" type="text" placeholder="Input Course Name">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程讲师 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Course Trainer</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="trainerInput_update" name="trainer" type="text" placeholder="请输入课程讲师">
+										<input class="form-control" id="trainerInput_update" name="trainer" type="text" placeholder="Input Course Trainer">
 									</div>
 								</div>
 								<div class="form-group form-inline">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程时间 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Course Time</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="请选择课程时间"> —— 
-										<input class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="请选择课程时间">
+										<input class="form-control" id="starttimeInput_update" name="starttime" type="text" placeholder="Select Course Time"> —— <input
+											class="form-control" id="endtimeInput_update" name="endtime" type="text" placeholder="Select Course Time">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程地点 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Course Place</label>
 									<div class="col-sm-10">
-										<input class="form-control" id="localInput_update" name="location" type="text" placeholder="请输入课程地点 ">
+										<input class="form-control" id="localInput_update" name="location" type="text" placeholder="Input Course Place ">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程内容 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Content</label>
 									<div class="col-sm-10">
-										<input type="text" id="contentInput_update" name="content" class="form-control" placeholder="请输入课程内容 简单描述">
+										<input type="text" id="contentInput_update" name="content" class="form-control" placeholder="Input Course Content">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputlabel" class="col-sm-2 control-label"> 课程目标 </label>
+									<label for="inputlabel" class="col-sm-2 control-label">Goal</label>
 									<div class="col-sm-10">
-										<input type="text" id="goalInput_update" name="goal" class="form-control" placeholder="请输入课程目标 简单描述">
+										<input type="text" id="goalInput_update" name="goal" class="form-control" placeholder="Input Course Goal">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="updateterm_update" type="submit" class="btn btn-primary">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="updateterm_update" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -305,12 +295,12 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">确认删除？</h4>
+							<h4 class="modal-title" id="myModalLabel">Delete Confirm ?</h4>
 						</div>
-						<div class="modal-body">删除课程后不可恢复！</div>
+						<div class="modal-body">Unrecoverable if you delete this course!</div>
 						<div class="modal-footer">
-							<button id="cancaltodelete" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button id="yestodelete" type="button" class="btn btn-primary" value="">确认删除</button>
+							<button id="cancaltodelete" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button id="yestodelete" type="button" class="btn btn-primary" value="">Yes</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
