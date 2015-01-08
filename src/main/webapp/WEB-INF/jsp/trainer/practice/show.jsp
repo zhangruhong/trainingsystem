@@ -24,16 +24,19 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">trainer Panel</a></li>
-						<li><a href="#">Manage practice</a></li>
-						<li class="active">add</li>
+						<li>Trainer Panel</a></li>
+						<li><a href="${pageContext.request.contextPath}/trainer/practice/view">Course Manage</a></li>
+						<li class="active">Practice <c:if test="${course.practiseStatus==0}">Create</c:if>
+							<c:if test="${course.practiseStatus==1}">Edit</c:if>
+						</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">${course.name}Course 练习添加</h4>
+								<h4 class="margin-bottom-15">${course.name} Course's Practice <c:if test="${course.practiseStatus==0}">Create</c:if>
+							<c:if test="${course.practiseStatus==1}">Edit</c:if></h4>
 							</div>
 							<!-- 富文本编辑器 -->
 							<div>
@@ -41,9 +44,9 @@
 								<input type="hidden" id="coursePractise" value='${course.practise}'/>
 								<!-- 加载编辑器的容器 -->
 								<script id="container" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
-
-								<button type="button" class="btn btn-default" style="margin-left: 850px;">返回</button>
-								<button id="uploadButton" type="button" class="btn btn-primary">提交更改</button>
+								<br/>
+								<a href="${pageContext.request.contextPath}/trainer/practice/view" class="btn btn-default" style="margin-left: 850px;">Back</a>
+								<button id="uploadButton" type="button" class="btn btn-primary">Commit</button>
 							</div>
 						</div>
 					</div>
@@ -55,10 +58,10 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">你已经成功上传</h4>
+							<h4 class="modal-title" id="myModalLabel">You have arrange practice successfully</h4>
 						</div>
 						<div class="modal-footer">
-							<a href="${pageContext.request.contextPath}/trainer/practice/view" class="btn btn-primary">确定</a>
+							<a href="${pageContext.request.contextPath}/trainer/practice/view" class="btn btn-primary">confirm</a>
 						</div>
 					</div>
 				</div>

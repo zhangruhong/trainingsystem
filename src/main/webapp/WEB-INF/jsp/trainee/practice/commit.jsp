@@ -25,7 +25,10 @@
 
 					<ol class="breadcrumb">
 						<li><a href="index.html">trainee Panel</a></li>
-						<li class="active">Manage practice</a></li>
+						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
+						<li>Course View</li>
+						<li>Manage Practice</li>
+						<li class="active">Write practice</li>
 					</ol>
 
 					<div class="row">
@@ -38,23 +41,22 @@
 
 							<div id="myTabContent" class="tab-content">
 								<div class="tab-pane fade in active" id="seePractice">
-									<!-- 富文本编辑器 -->
 									<input type="hidden" id="courseId" value="${course.id}" /> 
 									<input type="hidden" id="coursePractise" value="${course.practise}" />
-									<!-- 加载编辑器的容器 -->
 									<script id="trainerContainer" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
+									<br>
+									<button type="button" class="btn btn-default" style="margin-left: 940px;">Back</button>
 								</div>
 								<div class="tab-pane fade" id="commitPractice">
 									<!-- 加载编辑器的容器 -->
 									<input type="hidden" id="practiceId" value="${practice.id}" /> 
 									<input type="hidden" id="practiceContent" value="${practice.content}" />
 									<script id="traineeContainer" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
-									<button id="commitButton" type="button" class="btn btn-primary">提交更改</button>
+									<br>
+									<button id="commitButton" type="button" class="btn btn-primary" style="margin-left: 860px;">Commit</button>
+									<button type="button" class="btn btn-default">Back</button>
 								</div>
 							</div>
-							
-							<button type="button" class="btn btn-default" style="margin-left: 850px;">返回</button>
-							
 						</div>
 					</div>
 				</div>

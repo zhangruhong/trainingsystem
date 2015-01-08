@@ -24,26 +24,26 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">trainer Panel</a></li>
-						<li><a href="#">Manage practice</a></li>
-						<li class="active">add</li>
+						<li>Trainer Panel</li>
+						<li class="active">Course Manage</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">课程计划</h4>
+								<h4 class="margin-bottom-15">Course Project</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<thead>
 										<tr>
-											<th>课程分类</th>
-											<th>课程名字</th>
-											<th>简介</th>
-											<th>时间</th>
-											<th>是否布置习题</th>
-											<th>习题管理</th>
-											<th>习题进度管理</th>
+											<th >Dictionary</th>
+											<th >Course Name</th>
+											<th width="20%">Introduction</th>
+											<th width="15%">Time</th>
+											<th >Place</th>
+											<th >Goal</th>
+											<th >Arrange Practice</th>
+											<th >View Practice</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -52,20 +52,23 @@
 												<td>${course["dictionary"]["name"]}</td>
 												<td>${course["name"]}</td>
 												<td>${course["content"]}</td>
-												<td>${course["starttime"]}<br />~${course["endtime"]}
-												</td>
+												<td>${course["starttime"]}<br />~${course["endtime"]}</td>
+												<td>${course["location"]}</td>
+												<td>${course["goal"]}</td>
 												<td>
 													<c:if test="${course['practiseStatus'] == 0}">
-														<span style="color: red;">否</span>
+														<a href="${pageContext.request.contextPath}/trainer/practice/input?id=${course['id']}" class="btn btn-primary">Create</a>
 													</c:if> 
 													<c:if test="${course['practiseStatus'] == 1}">
-														<span style="color: green;">是</span>
+														<a href="${pageContext.request.contextPath}/trainer/practice/input?id=${course['id']}" class="btn btn-primary">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
 													</c:if>
 												</td>
-												<td><a href="${pageContext.request.contextPath}/trainer/practice/input?id=${course['id']}" class="btn btn-default">Edit</a></td>
 												<td>
+													<c:if test="${course['practiseStatus'] == 0	}">
+														<span style="color: red;">No Practice</span>
+													</c:if>
 													<c:if test="${course['practiseStatus'] == 1	}">
-														<a href="${pageContext.request.contextPath}/trainer/practice/viewDetail?id=${course['id']}" class="btn btn-default">Edit</a>
+														<a href="${pageContext.request.contextPath}/trainer/practice/viewDetail?id=${course['id']}" class="btn btn-primary">&nbsp;&nbsp;View&nbsp;&nbsp;</a>
 													</c:if>
 												</td>
 											</tr>

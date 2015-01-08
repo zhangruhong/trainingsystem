@@ -24,26 +24,26 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">trainee Panel</a></li>
-						<li><a href="#">term view</a></li>
-						<li class="active">course view</li>
+						<li>Trainee Panel</li>
+						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
+						<li class="active">Course View</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">课程查看</h4>
+								<h4 class="margin-bottom-15">Course View</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<thead>
 										<tr>
-											<th>课程分类</th>
-											<th>课程名字</th>
-											<th>简介</th>
-											<th>时间</th>
-											<th>地点	 </th>
-											<th>目标</th>
-											<th>习题管理</th>
+											<th>Dictionary</th>
+											<th>Course Name</th>
+											<th width="20%">Introduction</th>
+											<th width="15%">Time</th>
+											<th>Place</th>
+											<th>Goal</th>
+											<th>practice</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -57,10 +57,10 @@
 												<td>${course["goal"]}</td>
 												<td>
 													<c:if test="${course['practiseStatus'] == 0}">
-														<span style="color: red;">未布置习题</span>
+														<span style="color: red;">No Practice</span>
 													</c:if> 
 													<c:if test="${course['practiseStatus'] == 1}">
-														<a href="${pageContext.request.contextPath}/trainee/practice/commit?id=${course['id']}" class="btn btn-default">习题管理</a>
+														<a href="${pageContext.request.contextPath}/trainee/practice/show" class="btn btn-primary">Practice Manage</a>
 													</c:if>
 												</td>
 											</tr>

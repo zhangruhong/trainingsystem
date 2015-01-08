@@ -26,8 +26,10 @@
 				<div class="templatemo-content">
 					<!--导航-->
 					<ol class="breadcrumb">
-						<li><a href="index.html">Trainee Panel</a></li>
-						<li class="active">View Practice Score</li>
+						<li>Trainee Panel</li>
+						<li><a href="${pageContext.request.contextPath}/trainee/term/view">Term View</a></li>
+						<li>Course View</li>
+						<li class="active">Manage Practice</li>
 					</ol>
 
 					<div class="row">
@@ -37,10 +39,11 @@
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th width="10%">#id</th>
-											<th width="10%">trainee name</th>
-											<th width="10%">course name</th>
-											<th width="10%">score</th>
+											<th>#id</th>
+											<th width="10%">Trainee Name</th>
+											<th width="10%">Course Name</th>
+											<th>Practice Manage</th>
+											<th>score</th>
 											<th>score description</th>
 										</tr>
 									</thead>
@@ -50,6 +53,14 @@
 												<td>${status.count}</td>
 												<td>${practice.user.loginname}</td>
 												<td>${practice.course.name}</td>
+												<td>
+													<c:if test="${practice.status == 0}">
+														<a href="${pageContext.request.contextPath}/trainee/practice/commit?id=${practice.course.id}" class="btn btn-primary">Write Practice</a>
+													</c:if> 
+													<c:if test="${practice.status == 1 || practice.status==2}">
+														<a href="${pageContext.request.contextPath}/trainee/practice/commit?id=${practice.course.id}" class="btn btn-primary">Modify Practice</a>
+													</c:if>
+												</td>
 												<td>
 													<c:if test="${practice.score==0}">未打分</c:if>
 													<c:if test="${practice.score!=0}">${practice.score}</c:if>

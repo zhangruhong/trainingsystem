@@ -24,23 +24,23 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">trainer Panel</a></li>
-						<li class="active">Term</a></li>
+						<li>Trainer Panel</li>
+						<li class="active">Term View</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">学期查看</h4>
+								<h4 class="margin-bottom-15">Term View</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<thead>
 										<tr>
 											<th>#id</th>
 											<th>Term Name</th>
 											<th>Discription</th>
-											<th>课程查看</th>
-											<th>分组查看</th>
+											<th>Course View</th>
+											<th>Group View</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -49,8 +49,8 @@
 												<td>${term["id"]}</td>
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
-												<td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-default">课程查看</a></td>
-												<td><a href="${term['id']}/usergroup/view" class="btn btn-default">分组查看</a></td>
+												<td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td>
+												<td><a href="${term['id']}/usergroup/view" class="btn btn-primary">Group View</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

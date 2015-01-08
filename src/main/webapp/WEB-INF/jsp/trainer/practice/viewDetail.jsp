@@ -24,24 +24,24 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">trainer Panel</a></li>
-						<li><a href="#">Manage practice</a></li>
-						<li class="active">viewDetail</li>
+						<li>Trainer Panel</li>
+						<li><a href="${pageContext.request.contextPath}/trainer/practice/view">Course Manage</a></li>
+						<li class="active">Practice Progress View</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">${course.name}-课程习题进度</h4>
+								<h4 class="margin-bottom-15">${course.name} Course's Practice Progress</h4>
 								<table class="table table-striped table-hover table-bordered ">
 									<thead>
 										<tr>
-											<th>培训者名</th>
-											<th>是否完成作业</th>
-											<th>是否录入成绩</th>
-											<th>作业管理</th>
-											<th>分数管理</th>
+											<th>Trainee Name</th>
+											<th>Weather Finish Practice</th>
+											<th>Weather Input Grade</th>
+											<th>Practice View</th>
+											<th>Grade Manage</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
@@ -50,33 +50,36 @@
 												<td>${practice.user.loginname}</td>
 												<td>
 													<c:if test="${practice.status == 0}">
-														<span style="color: red;">否</span>
+														<span style="color: red;">no</span>
 													</c:if> 
 													<c:if test="${practice.status == 1 || practice.status == 2}">
-														<span style="color: green;">是</span>
+														<span style="color: green;">yes</span>
 													</c:if>
 												</td>
 												<td>
 													<c:if test="${practice.status == 0 || practice.status == 1}">
-														<span style="color: red;">否</span>
+														<span style="color: red;">no</span>
 													</c:if> 
 													<c:if test="${practice.status == 2}">
-														<span style="color: green;">是</span>
+														<span style="color: green;">yes</span>
 													</c:if>
 												</td>
 												<td>
+													<c:if test="${practice.status == 0}">
+														<span style="color: red;">Trainee's practice don't complete </span>
+													</c:if> 
 													<c:if test="${practice.status == 1 || practice.status == 2}">
-														<input type="button" name="viewPracticeContent" class="btn btn-default" value="查看作业"/>
+														<input type="button" name="viewPracticeContent" class="btn btn-primary" value="Practice View"/>
 													</c:if> 
 													<input type="hidden" value="${practice.content}"/>
 												</td>
 												<td>
 													<c:if test="${practice.status == 1}">
-														<input type="button" name="inputScore" class="btn btn-default" value="录入分数"/>
+														<input type="button" name="inputScore" class="btn btn-primary" value="Input Score"/>
 													</c:if> 
 													<c:if test="${practice.status == 2}">
 														${practice.score}分
-														<input type="button" name="inputScore" class="btn btn-default" value="修改分数"/>
+														<input type="button" name="inputScore" class="btn btn-primary" value="Edit Score"/>
 													</c:if>
 													<input type="hidden" value="${practice.id}"/>
 													<input type="hidden" value="${practice.score}"/>
@@ -131,7 +134,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">${course.name}-课程</h4>
+							<h4 class="modal-title">${course.name} Course Practice Check</h4>
 						</div>
 						<div class="modal-body">
            					<script id="practiceViewContainer" name="editcontent" type="text/plain"></script>
@@ -148,25 +151,25 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title">${course.name}-input score</h4>
+								<h4 class="modal-title">${course.name} Course Practice Score</h4>
 							</div>
 							<div class="modal-body">
 								<input id="practiceId" type="hidden"/>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">score</label>
+									<label class="col-sm-2 control-label">Score</label>
 									<div class="col-sm-10">
 	           							<input id="practiceScore" type="text" class="form-control" placeholder="The points system used percentile"/>
 	           						</div>
 	           					</div>
 	           					<div class="form-group">
-									<label class="col-sm-2 control-label">description</label>
+									<label class="col-sm-2 control-label">Description</label>
 									<div class="col-sm-10">
 	           							<textarea id="practiceScoreDescription" class="form-control" rows="3"></textarea>
 	           						</div>
 	           					</div>
 	        				</div>
 	        				<div class="modal-footer">
-								<a id="confirmScore" class="btn btn-primary">Save Record</a>
+								<a id="confirmScore" class="btn btn-primary">Commit</a>
 							</div>
 						</div>
 					</form>
