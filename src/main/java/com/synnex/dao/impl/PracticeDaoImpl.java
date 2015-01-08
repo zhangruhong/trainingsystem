@@ -44,9 +44,13 @@ public class PracticeDaoImpl extends GenericDaoImpl<Practice, Integer> implement
 	}
 
 	@Override
-	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId) {
-		String hql = "select p from Practice p where p.user.id = ?";
-		PageResult<Practice> pageResult = super.listPageResult(page, pagesize, hql, traineeId);
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, Integer traineeId, Integer courseId) {
+		String hql = "select p from Practice p";
+		HqlUtils hqlUtils = new HqlUtils();
+		hqlUtils.add("p.user.id = ?", traineeId);
+		hqlUtils.add("p.course.id=?", courseId);
+		hql += hqlUtils.getWhereClause();
+		PageResult<Practice> pageResult = super.listPageResult(page, pagesize, hql, hqlUtils.getValues());
 		return pageResult;
 	}
 

@@ -59,13 +59,6 @@
 									<span style="color: red">please input search condition</span>
 								</div>
 							</div>
-							<ul class="pagination pull-right">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">2 <span class="sr-only">(current)</span></a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-
 
 						</div>
 					</div>

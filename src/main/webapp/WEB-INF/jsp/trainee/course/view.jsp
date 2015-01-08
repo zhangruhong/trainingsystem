@@ -62,7 +62,7 @@
 														<span style="color: red;">No Practice</span>
 													</c:if> 
 													<c:if test="${course['practiseStatus'] == 1}">
-														<a href="${pageContext.request.contextPath}/trainee/practice/show" class="btn btn-primary">Practice Manage</a>
+														<a href="${pageContext.request.contextPath}/trainee/practice/show/${course.id}" class="btn btn-primary">Practice Manage</a>
 													</c:if>
 												</td>
 											</tr>

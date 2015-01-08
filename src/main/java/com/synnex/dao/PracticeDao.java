@@ -46,9 +46,10 @@ public interface PracticeDao extends GenericDao<Practice, Integer> {
 	 * @param page
 	 * @param pagesize
 	 * @param traineeId
+	 * @param courseId TODO
 	 * @return
 	 */
-	PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId);
+	PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, Integer traineeId, Integer courseId);
 
 	/**
 	 * 根据courseId找practice集合,带分页

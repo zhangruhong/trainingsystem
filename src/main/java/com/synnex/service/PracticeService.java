@@ -106,9 +106,10 @@ public interface PracticeService {
 	 * @param page
 	 * @param pagesize
 	 * @param traineeId
+	 * @param courseId TODO
 	 * @return
 	 */
-	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId);
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, Integer traineeId, Integer courseId);
 
 	/**
 	 * 根据course id找practice，带分页

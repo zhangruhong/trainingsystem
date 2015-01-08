@@ -127,8 +127,8 @@ public class PracticeServiceImpl implements PracticeService {
 	}
 
 	@Override
-	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, int traineeId) {
-		PageResult<Practice> pageResult = practiceDao.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId);
+	public PageResult<Practice> listPracticePageByTrainee(Integer page, int pagesize, Integer traineeId, Integer courseId) {
+		PageResult<Practice> pageResult = practiceDao.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId, courseId);
 		return pageResult;
 	}
 

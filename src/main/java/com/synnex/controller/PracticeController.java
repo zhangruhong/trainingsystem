@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -111,17 +112,30 @@ public class PracticeController extends GenericController {
 	}
 
 	/**
-	 * trainee跳转到查看练习页面
+	 * trainee跳转到查看练习页面 从菜单跳转
 	 * 
 	 */
-	@RequestMapping("/trainee/practice/show")
-	public String traineeViewPractice(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+	@RequestMapping("/trainee/practice/showall")
+	public String traineeViewAllPractice(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
 		if (null == page || page < 1) {
 			page = 1;
 		}
 		User trainee = (User) session.getAttribute("USER_IN_SESSION");
 		int traineeId = trainee.getId();
-		PageResult<Practice> pageResult = practiceServiceImpl.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId);
+		PageResult<Practice> pageResult = practiceServiceImpl.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId, null);
+		model.addAttribute("pageResult", pageResult);
+		return "/trainee/practice/showall";
+	}
+
+	@RequestMapping("/trainee/practice/show/{courseId}")
+	public String traineeViewPractice(@PathVariable Integer courseId, @RequestParam(value = "page", required = false) Integer page,
+			HttpSession session, Model model) {
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		User trainee = (User) session.getAttribute("USER_IN_SESSION");
+		int traineeId = trainee.getId();
+		PageResult<Practice> pageResult = practiceServiceImpl.listPracticePageByTrainee(page, SystemVariable.PageSize, traineeId, courseId);
 		model.addAttribute("pageResult", pageResult);
 		return "/trainee/practice/show";
 	}
