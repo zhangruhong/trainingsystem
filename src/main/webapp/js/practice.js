@@ -51,6 +51,7 @@ $(function() {
 	$("#commitButton").on("click", function(){
 		var html = traineeUE.getContent();
 		var practiceId = $("#practiceId").val();
+		html=html.toString().replace(new RegExp('(["\"])', 'g'),"\\\""); 
 		var mydata = '{"id":"' + practiceId + '","content":"' + html + '"}';
 		$.ajax({
 			type : "POST",

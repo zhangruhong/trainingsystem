@@ -42,7 +42,7 @@
 							<div id="myTabContent" class="tab-content">
 								<div class="tab-pane fade in active" id="seePractice">
 									<input type="hidden" id="courseId" value="${course.id}" /> 
-									<input type="hidden" id="coursePractise" value="${course.practise}" />
+									<input type="hidden" id="coursePractise" value='${course.practise}' />
 									<script id="trainerContainer" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
 									<br>
 									<button type="button" class="btn btn-default" style="margin-left: 940px;">Back</button>
@@ -50,7 +50,7 @@
 								<div class="tab-pane fade" id="commitPractice">
 									<!-- 加载编辑器的容器 -->
 									<input type="hidden" id="practiceId" value="${practice.id}" /> 
-									<input type="hidden" id="practiceContent" value="${practice.content}" />
+									<input type="hidden" id="practiceContent" value='${practice.content}' />
 									<script id="traineeContainer" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
 									<br>
 									<button id="commitButton" type="button" class="btn btn-primary" style="margin-left: 860px;">Commit</button>
