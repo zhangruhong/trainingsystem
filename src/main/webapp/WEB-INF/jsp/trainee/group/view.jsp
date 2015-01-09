@@ -40,55 +40,37 @@
 											<th>#id</th>
 											<th>Group Name</th>
 											<th>Discription</th>
-											<!-- <th>Course View</th> -->
-											<th>Users View</th>
+											<th>Users Name</th>
 										</tr>
 									</thead>
 									<tbody id="tbodycourses" class="text-left">
-										<c:forEach items="${pageResult.rows}" var="term">
-											<tr>
-												<td>${term["id"]}</td>
-												<td>${term["name"]}</td>
-												<td>${term["description"]}</td>
-												<%-- <td><a href="${pageContext.request.contextPath}/trainee/${term['id']}/course/view" class="btn btn-primary">Course View</a></td> --%>
-												<td><a href="${term['id']}/usergroup/view" class="btn btn-primary">Group View</a></td>
-											</tr>
-										</c:forEach>
+										<tr>
+											<td>1</td>
+											<td>A组</td>
+											<td>分组A描述</td>
+											<td>trainee</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>A组</td>
+											<td>分组A描述</td>
+											<td>Davis Zhang</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>A组</td>
+											<td>分组A描述</td>
+											<td>Hiram Huang</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>A组</td>
+											<td>分组A描述</td>
+											<td>Jennifer Tian</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
-							<!-- page begin  -->
-							<span style="font-weight: 700; float: left; margin-top: 30px; color: #0071e4;">All(${pageResult.totalRows})</span>
-							<div style="float: right">
-								<ul class="pagination">
-									<c:if test="${pageResult.currentPage-1<=0}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="view?page=1">&emsp;&nbsp;first&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1<=0}">
-										<li class="disabled"><a href="#">Previous</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage-1>0}">
-										<li><a href="view?page=${pageResult.currentPage-1}">Previous</a></li>
-									</c:if>
-									<li><a href="" style="color: black;">&emsp;&nbsp;${pageResult.currentPage}/${pageResult.totalPages}&emsp;&nbsp;</a></li>
-									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="view?page=${pageResult.currentPage+1}">&emsp;&nbsp;next&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1>pageResult.totalPages}">
-										<li class="disabled"><a href="#">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
-									</c:if>
-									<c:if test="${pageResult.currentPage+1<=pageResult.totalPages}">
-										<li><a href="view?page=${pageResult.totalPages}">&emsp;&nbsp;last&emsp;&nbsp;</a></li>
-									</c:if>
-								</ul>
-							</div>
-							<!-- page end  -->
 						</div>
 					</div>
 				</div>
