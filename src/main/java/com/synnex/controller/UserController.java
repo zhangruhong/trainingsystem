@@ -55,6 +55,9 @@ public class UserController extends GenericController {
 		}
 		userServiceImpl.addUser(user);
 		jsonBean = new JsonBean(false, "添加成功！", null);
+		StringBuilder content = new StringBuilder("The account name is ");
+		content =content.append(user.getLoginname()).append(" The password is ").append(user.getPassword()).append(" Please login system and modify the password as soon as possible");
+
 		return jsonBean;
 	}
 
