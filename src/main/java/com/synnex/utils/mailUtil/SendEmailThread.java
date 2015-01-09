@@ -57,13 +57,13 @@ public class SendEmailThread extends Thread {
 			ts.sendMessage(message, message.getAllRecipients());
 			ts.close();
 		} catch (AddressException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			logger.error(e.getMessage());
 		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			logger.error(e.getMessage());
 		} catch (MessagingException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 
