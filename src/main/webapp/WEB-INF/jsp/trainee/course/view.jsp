@@ -53,7 +53,7 @@
 												<td>${course["dictionary"]["name"]}</td>
 												<td>${course["name"]}</td>
 												<td>${course["content"]}</td>
-												<td> ${fn:substring(item["starttime"],0,16)}<br />~${fn:substring(item["endtime"],0,16)}
+												<td> ${fn:substring(course["starttime"],0,16)}<br />~${fn:substring(course["endtime"],0,16)}
 												</td>
 												<td>${course["location"]}</td>
 												<td>${course["goal"]}</td>

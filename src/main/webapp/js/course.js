@@ -160,13 +160,6 @@ $(function(){
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-        	dictionaries: {
-                validators: {
-                    notEmpty: {
-                        message: 'The course dictionary is required and can\'t be empty'
-                    }
-                }
-            },	
             name: {
             	validators: {
             		notEmpty: {
@@ -211,7 +204,7 @@ $(function(){
             }
         }
 	}).on('success.form.bv', function(e) {
-		$('#updateCourse').modal('hide');
+		$('#myModal').modal('hide');
 		updateCourse();
 		return false;
     });	

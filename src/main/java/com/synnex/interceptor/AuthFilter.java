@@ -21,7 +21,7 @@ import com.synnex.model.User;
  */
 public class AuthFilter implements Filter {
 
-	private Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
+	private Logger log = LoggerFactory.getLogger(AuthFilter.class);
 
 	/**
 	 * Default constructor.
