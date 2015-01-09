@@ -24,19 +24,21 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">Admin Panel</a></li>
+						<li><a href="/trainingsystem/admin/term/showall">Admin Panel</a></li>
 						<li><a href="#">Manage Users</a></li>
-						<li class="active">Tables</li>
+						<li class="active">UsergroupAdmin</li>
 					</ol>
 
 					<div class="row">
 						<div class="col-md-12">
+							<div id="termid" hidden="true">${termid}</div>
 							<div class="btn-group pull-right" id="templatemo_sort_btn">
 								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Group</button>
 							</div>
 
 							<div class="table-responsive">
-								<h4 class="margin-bottom-15">${termname}-Groups Situation</h4>
+								<h4 class="margin-bottom-15">${termname}-GroupsSituation</h4>
+
 								<table class="table table-striped table-hover table-bordered ">
 									<div id="actiontip" align="center"></div>
 									<thead>
@@ -103,7 +105,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">${termname}-Create A Group</h4>
+								<h4 class="modal-title" id="myModalLabel">${termname}-CreateAGroup</h4>
 							</div>
 							<div class="modal-body">
 
@@ -157,6 +159,7 @@
 											<th>loginname</th>
 											<th>email</th>
 											<th>phoneno</th>
+											<th>attendstatus</th>
 											<th>Manage</th>
 										</tr>
 									</thead>
@@ -165,6 +168,7 @@
 											<td>测试name</td>
 											<td>测试email</td>
 											<td>测试phone</td>
+											<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(groupid,userid) ;return false">attendstatus</button></td>
 											<td><button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(groupid,userid) ;return false">Remove</button></td>
 										</tr>
 									</tbody>

@@ -112,6 +112,7 @@ function loadUsersOfGroup() {
 			data = data.termmap
 			if (data.success == true) {
 				data = data.terms;
+				var termid = $("#termid").text();
 				$("#show_users_of_group").html("");
 				$.each(data, function(index, term) {
 					var trvarmodel = $("<tr></tr>");
@@ -119,9 +120,12 @@ function loadUsersOfGroup() {
 					var tdvar1 = tdvar.clone().text(term.loginname);
 					var tdvar2 = tdvar.clone().text(term.email);
 					var tdvar3 = tdvar.clone().text(term.phoneno);
-					var tdvar4 = '<button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(' + groupidvalue + ',' + term.id
+					var tdvar4 = '<a target="_blank " class="btn  btn-primary btn-sm" href="\\trainingsystem\\admin\\term\\'+termid+'\\user\\'+term.id+'\\courses\\attendstatus\\show" >progress</button>';
+					var tdvar4=tdvar.clone().html(tdvar4);
+					var tdvar5 = '<button type="button" class="btn btn-danger btn-sm" onclick="deleteUserfromGroup(' + groupidvalue + ',' + term.id
 							+ ') ;return false">Remove</button>';
-					trvarmodel.append(tdvar1, tdvar2, tdvar3, tdvar4)
+					var tdvar5=tdvar.clone().html(tdvar5);
+					trvarmodel.append(tdvar1, tdvar2, tdvar3, tdvar4,tdvar5)
 					$("#show_users_of_group").append(trvarmodel);
 				})
 				

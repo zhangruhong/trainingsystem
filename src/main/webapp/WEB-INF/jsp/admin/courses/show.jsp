@@ -27,7 +27,7 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">Admin Panel</a></li>
+						<li><a href="/trainingsystem/admin/term/showall">Admin Panel</a></li>
 						<li><a href="#">Manage Courses</a></li>
 						<li class="active">Tables</li>
 					</ol>
