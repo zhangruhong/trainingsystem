@@ -24,6 +24,7 @@ import com.synnex.dao.Order;
 import com.synnex.model.PageResult;
 import com.synnex.model.User;
 import com.synnex.utils.jsonUtil.JsonBean;
+import com.synnex.utils.mailUtil.SendEmailThread;
 import com.synnex.utils.md5Util.Md5Encode;
 import com.synnex.utils.variable.SystemVariable;
 
@@ -55,8 +56,13 @@ public class UserController extends GenericController {
 		}
 		userServiceImpl.addUser(user);
 		jsonBean = new JsonBean(false, "添加成功！", null);
+		// sendemail
 		StringBuilder content = new StringBuilder("The account name is ");
-		content =content.append(user.getLoginname()).append(" The password is ").append(user.getPassword()).append(" Please login system and modify the password as soon as possible");
+		content = content.append(user.getLoginname()).append(" The password is ").append(user.getPassword())
+				.append(" Please login system and modify the password as soon as possible");
+		SendEmailThread sendcontent = new SendEmailThread("测试主题1", "davisz@synnex.com",
+				"1这是正文<br/>单击用于翻译主题中字符串的按钮,您将进入字符串翻译页面,该页面只显示主题的文本。您可以选择具体要翻译的字符串或翻译所有缺少译文的字符串。主题和插件的专业翻译..");
+		sendcontent.start();
 
 		return jsonBean;
 	}

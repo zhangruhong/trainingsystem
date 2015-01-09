@@ -32,14 +32,13 @@ public class SendEmailThread extends Thread {
 	@Override
 	public void run() {
 		// 发送邮件
-
 		try {
 			Properties props = new Properties();
 			props.setProperty("mail.transport.protocol", "smtp");// 发送使用的协议
 			props.setProperty("mail.host", "smtp.163.com");// 发送服务器的主机地址
 			props.setProperty("mail.smtp.auth", "true");// 请求身份验证
 			Session session = Session.getDefaultInstance(props);
-			// session.setDebug(true);
+			session.setDebug(true);
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("hty181818@163.com"));
 			message.setRecipients(Message.RecipientType.TO, toemail);
@@ -58,10 +57,13 @@ public class SendEmailThread extends Thread {
 			ts.sendMessage(message, message.getAllRecipients());
 			ts.close();
 		} catch (AddressException e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		} catch (MessagingException e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 

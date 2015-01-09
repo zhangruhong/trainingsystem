@@ -25,7 +25,7 @@
 				<div class="templatemo-content">
 
 					<ol class="breadcrumb">
-						<li><a href="index.html">Admin Panel</a></li>
+						<li><a href="/trainingsystem/admin/term/showall">Admin Panel</a></li>
 						<li><a href="#">Manage Users</a></li>
 						<li class="active">Tables</li>
 					</ol>
@@ -44,8 +44,8 @@
 										<tr>
 											<th>Term Name</th>
 											<th>Discription</th>
-											<th>编辑（预留）</th>
-											<th>课程管理</th>
+											<th>Edit（hold ）</th>
+											<th>Courses</th>
 											<!-- <th>分组管理</th> -->
 										</tr>
 									</thead>
@@ -55,7 +55,7 @@
 												<td>${term["name"]}</td>
 												<td>${term["description"]}</td>
 												<td><a href="#" class="btn btn-default">Edit</a></td>
-												<td><a href="${term['id']}/courses/showall" class="btn btn-primary btn-default">课程管理</a></td>
+												<td><a href="${term['id']}/courses/showall" class="btn btn-primary btn-default">Manage</a></td>
 												<%-- <td><a href="${term['id']}/usergroup/show" class="btn btn-primary btn-default">分组管理</a></td> --%>
 											</tr>
 										</c:forEach>
@@ -105,26 +105,26 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">新建培训计划</h4>
+								<h4 class="modal-title" id="myModalLabel">Create Training Plan</h4>
 							</div>
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label"> 培训名称 </label>
+									<label for="inputPassword" class="col-sm-2 control-label"> Name </label>
 									<div class="col-sm-10">
-										<input class="form-control" id="nameInput" name="name" type="text" placeholder="请输入培训计划名称">
+										<input class="form-control" id="nameInput" name="name" type="text" placeholder="Input Training Plan Name">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="disabledTextInput" class="col-sm-2 control-label"> 培训简介 </label>
+									<label for="disabledTextInput" class="col-sm-2 control-label"> Introduction </label>
 									<div class="col-sm-10">
-										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="请输入培训计划简介/简单描述">
+										<input type="text" id="descriptionInput" name="description" class="form-control" placeholder="Input Introduction">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="addterm" type="submit" class="btn btn-primary">提交</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button id="addterm" type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>

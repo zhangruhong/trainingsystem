@@ -78,7 +78,7 @@ public class UserGroupController extends GenericController {
 		String termname = termServiceImpl.getTerm(termid).getName();
 		PageResult<Usergroup> pageResult = userGroupServiceImpl.listUserGroupPage(page, SystemVariable.PageSize, termid);
 		model.addAttribute("pageResult", pageResult);
-		// model.addAttribute("termid", termid);
+		model.addAttribute("termid", termid);
 		model.addAttribute("termname", termname);
 		return "/admin/usergroup/show";
 	}

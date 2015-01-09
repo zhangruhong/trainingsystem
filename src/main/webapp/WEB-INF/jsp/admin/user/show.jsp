@@ -26,9 +26,9 @@
 				<div class="templatemo-content">
 					<!--导航-->
 					<ol class="breadcrumb">
-						<li><a href="index.html">Admin Panel</a></li>
+						<li><a href="/trainingsystem/admin/term/showall">Admin Panel</a></li>
 						<li><a href="#">Manage Users</a></li>
-						<li class="active">Tables</li>
+						<li class="active">User Information</li>
 					</ol>
 
 					<div class="row">
