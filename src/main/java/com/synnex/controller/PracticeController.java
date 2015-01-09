@@ -78,6 +78,40 @@ public class PracticeController extends GenericController {
 	}
 
 	/**
+	 * trainer管理练习进度页面
+	 * 
+	 * 需要trainer的id
+	 */
+	@RequestMapping(value = { "/trainer/practice/arrange" })
+	public String trainerArrangePractice(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		int TrainerId = user.getId();
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTrainer(page, SystemVariable.PageSize, TrainerId);
+		model.addAttribute("pageResult", pageResult);
+		return "/trainer/practice/arrange";
+	}
+
+	/**
+	 * trainer管理课程进度页面
+	 * 
+	 * 需要trainer的id
+	 */
+	@RequestMapping(value = { "/trainer/practice/progress" })
+	public String trainerCuorseProcess(@RequestParam(value = "page", required = false) Integer page, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("USER_IN_SESSION");
+		int TrainerId = user.getId();
+		if (null == page || page < 1) {
+			page = 1;
+		}
+		PageResult<Course> pageResult = courseServiceImpl.listCoursePageByTrainer(page, SystemVariable.PageSize, TrainerId);
+		model.addAttribute("pageResult", pageResult);
+		return "/trainer/practice/progress";
+	}
+
+	/**
 	 * trainer查看练习进度详细页面
 	 * 
 	 * 需要trainer的id

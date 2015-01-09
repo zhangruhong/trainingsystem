@@ -35,8 +35,8 @@
 						<div class="col-md-12">
 							<!-- 标签页 -->
 							<ul id="myTab" class="nav nav-tabs">
-								<li class="active"><a href="#seePractice" data-toggle="tab">${course.name} Course 练习查看 </a></li>
-								<li><a href="#commitPractice" data-toggle="tab">${course.name} Course 练习提交 </a></li>
+								<li class="active"><a href="#seePractice" data-toggle="tab">${course.name} Course Practice View </a></li>
+								<li><a href="#commitPractice" data-toggle="tab">${course.name} Course Practice Commit </a></li>
 							</ul>
 
 							<div id="myTabContent" class="tab-content">
@@ -67,10 +67,10 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">你已经成功提交，稍后trainer会为你打分</h4>
+							<h4 class="modal-title" id="myModalLabel">You have commit successfully，later trainer will score for you</h4>
 						</div>
 						<div class="modal-footer">
-							<a href="${pageContext.request.contextPath}/trainee/${course.term.id}/course/view" class="btn btn-primary">确定</a>
+							<a href="${pageContext.request.contextPath}/trainee/${course.term.id}/course/view" class="btn btn-primary">confirm</a>
 						</div>
 					</div>
 				</div>

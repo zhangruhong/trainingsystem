@@ -45,7 +45,7 @@
 								<!-- 加载编辑器的容器 -->
 								<script id="container" name="editcontent" type="text/plain" style="width: 900px; height: 450px;"></script>
 								<br/>
-								<a href="${pageContext.request.contextPath}/trainer/practice/view" class="btn btn-default" style="margin-left: 850px;">Back</a>
+								<a href="${pageContext.request.contextPath}/trainer/practice/arrange" class="btn btn-default" style="margin-left: 850px;">Back</a>
 								<button id="uploadButton" type="button" class="btn btn-primary">Commit</button>
 							</div>
 						</div>
